@@ -24,11 +24,11 @@ public class ControladorSecretarias {
 //Sentencia   
     }
 
-    private boolean verificacionNombre(String nombre) {
+    private boolean verificarNombre(String nombre) {
         return !nombre.trim().equals("");
     }
 
-    private boolean verificacionCedula(String cedula) {
+    private boolean verificarCedula(String cedula) {
         try {
             long id= Long.parseLong((cedula.replaceAll("-","0")));
             return id==11;
@@ -45,4 +45,6 @@ public class ControladorSecretarias {
         }
         return false;
     }
+    
+    private void 
 }
