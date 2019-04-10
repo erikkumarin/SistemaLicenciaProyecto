@@ -2,10 +2,6 @@ package Personas.Usuarios.Oficiales;
 
 import Personas.Usuarios.ModeloUsuarios;
 
-/**
- *
- * @author Shorlax
- */
 public class ModeloOficiales extends ModeloUsuarios {
 
     private double salario;
