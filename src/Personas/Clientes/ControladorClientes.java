@@ -3,36 +3,50 @@ package Personas.Clientes;
 import BaseDeDatos.BaseDatos;
 
 public class ControladorClientes {
-    
+
     private ModeloClientes cliente;
-    
-    
-    
-    public void eliminar(String cedula){
-        BaseDatos BD = new BaseDatos("DELETE FROM clientes WHERE Cedula ="+cedula);
+
+    public void eliminar(String cedula) {
+        BaseDatos BD = new BaseDatos("DELETE FROM clientes WHERE Cedula =" + cedula);
     }
-    public void agregar(String cedula, String nombre, String fecha, String telefono, String correo){
-         BaseDatos BD = new BaseDatos("INSERT INTO clientes VALUES (?,?,?,?,?)");
-         BD.ejecutar(new Object[]{nombre,fecha,telefono,correo});
+
+    public void agregar(String cedula, String nombre, String fecha, String telefono, String correo) {
+        BaseDatos BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
+        BD.ejecutar(new Object[]{cedula, nombre, fecha, telefono, correo});
     }
-    public void leer(String cedula){
-        BaseDatos BD = new BaseDatos("SELECT * FROM Clientes WHERE Cedula ="+cedula);
+
+    public void leer(String cedula) {
+        BaseDatos BD = new BaseDatos("SELECT * FROM tblclientes WHERE Cedula =" + cedula);
     }
-    public void modificarCedula(){
-        
+
+    public void modificarTelefono(String telefono, String cedula) {
+        BaseDatos BD = new BaseDatos("UPDATE tblclientes SET Telefono =" + telefono + " WHERE Cedula =" + cedula);
     }
-    public void modificarNombre(){
-        
+
+    public void modificarCorreo(String correo, String cedula) {
+        BaseDatos BD = new BaseDatos("UPDATE tblclientes SET Correo =" + correo + " WHERE Cedula =" + cedula);
     }
-    public void modificarFecha(){
-        
+
+    private boolean verificarNombre(String nombre) {
+        return !nombre.trim().equals("");
     }
-    public void modificarTelefono(){
-        
+
+    private boolean verificarCedula(String cedula) {
+        try {
+            long id = Long.parseLong((cedula.replaceAll("-", "0")));
+            return id == 11;
+        } catch (NumberFormatException e) {
+        }
+        return false;
     }
-    public void modificarCorreo(){
-        
+
+    private boolean verificarTelefono(String telefono) {
+        try {
+            long numero = Long.parseLong(telefono);
+            return true;
+        } catch (NumberFormatException e) {
+        }
+        return false;
     }
-    
 
 }

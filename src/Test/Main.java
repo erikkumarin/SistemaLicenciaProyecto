@@ -1,13 +1,13 @@
 package Test;
 
-import Utilidades.FechaNac;
+import BaseDeDatos.BaseDatos;
 
 public class Main {
 
     public static void main(String[] args) {
-        //ejemplo de edad
-        FechaNac f = new FechaNac();
-        System.out.println(f.calcularMotrarEdad("13/11/1999"));
+        BaseDatos BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,null,null)");
+        BD.ejecutar(new Object[]{"501230123","Maria Luis Prueba","10/10/1001"});
+        
     }
 
 }
