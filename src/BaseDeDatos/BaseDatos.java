@@ -25,7 +25,7 @@ public class BaseDatos {
         if (conexion == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/java?useServerPrepStmts=true", "JAVA", "123456");
+                conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/bdlicencias?useServerPrepStmts=true", "Java", "1234");
                 return true;
             } catch (ClassNotFoundException ex) {
                 System.out.println("Driver No Cargado");

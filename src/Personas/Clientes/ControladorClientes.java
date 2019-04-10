@@ -10,26 +10,18 @@ public class ControladorClientes {
         BaseDatos BD = new BaseDatos("DELETE FROM clientes WHERE Cedula ="+cedula);
     }
     public void agregar(String cedula, String nombre, String fecha, String telefono, String correo){
-         BaseDatos BD = new BaseDatos("INSERT INTO clientes VALUES (?,?,?,?,?)");
-         BD.ejecutar(new Object[]{nombre,fecha,telefono,correo});
+         BaseDatos BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
+         BD.ejecutar(new Object[]{cedula,nombre,fecha,telefono,correo});
     }
     public void leer(String cedula){
-        BaseDatos BD = new BaseDatos("SELECT * FROM Clientes WHERE Cedula ="+cedula);
+        BaseDatos BD = new BaseDatos("SELECT * FROM tblclientes WHERE Cedula ="+cedula);
     }
-    public void modificarCedula(){
-        BaseDatos BD = new BaseDatos("UPDATE Clientes");
+
+    public void modificarTelefono(String valor, String telefono){
+        BaseDatos BD = new BaseDatos("UPDATE tblclientes SET Telefono ="+valor+ " WHERE Telefono="+ telefono);
     }
-    public void modificarNombre(){
-        
-    }
-    public void modificarFecha(){
-        
-    }
-    public void modificarTelefono(){
-        
-    }
-    public void modificarCorreo(){
-        
+    public void modificarCorreo(String valor, String correo){
+        BaseDatos BD = new BaseDatos("UPDATE tblclientes SET Correo ="+valor+ " WHERE Correo="+ correo);
     }
     
 
