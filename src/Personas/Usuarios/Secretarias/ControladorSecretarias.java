@@ -46,5 +46,5 @@ public class ControladorSecretarias {
         return false;
     }
     
-    private void 
+//    private void 
 }
