@@ -5,10 +5,6 @@
  */
 package Menu;
 
-/**
- *
- * @author Shorlax
- */
 public class VistaMenu extends javax.swing.JFrame {
 
     /**

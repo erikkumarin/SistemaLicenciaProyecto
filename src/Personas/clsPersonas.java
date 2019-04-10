@@ -1,10 +1,8 @@
 package Personas;
 
-/**
- *
- * @author Shorlax
- */
 public abstract class clsPersonas {
+
+public class clsPersonas {
 
     private String cedula;
     private String nombre;
