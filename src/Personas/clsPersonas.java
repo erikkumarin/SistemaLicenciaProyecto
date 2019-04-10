@@ -1,10 +1,11 @@
 package Personas;
-public abstract class clsPersonas {
 
+public abstract class clsPersonas {
     private String cedula;
     private String nombre;
     private String telefono;
     private String correo;
+
 
     public void leer() {
 
