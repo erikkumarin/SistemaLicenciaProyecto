@@ -1,4 +1,7 @@
 package Personas.Usuarios.Secretarias;
-public class ModeloSecretarias {
+
+import Personas.Usuarios.ModeloUsuarios;
+
+public class ModeloSecretarias extends ModeloUsuarios{
 
 }

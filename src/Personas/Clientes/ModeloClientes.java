@@ -1,4 +1,15 @@
 package Personas.Clientes;
-public class ModeloClientes {
+
+import Personas.clsPersonas;
+
+/**
+ *
+ * @author Shorlax
+ */
+public class ModeloClientes extends clsPersonas {
+
+    public void calcularEdad() {
+
+    }
 
 }
