@@ -7,7 +7,9 @@ public class ControladorClientes {
     private ModeloClientes cliente;
 
     public void eliminar(String cedula) {
-        BaseDatos BD = new BaseDatos("DELETE FROM clientes WHERE Cedula =" + cedula);
+        if (verificarCedula(cedula)) {
+             BaseDatos BD = new BaseDatos("DELETE FROM tblclientes WHERE Cedula =" + cedula);
+        }
     }
 
     public void agregar(String cedula, String nombre, String fecha, String telefono, String correo) {
@@ -16,15 +18,21 @@ public class ControladorClientes {
     }
 
     public void leer(String cedula) {
+         if (verificarCedula(cedula)) {
         BaseDatos BD = new BaseDatos("SELECT * FROM tblclientes WHERE Cedula =" + cedula);
+         }
     }
 
     public void modificarTelefono(String telefono, String cedula) {
+         if (verificarCedula(cedula)) {
         BaseDatos BD = new BaseDatos("UPDATE tblclientes SET Telefono =" + telefono + " WHERE Cedula =" + cedula);
+         }
     }
 
     public void modificarCorreo(String correo, String cedula) {
+         if (verificarCedula(cedula)) {
         BaseDatos BD = new BaseDatos("UPDATE tblclientes SET Correo =" + correo + " WHERE Cedula =" + cedula);
+         }
     }
 
     private boolean verificarNombre(String nombre) {
