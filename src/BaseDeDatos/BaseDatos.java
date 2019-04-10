@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import Archivos.Configuracion;
 
 public class BaseDatos {
 
@@ -22,10 +23,11 @@ public class BaseDatos {
     }
 
     private boolean conectar() {
+        Configuracion config = new Configuracion();
         if (conexion == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/bdlicencias?useServerPrepStmts=true", "Java", "1234");
+                conexion = DriverManager.getConnection(config.getPropiedades("Servidor") , config.getPropiedades("Usuario"), config.getPropiedades("Contra"));
                 return true;
             } catch (ClassNotFoundException ex) {
                 System.out.println("Driver No Cargado");
