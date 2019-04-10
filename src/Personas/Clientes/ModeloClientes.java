@@ -1,4 +1,9 @@
-package Personas.Clientes;
-public class ModeloClientes {
+package Personas;
+
+public class ModeloClientes extends clsPersonas {
+
+    public void calcularEdad() {
+
+    }
 
 }
