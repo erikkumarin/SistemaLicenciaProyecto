@@ -5,9 +5,7 @@ import BaseDeDatos.BaseDatos;
 public class ControladorClientes {
     
     private ModeloClientes cliente;
-    
-    
-    
+     
     public void eliminar(String cedula){
         BaseDatos BD = new BaseDatos("DELETE FROM clientes WHERE Cedula ="+cedula);
     }
@@ -19,7 +17,7 @@ public class ControladorClientes {
         BaseDatos BD = new BaseDatos("SELECT * FROM Clientes WHERE Cedula ="+cedula);
     }
     public void modificarCedula(){
-        
+        BaseDatos BD = new BaseDatos("UPDATE Clientes");
     }
     public void modificarNombre(){
         
