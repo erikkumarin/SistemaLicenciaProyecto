@@ -2,7 +2,8 @@ package Personas.Usuarios.Secretarias;
 public class ControladorSecretarias {
 
     private ModeloSecretarias secretaria;
-
+//hola
+    
     public ControladorSecretarias() {
 
     }
