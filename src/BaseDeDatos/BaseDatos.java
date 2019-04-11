@@ -6,15 +6,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import Archivos.Configuracion;
+import java.io.File;
 
 public class BaseDatos {
 
     private static Connection conexion;
     private PreparedStatement sentencia;
     private ResultSet datos;
+    private Configuracion config;
+    private File conf;
 
     public BaseDatos() {
         this.conectar();
+        if (!conf.exists()) {
+          config= new Configuracion();
+        }
     }
 
     public BaseDatos(String sql) {
