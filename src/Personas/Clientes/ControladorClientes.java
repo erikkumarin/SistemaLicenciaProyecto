@@ -20,27 +20,29 @@ public class ControladorClientes {
             BD.ejecutar(new Object[]{cedula, nombre, fecha, telefono, correo});
         }
     }
-
-    public void leer(String cedula) {
+    
+    public void getCliente(String cedula, String dato) {
         if (verificarCedula(cedula)) {
-            BD = new BaseDatos("SELECT * FROM tblclientes WHERE Cedula =" + cedula);
+            BD = new BaseDatos("SELECT" +dato+ "FROM tblclientes WHERE Cedula =" + cedula);
             BD.ejecutar();
         }
     }
+ 
 
-    public void modificarTelefono(String telefono, String cedula) {
+    public void setTelefono(String telefono, String cedula) {
         if (verificarCedula(cedula)) {
             BD = new BaseDatos("UPDATE tblclientes SET Telefono =" + telefono + " WHERE Cedula =" + cedula);
             BD.ejecutar();
         }
     }
 
-    public void modificarCorreo(String correo, String cedula) {
+    public void setCorreo(String correo, String cedula) {
         if (verificarCedula(cedula)) {
             BD = new BaseDatos("UPDATE tblclientes SET Correo =" + correo + " WHERE Cedula =" + cedula);
             BD.ejecutar();
         }
     }
+    
 
     private boolean verificarCedula(String cedula) {
         try {
