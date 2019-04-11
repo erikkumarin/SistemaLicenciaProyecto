@@ -11,6 +11,7 @@ public class ControladorClientes {
         if (verificarCedula(cedula)) {
             BD = new BaseDatos("DELETE FROM tblclientes WHERE Cedula =" + cedula);
             BD.ejecutar();
+            
         }
     }
 
