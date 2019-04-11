@@ -19,7 +19,7 @@ public class ControladorClientes {
 
     public void leer(String cedula) {
          if (verificarCedula(cedula)) {
-        BaseDatos BD = new BaseDatos("SELECT * FROM tblclientes WHERE Cedula =" + cedula);
+        BaseDatos BD = new BaseDatos("SELECT Cedula FROM tblclientes WHERE Cedula =" + cedula);
          }
     }
 
