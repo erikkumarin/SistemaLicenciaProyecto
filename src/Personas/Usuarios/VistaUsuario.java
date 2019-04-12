@@ -370,48 +370,57 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    public JComboBox<String> getCbAnio() {
-        return cbAnio;
+   public String getFecha() {
+        if (this.cbMes.getSelectedIndex() + 1 < 10) {
+            return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
+        }
+        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
     }
 
-    public JComboBox<String> getCbDia() {
-        return cbDia;
+    public String getCedula() {
+        return this.txtCedula.getText();
     }
 
-    public JComboBox<String> getCbMes() {
-        return cbMes;
+    public String getCorreo() {
+        return txtCorreo.getText();
     }
 
-    public JComboBox<String> getCbUsuario() {
-        return cbUsuario;
+    public String getNombre() {
+        return txtNombre.getText();
     }
 
-    public JTextField getTxtCedula() {
-        return txtCedula;
+    public String getTelefono() {
+        return txtTelefono.getText();
     }
 
-    public JTextField getTxtContrasena() {
-        return txtContrasena;
+    public void setCedula(String cedula) {
+        this.txtCedula.setText(cedula);
     }
 
-    public JTextField getTxtCorreo() {
-        return txtCorreo;
+    public void setFecha(String fecha) {
+        String fec[] = fecha.split("/");
+        this.cbDia.addItem(fec[0]);
+        this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
+        this.cbAnio.addItem(fec[2]);
     }
 
-    public JTextField getTxtNombre() {
-        return txtNombre;
+    public void setCorreo(String correo) {
+        this.txtCorreo.setText(correo);
     }
 
-    public JTextField getTxtSalario() {
-        return txtSalario;
+    public void setNombre(String nombre) {
+        this.txtNombre.setText(nombre);
     }
 
-    public JTextField getTxtTelefono() {
-        return txtTelefono;
+    public void setTelefono(String telefono) {
+        this.txtTelefono.setText(telefono);
     }
 
-    public JTextField getTxtUsuario() {
-        return txtUsuario;
+    @Override
+    public String toString() {
+        return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
+                + " Fecha de Nac': " + this.getFecha() + " Telefono: " + this.getTelefono()
+                + " Correo: " + this.getCorreo();
     }
 
 }
