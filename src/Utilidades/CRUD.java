@@ -1,5 +1,5 @@
 
-package Personas;
+package Utilidades;
 
 public interface CRUD {
     public void agregar();

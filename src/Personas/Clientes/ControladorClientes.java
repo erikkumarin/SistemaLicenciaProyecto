@@ -1,7 +1,7 @@
 package Personas.Clientes;
 
 import BaseDeDatos.BaseDatos;
-import Personas.CRUD;
+import Utilidades.CRUD;
 
 public class ControladorClientes implements CRUD {
 
@@ -28,23 +28,7 @@ public class ControladorClientes implements CRUD {
         BD = new BaseDatos("DELETE FROM tblclientes WHERE Cedula =" + cliente.getCedula());
         BD.ejecutar();
     }
-
-    @Override
-    public void modificar() {
-        cliente = new ModeloClientes();
-        cliente.setCedula(vista.getCedula());
-        cliente.setTelefono(vista.getTelefono());
-        cliente.setCorreo(vista.getCorreo());
-        if (cliente.getTelefono() == null) {
-            BD = new BaseDatos("UPDATE tblclientes SET Correo ="+cliente.getCorreo()+" WHERE Cedula =" + cliente.getCedula());
-        }else if (cliente.getCorreo() == null) {
-             BD = new BaseDatos("UPDATE tblclientes SET Telefono ="+cliente.getTelefono()+" WHERE Cedula =" + cliente.getCedula());
-        }else{
-             BD = new BaseDatos("UPDATE tblclientes SET Telefono ="+cliente.getTelefono()+", Correo ="+cliente.getCorreo()+" WHERE Cedula =" + cliente.getCedula());
-        }
-        BD.ejecutar();
-    }
-
+    
     @Override
     public void leer() {
         cliente = new ModeloClientes();
@@ -53,14 +37,23 @@ public class ControladorClientes implements CRUD {
         BD.ejecutar();
     }
 
-//    private boolean verificarCedula(String cedula) {
-//        try {
-//            return (Long.parseLong((cedula.replaceAll("-", "0")))) == 9;
-//        } catch (NumberFormatException e) {
+//    @Override
+//    public void modificar() {
+//        cliente = new ModeloClientes();
+//        cliente.setCedula(vista.getCedula());
+//        cliente.setTelefono(vista.getTelefono());
+//        cliente.setCorreo(vista.getCorreo());
+//        if (cliente.getTelefono() == null) {
+//            BD = new BaseDatos("UPDATE tblclientes SET Correo ="+cliente.getCorreo()+" WHERE Cedula =" + cliente.getCedula());
+//        }else if (cliente.getCorreo() == null) {
+//             BD = new BaseDatos("UPDATE tblclientes SET Telefono ="+cliente.getTelefono()+" WHERE Cedula =" + cliente.getCedula());
+//        }else{
+//             BD = new BaseDatos("UPDATE tblclientes SET Telefono ="+cliente.getTelefono()+", Correo ="+cliente.getCorreo()+" WHERE Cedula =" + cliente.getCedula());
 //        }
-//        return false;
+//        BD.ejecutar();
 //    }
-//
+
+
 //    private boolean verificarNombre(String nombre) {
 //        return !nombre.trim().equals("");
 //    }
@@ -73,4 +66,9 @@ public class ControladorClientes implements CRUD {
 //        }
 //        return false;
 //    }
+
+    @Override
+    public void modificar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
