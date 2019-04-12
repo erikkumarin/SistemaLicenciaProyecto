@@ -146,4 +146,6 @@ public class VistaMenu extends javax.swing.JFrame {
     private javax.swing.JMenu MInicar;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
+
+
 }
