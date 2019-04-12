@@ -1,8 +1,9 @@
 package Personas.Clientes;
 
 import BaseDeDatos.BaseDatos;
+import Personas.CRUD;
 
-public class ControladorClientes {
+public class ControladorClientes implements CRUD{
 
     private ModeloClientes cliente;
     private BaseDatos BD;
@@ -81,6 +82,26 @@ public class ControladorClientes {
         } catch (NumberFormatException e) {
         }
         return false;
+    }
+
+    @Override
+    public void agregar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void modificar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void leer() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
