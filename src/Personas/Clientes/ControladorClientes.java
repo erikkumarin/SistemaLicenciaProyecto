@@ -21,8 +21,20 @@ public class ControladorClientes {
             BD.ejecutar(new Object[]{cedula, nombre, fecha, telefono, correo});
         }
     }
-    
-    public void getCliente(String cedula, String dato) {
+    public void agregarCorreo(String cedula, String nombre, String fecha, String correo) {
+        if (verificarCedula(cedula) && verificarNombre(nombre)) {
+            BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
+            BD.ejecutar(new Object[]{cedula, nombre, fecha, null, correo});
+        }
+    }
+    public void agregartelefono(String cedula, String nombre, String fecha, String telefono) {
+        if (verificarCedula(cedula) && verificarNombre(nombre) && verificarTelefono(telefono)) {
+            BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
+            BD.ejecutar(new Object[]{cedula, nombre, fecha, telefono, null});
+        }
+    }
+
+    public void leer(String dato,String cedula) {
         if (verificarCedula(cedula)) {
             BD = new BaseDatos("SELECT" +dato+ "FROM tblclientes WHERE Cedula =" + cedula);
             BD.ejecutar();

@@ -14,12 +14,17 @@ public class Configuracion {
     private Properties config;
 
     public Configuracion() {
-        this.archivo = new File(System.getProperty("user.dir") + "\\Config.ini");
-        this.config = new Properties();
         try {
-            config.load(new FileReader(this.archivo));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
+            this.archivo = new File(System.getProperty("user.dir") + "\\Config.ini");
+            archivo.createNewFile();
+            this.config = new Properties();
+            try {
+                config.load(new FileReader(this.archivo));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (IOException ex) {
             Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
         }

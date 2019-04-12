@@ -1,4 +1,7 @@
 package Personas.Usuarios.Secretarias;
+
+import BaseDeDatos.BaseDatos;
+
 public class ControladorSecretarias {
 
     private ModeloSecretarias secretaria;
@@ -8,27 +11,40 @@ public class ControladorSecretarias {
 
     }
 
-    public void eliminarSecretaria() {
-//Sentencia
+     public void eliminar(String cedula) {
+        BaseDatos BD = new BaseDatos("DELETE FROM tblusuarios WHERE Cedula =" + cedula);
     }
 
-    public void modificarSecretaria() {
-//Sentencia
+    public void agregar(String cedula, String nombre, String fecha, String telefono, String correo) {
+        BaseDatos BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?)");
+        BD.ejecutar(new Object[]{cedula, nombre, fecha, telefono, correo});
+    }
+    public void agregarSinCorreo(String cedula, String nombre, String fecha, String telefono) {
+        BaseDatos BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?)");
+        BD.ejecutar(new Object[]{cedula, nombre, fecha, telefono, null});
+    }
+    public void agregarSinTelefono(String cedula, String nombre, String fecha, String correo) {
+        BaseDatos BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?)");
+        BD.ejecutar(new Object[]{cedula, nombre, fecha, null, correo});
     }
 
-    public void leerSecretaria() {
-//Sentencia
+    public void leer(String cedula,String datos) {
+        BaseDatos BD = new BaseDatos("SELECT "+datos+" FROM tblusuarios WHERE Cedula =" + cedula);
     }
 
-    public void agregarSecretaria() {
-//Sentencia   
+    public void modificarTelefono(String telefono, String cedula) {
+        BaseDatos BD = new BaseDatos("UPDATE tblusuarios SET Telefono =" + telefono + " WHERE Cedula =" + cedula);
     }
 
-    private boolean verificacionNombre(String nombre) {
+    public void modificarCorreo(String correo, String cedula) {
+        BaseDatos BD = new BaseDatos("UPDATE tblusuarios SET Correo =" + correo + " WHERE Cedula =" + cedula);
+    }
+
+    private boolean verificarNombre(String nombre) {
         return !nombre.trim().equals("");
     }
 
-    private boolean verificacionCedula(String cedula) {
+    private boolean verificarCedula(String cedula) {
         try {
             long id= Long.parseLong((cedula.replaceAll("-","0")));
             return id==11;
@@ -45,4 +61,6 @@ public class ControladorSecretarias {
         }
         return false;
     }
+    
+//    private void 
 }
