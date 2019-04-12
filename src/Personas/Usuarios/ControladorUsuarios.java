@@ -10,7 +10,6 @@ public class ControladorUsuarios {
     public void eliminar(String cedula) {
         if (verificarCedula(cedula)) {
             BD = new BaseDatos("DELETE FROM tblusuarios WHERE Cedula =" + cedula);
-            
         }
     }
 
