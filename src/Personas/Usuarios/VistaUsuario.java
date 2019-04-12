@@ -6,6 +6,7 @@
 package Personas.Usuarios;
 
 
+
 public class VistaUsuario extends javax.swing.JInternalFrame {
 
     /**
@@ -14,7 +15,6 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
     public VistaUsuario() {
         initComponents();
         ajustar();
-      //  this.setUI(null);
     }
 
     private void ajustar() {
