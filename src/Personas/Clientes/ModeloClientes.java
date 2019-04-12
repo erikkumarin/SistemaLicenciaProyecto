@@ -5,7 +5,20 @@ import Utilidades.FechaNac;
 
 public class ModeloClientes extends clsPersonas {
 
-    private FechaNac fecha;
+    private FechaNac fechaNac;
+
+    public String getFechaNac() {
+        if (this.fechaNac.getFechaNac() == null) {
+            return null;
+        } else {
+            String fechaInvertida[] = this.fechaNac.getFechaNac().toString().split("-");
+            return fechaInvertida[2] + "/" + fechaInvertida[1] + "/" + fechaInvertida[0];
+        }
+    }
+
+    public void setFechaNac(String fecha) {
+        this.fechaNac.ingresarFechaNac(fecha);
+    }
 
     @Override
     public void setCorreo(String correo) {
@@ -47,12 +60,49 @@ public class ModeloClientes extends clsPersonas {
         return super.getCedula();
     }
 
+    public ModeloClientes(String cedula, String nombre, String telefono, String correo, String fecha) {
+        this.fechaNac = new FechaNac();
+        this.setFechaNac(fecha);
+        this.setCedula(cedula);
+        this.setNombre(nombre);
+        this.setCorreo(correo);
+        this.setTelefono(telefono);
+    }
+
+    public ModeloClientes() {
+        this.fechaNac = new FechaNac();
+    }
+
+    /**
+     * Calcula la edad del cliente ingresando su fecha de nacimiento.
+     *
+     * @param fechaNac dd/mm/yyyy
+     * @return la edad del cliente
+     */
     public int calcularEdad(String fechaNac) {
-        int edad = this.fecha.calcularMotrarEdad(fechaNac);
+        int edad = this.fechaNac.calcularMotrarEdad(fechaNac);
         if (edad >= 18) {
             return edad;
         } else {
             return 0;
+        }
+    }
+
+    /**
+     * Requiere haberse ingresado anteriormente la fecha de nacimiento.
+     *
+     * @return Edad del cliente
+     */
+    public int calcularEdad() {
+        if (this.getFechaNac() == null) {
+            return 0;
+        } else {
+            int edad = this.fechaNac.calcularMotrarEdad(this.getFechaNac());
+            if (edad >= 18) {
+                return edad;
+            } else {
+                return 0;
+            }
         }
     }
 

@@ -16,6 +16,14 @@ public class ModeloOficiales extends ModeloUsuarios {
         }
     }
 
+    public ModeloOficiales(String cedula, String nombre, String nombreUsuario, String contra, String telefono, String tipoUsuario, String correo, double salario) {
+        super(cedula, nombre, nombreUsuario, contra, telefono, tipoUsuario, correo);
+        this.setSalario(salario);
+    }
+
+    public ModeloOficiales() {
+    }
+
     public double calcularDeducEnfMat() {
         return salario * 0.055;
     }

@@ -1,86 +1,76 @@
 package Personas.Clientes;
 
 import BaseDeDatos.BaseDatos;
+import Personas.CRUD;
 
-public class ControladorClientes {
+public class ControladorClientes implements CRUD {
 
     private ModeloClientes cliente;
     private BaseDatos BD;
+    private VistaCliente vista;
 
-    public void eliminar(String cedula) {
-        if (verificarCedula(cedula)) {
-            BD = new BaseDatos("DELETE FROM tblclientes WHERE Cedula =" + cedula);
-            BD.ejecutar();
-            
-        }
-    }
-
-    public void agregar(String cedula, String nombre, String fecha, String telefono, String correo) {
-        if (verificarCedula(cedula) && verificarNombre(nombre) && verificarTelefono(telefono)) {
-            BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
-            BD.ejecutar(new Object[]{cedula, nombre, fecha, telefono, correo});
-        }
-    }
-    public void agregarCorreo(String cedula, String nombre, String fecha, String correo) {
-        if (verificarCedula(cedula) && verificarNombre(nombre)) {
-            BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
-            BD.ejecutar(new Object[]{cedula, nombre, fecha, null, correo});
-        }
-    }
-    public void agregartelefono(String cedula, String nombre, String fecha, String telefono) {
-        if (verificarCedula(cedula) && verificarNombre(nombre) && verificarTelefono(telefono)) {
-            BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
-            BD.ejecutar(new Object[]{cedula, nombre, fecha, telefono, null});
-        }
-    }
-
-    public void leer(String cedula) {
-        if (verificarCedula(cedula)) {
-            BD = new BaseDatos("SELECT * FROM tblclientes WHERE Cedula =" + cedula);
-            BD.ejecutar();
-        }
-    }
-
-    public void leer(String dato,String cedula) {
-        if (verificarCedula(cedula)) {
-            BD = new BaseDatos("SELECT" +dato+ "FROM tblclientes WHERE Cedula =" + cedula);
-            BD.ejecutar();
-        }
-    }
- 
-    public void setTelefono(String telefono, String cedula) {
-        if (verificarCedula(cedula)) {
-            BD = new BaseDatos("UPDATE tblclientes SET Telefono =" + telefono + " WHERE Cedula =" + cedula);
-            BD.ejecutar();
-        }
-    }
-
-    public void setCorreo(String correo, String cedula) {
-        if (verificarCedula(cedula)) {
-            BD = new BaseDatos("UPDATE tblclientes SET Correo =" + correo + " WHERE Cedula =" + cedula);
-            BD.ejecutar();
-        }
+    public ControladorClientes(VistaCliente vista) {
+        this.vista = vista;
     }
     
-    private boolean verificarCedula(String cedula) {
-        try {
-            return (Long.parseLong((cedula.replaceAll("-", "0")))) == 9;
-        } catch (NumberFormatException e) {
+    @Override
+    public void agregar() {
+        BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
+        cliente = new ModeloClientes(vista.getCedula(), vista.getNombre(), vista.getTelefono(), vista.getCorreo(), vista.getFecha());
+        BD.ejecutar(new Object[]{cliente.getCedula(), cliente.getNombre(), cliente.getFechaNac(), cliente.getTelefono(), cliente.getCorreo()});
+
+    }
+
+    @Override
+    public void eliminar() {
+        cliente = new ModeloClientes();
+        cliente.setCedula(vista.getCedula());
+        BD = new BaseDatos("DELETE FROM tblclientes WHERE Cedula =" + cliente.getCedula());
+        BD.ejecutar();
+    }
+
+    @Override
+    public void modificar() {
+        cliente = new ModeloClientes();
+        cliente.setCedula(vista.getCedula());
+        cliente.setTelefono(vista.getTelefono());
+        cliente.setCorreo(vista.getCorreo());
+        if (cliente.getTelefono() == null) {
+            BD = new BaseDatos("UPDATE tblclientes SET Correo ="+cliente.getCorreo()+" WHERE Cedula =" + cliente.getCedula());
+        }else if (cliente.getCorreo() == null) {
+             BD = new BaseDatos("UPDATE tblclientes SET Telefono ="+cliente.getTelefono()+" WHERE Cedula =" + cliente.getCedula());
+        }else{
+             BD = new BaseDatos("UPDATE tblclientes SET Telefono ="+cliente.getTelefono()+", Correo ="+cliente.getCorreo()+" WHERE Cedula =" + cliente.getCedula());
         }
-        return false;
+        BD.ejecutar();
     }
 
-    private boolean verificarNombre(String nombre) {
-        return !nombre.trim().equals("");
+    @Override
+    public void leer() {
+        cliente = new ModeloClientes();
+        cliente.setCedula(vista.getCedula());
+        BD = new BaseDatos("SELECT * FROM tblclientes WHERE Cedula =" + cliente.getCedula());
+        BD.ejecutar();
     }
 
-    private boolean verificarTelefono(String telefono) {
-        try {
-            long numero = Long.parseLong(telefono);
-            return true;
-        } catch (NumberFormatException e) {
-        }
-        return false;
-    }
-
+//    private boolean verificarCedula(String cedula) {
+//        try {
+//            return (Long.parseLong((cedula.replaceAll("-", "0")))) == 9;
+//        } catch (NumberFormatException e) {
+//        }
+//        return false;
+//    }
+//
+//    private boolean verificarNombre(String nombre) {
+//        return !nombre.trim().equals("");
+//    }
+//
+//    private boolean verificarTelefono(String telefono) {
+//        try {
+//            long numero = Long.parseLong(telefono);
+//            return true;
+//        } catch (NumberFormatException e) {
+//        }
+//        return false;
+//    }
 }
