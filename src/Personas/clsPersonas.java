@@ -12,7 +12,11 @@ public abstract class clsPersonas {
     }
 
     public void setCedula(String cedula) {
-        this.cedula = cedula;
+        if (cedula.length() == 9) {
+            this.cedula = cedula;
+        } else {
+            System.out.println("Error al guardar la cedula");
+        }
     }
 
     public String getNombre() {
@@ -28,7 +32,11 @@ public abstract class clsPersonas {
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        if (telefono.length() == 8) {
+            this.telefono = telefono;
+        } else {
+            System.out.println("Error al guardar el telefono");
+        }
     }
 
     public String getCorreo() {
