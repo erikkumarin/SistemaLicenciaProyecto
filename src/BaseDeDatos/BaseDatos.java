@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import Archivos.Configuracion;
+import Errores.ErrorConexion;
 import java.io.File;
+import Errores.TipoErrorConexion;
 
 public class BaseDatos {
 
@@ -17,17 +19,17 @@ public class BaseDatos {
     private Configuracion config;
     private File conf;
 
-    public BaseDatos() {
+    public BaseDatos() throws ErrorConexion {
         this.conectar();
-          config= new Configuracion();
+        config = new Configuracion();
     }
 
-    public BaseDatos(String sql) {
+    public BaseDatos(String sql) throws ErrorConexion {
         this.conectar();
         this.setSentencia(sql);
     }
 
-    private boolean conectar() {
+    private boolean conectar() throws ErrorConexion {
         config = new Configuracion();
         if (conexion == null) {
             try {
@@ -35,10 +37,10 @@ public class BaseDatos {
                 conexion = DriverManager.getConnection(config.getPropiedades("Servidor"), config.getPropiedades("Usuario"), config.getPropiedades("Contra"));
                 return true;
             } catch (ClassNotFoundException ex) {
-                System.out.println("Driver No Cargado");
+                throw new ErrorConexion(TipoErrorConexion.ERRORDRIVER);
             } catch (SQLException ex) {
-                System.out.println("Error al Conectar");
                 System.out.println(ex.getMessage());
+                throw new ErrorConexion(TipoErrorConexion.ERRORSERVIDOR);
             }
         }
         return false;
