@@ -72,10 +72,23 @@ public class ModeloUsuarios extends clsPersonas {
         return super.getCedula();
     }
 
+    public ModeloUsuarios(String cedula, String nombre, String nombreUsuario, String contra, String telefono, String tipoUsuario, String correo) {
+        this.setCedula(cedula);
+        this.setNombre(nombre);
+        this.setNomUsuario(nombreUsuario);
+        this.setContra(contra);
+        this.setCorreo(correo);
+        this.setTelefono(telefono);
+        this.setTipoUsuario(tipoUsuario);
+    }
+
+    public ModeloUsuarios() {
+    }
+
     public void cambiarContra(String contraAntig, String contraNueva1, String contraNueva2) {
         if (this.contra.equals(contraAntig) && contraNueva1.equals(contraNueva2)) {
             this.contra = contraNueva1;
         }
     }
-    
+
 }
