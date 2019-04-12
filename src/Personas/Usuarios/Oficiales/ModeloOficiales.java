@@ -1,9 +1,32 @@
 package Personas.Usuarios.Oficiales;
 
-/**
- *
- * @author Shorlax
- */
-public class ModeloOficiales {
+import Personas.Usuarios.ModeloUsuarios;
 
+public class ModeloOficiales extends ModeloUsuarios {
+
+    private double salario;
+
+    public void calcularDeducEnfMat() {
+
+    }
+
+    public void calcularDeducInvaMuer() {
+
+    }
+
+    public void calcularDeducAporTrab() {
+
+    }
+
+    public void calcularDeducAsocSoli() {
+
+    }
+
+    public void calcularDeducImpRenta() {
+
+    }
+
+    public void calcularsalarioNeto() {
+
+    }
 }

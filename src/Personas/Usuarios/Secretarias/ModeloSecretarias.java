@@ -1,9 +1,7 @@
 package Personas.Usuarios.Secretarias;
 
-/**
- *
- * @author Shorlax
- */
-public class ModeloSecretarias {
+import Personas.Usuarios.ModeloUsuarios;
+
+public class ModeloSecretarias extends ModeloUsuarios{
 
 }

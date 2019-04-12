@@ -6,15 +6,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import Archivos.Configuracion;
+import java.io.File;
 
 public class BaseDatos {
 
     private static Connection conexion;
     private PreparedStatement sentencia;
     private ResultSet datos;
+    private Configuracion config;
+    private File conf;
 
     public BaseDatos() {
         this.conectar();
+        if (!conf.exists()) {
+            config = new Configuracion();
+        }
     }
 
     public BaseDatos(String sql) {
@@ -23,10 +30,11 @@ public class BaseDatos {
     }
 
     private boolean conectar() {
+        config = new Configuracion();
         if (conexion == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1/java?useServerPrepStmts=true", "JAVA", "123456");
+                conexion = DriverManager.getConnection(config.getPropiedades("Servidor"), config.getPropiedades("Usuario"), config.getPropiedades("Contra"));
                 return true;
             } catch (ClassNotFoundException ex) {
                 System.out.println("Driver No Cargado");
