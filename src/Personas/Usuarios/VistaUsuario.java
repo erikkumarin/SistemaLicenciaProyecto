@@ -5,10 +5,7 @@
  */
 package Personas.Usuarios;
 
-/**
- *
- * @author Nebura
- */
+
 public class VistaUsuario extends javax.swing.JInternalFrame {
 
     /**

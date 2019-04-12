@@ -34,6 +34,13 @@ public class ControladorClientes {
         }
     }
 
+    public void leer(String cedula) {
+        if (verificarCedula(cedula)) {
+            BD = new BaseDatos("SELECT * FROM tblclientes WHERE Cedula =" + cedula);
+            BD.ejecutar();
+        }
+    }
+
     public void leer(String dato,String cedula) {
         if (verificarCedula(cedula)) {
             BD = new BaseDatos("SELECT" +dato+ "FROM tblclientes WHERE Cedula =" + cedula);
