@@ -3,14 +3,7 @@ package Pruebas;
 import Personas.Usuarios.Oficiales.ModeloOficiales;
 
 public class ModeloPruebas {
-//-IdPrueba
-//-Fecha
-//-Hora
-//-Oficial
-//-Observaciones
-//-Nota
-//+ObtenerResultado()
-    private int idPrueba;
+    private int id;
     private String fecha;
     private String hora;
     private ModeloOficiales oficial;
@@ -18,11 +11,11 @@ public class ModeloPruebas {
     private int nota;
 
     public int getIdPrueba() {
-        return idPrueba;
+        return id;
     }
 
     public void setIdPrueba(int idPrueba) {
-        this.idPrueba = idPrueba;
+        this.id = idPrueba;
     }
 
     public String getFecha() {
@@ -69,7 +62,7 @@ public class ModeloPruebas {
     }
 
     public ModeloPruebas(int idPrueba, String fecha, String hora, ModeloOficiales oficial, String observaciones, int nota) {
-        this.idPrueba = idPrueba;
+        this.id = idPrueba;
         this.fecha = fecha;
         this.hora = hora;
         this.oficial = oficial;
