@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class BaseDatos {
 
@@ -80,25 +81,21 @@ public class BaseDatos {
         return this.ejecutar();
     }
 
-    public Object[][] getDatos() {
-        Object resultados[][] = null;
+    public Object[] getObjet() {
         try {
-            datos = sentencia.getResultSet();
-            datos.last();
-            resultados = new Object[datos.getRow()][datos.getMetaData().getColumnCount()];
-            datos.beforeFirst();
-
-            for (Object[] resultado : resultados) {
-                datos.next();
-                for (int c = 0; c < resultado.length; c++) {
-                    resultado[c] = datos.getObject(c + 1);
+            if (this.datos.next()) {
+                ArrayList<Object> obj = new ArrayList<>();
+                int cols = this.datos.getMetaData().getColumnCount();
+                for (int i = 1; i <= cols; i++) {
+                    obj.add(this.datos.getObject(i));
                 }
+                return obj.toArray();
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
-        return resultados;
+        return null;
     }
 
 }
