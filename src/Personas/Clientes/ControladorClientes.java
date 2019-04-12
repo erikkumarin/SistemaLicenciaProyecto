@@ -48,7 +48,6 @@ public class ControladorClientes {
         }
     }
  
-
     public void setTelefono(String telefono, String cedula) {
         if (verificarCedula(cedula)) {
             BD = new BaseDatos("UPDATE tblclientes SET Telefono =" + telefono + " WHERE Cedula =" + cedula);
@@ -63,7 +62,6 @@ public class ControladorClientes {
         }
     }
     
-
     private boolean verificarCedula(String cedula) {
         try {
             return (Long.parseLong((cedula.replaceAll("-", "0")))) == 9;

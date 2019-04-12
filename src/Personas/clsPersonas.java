@@ -7,9 +7,6 @@ public abstract class clsPersonas {
     private String telefono;
     private String correo;
 
-    public void leer() {
-    }
-
     public String getCedula() {
         return cedula;
     }
