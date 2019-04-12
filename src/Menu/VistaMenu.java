@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Menu;
 
 import Personas.Usuarios.VistaUsuario;
 
 public class VistaMenu extends javax.swing.JFrame {
-//Hola actualizacion
 
-    /**
-     * Creates new form VistaMenu
-     */
     public VistaMenu() {
         initComponents();
         this.setExtendedState(6);
