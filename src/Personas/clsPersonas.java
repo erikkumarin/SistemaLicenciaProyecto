@@ -1,25 +1,42 @@
 package Personas;
 
 public abstract class clsPersonas {
+
     private String cedula;
     private String nombre;
     private String telefono;
     private String correo;
 
-
-    public void leer() {
-
+    public String getCedula() {
+        return cedula;
     }
 
-    public void eliminar() {
-
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
-    public void actualizar() {
-
+    public String getNombre() {
+        return nombre;
     }
 
-    public void crear() {
-
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
 }

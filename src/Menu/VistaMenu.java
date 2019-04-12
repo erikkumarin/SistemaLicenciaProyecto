@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Menu;
 
 import Personas.Usuarios.VistaUsuario;
 
 public class VistaMenu extends javax.swing.JFrame {
-//Hola actualizacion
 
-    /**
-     * Creates new form VistaMenu
-     */
     public VistaMenu() {
         initComponents();
         this.setExtendedState(6);
@@ -121,7 +113,7 @@ public class VistaMenu extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -154,4 +146,6 @@ public class VistaMenu extends javax.swing.JFrame {
     private javax.swing.JMenu MInicar;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
+
+
 }

@@ -11,6 +11,14 @@ public class FechaNac {
     private LocalDate fechaNac;
     private LocalDate fechaActu;
 
+    public LocalDate getFechaNac() {
+        return fechaNac;
+    }
+
+    public LocalDate getFechaActu() {
+        return fechaActu;
+    }
+
     public Period getPeriodo() {
         return periodo;
     }

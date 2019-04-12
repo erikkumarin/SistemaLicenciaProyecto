@@ -19,9 +19,7 @@ public class BaseDatos {
 
     public BaseDatos() {
         this.conectar();
-        if (!conf.exists()) {
-            config = new Configuracion();
-        }
+          config= new Configuracion();
     }
 
     public BaseDatos(String sql) {
