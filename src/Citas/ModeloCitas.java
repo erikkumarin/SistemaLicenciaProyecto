@@ -3,11 +3,6 @@ package Citas;
 import Personas.Clientes.ModeloClientes;
 
 public class ModeloCitas {
-//-IdCita
-//-Fecha
-//-Hora
-//-Cliente
-//+ExisteCliente()
     private int id;
     private String fecha;
     private String hora;
