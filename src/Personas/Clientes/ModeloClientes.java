@@ -60,7 +60,7 @@ public class ModeloClientes extends clsPersonas {
         return super.getCedula();
     }
 
-    public ModeloClientes(String cedula, String nombre, String nombreUsuario, String contra, String telefono, String tipoUsuario, String correo, String fecha) {
+    public ModeloClientes(String cedula, String nombre, String telefono, String correo, String fecha) {
         this.fechaNac = new FechaNac();
         this.setFechaNac(fecha);
         this.setCedula(cedula);

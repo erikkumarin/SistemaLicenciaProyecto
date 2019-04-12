@@ -227,21 +227,24 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     public JComboBox<String> getCbMes() {
         return cbMes;
     }
-
-    public JTextField getTxtCedula() {
-        return txtCedula;
+    public String getFecha(){
+        return this.cbDia+"/"+this.cbMes+"/"+this.cbAnio;
     }
 
-    public JTextField getTxtCorreo() {
-        return txtCorreo;
+    public String getCedula() {
+        return txtCedula.getText();
     }
 
-    public JTextField getTxtNombre() {
-        return txtNombre;
+    public  String getCorreo() {
+        return txtCorreo.getText();
     }
 
-    public JTextField getTxtTelefono() {
-        return txtTelefono;
+    public String getNombre() {
+        return txtNombre.getText();
+    }
+
+    public String getTelefono() {
+        return txtTelefono.getText();
     }
 
 }
