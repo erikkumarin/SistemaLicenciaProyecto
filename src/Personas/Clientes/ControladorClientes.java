@@ -37,36 +37,6 @@ public class ControladorClientes implements CRUD {
         BD.ejecutar();
     }
 
-//    @Override
-//    public void modificar() {
-//        cliente = new ModeloClientes();
-//        cliente.setCedula(vista.getCedula());
-//        cliente.setTelefono(vista.getTelefono());
-//        cliente.setCorreo(vista.getCorreo());
-//        if (cliente.getTelefono() == null) {
-//            BD = new BaseDatos("UPDATE tblclientes SET Correo ="+cliente.getCorreo()+" WHERE Cedula =" + cliente.getCedula());
-//        }else if (cliente.getCorreo() == null) {
-//             BD = new BaseDatos("UPDATE tblclientes SET Telefono ="+cliente.getTelefono()+" WHERE Cedula =" + cliente.getCedula());
-//        }else{
-//             BD = new BaseDatos("UPDATE tblclientes SET Telefono ="+cliente.getTelefono()+", Correo ="+cliente.getCorreo()+" WHERE Cedula =" + cliente.getCedula());
-//        }
-//        BD.ejecutar();
-//    }
-
-
-//    private boolean verificarNombre(String nombre) {
-//        return !nombre.trim().equals("");
-//    }
-//
-//    private boolean verificarTelefono(String telefono) {
-//        try {
-//            long numero = Long.parseLong(telefono);
-//            return true;
-//        } catch (NumberFormatException e) {
-//        }
-//        return false;
-//    }
-
     @Override
     public void modificar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

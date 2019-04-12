@@ -1,26 +1,25 @@
-
 package Menu;
 
 import Personas.Clientes.VistaCliente;
 import Personas.Usuarios.VistaUsuario;
 
 public class VistaMenu extends javax.swing.JFrame {
-
+    
     public VistaMenu() {
         initComponents();
         this.setExtendedState(6);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         Escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        MInicar = new javax.swing.JMenu();
+        MUsuario = new javax.swing.JMenu();
         BtnInicar = new javax.swing.JMenuItem();
-        Btncrear = new javax.swing.JMenuItem();
-        MICliente = new javax.swing.JMenuItem();
+        BtnCrear = new javax.swing.JMenuItem();
+        btnCilente = new javax.swing.JMenuItem();
         MConfig = new javax.swing.JMenu();
         BtnConfig = new javax.swing.JMenuItem();
 
@@ -37,33 +36,33 @@ public class VistaMenu extends javax.swing.JFrame {
             .addGap(0, 392, Short.MAX_VALUE)
         );
 
-        MInicar.setText("Sesión");
+        MUsuario.setText("Sesión");
 
-        BtnInicar.setText("Iniciar sesión");
+        BtnInicar.setText("Iniciar Sesión");
         BtnInicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnInicarActionPerformed(evt);
             }
         });
-        MInicar.add(BtnInicar);
+        MUsuario.add(BtnInicar);
 
-        Btncrear.setText("Crear sesión");
-        Btncrear.addActionListener(new java.awt.event.ActionListener() {
+        BtnCrear.setText("Crear Sesión");
+        BtnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtncrearActionPerformed(evt);
+                BtnCrearActionPerformed(evt);
             }
         });
-        MInicar.add(Btncrear);
+        MUsuario.add(BtnCrear);
 
-        MICliente.setText("Cliente");
-        MICliente.addActionListener(new java.awt.event.ActionListener() {
+        btnCilente.setText("Cliente");
+        btnCilente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MIClienteActionPerformed(evt);
+                btnCilenteActionPerformed(evt);
             }
         });
-        MInicar.add(MICliente);
+        MUsuario.add(btnCilente);
 
-        jMenuBar1.add(MInicar);
+        jMenuBar1.add(MUsuario);
 
         MConfig.setText("Configuración");
 
@@ -101,17 +100,17 @@ public class VistaMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BtnInicarActionPerformed
 
-    private void BtncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtncrearActionPerformed
+    private void BtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCrearActionPerformed
         VistaUsuario vu = new VistaUsuario();
         this.Escritorio.add(vu);
         vu.setVisible(true);
-    }//GEN-LAST:event_BtncrearActionPerformed
+    }//GEN-LAST:event_BtnCrearActionPerformed
 
-    private void MIClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIClienteActionPerformed
-       VistaCliente vc = new VistaCliente();
-       this.Escritorio.add(vc);
-       vc.setVisible(true);
-    }//GEN-LAST:event_MIClienteActionPerformed
+    private void btnCilenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCilenteActionPerformed
+        VistaCliente vc = new VistaCliente();
+        this.Escritorio.add(vc);
+        vc.setVisible(true);
+    }//GEN-LAST:event_btnCilenteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,14 +149,13 @@ public class VistaMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem BtnConfig;
+    private javax.swing.JMenuItem BtnCrear;
     private javax.swing.JMenuItem BtnInicar;
-    private javax.swing.JMenuItem Btncrear;
     private javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenu MConfig;
-    private javax.swing.JMenuItem MICliente;
-    private javax.swing.JMenu MInicar;
+    private javax.swing.JMenu MUsuario;
+    private javax.swing.JMenuItem btnCilente;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
-
 
 }
