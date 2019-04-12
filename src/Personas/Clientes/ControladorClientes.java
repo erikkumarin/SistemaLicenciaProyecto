@@ -29,14 +29,6 @@ public class ControladorClientes implements CRUD {
         BD.ejecutar();
     }
     
-    @Override
-    public void leer() {
-        cliente = new ModeloClientes();
-        cliente.setCedula(vista.getCedula());
-        BD = new BaseDatos("SELECT * FROM tblclientes WHERE Cedula =" + cliente.getCedula());
-        BD.ejecutar();
-    }
-
 //    @Override
 //    public void modificar() {
 //        cliente = new ModeloClientes();
@@ -69,6 +61,11 @@ public class ControladorClientes implements CRUD {
 
     @Override
     public void modificar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void leer() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
