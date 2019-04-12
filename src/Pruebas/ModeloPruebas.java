@@ -1,14 +1,16 @@
 package Pruebas;
 
 import Personas.Usuarios.Oficiales.ModeloOficiales;
+import Utilidades.Fecha;
 
 public class ModeloPruebas {
+
     private int id;
-    private String fecha;
-    private String hora;
-    private ModeloOficiales oficial;
-    private String observaciones;
     private int nota;
+    private Fecha fecha;
+    private String hora;
+    private String observaciones;
+    private ModeloOficiales oficial;
 
     public int getIdPrueba() {
         return id;
@@ -18,12 +20,12 @@ public class ModeloPruebas {
         this.id = idPrueba;
     }
 
-    public String getFecha() {
+    public Fecha getFecha() {
         return fecha;
     }
 
     public void setFecha(String fecha) {
-        this.fecha = fecha;
+        this.fecha.setFecha(fecha);
     }
 
     public String getHora() {
@@ -55,26 +57,27 @@ public class ModeloPruebas {
     }
 
     public void setNota(int nota) {
-        this.nota = nota;
+        if (nota <= 100) {
+            this.nota = nota;
+        }
+    }
+
+    public ModeloPruebas(int idPrueba, String fecha, String hora, ModeloOficiales oficial, String observaciones, int nota) {
+        this.setIdPrueba(idPrueba);
+        this.setFecha(fecha);
+        this.setHora(hora);
+        this.setOficial(oficial);
+        this.setObservaciones(observaciones);
+        this.setNota(nota);
     }
 
     public ModeloPruebas() {
     }
 
-    public ModeloPruebas(int idPrueba, String fecha, String hora, ModeloOficiales oficial, String observaciones, int nota) {
-        this.id = idPrueba;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.oficial = oficial;
-        this.observaciones = observaciones;
-        this.nota = nota;
-    }
-    
-    public String getEstado(){
+    public String getEstado() {
         if (this.nota >= 80) {
             return "Aprobado";
         }
-        
         return "Reprobado";
     }
 }

@@ -1,10 +1,12 @@
 package Citas;
 
 import Personas.Clientes.ModeloClientes;
+import Utilidades.Fecha;
 
 public class ModeloCitas {
+
     private int id;
-    private String fecha;
+    private Fecha fecha;
     private String hora;
     private ModeloClientes cliente;
 
@@ -16,12 +18,12 @@ public class ModeloCitas {
         this.id = id;
     }
 
-    public String getFecha() {
+    public Fecha getFecha() {
         return fecha;
     }
 
     public void setFecha(String fecha) {
-        this.fecha = fecha;
+        this.fecha.setFecha(fecha);
     }
 
     public String getHora() {
@@ -40,17 +42,17 @@ public class ModeloCitas {
         this.cliente = cliente;
     }
 
+    public ModeloCitas(int id, String fecha, String hora, ModeloClientes cliente) {
+        this.setCliente(cliente);
+        this.setFecha(fecha);
+        this.setHora(hora);
+        this.setId(id);
+    }
+
     public ModeloCitas() {
     }
 
-    public ModeloCitas(int id, String fecha, String hora, ModeloClientes cliente) {
-        this.id = id;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.cliente = cliente;
-    }
-    
-    public boolean existeCliente(){
+    public boolean existeCliente() {
         return false;
     }
 }
