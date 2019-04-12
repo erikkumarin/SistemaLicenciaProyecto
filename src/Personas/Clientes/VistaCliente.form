@@ -28,35 +28,53 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblCorreo" min="-2" pref="99" max="-2" attributes="0"/>
-                  <Component id="lblTelefono" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
-                  <Component id="lblCedula" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
-                  <Component id="lblFecha" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblNombre" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
+                  <Component id="lblCorreo" max="32767" attributes="0"/>
+                  <Component id="lblTelefono" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblCedula" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblFecha" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblNombre" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtTelefono" min="-2" pref="361" max="-2" attributes="0"/>
-                  <Component id="btn" min="-2" pref="152" max="-2" attributes="0"/>
-                  <Component id="lblMETelefono" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblMECedula" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtCorreo" alignment="1" min="-2" pref="374" max="-2" attributes="0"/>
-                      <Component id="txtCedula" alignment="1" min="-2" pref="374" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lblDia" min="-2" pref="28" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbDia" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMes" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbMes" min="-2" pref="91" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAnio" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbAnio" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btn" max="32767" attributes="0"/>
+                      <EmptySpace min="222" pref="222" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblMETelefono" max="32767" attributes="0"/>
+                      <EmptySpace min="282" pref="282" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblMECedula" max="32767" attributes="0"/>
+                      <EmptySpace min="276" pref="276" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblDia" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="cbDia" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="lblMes" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="cbMes" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAnio" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="cbAnio" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtCedula" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="txtNombre" alignment="1" min="-2" pref="374" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="txtCorreo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtTelefono" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -67,41 +85,44 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="txtCedula" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblCedula" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="lblCedula" alignment="2" max="32767" attributes="0"/>
+                  <Component id="txtCedula" alignment="2" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-              <Component id="lblMECedula" min="-2" pref="19" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <Component id="lblMECedula" max="32767" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="txtNombre" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblNombre" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="lblNombre" alignment="2" max="32767" attributes="0"/>
+                  <Component id="txtNombre" alignment="2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="lblMes" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="lblAnio" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="cbDia" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="cbMes" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblFecha" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="cbAnio" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblDia" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="lblFecha" alignment="2" max="32767" attributes="0"/>
+                  <Component id="lblDia" alignment="2" max="32767" attributes="0"/>
+                  <Component id="cbDia" alignment="2" max="32767" attributes="0"/>
+                  <Component id="lblMes" alignment="2" max="32767" attributes="0"/>
+                  <Component id="cbMes" alignment="2" max="32767" attributes="0"/>
+                  <Component id="lblAnio" alignment="2" max="32767" attributes="0"/>
+                  <Group type="102" alignment="2" attributes="0">
+                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                      <Component id="cbAnio" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblTelefono" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblMETelefono" min="-2" pref="19" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="txtCorreo" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblCorreo" alignment="2" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="lblTelefono" alignment="2" max="32767" attributes="0"/>
+                  <Component id="txtTelefono" alignment="2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Component id="btn" min="-2" pref="22" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <Component id="lblMETelefono" max="32767" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="lblCorreo" alignment="2" max="32767" attributes="0"/>
+                  <Component id="txtCorreo" alignment="2" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <Component id="btn" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
