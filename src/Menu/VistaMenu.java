@@ -1,6 +1,7 @@
 
 package Menu;
 
+import Personas.Clientes.VistaCliente;
 import Personas.Usuarios.VistaUsuario;
 
 public class VistaMenu extends javax.swing.JFrame {
@@ -24,6 +25,7 @@ public class VistaMenu extends javax.swing.JFrame {
         MInicar = new javax.swing.JMenu();
         BtnInicar = new javax.swing.JMenuItem();
         Btncrear = new javax.swing.JMenuItem();
+        MICliente = new javax.swing.JMenuItem();
         MConfig = new javax.swing.JMenu();
         BtnConfig = new javax.swing.JMenuItem();
 
@@ -57,6 +59,14 @@ public class VistaMenu extends javax.swing.JFrame {
             }
         });
         MInicar.add(Btncrear);
+
+        MICliente.setText("Cliente");
+        MICliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIClienteActionPerformed(evt);
+            }
+        });
+        MInicar.add(MICliente);
 
         jMenuBar1.add(MInicar);
 
@@ -102,6 +112,12 @@ public class VistaMenu extends javax.swing.JFrame {
         vu.setVisible(true);
     }//GEN-LAST:event_BtncrearActionPerformed
 
+    private void MIClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIClienteActionPerformed
+       VistaCliente vc = new VistaCliente();
+       this.Escritorio.add(vc);
+       vc.setVisible(true);
+    }//GEN-LAST:event_MIClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -143,6 +159,7 @@ public class VistaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem Btncrear;
     private javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenu MConfig;
+    private javax.swing.JMenuItem MICliente;
     private javax.swing.JMenu MInicar;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables

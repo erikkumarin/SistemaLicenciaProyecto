@@ -9,6 +9,10 @@ public class ControladorClientes implements CRUD {
     private BaseDatos BD;
     private VistaCliente vista;
 
+    public ControladorClientes(VistaCliente vista) {
+        this.vista = vista;
+    }
+    
     @Override
     public void agregar() {
         BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");

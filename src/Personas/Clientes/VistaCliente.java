@@ -4,7 +4,6 @@ import Personas.Usuarios.*;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-
 public class VistaCliente extends javax.swing.JInternalFrame {
 
     public VistaCliente() {
@@ -12,53 +11,59 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         ajustarVentana();
         definirAnios();
         ajustarfecha();
-        
+
     }
 
     private void ajustarVentana() {
-        int x=this.getToolkit().getScreenSize().width;
-        int y=this.getToolkit().getScreenSize().height;
-        this.setSize(x/3, y/2);
-        this.setLocation((x-this.getWidth())/2,(y-this.getHeight())/2);
+        int x = this.getToolkit().getScreenSize().width;
+        int y = this.getToolkit().getScreenSize().height;
+        this.setSize(x / 3, y / 2);
+        this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
     }
-    
-    
-    private void ajustarfecha(){
-         int mes = this.cbMes.getSelectedIndex()+1;
-         int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
-         int dia = 0;
+
+    private void ajustarfecha() {
+        int mes = this.cbMes.getSelectedIndex() + 1;
+        int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
+        int dia = 0;
         switch (mes) {
-            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
                 dia = 31;
                 break;
-            case 4: case 6: case 9: case 11:
+            case 4:
+            case 6:
+            case 9:
+            case 11:
                 dia = 30;
                 break;
             case 2:
-                if((anio%4==0 && anio%100!=0) || anio%400==0){
+                if ((anio % 4 == 0 && anio % 100 != 0) || anio % 400 == 0) {
                     dia = 29;
-                }
-                else{
+                } else {
                     dia = 28;
                 }
                 break;
         }
         this.definirDias(dia);
     }
-    
-    private void definirDias(int dia){
+
+    private void definirDias(int dia) {
         this.cbDia.removeAllItems();
-        for (int i = dia; i >0; i--) {
+        for (int i = dia; i > 0; i--) {
             this.cbDia.addItem(String.valueOf(i));
         }
     }
-    
-    private void definirAnios(){
+
+    private void definirAnios() {
         for (int i = 2002; i > 1900; i--) {
             this.cbAnio.addItem(String.valueOf(i));
         }
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -96,6 +101,11 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         jLabel5.setText("Correo Electrónico");
 
         btn.setText("Registrar");
+        btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActionPerformed(evt);
+            }
+        });
 
         cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         cbMes.addActionListener(new java.awt.event.ActionListener() {
@@ -196,6 +206,11 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         this.ajustarfecha();
     }//GEN-LAST:event_cbAnioActionPerformed
 
+    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
+        ControladorClientes cc = new ControladorClientes(this);
+        cc.agregar();
+    }//GEN-LAST:event_btnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn;
@@ -216,26 +231,15 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    public JComboBox<String> getCbAnio() {
-        return cbAnio;
-    }
-
-    public JComboBox<String> getCbDia() {
-        return cbDia;
-    }
-
-    public JComboBox<String> getCbMes() {
-        return cbMes;
-    }
-    public String getFecha(){
-        return this.cbDia+"/"+this.cbMes+"/"+this.cbAnio;
+    public String getFecha() {
+        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex()+1)+ "/" + this.cbAnio.getSelectedItem().toString();
     }
 
     public String getCedula() {
         return txtCedula.getText();
     }
 
-    public  String getCorreo() {
+    public String getCorreo() {
         return txtCorreo.getText();
     }
 
@@ -245,6 +249,36 @@ public class VistaCliente extends javax.swing.JInternalFrame {
 
     public String getTelefono() {
         return txtTelefono.getText();
+    }
+
+    public void setCedula(String cedula) {
+        this.txtCedula.setText(cedula);
+    }
+
+    public void setFecha(String fecha) {
+        String fec[] = fecha.split("/");
+        this.cbDia.addItem(fec[0]);
+        this.cbMes.setSelectedIndex(Integer.parseInt(fec[1])-1);
+        this.cbAnio.addItem(fec[2]);        
+    }
+
+    public void setCorreo(String correo) {
+        this.txtCorreo.setText(correo);
+    }
+
+    public void setNombre(String nombre) {
+        this.txtNombre.setText(nombre);
+    }
+
+    public void setTelefono(String telefono) {
+        this.txtTelefono.setText(telefono);
+    }
+    
+    @Override
+    public String toString(){
+        return "N° de cedula: "+ this.getCedula()+" Nombre: "+this.getNombre()+
+                " Fecha de Nac': " +this.getFecha()+" Telefono: "+this.getTelefono()+
+                " Correo: " +this.getCorreo();
     }
 
 }
