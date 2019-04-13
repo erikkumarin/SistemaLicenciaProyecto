@@ -1,20 +1,21 @@
-
 package Menu;
 
+import BaseDeDatos.VistaConfiguracion;
 import Personas.Clientes.VistaCliente;
 import Personas.Usuarios.VistaUsuario;
 
 public class VistaMenu extends javax.swing.JFrame {
-
+    
     public VistaMenu() {
         initComponents();
         this.setExtendedState(6);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         Escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         MInicar = new javax.swing.JMenu();
@@ -23,6 +24,8 @@ public class VistaMenu extends javax.swing.JFrame {
         MICliente = new javax.swing.JMenuItem();
         MConfig = new javax.swing.JMenu();
         BtnConfig = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +70,7 @@ public class VistaMenu extends javax.swing.JFrame {
 
         MConfig.setText("Configuración");
 
+        BtnConfig.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
         BtnConfig.setText("Configuración");
         BtnConfig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +98,9 @@ public class VistaMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfigActionPerformed
-
+        VistaConfiguracion VC = new VistaConfiguracion();
+        this.Escritorio.add(VC);
+        VC.setVisible(true);
     }//GEN-LAST:event_BtnConfigActionPerformed
 
     private void BtnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInicarActionPerformed
@@ -108,9 +114,9 @@ public class VistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_BtncrearActionPerformed
 
     private void MIClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIClienteActionPerformed
-       VistaCliente vc = new VistaCliente();
-       this.Escritorio.add(vc);
-       vc.setVisible(true);
+        VistaCliente vc = new VistaCliente();
+        this.Escritorio.add(vc);
+        vc.setVisible(true);
     }//GEN-LAST:event_MIClienteActionPerformed
 
     /**
@@ -156,8 +162,8 @@ public class VistaMenu extends javax.swing.JFrame {
     private javax.swing.JMenu MConfig;
     private javax.swing.JMenuItem MICliente;
     private javax.swing.JMenu MInicar;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
-
 
 }

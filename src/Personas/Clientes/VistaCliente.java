@@ -1,7 +1,5 @@
 package Personas.Clientes;
 
-import javax.swing.JOptionPane;
-
 public class VistaCliente extends javax.swing.JInternalFrame {
 
     public VistaCliente() {
@@ -12,11 +10,8 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     }
 
     private void ajustarVentana() {
-        int x = this.getToolkit().getScreenSize().width;
-        int y = this.getToolkit().getScreenSize().height;
-        System.out.println(x/3);
-        System.out.println(y);
-        this.setSize(x / 3, y / 2);
+        int x = this.getToolkit().getScreenSize().width, y = this.getToolkit().getScreenSize().height;
+        this.setSize(x / 3, (int)(y / 1.5));
         this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
     }
 
@@ -63,8 +58,6 @@ public class VistaCliente extends javax.swing.JInternalFrame {
             this.cbAnio.addItem(String.valueOf(i));
         }
     }
-
-            
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -172,17 +165,9 @@ public class VistaCliente extends javax.swing.JInternalFrame {
                     .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(222, 222, 222))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblMETelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(282, 282, 282))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblMECedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(276, 276, 276))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,18 +178,18 @@ public class VistaCliente extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblAnio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCedula))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTelefono))
-                        .addContainerGap())))
+                        .addComponent(cbAnio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(lblMECedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(132, 132, 132))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMETelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(153, 153, 153))
+                    .addComponent(txtCedula))
+                .addGap(13, 13, 13))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,16 +206,13 @@ public class VistaCliente extends javax.swing.JInternalFrame {
                     .addComponent(txtNombre))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbDia)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbMes)
-                            .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(cbMes)
+                    .addComponent(cbAnio)
+                    .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblAnio)
+                    .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -242,8 +224,8 @@ public class VistaCliente extends javax.swing.JInternalFrame {
                     .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCorreo))
                 .addGap(18, 18, 18)
-                .addComponent(btn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, Short.MAX_VALUE)
-                .addGap(113, 113, 113))
+                .addComponent(btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -264,13 +246,13 @@ public class VistaCliente extends javax.swing.JInternalFrame {
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         char caracter = evt.getKeyChar();
-        if (Character.isLetter(caracter)) {
+        if (Character.isDigit(caracter)) {
+            this.lblMECedula.setEnabled(false);
+        } else {
             this.getToolkit().beep();
             evt.consume();
             this.lblMECedula.setEnabled(true);
-        }else{
-        this.lblMECedula.setEnabled(false);
-    }
+        }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
@@ -279,18 +261,18 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCedulaMouseClicked
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-          char caracter = evt.getKeyChar();
-        if (Character.isLetter(caracter)) {
+        char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
+            this.lblMETelefono.setEnabled(false);
+        } else {
             this.getToolkit().beep();
             evt.consume();
             this.lblMETelefono.setEnabled(true);
-        }else{
-            this.lblMETelefono.setEnabled(false);
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseClicked
-         this.txtTelefono.setText(null);
+        this.txtTelefono.setText(null);
         this.lblMETelefono.setEnabled(false);
     }//GEN-LAST:event_txtTelefonoMouseClicked
 
@@ -317,12 +299,11 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public String getFecha() {
-        if (this.cbMes.getSelectedIndex()+1<10) {
-            return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex()+1)+ "/" + this.cbAnio.getSelectedItem().toString();
+        if (this.cbMes.getSelectedIndex() + 1 < 10) {
+            return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
         }
-        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex()+1)+ "/" + this.cbAnio.getSelectedItem().toString();
+        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
     }
-        
 
     public String getCedula() {
         return this.txtCedula.getText();
@@ -341,14 +322,14 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     }
 
     public void setCedula(String cedula) {
-         this.txtCedula.setText(cedula);
+        this.txtCedula.setText(cedula);
     }
 
     public void setFecha(String fecha) {
         String fec[] = fecha.split("/");
         this.cbDia.addItem(fec[0]);
-        this.cbMes.setSelectedIndex(Integer.parseInt(fec[1])-1);
-        this.cbAnio.addItem(fec[2]);        
+        this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
+        this.cbAnio.addItem(fec[2]);
     }
 
     public void setCorreo(String correo) {
@@ -362,12 +343,12 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     public void setTelefono(String telefono) {
         this.txtTelefono.setText(telefono);
     }
-    
+
     @Override
-    public String toString(){
-        return "N° de cedula: "+ this.getCedula()+" Nombre: "+this.getNombre()+
-                " Fecha de Nac': " +this.getFecha()+" Telefono: "+this.getTelefono()+
-                " Correo: " +this.getCorreo();
+    public String toString() {
+        return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
+                + " Fecha de Nac': " + this.getFecha() + " Telefono: " + this.getTelefono()
+                + " Correo: " + this.getCorreo();
     }
 
 }
