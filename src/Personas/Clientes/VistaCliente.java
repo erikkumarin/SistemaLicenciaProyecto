@@ -11,7 +11,7 @@ public class VistaCliente extends javax.swing.JInternalFrame {
 
     private void ajustarVentana() {
         int x = this.getToolkit().getScreenSize().width, y = this.getToolkit().getScreenSize().height;
-        this.setSize(x / 3, (int)(y / 1.5));
+        this.setSize(x / 3, (int) (y / 1.5));
         this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
     }
 
