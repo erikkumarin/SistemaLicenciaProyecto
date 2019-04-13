@@ -330,7 +330,7 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTelefonoMouseClicked
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-         char caracter = evt.getKeyChar();
+        char caracter = evt.getKeyChar();
         if (Character.isDigit(caracter)) {
             this.lblMETelefono.setEnabled(false);
         } else {
@@ -370,31 +370,50 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-   public String getFecha() {
-        if (this.cbMes.getSelectedIndex() + 1 < 10) {
-            return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
-        }
-        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
-    }
-
     public String getCedula() {
         return this.txtCedula.getText();
-    }
-
-    public String getCorreo() {
-        return txtCorreo.getText();
     }
 
     public String getNombre() {
         return txtNombre.getText();
     }
 
+    public String getFecha() {
+        if (this.cbMes.getSelectedIndex() + 1 < 10) {
+            return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
+        }
+        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
+    }
+
     public String getTelefono() {
-        return txtTelefono.getText();
+        return this.txtTelefono.getText();
+    }
+
+    public String getCorreo() {
+        return this.txtCorreo.getText();
+    }
+
+    public String getUsuario() {
+        return this.txtUsuario.getText();
+    }
+
+    public String getContrasena() {
+        return this.txtContrasena.getText();
+    }
+
+    public String getTipo() {
+        return this.cbUsuario.getSelectedItem().toString();
+    }
+    public String getSalario() {
+        return this.txtSalario.getText();
     }
 
     public void setCedula(String cedula) {
         this.txtCedula.setText(cedula);
+    }
+
+    public void setNombre(String nombre) {
+        this.txtNombre.setText(nombre);
     }
 
     public void setFecha(String fecha) {
@@ -404,23 +423,37 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         this.cbAnio.addItem(fec[2]);
     }
 
+    public void setTelefono(String telefono) {
+        this.txtTelefono.setText(telefono);
+    }
+
     public void setCorreo(String correo) {
         this.txtCorreo.setText(correo);
     }
 
-    public void setNombre(String nombre) {
-        this.txtNombre.setText(nombre);
+    public void setUsuario(String usuario) {
+       this.txtUsuario.setText(usuario);
     }
 
-    public void setTelefono(String telefono) {
-        this.txtTelefono.setText(telefono);
+    public void setContrasena(String contra) {
+        this.txtContrasena.setText(contra);
     }
+
+    public void setTipo(String tipo) {
+        this.cbUsuario.addItem(tipo);
+    }
+    
+       public void setSalario(String salario) {
+        this.txtSalario.setText(salario);
+    }
+
 
     @Override
     public String toString() {
         return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
                 + " Fecha de Nac': " + this.getFecha() + " Telefono: " + this.getTelefono()
-                + " Correo: " + this.getCorreo();
+                + " Correo: " + this.getCorreo() + "\nNombre de Usuario: " +this.getUsuario()
+                + " Contraseña: "+this.getContrasena() + " Tipo de Usuario: "+this.getTipo();
     }
 
 }
