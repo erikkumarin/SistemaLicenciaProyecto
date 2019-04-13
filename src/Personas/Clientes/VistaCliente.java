@@ -1,9 +1,5 @@
 package Personas.Clientes;
 
-import Personas.Usuarios.*;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-
 public class VistaCliente extends javax.swing.JInternalFrame {
 
     public VistaCliente() {
@@ -11,7 +7,6 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         ajustarVentana();
         definirAnios();
         ajustarfecha();
-
     }
 
     private void ajustarVentana() {
@@ -104,6 +99,12 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActionPerformed(evt);
+            }
+        });
+
+        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaActionPerformed(evt);
             }
         });
 
@@ -211,6 +212,10 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         cc.agregar();
     }//GEN-LAST:event_btnActionPerformed
 
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn;
@@ -232,7 +237,7 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public String getFecha() {
-        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex()+1)+ "/" + this.cbAnio.getSelectedItem().toString();
+        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
     }
 
     public String getCedula() {
@@ -258,8 +263,8 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     public void setFecha(String fecha) {
         String fec[] = fecha.split("/");
         this.cbDia.addItem(fec[0]);
-        this.cbMes.setSelectedIndex(Integer.parseInt(fec[1])-1);
-        this.cbAnio.addItem(fec[2]);        
+        this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
+        this.cbAnio.addItem(fec[2]);
     }
 
     public void setCorreo(String correo) {
@@ -273,12 +278,12 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     public void setTelefono(String telefono) {
         this.txtTelefono.setText(telefono);
     }
-    
+
     @Override
-    public String toString(){
-        return "N° de cedula: "+ this.getCedula()+" Nombre: "+this.getNombre()+
-                " Fecha de Nac': " +this.getFecha()+" Telefono: "+this.getTelefono()+
-                " Correo: " +this.getCorreo();
+    public String toString() {
+        return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
+                + " Fecha de Nac': " + this.getFecha() + " Telefono: " + this.getTelefono()
+                + " Correo: " + this.getCorreo();
     }
 
 }

@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import Archivos.Configuracion;
-import java.io.File;
 
 public class BaseDatos {
 
@@ -15,11 +14,10 @@ public class BaseDatos {
     private PreparedStatement sentencia;
     private ResultSet datos;
     private Configuracion config;
-    private File conf;
 
     public BaseDatos() {
         this.conectar();
-          config= new Configuracion();
+        config = new Configuracion();
     }
 
     public BaseDatos(String sql) {
@@ -100,7 +98,6 @@ public class BaseDatos {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
         return null;
     }
 

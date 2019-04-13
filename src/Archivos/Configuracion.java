@@ -8,23 +8,17 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Configuracion {
+public class Configuracion extends Archivo {
 
-    private File archivo;
     private Properties config;
 
     public Configuracion() {
+        super(System.getProperty("user.dir"), "Config", ".ini");
+        this.config = new Properties();
         try {
-            this.archivo = new File(System.getProperty("user.dir") + "\\Config.ini");
-            archivo.createNewFile();
-            this.config = new Properties();
-            try {
-                config.load(new FileReader(this.archivo));
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            config.load(new FileReader(this.getArchivo()));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -37,4 +31,5 @@ public class Configuracion {
     public void setPropiedades(String dato, String valor) {
         this.config.setProperty(dato, valor);
     }
+
 }

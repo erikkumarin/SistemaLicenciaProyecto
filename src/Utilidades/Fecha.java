@@ -43,4 +43,10 @@ public class Fecha {
         this.setFecha(fecha);
     }
 
+    @Override
+    public String toString() {
+        String fechaInvertida[] = this.getFecha().toString().split("-");
+        return fechaInvertida[2] + "/" + fechaInvertida[1] + "/" + fechaInvertida[0];
+    }
+
 }
