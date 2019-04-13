@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import Archivos.Configuracion;
 import Errores.ErrorConexion;
-import java.io.File;
 import Errores.TipoErrorConexion;
 
 public class BaseDatos {
@@ -17,7 +16,6 @@ public class BaseDatos {
     private PreparedStatement sentencia;
     private ResultSet datos;
     private Configuracion config;
-    private File conf;
 
     public BaseDatos() throws ErrorConexion {
         this.conectar();
@@ -102,7 +100,6 @@ public class BaseDatos {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
         return null;
     }
 

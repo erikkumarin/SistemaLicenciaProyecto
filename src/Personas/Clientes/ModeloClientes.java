@@ -2,7 +2,6 @@ package Personas.Clientes;
 
 import Personas.clsPersonas;
 import Utilidades.Fecha;
-import java.time.Period;
 
 public class ModeloClientes extends clsPersonas {
 
@@ -12,8 +11,7 @@ public class ModeloClientes extends clsPersonas {
         if (this.fechaNac.getFecha() == null) {
             return null;
         } else {
-            String fechaInvertida[] = this.fechaNac.getFecha().toString().split("-");
-            return fechaInvertida[2] + "/" + fechaInvertida[1] + "/" + fechaInvertida[0];
+            return this.fechaNac.toString();
         }
     }
 
