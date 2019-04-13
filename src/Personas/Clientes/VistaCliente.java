@@ -1,5 +1,9 @@
 package Personas.Clientes;
 
+import Errores.ErrorConexion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class VistaCliente extends javax.swing.JInternalFrame {
 
     public VistaCliente() {
@@ -243,7 +247,11 @@ public class VistaCliente extends javax.swing.JInternalFrame {
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
         ControladorClientes cc = new ControladorClientes(this);
-        cc.agregar();
+        try {
+            cc.agregar();
+        } catch (ErrorConexion ex) {
+            Logger.getLogger(VistaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnActionPerformed
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped

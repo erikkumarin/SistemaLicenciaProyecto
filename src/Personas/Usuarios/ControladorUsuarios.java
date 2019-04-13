@@ -1,6 +1,7 @@
 package Personas.Usuarios;
 
 import BaseDeDatos.BaseDatos;
+import Errores.ErrorConexion;
 import Personas.Usuarios.Oficiales.ModeloOficiales;
 import Personas.Usuarios.Secretarias.ModeloSecretarias;
 import Utilidades.CRUD;
@@ -18,7 +19,7 @@ public class ControladorUsuarios implements CRUD {
     }
 
     @Override
-    public void agregar() {
+    public void agregar() throws ErrorConexion {
         if (vista.getTipo().equals("Oficial")) {
             BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?,?,?,?)");
             oficial = new ModeloOficiales(vista.getCedula(), vista.getNombre(), vista.getUsuario(), vista.getContrasena(),
@@ -32,7 +33,7 @@ public class ControladorUsuarios implements CRUD {
     }
 
     @Override
-    public void eliminar() {
+    public void eliminar() throws ErrorConexion {
         usuario = new ModeloUsuarios();
         usuario.setCedula(vista.getCedula());
         BD = new BaseDatos("DELETE FROM tblusuarios WHERE Cedula =" +  usuario.getCedula());
@@ -40,7 +41,7 @@ public class ControladorUsuarios implements CRUD {
     }
     
       @Override
-    public void leer() {
+    public void leer() throws ErrorConexion {
          usuario = new ModeloUsuarios();
         usuario.setCedula(vista.getCedula());
         BD = new BaseDatos("SELECT * FROM tblusuarios WHERE Cedula =" + usuario.getCedula());

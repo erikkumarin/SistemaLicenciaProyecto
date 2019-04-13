@@ -1,10 +1,12 @@
 
 package Utilidades;
 
+import Errores.ErrorConexion;
+
 public interface CRUD {
-    public void agregar();
-    public void eliminar();
-    public void modificar();
-    public void leer();
+    public void agregar() throws ErrorConexion;
+    public void eliminar() throws ErrorConexion;
+    public void modificar() throws ErrorConexion;
+    public void leer() throws ErrorConexion;
     
 }

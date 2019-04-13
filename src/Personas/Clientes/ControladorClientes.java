@@ -1,6 +1,7 @@
 package Personas.Clientes;
 
 import BaseDeDatos.BaseDatos;
+import Errores.ErrorConexion;
 import Utilidades.CRUD;
 
 public class ControladorClientes implements CRUD {
@@ -14,7 +15,7 @@ public class ControladorClientes implements CRUD {
     }
     
     @Override
-    public void agregar() {
+    public void agregar() throws ErrorConexion {
         BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
         cliente = new ModeloClientes(vista.getCedula(), vista.getNombre(), vista.getTelefono(), vista.getCorreo(), vista.getFecha());
         BD.ejecutar(new Object[]{cliente.getCedula(), cliente.getNombre(), cliente.getFechaNac(), cliente.getTelefono(), cliente.getCorreo()});
@@ -22,7 +23,7 @@ public class ControladorClientes implements CRUD {
     }
 
     @Override
-    public void eliminar() {
+    public void eliminar() throws ErrorConexion {
         cliente = new ModeloClientes();
         cliente.setCedula(vista.getCedula());
         BD = new BaseDatos("DELETE FROM tblclientes WHERE Cedula =" + cliente.getCedula());
@@ -30,7 +31,7 @@ public class ControladorClientes implements CRUD {
     }
     
     @Override
-    public void leer() {
+    public void leer() throws ErrorConexion {
         cliente = new ModeloClientes();
         cliente.setCedula(vista.getCedula());
         BD = new BaseDatos("SELECT * FROM tblclientes WHERE Cedula =" + cliente.getCedula());
