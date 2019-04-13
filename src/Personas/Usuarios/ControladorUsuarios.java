@@ -19,11 +19,12 @@ public class ControladorUsuarios implements CRUD {
 
     @Override
     public void agregar() {
-        BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?,?,?,?)");
         if (vista.getTipo().equals("Oficial")) {
+            BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?,?,?,?)");
             oficial = new ModeloOficiales(vista.getCedula(), vista.getNombre(), vista.getUsuario(), vista.getContrasena(),
                     vista.getTelefono(), vista.getTipo(), vista.getCorreo(), Double.parseDouble(vista.getSalario()));
         } else {
+            BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?,?,?,null)");
             secretaria = new ModeloSecretarias(vista.getCedula(), vista.getNombre(), vista.getUsuario(), vista.getContrasena(),
                     vista.getTelefono(), vista.getTipo(), vista.getCorreo());
         }
