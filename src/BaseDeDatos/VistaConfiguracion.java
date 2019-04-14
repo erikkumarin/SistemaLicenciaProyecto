@@ -6,7 +6,6 @@
 package BaseDeDatos;
 
 import Archivos.Configuracion;
-
 /**
  *
  * @author Nebura
@@ -81,12 +80,6 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
         txtIP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIPKeyTyped(evt);
-            }
-        });
-
-        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsuarioActionPerformed(evt);
             }
         });
 
@@ -203,10 +196,6 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtIPKeyTyped
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel MEBD;
@@ -223,4 +212,5 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtIP;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
 }

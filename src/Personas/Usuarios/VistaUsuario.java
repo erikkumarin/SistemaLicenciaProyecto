@@ -1,7 +1,5 @@
 package Personas.Usuarios;
 
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
 
 public class VistaUsuario extends javax.swing.JInternalFrame {
 
@@ -10,7 +8,6 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         ajustarVentana();
         definirAnios();
         ajustarfecha();
-
     }
 
     private void ajustarVentana() {
@@ -117,15 +114,12 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
 
         btn.setText("Registrar");
 
-        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCedulaKeyTyped(evt);
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
             }
-        });
-
-        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtTelefonoKeyTyped(evt);
+                txtNombreKeyTyped(evt);
             }
         });
 
@@ -298,28 +292,28 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cbUsuarioActionPerformed
 
-    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-        char caracter = evt.getKeyChar();
-        if (Character.isDigit(caracter) && this.txtCedula.getText().length() < 9) {
-            this.lblMECedula.setEnabled(false);
-        } else {
-            this.getToolkit().beep();
-            evt.consume();
-            this.lblMECedula.setEnabled(true);
-        }
-    }//GEN-LAST:event_txtCedulaKeyTyped
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {                                   
 
-    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        char caracter = evt.getKeyChar();
-        if (Character.isDigit(caracter) && this.txtTelefono.getText().length() < 8) {
-            this.lblMETelefono.setEnabled(false);
-        } else {
-            this.getToolkit().beep();
-            evt.consume();
-            this.lblMETelefono.setEnabled(true);
-        }
-    }//GEN-LAST:event_txtTelefonoKeyTyped
+    }                                  
 
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {                                     
+
+    }                                    
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char caracter = evt.getKeyChar();
+        if (!Character.isLetter(caracter) && !Character.isSpaceChar(caracter)) {
+            anular(evt);
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        this.txtNombre.setText(txtNombre.getText().toUpperCase());
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void anular(java.awt.event.KeyEvent evt) {
+        evt.consume();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn;
@@ -401,39 +395,6 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         this.cbDia.addItem(fec[0]);
         this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
         this.cbAnio.addItem(fec[2]);
-    }
-
-    public void setTelefono(String telefono) {
-        this.txtTelefono.setText(telefono);
-    }
-
-    public void setCorreo(String correo) {
-        this.txtCorreo.setText(correo);
-    }
-
-    public void setUsuario(String usuario) {
-       this.txtUsuario.setText(usuario);
-    }
-
-    public void setContrasena(String contra) {
-        this.txtContrasena.setText(contra);
-    }
-
-    public void setTipo(String tipo) {
-        this.cbUsuario.addItem(tipo);
-    }
-    
-       public void setSalario(String salario) {
-        this.txtSalario.setText(salario);
-    }
-
-
-    @Override
-    public String toString() {
-        return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
-                + " Fecha de Nac': " + this.getFecha() + " Telefono: " + this.getTelefono()
-                + " Correo: " + this.getCorreo() + "\nNombre de Usuario: " +this.getUsuario()
-                + " Contraseña: "+this.getContrasena() + " Tipo de Usuario: "+this.getTipo();
     }
 
 }
