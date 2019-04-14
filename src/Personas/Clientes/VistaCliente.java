@@ -240,18 +240,7 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     private void anular(KeyEvent evt) {
         evt.consume();
     }
-    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
-
-    }//GEN-LAST:event_txtCedulaMouseClicked
-
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {                                   
-
-     }                                  
-
-    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {                                      
-
-    }                                     
-
+             
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn;
