@@ -112,27 +112,6 @@ public class VistaCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCedulaKeyTyped(evt);
-            }
-        });
-
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
-            }
-        });
-
-        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtTelefonoKeyTyped(evt);
-            }
-        });
-
         cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         cbMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,45 +237,20 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnActionPerformed
 
-    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-        if (txtCedula.getText().length() == 9 || !Character.isDigit(evt.getKeyChar())) {
-            this.getToolkit().beep();
-            this.lblMECedula.setEnabled(true);
-            anular(evt);
-        } else {
-            this.lblMECedula.setEnabled(false);
-        }
-    }//GEN-LAST:event_txtCedulaKeyTyped
-
     private void anular(KeyEvent evt) {
         evt.consume();
     }
     private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
-        this.txtCedula.setText(null);
-        this.lblMECedula.setEnabled(false);
+
     }//GEN-LAST:event_txtCedulaMouseClicked
 
-    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        if (!Character.isDigit(evt.getKeyChar()) || this.txtTelefono.getText().length() == 8) {
-            this.getToolkit().beep();
-            this.lblMETelefono.setEnabled(true);
-            anular(evt);
-        } else {
-            this.lblMETelefono.setEnabled(false);
-        }
-    }//GEN-LAST:event_txtTelefonoKeyTyped
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {                                   
 
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        char caracter = evt.getKeyChar();
-        if (!Character.isAlphabetic(caracter) && !Character.isSpaceChar(caracter)) {
-            this.getToolkit().beep();
-            anular(evt);
-        }
-     }//GEN-LAST:event_txtNombreKeyTyped
+     }                                  
 
-    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        this.txtNombre.setText(this.txtNombre.getText().toUpperCase());
-    }//GEN-LAST:event_txtNombreKeyReleased
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {                                      
+
+    }                                     
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

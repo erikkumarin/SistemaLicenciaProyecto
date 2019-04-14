@@ -114,12 +114,24 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
 
         btn.setText("Registrar");
 
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
+
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNombreKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
             }
         });
 
@@ -292,20 +304,27 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cbUsuarioActionPerformed
 
-    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {                                   
-
-    }                                  
-
-    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {                                     
-
-    }                                    
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        if (txtCedula.getText().length() == 9 || !Character.isDigit(evt.getKeyChar())) {
+            this.getToolkit().beep();
+            anular(evt);
+        }
+    }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+//        if (txtCedula.getText().length() < 9) {
         char caracter = evt.getKeyChar();
         if (!Character.isLetter(caracter) && !Character.isSpaceChar(caracter)) {
             anular(evt);
         }
     }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        if (txtTelefono.getText().length() == 8 && !Character.isDigit(evt.getKeyChar())) {
+            this.getToolkit().beep();
+            anular(evt);
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
         this.txtNombre.setText(txtNombre.getText().toUpperCase());
