@@ -121,6 +121,9 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         });
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
@@ -291,11 +294,15 @@ public class VistaCliente extends javax.swing.JInternalFrame {
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         char caracter = evt.getKeyChar();
-        if (!Character.isAlphabetic(caracter) && Character.isSpaceChar(caracter)) {
+        if (!Character.isAlphabetic(caracter) && !Character.isSpaceChar(caracter)) {
             this.getToolkit().beep();
             anular(evt);
         }
      }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        this.txtNombre.setText(this.txtNombre.getText().toUpperCase());
+    }//GEN-LAST:event_txtNombreKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

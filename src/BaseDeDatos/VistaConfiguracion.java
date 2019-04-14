@@ -6,12 +6,6 @@
 package BaseDeDatos;
 
 import Archivos.Configuracion;
-import java.awt.Color;
-import java.util.Arrays;
-import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
-import javax.swing.plaf.metal.MetalBorders;
-
 /**
  *
  * @author Nebura

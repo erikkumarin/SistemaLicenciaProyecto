@@ -1,5 +1,6 @@
 package Personas.Usuarios;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
@@ -121,6 +122,9 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         });
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
@@ -295,7 +299,7 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
 //        if (txtCedula.getText().length() < 9) {
         char caracter = evt.getKeyChar();
-        if (!Character.isAlphabetic(caracter) && !Character.isSpaceChar(caracter)) {
+        if (!Character.isLetter(caracter) && !Character.isSpaceChar(caracter)) {
             anular(evt);
         }
     }//GEN-LAST:event_txtNombreKeyTyped
@@ -306,6 +310,10 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
             anular(evt);
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        this.txtNombre.setText(txtNombre.getText().toUpperCase());
+    }//GEN-LAST:event_txtNombreKeyReleased
 
     private void anular(java.awt.event.KeyEvent evt) {
         evt.consume();
