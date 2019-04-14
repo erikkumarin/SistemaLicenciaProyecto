@@ -107,22 +107,12 @@ public class VistaCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        txtCedula.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCedulaMouseClicked(evt);
-            }
-        });
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
             }
         });
 
-        txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtTelefonoMouseClicked(evt);
-            }
-        });
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
@@ -180,7 +170,7 @@ public class VistaCliente extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbMes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAnio)
+                        .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbAnio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -256,7 +246,7 @@ public class VistaCliente extends javax.swing.JInternalFrame {
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         char caracter = evt.getKeyChar();
-        if (Character.isDigit(caracter)) {
+        if (Character.isDigit(caracter) && this.txtCedula.getText().length() < 9) {
             this.lblMECedula.setEnabled(false);
         } else {
             this.getToolkit().beep();
@@ -265,14 +255,9 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
-    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
-        this.txtCedula.setText(null);
-        this.lblMECedula.setEnabled(false);
-    }//GEN-LAST:event_txtCedulaMouseClicked
-
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         char caracter = evt.getKeyChar();
-        if (Character.isDigit(caracter)) {
+        if (Character.isDigit(caracter) && this.txtTelefono.getText().length() < 8) {
             this.lblMETelefono.setEnabled(false);
         } else {
             this.getToolkit().beep();
@@ -280,11 +265,6 @@ public class VistaCliente extends javax.swing.JInternalFrame {
             this.lblMETelefono.setEnabled(true);
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
-
-    private void txtTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseClicked
-        this.txtTelefono.setText(null);
-        this.lblMETelefono.setEnabled(false);
-    }//GEN-LAST:event_txtTelefonoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

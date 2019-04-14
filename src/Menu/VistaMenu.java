@@ -5,12 +5,12 @@ import Personas.Clientes.VistaCliente;
 import Personas.Usuarios.VistaUsuario;
 
 public class VistaMenu extends javax.swing.JFrame {
-    
+
     public VistaMenu() {
         initComponents();
         this.setExtendedState(6);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

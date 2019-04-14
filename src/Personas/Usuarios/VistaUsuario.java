@@ -117,22 +117,12 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
 
         btn.setText("Registrar");
 
-        txtCedula.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCedulaMouseClicked(evt);
-            }
-        });
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
             }
         });
 
-        txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtTelefonoMouseClicked(evt);
-            }
-        });
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
@@ -308,14 +298,9 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cbUsuarioActionPerformed
 
-    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
-        this.txtCedula.setText(null);
-        this.lblMECedula.setEnabled(false);
-    }//GEN-LAST:event_txtCedulaMouseClicked
-
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         char caracter = evt.getKeyChar();
-        if (Character.isDigit(caracter)) {
+        if (Character.isDigit(caracter) && this.txtCedula.getText().length() < 9) {
             this.lblMECedula.setEnabled(false);
         } else {
             this.getToolkit().beep();
@@ -324,14 +309,9 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
-    private void txtTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseClicked
-        this.txtTelefono.setText(null);
-        this.lblMETelefono.setEnabled(false);
-    }//GEN-LAST:event_txtTelefonoMouseClicked
-
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
         char caracter = evt.getKeyChar();
-        if (Character.isDigit(caracter)) {
+        if (Character.isDigit(caracter) && this.txtTelefono.getText().length() < 8) {
             this.lblMETelefono.setEnabled(false);
         } else {
             this.getToolkit().beep();

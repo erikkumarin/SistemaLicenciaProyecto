@@ -2,9 +2,6 @@ package Test;
 
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
-import Personas.Clientes.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Main {
 
