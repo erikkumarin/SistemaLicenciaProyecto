@@ -1,16 +1,22 @@
 package Menu;
 
+import BaseDeDatos.BaseDatos;
 import BaseDeDatos.VistaConfiguracion;
 import Personas.Clientes.VistaCliente;
 import Personas.Usuarios.VistaUsuario;
 
 public class VistaMenu extends javax.swing.JFrame {
-    
+
     public VistaMenu() {
         initComponents();
         this.setExtendedState(6);
+        if (BaseDatos.getConexion() == null) {
+            VistaConfiguracion VC = new VistaConfiguracion();
+            this.Escritorio.add(VC);
+            VC.setVisible(true);
+        }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

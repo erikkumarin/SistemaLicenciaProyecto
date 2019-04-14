@@ -1,27 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BaseDeDatos;
 
 import Archivos.Configuracion;
+import Errores.TipoErrorConexion;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
-/**
- *
- * @author Nebura
- */
 public class VistaConfiguracion extends javax.swing.JInternalFrame {
 
     Configuracion config;
+    ControladorBaseDatos controladorBD;
 
-    /**
-     * Creates new form VistaConfiguracion
-     */
     public VistaConfiguracion() {
         initComponents();
         config = new Configuracion();
-        ajustarVista();
+        controladorBD = new ControladorBaseDatos();
+        //ajustarVista();
         editar(false);
         cargarDatos();
     }
@@ -29,13 +24,21 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     private void ajustarVista() {
         int x = this.getToolkit().getScreenSize().width, y = this.getToolkit().getScreenSize().height;
         this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
-        this.setSize((int) (x/4.5), (int) (y/2.5));
+        this.setSize((int) (x / 4.5), (int) (y / 2.5));
     }
 
     private void cargarDatos() {
         txtIP.setText(config.getPropiedades("Servidor"));
         txtUsuario.setText(config.getPropiedades("Usuario"));
         txtContrasena.setText(config.getPropiedades("Contra"));
+        txtBD.setText(config.getPropiedades("BD"));
+    }
+    
+    private void LimpiarDatos() {
+        txtIP.setText("");
+        txtUsuario.setText("");
+        txtContrasena.setText("");
+        txtBD.setText("");
     }
 
     private void editar(boolean accion) {
@@ -54,10 +57,10 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
+        lblPass = new javax.swing.JLabel();
+        lblServidor = new javax.swing.JLabel();
+        lblBD = new javax.swing.JLabel();
         txtContrasena = new javax.swing.JPasswordField();
         txtIP = new javax.swing.JTextField();
         txtUsuario = new javax.swing.JTextField();
@@ -70,13 +73,13 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        jLabel1.setText("Usuario");
+        lblUser.setText("Usuario");
 
-        jLabel2.setText("Contraseña ");
+        lblPass.setText("Contraseña ");
 
-        jLabel3.setText("Dirección IP");
+        lblServidor.setText("Dirección IP");
 
-        jLabel5.setText("Base de Datos");
+        lblBD.setText("Base de Datos");
 
         txtIP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -120,14 +123,14 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblBD, javax.swing.GroupLayout.PREFERRED_SIZE, 77, Short.MAX_VALUE)
+                    .addComponent(lblUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblServidor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(MEIP, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                        .addComponent(MEIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(101, 101, 101))
                     .addComponent(txtContrasena)
                     .addGroup(layout.createSequentialGroup()
@@ -152,25 +155,25 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblServidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtIP))
                 .addGap(18, 18, 18)
                 .addComponent(MEIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtUsuario))
                 .addGap(18, 18, 18)
                 .addComponent(MEU)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtContrasena))
                 .addGap(18, 18, 18)
                 .addComponent(MEC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtBD))
                 .addGap(18, 18, 18)
                 .addComponent(MEBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -185,10 +188,19 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if (this.btnEditar.getText().equals("Editar")) {
             editar(true);
-            btnEditar.setText("Enviar");
+            btnEditar.setText("Probar Conexion");
+        } else if (this.btnEditar.getText().equals("Probar Conexion")) {
+            if (controladorBD.probarConexion(this)) {
+                JOptionPane.showMessageDialog(this, "Conexion Exitosa", "Probar Conexion", 1);
+                btnEditar.setText("Enviar");
+            }else{
+                JOptionPane.showMessageDialog(this, TipoErrorConexion.ERRORSERVIDOR.getMensaje(), "Probar Conexion", 0);
+                btnEditar.setText("Probar Conexion");
+            }
         } else {
             editar(false);
             btnEditar.setText("Editar");
+            this.dispose();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -214,13 +226,30 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel MEIP;
     private javax.swing.JLabel MEU;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblBD;
+    private javax.swing.JLabel lblPass;
+    private javax.swing.JLabel lblServidor;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JTextField txtBD;
     private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtIP;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    public String getTxtBD() {
+        return txtBD.getText();
+    }
+
+    public String getTxtContrasena() {
+        return txtContrasena.getText();
+    }
+
+    public String getTxtIP() {
+        return txtIP.getText();
+    }
+
+    public String getTxtUsuario() {
+        return txtUsuario.getText();
+    }
+
 }
