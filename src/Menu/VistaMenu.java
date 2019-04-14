@@ -5,19 +5,19 @@ import Personas.Clientes.VistaCliente;
 import Personas.Usuarios.VistaUsuario;
 
 public class VistaMenu extends javax.swing.JFrame {
-    
+
     public VistaMenu() {
         initComponents();
         this.setExtendedState(6);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
         Escritorio = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        BarraMenu = new javax.swing.JMenuBar();
         MInicar = new javax.swing.JMenu();
         BtnInicar = new javax.swing.JMenuItem();
         Btncrear = new javax.swing.JMenuItem();
@@ -66,7 +66,7 @@ public class VistaMenu extends javax.swing.JFrame {
         });
         MInicar.add(MICliente);
 
-        jMenuBar1.add(MInicar);
+        BarraMenu.add(MInicar);
 
         MConfig.setText("Configuración");
 
@@ -79,9 +79,9 @@ public class VistaMenu extends javax.swing.JFrame {
         });
         MConfig.add(BtnConfig);
 
-        jMenuBar1.add(MConfig);
+        BarraMenu.add(MConfig);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(BarraMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,6 +155,7 @@ public class VistaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar BarraMenu;
     private javax.swing.JMenuItem BtnConfig;
     private javax.swing.JMenuItem BtnInicar;
     private javax.swing.JMenuItem Btncrear;
@@ -163,7 +164,6 @@ public class VistaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem MICliente;
     private javax.swing.JMenu MInicar;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 
 }

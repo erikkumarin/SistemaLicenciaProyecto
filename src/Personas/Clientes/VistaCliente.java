@@ -1,5 +1,7 @@
 package Personas.Clientes;
 
+import java.awt.event.KeyEvent;
+
 public class VistaCliente extends javax.swing.JInternalFrame {
 
     public VistaCliente() {
@@ -83,7 +85,11 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         lblMETelefono = new javax.swing.JLabel();
 
         setClosable(true);
+        setTitle("Registro de clientes");
+        setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        setOpaque(true);
 
         lblCedula.setText("N° de Cédula");
         lblCedula.setToolTipText("Ejemplo 501470258");
@@ -111,6 +117,12 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
+            }
+        });
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
             }
         });
 
@@ -176,7 +188,7 @@ public class VistaCliente extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbMes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAnio)
+                        .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbAnio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -245,29 +257,30 @@ public class VistaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnActionPerformed
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-        char caracter = evt.getKeyChar();
-        if (Character.isDigit(caracter)) {
-            this.lblMECedula.setEnabled(false);
-        } else {
+        if (txtCedula.getText().length() == 9 || !Character.isDigit(evt.getKeyChar())) {
             this.getToolkit().beep();
-            evt.consume();
             this.lblMECedula.setEnabled(true);
+            anular(evt);
+        } else {
+            this.lblMECedula.setEnabled(false);
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
+    private void anular(KeyEvent evt) {
+        evt.consume();
+    }
     private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
         this.txtCedula.setText(null);
         this.lblMECedula.setEnabled(false);
     }//GEN-LAST:event_txtCedulaMouseClicked
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        char caracter = evt.getKeyChar();
-        if (Character.isDigit(caracter)) {
-            this.lblMETelefono.setEnabled(false);
-        } else {
+        if (!Character.isDigit(evt.getKeyChar()) || this.txtTelefono.getText().length() == 8) {
             this.getToolkit().beep();
-            evt.consume();
             this.lblMETelefono.setEnabled(true);
+            anular(evt);
+        } else {
+            this.lblMETelefono.setEnabled(false);
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
@@ -275,6 +288,14 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         this.txtTelefono.setText(null);
         this.lblMETelefono.setEnabled(false);
     }//GEN-LAST:event_txtTelefonoMouseClicked
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char caracter = evt.getKeyChar();
+        if (!Character.isAlphabetic(caracter) && Character.isSpaceChar(caracter)) {
+            this.getToolkit().beep();
+            anular(evt);
+        }
+     }//GEN-LAST:event_txtNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

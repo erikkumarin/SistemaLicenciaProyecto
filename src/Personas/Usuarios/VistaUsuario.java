@@ -3,7 +3,6 @@ package Personas.Usuarios;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-
 public class VistaUsuario extends javax.swing.JInternalFrame {
 
     public VistaUsuario() {
@@ -11,53 +10,58 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         ajustarVentana();
         definirAnios();
         ajustarfecha();
-        
     }
 
     private void ajustarVentana() {
-        int x=this.getToolkit().getScreenSize().width;
-        int y=this.getToolkit().getScreenSize().height;
-        this.setSize(x/3, y/2);
-        this.setLocation((x-this.getWidth())/2,(y-this.getHeight())/2);
+        int x = this.getToolkit().getScreenSize().width;
+        int y = this.getToolkit().getScreenSize().height;
+        this.setSize(x / 3, y / 2);
+        this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
     }
-    
-    
-    private void ajustarfecha(){
-         int mes = this.cbMes.getSelectedIndex()+1;
-         int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
-         int dia = 0;
+
+    private void ajustarfecha() {
+        int mes = this.cbMes.getSelectedIndex() + 1;
+        int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
+        int dia = 0;
         switch (mes) {
-            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
                 dia = 31;
                 break;
-            case 4: case 6: case 9: case 11:
+            case 4:
+            case 6:
+            case 9:
+            case 11:
                 dia = 30;
                 break;
             case 2:
-                if((anio%4==0 && anio%100!=0) || anio%400==0){
+                if ((anio % 4 == 0 && anio % 100 != 0) || anio % 400 == 0) {
                     dia = 29;
-                }
-                else{
+                } else {
                     dia = 28;
                 }
                 break;
         }
         this.definirDias(dia);
     }
-    
-    private void definirDias(int dia){
+
+    private void definirDias(int dia) {
         this.cbDia.removeAllItems();
-        for (int i = dia; i >0; i--) {
+        for (int i = dia; i > 0; i--) {
             this.cbDia.addItem(String.valueOf(i));
         }
     }
-    
-    private void definirAnios(){
+
+    private void definirAnios() {
         for (int i = 2002; i > 1900; i--) {
             this.cbAnio.addItem(String.valueOf(i));
         }
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -109,6 +113,24 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         jLabel8.setText("Tipo de Usuario");
 
         btn.setText("Registrar");
+
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
 
         cbUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Oficial", "Secretaria" }));
         cbUsuario.setSelectedIndex(1);
@@ -254,15 +276,40 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbAnioActionPerformed
 
     private void cbUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUsuarioActionPerformed
-        if (this.cbUsuario.getSelectedIndex()==0) {
+        if (this.cbUsuario.getSelectedIndex() == 0) {
             this.jLabel12.setEnabled(true);
             this.txtSalario.setEnabled(true);
-        }else{
+        } else {
             this.jLabel12.setEnabled(false);
             this.txtSalario.setEnabled(false);
         }
     }//GEN-LAST:event_cbUsuarioActionPerformed
 
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        if (txtCedula.getText().length() == 9 || !Character.isDigit(evt.getKeyChar())) {
+            this.getToolkit().beep();
+            anular(evt);
+        }
+    }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+//        if (txtCedula.getText().length() < 9) {
+        char caracter = evt.getKeyChar();
+        if (!Character.isAlphabetic(caracter) && !Character.isSpaceChar(caracter)) {
+            anular(evt);
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        if (txtTelefono.getText().length() == 8 && !Character.isDigit(evt.getKeyChar())) {
+            this.getToolkit().beep();
+            anular(evt);
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void anular(java.awt.event.KeyEvent evt) {
+        evt.consume();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn;
@@ -334,6 +381,5 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
     public JTextField getTxtUsuario() {
         return txtUsuario;
     }
-
 
 }
