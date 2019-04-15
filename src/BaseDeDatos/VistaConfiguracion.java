@@ -2,6 +2,8 @@ package BaseDeDatos;
 
 import Archivos.Configuracion;
 import Utilidades.AjustarVentana;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class VistaConfiguracion extends javax.swing.JInternalFrame {
     
@@ -14,7 +16,6 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
         editar(false);
         cargarDatos();
     }
-
 
     private void cargarDatos() {
         txtIP.setText(config.getPropiedades("Servidor"));
@@ -204,5 +205,21 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtIP;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    public String getTxtBD() {
+        return txtBD.getText();
+    }
+
+    public String getTxtContrasena() {
+        return txtContrasena.getText();
+    }
+
+    public String getTxtIP() {
+        return txtIP.getText();
+    }
+
+    public String getTxtUsuario() {
+        return txtUsuario.getText();
+    }
 
 }
