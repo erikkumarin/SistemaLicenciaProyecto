@@ -16,7 +16,7 @@ public class ControladorBaseDatos {
 
         try {
             config = new Configuracion();
-            BD = new BaseDatos(frm.getTxtIP(), frm.getTxtBD(), frm.getTxtUsuario(), frm.getTxtContrasena());
+            //BD = new BaseDatos(frm.getTxtIP(), frm.getTxtBD(), frm.getTxtUsuario(), frm.getTxtContrasena());
             BaseDatos.setConexion(DriverManager.getConnection(BD.getUrl(), BD.getUsuario(), BD.getContrasena()));
             config.setPropiedades("Servidor", BD.getServidor());
             config.setPropiedades("BD", BD.getBD());
@@ -24,8 +24,6 @@ public class ControladorBaseDatos {
             config.setPropiedades("Contra", BD.getContrasena());
             config.guardar();
             return true;
-        } catch (ErrorConexion ex) {
-
         } catch (SQLException ex) {
 
         }
