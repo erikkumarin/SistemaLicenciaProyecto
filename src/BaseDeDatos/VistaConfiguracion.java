@@ -1,6 +1,7 @@
 package BaseDeDatos;
 
 import Archivos.Configuracion;
+import Utilidades.AjustarVentana;
 
 public class VistaConfiguracion extends javax.swing.JInternalFrame {
     
@@ -8,17 +9,12 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
 
     public VistaConfiguracion() {
         initComponents();
+        AjustarVentana.ajustar(this, 4.5, 2.5);
         config = new Configuracion();
-        ajustarVista();
         editar(false);
         cargarDatos();
     }
 
-    private void ajustarVista() {
-        int x = this.getToolkit().getScreenSize().width, y = this.getToolkit().getScreenSize().height;
-        this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
-        this.setSize((int) (x/4.5), (int) (y/2.5));
-    }
 
     private void cargarDatos() {
         txtIP.setText(config.getPropiedades("Servidor"));

@@ -8,9 +8,9 @@ public class ControladorClientes implements CRUD {
 
     private ModeloClientes cliente;
     private BaseDatos BD;
-    private VistaCliente vista;
+    private VistaClientes vista;
 
-    public ControladorClientes(VistaCliente vista) {
+    public ControladorClientes(VistaClientes vista) {
         this.vista = vista;
     }
     

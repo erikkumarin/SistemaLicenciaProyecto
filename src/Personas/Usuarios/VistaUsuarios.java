@@ -1,19 +1,14 @@
 package Personas.Usuarios;
 
-public class VistaUsuario extends javax.swing.JInternalFrame {
+import Utilidades.AjustarVentana;
 
-    public VistaUsuario() {
+public class VistaUsuarios extends javax.swing.JInternalFrame {
+
+    public VistaUsuarios() {
         initComponents();
-        ajustarVentana();
+         AjustarVentana.ajustar(this, 3, 2);
         definirAnios();
         ajustarfecha();
-    }
-
-    private void ajustarVentana() {
-        int x = this.getToolkit().getScreenSize().width;
-        int y = this.getToolkit().getScreenSize().height;
-        this.setSize(x / 3, y / 2);
-        this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
     }
 
     private void ajustarfecha() {
@@ -92,6 +87,8 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         lblMETelefono = new javax.swing.JLabel();
 
         setClosable(true);
+        setResizable(true);
+        setTitle("Registro de Usuario");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblCedula.setText("N° de Cédula");

@@ -2,6 +2,7 @@
 package Citas;
 
 import java.util.Calendar;
+import Utilidades.AjustarVentana;
 
 public class VistaCitas extends javax.swing.JInternalFrame {
 
@@ -10,18 +11,12 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
     public VistaCitas() {
         initComponents();
+        AjustarVentana.ajustar(this, 4, 5);
         calendario = Calendar.getInstance();
         meses = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
         agregarAnios();
         agregarMeses();
         agregarDias();
-        ajustarVentana();
-    }
-    
-      private void ajustarVentana() {
-        int x = this.getToolkit().getScreenSize().width, y = this.getToolkit().getScreenSize().height;
-        this.setSize((int) (x / 4), (int) (y / 5));
-        this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
     }
 
     private void agregarAnios() {
@@ -105,6 +100,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         lblFecha = new javax.swing.JLabel();
 
         setClosable(true);
+        setTitle("Registro de Citas");
 
         lblCedula.setText("N° de Cedula");
 

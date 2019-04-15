@@ -1,24 +1,20 @@
 package Personas.Clientes;
 
 import Errores.ErrorConexion;
+import Utilidades.AjustarVentana;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class VistaCliente extends javax.swing.JInternalFrame {
+public class VistaClientes extends javax.swing.JInternalFrame {
 
-    public VistaCliente() {
+    public VistaClientes() {
         initComponents();
-        ajustarVentana();
+        AjustarVentana.ajustar(this, 3, 2.5);
         definirAnios();
         ajustarfecha();
     }
 
-    private void ajustarVentana() {
-        int x = this.getToolkit().getScreenSize().width, y = this.getToolkit().getScreenSize().height;
-        this.setSize(x / 3, (int) (y / 2.5));
-        this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
-    }
 
     private void ajustarfecha() {
         int mes = this.cbMes.getSelectedIndex() + 1;
@@ -88,7 +84,7 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         lblMETelefono = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Registro de clientes");
+        setTitle("Registro de Clientes");
         setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -195,7 +191,7 @@ public class VistaCliente extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblMETelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(138, 138, 138))
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCedula))
                 .addGap(13, 13, 13))
         );
         layout.setVerticalGroup(
@@ -251,7 +247,7 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         try {
             cc.agregar();
         } catch (ErrorConexion ex) {
-            Logger.getLogger(VistaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VistaClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnActionPerformed
 

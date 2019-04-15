@@ -12,9 +12,9 @@ public class ControladorUsuarios implements CRUD {
     private ModeloOficiales oficial;
     private ModeloSecretarias secretaria;
     private BaseDatos BD;
-    private VistaUsuario vista;
+    private VistaUsuarios vista;
 
-    public ControladorUsuarios(VistaUsuario vista) {
+    public ControladorUsuarios(VistaUsuarios vista) {
         this.vista = vista;
     }
 

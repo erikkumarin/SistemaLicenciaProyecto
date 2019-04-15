@@ -1,19 +1,15 @@
 package Pruebas;
 
-public class VistaPrueba extends javax.swing.JInternalFrame {
+import Utilidades.AjustarVentana;
 
-    public VistaPrueba() {
+public class VistaPruebas extends javax.swing.JInternalFrame {
+
+    public VistaPruebas() {
         initComponents();
-        ajustarVentana();
+        AjustarVentana.ajustar(this, 3.5, 2.5);
         definirAnios();
         ajustarfecha();
 
-    }
-
-    private void ajustarVentana() {
-        int x = this.getToolkit().getScreenSize().width, y = this.getToolkit().getScreenSize().height;
-        this.setSize((int) (x / 3.5), (int) (y / 2.5));
-        this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
     }
 
     private void ajustarfecha() {
@@ -89,6 +85,7 @@ public class VistaPrueba extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Prueba de Licencia");
 
         lblAnio.setText("Año");
 
