@@ -1,6 +1,5 @@
 package Personas.Usuarios;
 
-
 public class VistaUsuario extends javax.swing.JInternalFrame {
 
     public VistaUsuario() {
@@ -121,9 +120,6 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         });
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
@@ -306,29 +302,28 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         if (txtCedula.getText().length() == 9 || !Character.isDigit(evt.getKeyChar())) {
-            this.getToolkit().beep();
             anular(evt);
+            this.lblMECedula.setEnabled(true);
+        } else {
+            this.lblMECedula.setEnabled(false);
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        if (txtTelefono.getText().length() == 8 || !Character.isDigit(evt.getKeyChar())) {
+            anular(evt);
+            this.lblMETelefono.setEnabled(true);
+        } else {
+            this.lblMETelefono.setEnabled(false);
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-//        if (txtCedula.getText().length() < 9) {
         char caracter = evt.getKeyChar();
         if (!Character.isLetter(caracter) && !Character.isSpaceChar(caracter)) {
             anular(evt);
         }
     }//GEN-LAST:event_txtNombreKeyTyped
-
-    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        if (txtTelefono.getText().length() == 8 && !Character.isDigit(evt.getKeyChar())) {
-            this.getToolkit().beep();
-            anular(evt);
-        }
-    }//GEN-LAST:event_txtTelefonoKeyTyped
-
-    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        this.txtNombre.setText(txtNombre.getText().toUpperCase());
-    }//GEN-LAST:event_txtNombreKeyReleased
 
     private void anular(java.awt.event.KeyEvent evt) {
         evt.consume();
@@ -368,7 +363,7 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
     }
 
     public String getNombre() {
-        return txtNombre.getText();
+        return txtNombre.getText().toUpperCase();
     }
 
     public String getFecha() {
@@ -397,6 +392,7 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
     public String getTipo() {
         return this.cbUsuario.getSelectedItem().toString();
     }
+
     public String getSalario() {
         return this.txtSalario.getText();
     }
