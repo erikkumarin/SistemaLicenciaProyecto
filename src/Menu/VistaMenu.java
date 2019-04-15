@@ -3,6 +3,7 @@ package Menu;
 import BaseDeDatos.VistaConfiguracion;
 import Personas.Clientes.VistaCliente;
 import Personas.Usuarios.VistaUsuario;
+import Pruebas.VistaPrueba;
 
 public class VistaMenu extends javax.swing.JFrame {
 
@@ -15,17 +16,15 @@ public class VistaMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
         Escritorio = new javax.swing.JDesktopPane();
         BarraMenu = new javax.swing.JMenuBar();
         MInicar = new javax.swing.JMenu();
         BtnInicar = new javax.swing.JMenuItem();
         Btncrear = new javax.swing.JMenuItem();
-        MICliente = new javax.swing.JMenuItem();
+        btnCliente = new javax.swing.JMenuItem();
+        btnPrueba = new javax.swing.JMenuItem();
         MConfig = new javax.swing.JMenu();
         BtnConfig = new javax.swing.JMenuItem();
-
-        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,13 +57,21 @@ public class VistaMenu extends javax.swing.JFrame {
         });
         MInicar.add(Btncrear);
 
-        MICliente.setText("Cliente");
-        MICliente.addActionListener(new java.awt.event.ActionListener() {
+        btnCliente.setText("Cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MIClienteActionPerformed(evt);
+                btnClienteActionPerformed(evt);
             }
         });
-        MInicar.add(MICliente);
+        MInicar.add(btnCliente);
+
+        btnPrueba.setText("Prueba");
+        btnPrueba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPruebaActionPerformed(evt);
+            }
+        });
+        MInicar.add(btnPrueba);
 
         BarraMenu.add(MInicar);
 
@@ -113,11 +120,17 @@ public class VistaMenu extends javax.swing.JFrame {
         vu.setVisible(true);
     }//GEN-LAST:event_BtncrearActionPerformed
 
-    private void MIClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIClienteActionPerformed
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         VistaCliente vc = new VistaCliente();
         this.Escritorio.add(vc);
         vc.setVisible(true);
-    }//GEN-LAST:event_MIClienteActionPerformed
+    }//GEN-LAST:event_btnClienteActionPerformed
+
+    private void btnPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPruebaActionPerformed
+        VistaPrueba vp = new VistaPrueba();
+        this.Escritorio.add(vp);
+        vp.setVisible(true);
+    }//GEN-LAST:event_btnPruebaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,9 +174,9 @@ public class VistaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem Btncrear;
     private javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenu MConfig;
-    private javax.swing.JMenuItem MICliente;
     private javax.swing.JMenu MInicar;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem btnCliente;
+    private javax.swing.JMenuItem btnPrueba;
     // End of variables declaration//GEN-END:variables
 
 }
