@@ -39,10 +39,6 @@ public class Configuracion extends Archivo {
         this.config.setProperty(dato, valor);
     }
 
-    public void reemplazarValores(String dato, String valor) {
-        this.config.replace(dato, config.getProperty(dato), valor);
-    }
-
     @Override
     public void guardar() {
         try {
