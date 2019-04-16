@@ -1,6 +1,5 @@
 package Personas.Usuarios;
 
-import java.awt.event.KeyEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
@@ -122,9 +121,6 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         });
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
@@ -311,10 +307,6 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
-    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        this.txtNombre.setText(txtNombre.getText().toUpperCase());
-    }//GEN-LAST:event_txtNombreKeyReleased
-
     private void anular(java.awt.event.KeyEvent evt) {
         evt.consume();
     }
@@ -374,8 +366,8 @@ public class VistaUsuario extends javax.swing.JInternalFrame {
         return txtCorreo;
     }
 
-    public JTextField getTxtNombre() {
-        return txtNombre;
+    public String getTxtNombre() {
+        return txtNombre.getText().toUpperCase();
     }
 
     public JTextField getTxtSalario() {

@@ -1,6 +1,7 @@
 package Menu;
 
 import BaseDeDatos.VistaConfiguracion;
+import Citas.VistaCitas;
 import Personas.Clientes.VistaCliente;
 import Personas.Usuarios.VistaUsuario;
 
@@ -10,6 +11,7 @@ public class VistaMenu extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(6);
     }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -24,6 +26,8 @@ public class VistaMenu extends javax.swing.JFrame {
         MICliente = new javax.swing.JMenuItem();
         MConfig = new javax.swing.JMenu();
         BtnConfig = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        registrarCitas = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -81,6 +85,18 @@ public class VistaMenu extends javax.swing.JFrame {
 
         BarraMenu.add(MConfig);
 
+        jMenu2.setText("Citas");
+
+        registrarCitas.setText("Registrar citas");
+        registrarCitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarCitasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(registrarCitas);
+
+        BarraMenu.add(jMenu2);
+
         setJMenuBar(BarraMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,6 +135,12 @@ public class VistaMenu extends javax.swing.JFrame {
         vc.setVisible(true);
     }//GEN-LAST:event_MIClienteActionPerformed
 
+    private void registrarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarCitasActionPerformed
+        VistaCitas VC = new VistaCitas();
+        this.Escritorio.add(VC);
+        VC.setVisible(true);
+    }//GEN-LAST:event_registrarCitasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -135,15 +157,11 @@ public class VistaMenu extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VistaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -164,6 +182,8 @@ public class VistaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem MICliente;
     private javax.swing.JMenu MInicar;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem registrarCitas;
     // End of variables declaration//GEN-END:variables
 
 }
