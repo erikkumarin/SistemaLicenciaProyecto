@@ -3,6 +3,9 @@ package Citas;
 import java.util.Calendar;
 import Utilidades.AjustarVentana;
 import java.awt.Component;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class VistaCitas extends javax.swing.JInternalFrame {
 
@@ -11,12 +14,8 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
     public VistaCitas() {
         initComponents();
-        AjustarVentana.ajustar(this, 3.5, 4.5);
+        AjustarVentana.ajustar(this, 3, 4);
         calendario = Calendar.getInstance();
-        definirFecha();
-    }
-
-    private void definirFecha() {
         meses = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
         agregarAnios();
         agregarMeses();
@@ -27,13 +26,12 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         int anio = calendario.get(Calendar.YEAR);
         for (int i = anio; i < anio + 100; i++) {
             this.cbAnio.addItem(Integer.toString(i));
-
         }
     }
 
     private void agregarMeses() {
         int mes = 0;
-        if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(cbAnio.getSelectedIndex())))) {
+        if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(this.cbAnio.getSelectedIndex())))) {
             mes = calendario.get(Calendar.MONTH);
         }
         this.cbMes.removeAllItems();
@@ -42,32 +40,32 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         }
     }
 
-    private int mes() {
-        for (int i = 0; i < 12; i++) {
-            if (calendario.get(Calendar.MONTH) == cbMes.getSelectedIndex() + 1) {
-                System.out.println(calendario.get(i));
-                return i;
-            }
-        }
-        return 0;
-    }
-
     private void agregarDias() {
-        //int mes = this.cbMes.getSelectedIndex() + 1;
-        // int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
-        int dia = calendario.getActualMinimum(mes());
-        this.definirDias(dia);
+        int anio = Integer.valueOf(this.cbAnio.getItemAt(cbAnio.getSelectedIndex()));
+        int dias = 0;
+        String mes = cbMes.getItemAt(cbMes.getSelectedIndex());
+        if (mes.equals("Enero") || mes.equals("Marzo") || mes.equals("Mayo") || mes.equals("Julio") || mes.equals("Agosto") || mes.equals("Octubre") || mes.equals("Diciembre")) {
+            dias = 31;
+        } else if (mes.equals("Abril") || mes.equals("Junio") || mes.equals("Septiembre") || mes.equals("Noviembre")) {
+            dias = 30;
+        } else if ((anio % 4 == 0 && anio % 100 != 0) || anio % 400 == 0) {
+            dias = 29;
+        } else {
+            dias = 28;
+        }
+        // System.out.println(anio);
+        // System.out.println(dias);
+        this.definirDias(dias);
     }
 
-    private void definirDias(int dia) {
-        this.cbDia.removeAllItems();
-        int dias = 1;
+    private void definirDias(int dias) {
+        int dia = 1;
         if (meses[calendario.get(Calendar.MONTH)].equals(cbMes.getItemAt(cbMes.getSelectedIndex()))) {
             if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(cbAnio.getSelectedIndex())))) {
-                dias = calendario.get(Calendar.DAY_OF_MONTH);
+                dia = calendario.get(Calendar.DAY_OF_MONTH);
             }
         }
-        for (int i = dias; i <= dia; i++) {
+        for (int i = dia; i <= dias; i++) {
             this.cbDia.addItem(String.valueOf(i));
         }
     }
@@ -107,15 +105,12 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
         btnGuardar.setText("Guardar");
 
-        cbDia.setSelectedItem(0);
-
         cbMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMesActionPerformed(evt);
             }
         });
 
-        cbAnio.setSelectedItem(0);
         cbAnio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbAnioActionPerformed(evt);
@@ -146,26 +141,24 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                         .addGap(54, 54, 54)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbDia, 0, 38, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)))
+                        .addGap(2, 2, 2)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(157, 157, 157))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbMes, 0, 39, Short.MAX_VALUE)
+                        .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbAnio, 0, 39, Short.MAX_VALUE)))
+                        .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,9 +181,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                     .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbDia)
                     .addComponent(cbMes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -205,12 +196,15 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
+        this.cbMes.removeAllItems();
         agregarMeses();
+        this.cbDia.removeAllItems();;
         agregarDias();
     }//GEN-LAST:event_cbAnioActionPerformed
 
     private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
-        agregarDias();
+//        cbDia.removeAllItems();
+//        agregarDias();
     }//GEN-LAST:event_cbMesActionPerformed
 
 

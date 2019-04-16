@@ -48,6 +48,7 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
         MEBD = new javax.swing.JLabel();
 
         setClosable(true);
+        setTitle("Configuracion de base de datos");
 
         jLabel1.setText("Usuario");
 

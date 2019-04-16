@@ -17,7 +17,6 @@ public class VistaMenu extends javax.swing.JFrame {
         this.setExtendedState(6);
     }
 
-
     private void agregar(JInternalFrame vista) {
         this.Escritorio.add(vista);
         vista.setVisible(true);
