@@ -1,6 +1,7 @@
 package Pruebas;
 
 import Utilidades.AjustarVentana;
+import java.awt.Component;
 
 public class VistaPruebas extends javax.swing.JInternalFrame {
 
@@ -299,4 +300,105 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNota;
     private javax.swing.JTextArea txtObservacion;
     // End of variables declaration//GEN-END:variables
+
+    public String getFecha() {
+        if (this.cbMes.getSelectedIndex() + 1 < 10) {
+            return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
+        }
+        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
+    }
+
+    public void setFecha(String fecha) {
+        String fec[] = fecha.split("/");
+        this.cbDia.addItem(fec[0]);
+        this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
+        this.cbAnio.addItem(fec[2]);
+    }
+
+    public Object getAnio() {
+        return cbAnio.getSelectedItem();
+    }
+
+    public void setAnio(Component anio) {
+        this.cbAnio.add(anio);
+    }
+
+    public Object getDias() {
+        return cbDia.getSelectedItem();
+    }
+
+    public void setDias(Component dias) {
+        this.cbDia.add(dias);
+    }
+
+    public Object getMes() {
+        return cbMes.getSelectedItem();
+    }
+
+    public void setMes(Component mes) {
+        this.cbMes.add(mes);
+    }
+
+    public String getCedula() {
+        return txtCedula.getText();
+    }
+
+    public void setCedula(String cedula) {
+        this.txtCedula.setText(cedula);
+    }
+
+    public String getNombre() {
+        return txtNombre.getText().toUpperCase();
+    }
+
+    public void setNombre(String nombre) {
+        this.txtNombre.setText(nombre);
+    }
+
+   public Object getHora() {
+        return cbHora.getSelectedItem();
+    }
+   public void setHora(Component hora) {
+        this.cbHora.add(hora);
+    }
+   
+   public Object getOficial() {
+        return cbOficial.getSelectedItem();
+    }
+   public void setOficial(Component oficial) {
+        this.cbOficial.add(oficial);
+    }
+   
+    public String getObservacion() {
+        return txtNombre.getText();
+    }
+
+    public void setObservacion(String ob) {
+        this.txtObservacion.setText(ob);
+    }
+     public String getNota() {
+        return txtNota.getText();
+    }
+
+    public void setNota(String nota) {
+        this.txtNota.setText(nota);
+    }
+     public String getEstado() {
+        return txtEstado.getText();
+    }
+
+    public void setEstado(String estado) {
+        this.txtEstado.setText(estado);
+    }
+    
+   
+
+    @Override
+    public String toString() {
+        return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
+                + " Fecha: " + this.getFecha() + " Hora: " + this.getHora()
+                + " Oficial: " + this.getOficial().toString()+ "\nObservacion: "+this.getObservacion()
+                + " Nota: "+ this.getNota()+ " Estado: "+this.getEstado();
+    }
+
 }

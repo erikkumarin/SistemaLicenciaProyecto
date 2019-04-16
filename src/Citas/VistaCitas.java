@@ -3,6 +3,9 @@ package Citas;
 
 import java.util.Calendar;
 import Utilidades.AjustarVentana;
+import java.awt.Component;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 public class VistaCitas extends javax.swing.JInternalFrame {
 
@@ -70,7 +73,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     }
 
     private void definirDias(int dia) {
-        this.cbDias.removeAllItems();
+        this.cbDia.removeAllItems();
         int dias = 1;
         if (meses[calendario.get(Calendar.MONTH)].equals(cbMes.getItemAt(cbMes.getSelectedIndex()))) {
             if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(cbAnio.getSelectedIndex())))) {
@@ -78,7 +81,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
             }
         }
         for (int i = dia; i >= dias; i--) {
-            this.cbDias.addItem(String.valueOf(i));
+            this.cbDia.addItem(String.valueOf(i));
         }
     }
 
@@ -88,10 +91,10 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
         lblCedula = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
-        Cedula = new javax.swing.JTextField();
-        Nombre = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
-        cbDias = new javax.swing.JComboBox<>();
+        cbDia = new javax.swing.JComboBox<>();
         cbMes = new javax.swing.JComboBox<>();
         cbAnio = new javax.swing.JComboBox<>();
         lblDia = new javax.swing.JLabel();
@@ -106,17 +109,17 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
         lblNombre.setText("Nombre completo");
 
-        Cedula.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                CedulaKeyTyped(evt);
+                txtCedulaKeyTyped(evt);
             }
         });
 
-        Nombre.setEditable(false);
+        txtNombre.setEditable(false);
 
         btnGuardar.setText("Guardar");
 
-        cbDias.setSelectedItem(0);
+        cbDia.setSelectedItem(0);
 
         cbMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +163,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbDias, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -169,8 +172,8 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                         .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbAnio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(Nombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Cedula, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -179,11 +182,11 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Cedula))
+                    .addComponent(txtCedula))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Nombre))
+                    .addComponent(txtNombre))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(cbAnio)
@@ -191,7 +194,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                     .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbDias)
+                    .addComponent(cbDia)
                     .addComponent(cbMes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -201,11 +204,11 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CedulaKeyTyped
-        if (!Character.isDigit(evt.getKeyChar()) || this.Cedula.getText().length() == 9) {
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) || this.txtCedula.getText().length() == 9) {
             evt.consume();
         }
-    }//GEN-LAST:event_CedulaKeyTyped
+    }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
         agregarMeses();
@@ -218,11 +221,9 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Cedula;
-    private javax.swing.JTextField Nombre;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> cbAnio;
-    private javax.swing.JComboBox<String> cbDias;
+    private javax.swing.JComboBox<String> cbDia;
     private javax.swing.JComboBox<String> cbMes;
     private javax.swing.JLabel lblAnio;
     private javax.swing.JLabel lblCedula;
@@ -230,5 +231,70 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblMes;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+
+    
+    public String getFecha() {
+        if (this.cbMes.getSelectedIndex() + 1 < 10) {
+            return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
+        }
+        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
+    }
+
+    public void setFecha(String fecha) {
+        String fec[] = fecha.split("/");
+        this.cbDia.addItem(fec[0]);
+        this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
+        this.cbAnio.addItem(fec[2]);
+    }
+    
+    public Object getAnio() {
+        return cbAnio.getSelectedItem();
+    }
+
+    public void setAnio(Component anio) {
+        this.cbAnio.add(anio);
+    }
+
+    public Object getDias() {
+        return cbDia.getSelectedItem();
+    }
+
+    public void setDias(Component dias) {
+        this.cbDia.add(dias);
+    }
+
+    public Object getMes() {
+        return cbMes.getSelectedItem();
+    }
+
+    public void setMes(Component mes) {
+        this.cbMes.add(mes);
+    }
+
+    public String getCedula() {
+        return txtCedula.getText();
+    }
+
+    public void setCedula(String cedula) {
+        this.txtCedula.setText(cedula);
+    }
+
+    public String getNombre() {
+        return txtNombre.getText();
+    }
+
+    public void setNombre(String nombre) {
+        this.txtNombre.setText(nombre);
+    }
+
+    
+        @Override
+    public String toString() {
+        return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
+                + " Fecha: " + this.getFecha();
+    }
+
 }

@@ -43,7 +43,7 @@
                   <Group type="102" attributes="0">
                       <Component id="lblDia" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cbDias" max="32767" attributes="0"/>
+                      <Component id="cbDia" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="lblMes" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -53,8 +53,8 @@
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="cbAnio" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="Nombre" alignment="1" max="32767" attributes="0"/>
-                  <Component id="Cedula" alignment="1" max="32767" attributes="0"/>
+                  <Component id="txtNombre" alignment="1" max="32767" attributes="0"/>
+                  <Component id="txtCedula" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -66,12 +66,12 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="lblCedula" alignment="2" max="32767" attributes="0"/>
-                  <Component id="Cedula" alignment="2" max="32767" attributes="0"/>
+                  <Component id="txtCedula" alignment="2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="lblNombre" alignment="2" max="32767" attributes="0"/>
-                  <Component id="Nombre" alignment="2" max="32767" attributes="0"/>
+                  <Component id="txtNombre" alignment="2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
@@ -80,7 +80,7 @@
                   <Component id="lblMes" alignment="2" max="32767" attributes="0"/>
                   <Component id="lblAnio" alignment="2" max="32767" attributes="0"/>
                   <Component id="lblFecha" alignment="2" max="32767" attributes="0"/>
-                  <Component id="cbDias" alignment="2" max="32767" attributes="0"/>
+                  <Component id="cbDia" alignment="2" max="32767" attributes="0"/>
                   <Component id="cbMes" alignment="2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
@@ -101,12 +101,12 @@
         <Property name="text" type="java.lang.String" value="Nombre completo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="Cedula">
+    <Component class="javax.swing.JTextField" name="txtCedula">
       <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CedulaKeyTyped"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCedulaKeyTyped"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="Nombre">
+    <Component class="javax.swing.JTextField" name="txtNombre">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
@@ -116,7 +116,7 @@
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cbDias">
+    <Component class="javax.swing.JComboBox" name="cbDia">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>

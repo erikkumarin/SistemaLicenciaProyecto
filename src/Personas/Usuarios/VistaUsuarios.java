@@ -1,12 +1,13 @@
 package Personas.Usuarios;
 
 import Utilidades.AjustarVentana;
+import java.awt.Component;
 
 public class VistaUsuarios extends javax.swing.JInternalFrame {
 
     public VistaUsuarios() {
         initComponents();
-         AjustarVentana.ajustar(this, 3, 2);
+        AjustarVentana.ajustar(this, 3, 2);
         definirAnios();
         ajustarfecha();
     }
@@ -355,14 +356,6 @@ public class VistaUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    public String getCedula() {
-        return this.txtCedula.getText();
-    }
-
-    public String getNombre() {
-        return txtNombre.getText().toUpperCase();
-    }
-
     public String getFecha() {
         if (this.cbMes.getSelectedIndex() + 1 < 10) {
             return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
@@ -370,43 +363,108 @@ public class VistaUsuarios extends javax.swing.JInternalFrame {
         return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
     }
 
-    public String getTelefono() {
-        return this.txtTelefono.getText();
+    public void setFecha(String fecha) {
+        String fec[] = fecha.split("/");
+        this.cbDia.addItem(fec[0]);
+        this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
+        this.cbAnio.addItem(fec[2]);
     }
 
-    public String getCorreo() {
-        return this.txtCorreo.getText();
+    public Object getAnio() {
+        return cbAnio.getSelectedItem();
     }
 
-    public String getUsuario() {
-        return this.txtUsuario.getText();
+    public void setAnio(Component anio) {
+        this.cbAnio.add(anio);
     }
 
-    public String getContrasena() {
-        return this.txtContrasena.getText();
+    public Object getDias() {
+        return cbDia.getSelectedItem();
     }
 
-    public String getTipo() {
-        return this.cbUsuario.getSelectedItem().toString();
+    public void setDias(Component dias) {
+        this.cbDia.add(dias);
     }
 
-    public String getSalario() {
-        return this.txtSalario.getText();
+    public Object getMes() {
+        return cbMes.getSelectedItem();
+    }
+
+    public void setMes(Component mes) {
+        this.cbMes.add(mes);
+    }
+
+    public String getCedula() {
+        return txtCedula.getText();
     }
 
     public void setCedula(String cedula) {
         this.txtCedula.setText(cedula);
     }
 
+    public String getNombre() {
+        return txtNombre.getText().toUpperCase();
+    }
+
     public void setNombre(String nombre) {
         this.txtNombre.setText(nombre);
     }
 
-    public void setFecha(String fecha) {
-        String fec[] = fecha.split("/");
-        this.cbDia.addItem(fec[0]);
-        this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
-        this.cbAnio.addItem(fec[2]);
+    public String getTelefono() {
+        return txtTelefono.getText();
+    }
+
+    public void setTelefono(String telefono) {
+        this.txtTelefono.setText(telefono);
+    }
+
+    public String getCorreo() {
+        return txtCorreo.getText();
+    }
+
+    public void setCorreo(String correo) {
+        this.txtCorreo.setText(correo);
+    }
+
+    public String getUsuario() {
+        return txtUsuario.getText();
+    }
+
+    public void setUsurio(String usuario) {
+        this.txtUsuario.setText(usuario);
+    }
+
+    public String getContrasena() {
+        return txtContrasena.getText();
+    }
+
+    public void setContrasena(String contra) {
+        this.txtContrasena.setText(contra);
+    }
+
+    public Object getTipo() {
+        return cbUsuario.getSelectedItem();
+    }
+
+    public void setTipo(Component tipo) {
+        this.cbUsuario.add(tipo);
+    }
+
+    public String getSalario() {
+        return txtSalario.getText();
+    }
+
+    public void setSalario(String salario) {
+        this.txtContrasena.setText(salario);
+    }
+
+    @Override
+    public String toString() {
+        return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
+                + " Fecha de Nac': " + this.getFecha() + " Telefono: " + this.getTelefono()
+                + " Correo: " + this.getCorreo()+ "\nNombre de usuario: "+this.getUsuario()
+                + " Contraseña: "+ this.getContrasena()+ " Tipo: "+this.getTipo().toString()
+                + " Salario: "+this.getSalario();
     }
 
 }

@@ -2,6 +2,7 @@ package Personas.Clientes;
 
 import Errores.ErrorConexion;
 import Utilidades.AjustarVentana;
+import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +15,6 @@ public class VistaClientes extends javax.swing.JInternalFrame {
         definirAnios();
         ajustarfecha();
     }
-
 
     private void ajustarfecha() {
         int mes = this.cbMes.getSelectedIndex() + 1;
@@ -309,39 +309,62 @@ public class VistaClientes extends javax.swing.JInternalFrame {
         return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
     }
 
-    public String getCedula() {
-        return this.txtCedula.getText();
-    }
-
-    public String getCorreo() {
-        return txtCorreo.getText();
-    }
-
-    public String getNombre() {
-        return txtNombre.getText().toUpperCase();
-    }
-
-    public String getTelefono() {
-        return txtTelefono.getText();
-    }
-
-    public void setCedula(String cedula) {
-        this.txtCedula.setText(cedula);
-    }
-
     public void setFecha(String fecha) {
         String fec[] = fecha.split("/");
         this.cbDia.addItem(fec[0]);
         this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
         this.cbAnio.addItem(fec[2]);
     }
+    
+     public Object getAnio() {
+        return cbAnio.getSelectedItem();
+    }
 
+    public void setAnio(Component anio) {
+        this.cbAnio.add(anio);
+    }
+
+    public Object getDias() {
+        return cbDia.getSelectedItem();
+    }
+
+    public void setDias(Component dias) {
+        this.cbDia.add(dias);
+    }
+
+    public Object getMes() {
+        return cbMes.getSelectedItem();
+    }
+
+    public void setMes(Component mes) {
+        this.cbMes.add(mes);
+    }
+
+    public String getCedula() {
+        return this.txtCedula.getText();
+    }
+
+    public void setCedula(String cedula) {
+        this.txtCedula.setText(cedula);
+    }
+
+    public String getCorreo() {
+        return txtCorreo.getText();
+    }
+    
     public void setCorreo(String correo) {
         this.txtCorreo.setText(correo);
     }
 
+    public String getNombre() {
+        return txtNombre.getText().toUpperCase();
+    }
     public void setNombre(String nombre) {
         this.txtNombre.setText(nombre);
+    }
+
+    public String getTelefono() {
+        return txtTelefono.getText();
     }
 
     public void setTelefono(String telefono) {
