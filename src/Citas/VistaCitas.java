@@ -27,7 +27,6 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         int anio = calendario.get(Calendar.YEAR);
         for (int i = anio; i < anio + 100; i++) {
             this.cbAnio.addItem(Integer.toString(i));
-
         }
     }
 
@@ -42,34 +41,22 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         }
     }
 
-   private void agregarDias() {
-        int mes = this.cbMes.getSelectedIndex() + 1;
+    private void agregarDias() {
         int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
         int dias = 0;
-        switch (mes) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
-                dias = 31;
-                break;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                dias = 30;
-                break;
-            case 2:
-                if ((anio % 4 == 0 && anio % 100 != 0) || anio % 400 == 0) {
-                    dias = 29;
-                } else {
-                    dias = 28;
-                }
-                break;
+        String mes = cbMes.getSelectedItem().toString();
+        System.out.println(mes);
+        if (mes.equals("Enero") || mes.equals("Marzo") || mes.equals("Mayo") || mes.equals("Julio") || mes.equals("Agosto") || mes.equals("Octubre") || mes.equals("Diciembre")) {
+            dias = 31;
+        } else if (mes.equals("Abril") || mes.equals("Junio") || mes.equals("Septiembre") || mes.equals("Noviembre")) {
+            dias = 30;
+        } else if ((anio % 4 == 0 && anio % 100 != 0) || anio % 400 == 0) {
+            dias = 29;
+        } else {
+            dias = 28;
         }
+       // System.out.println(anio);
+       // System.out.println(dias);
         this.definirDias(dias);
     }
 
@@ -78,7 +65,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         int dia = 1;
         if (meses[calendario.get(Calendar.MONTH)].equals(cbMes.getItemAt(cbMes.getSelectedIndex()))) {
             if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(cbAnio.getSelectedIndex())))) {
-                dias = calendario.get(Calendar.DAY_OF_MONTH);
+                dia = calendario.get(Calendar.DAY_OF_MONTH);
             }
         }
         for (int i = dia; i <= dias; i++) {
@@ -211,14 +198,13 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
-    private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
-        agregarMeses();
-        agregarDias();
-    }//GEN-LAST:event_cbAnioActionPerformed
-
     private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
         agregarDias();
     }//GEN-LAST:event_cbMesActionPerformed
+
+    private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
+        agregarMeses();
+    }//GEN-LAST:event_cbAnioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
