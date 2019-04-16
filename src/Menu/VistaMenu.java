@@ -5,32 +5,34 @@ import Citas.VistaCitas;
 import Personas.Clientes.VistaClientes;
 import Personas.Usuarios.VistaUsuarios;
 import Pruebas.VistaPruebas;
-import java.awt.image.BufferedImage;
-import java.io.InputStream;
-import javax.imageio.ImageIO;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 
 public class VistaMenu extends javax.swing.JFrame {
 
     public VistaMenu() {
         initComponents();
-        //Escritorio.setBorder(new Fondo());
         this.setExtendedState(6);
     }
 
-      
     private void agregar(JInternalFrame vista) {
         this.Escritorio.add(vista);
         vista.setVisible(true);
     }
 
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Utilidades/Fondo.jpg"));
+        Image imagen = icono.getImage();
+        Escritorio = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            }
+        };
         BarraMenu = new javax.swing.JMenuBar();
         MInicar = new javax.swing.JMenu();
         BtnInicar = new javax.swing.JMenuItem();
@@ -51,8 +53,10 @@ public class VistaMenu extends javax.swing.JFrame {
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 392, Short.MAX_VALUE)
+            .addGap(0, 394, Short.MAX_VALUE)
         );
+
+        BarraMenu.setBorder(null);
 
         MInicar.setText("Sesión");
 

@@ -2,27 +2,26 @@ package Utilidades;
 
 import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Insets;
-import java.awt.image.BufferedImage;
-import java.net.URL;
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 
 public class Fondo implements Border {
-
-    public BufferedImage imagen;
-
+private Image imagen;
+    
     public Fondo() {
      try {
-            URL imagePath = new URL(getClass().getResource("/Utilidades/Fondo.jpg").toString());
-            imagen = ImageIO.read(imagePath);
-        } catch (Exception ex) {            
+            ImageIcon icono = new ImageIcon(getClass().getResource("/Utilidades/Fondo.jpg"));
+            imagen = icono.getImage();
+        } catch (Exception ex) {
+         System.out.println("error");            
         }
     }
 
     @Override
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-        g.drawImage(imagen, (x + (width - imagen.getWidth()) / 2), (y + (height - imagen.getHeight()) / 2), null);
+        g.drawImage(imagen, 0, 0, null);
     }
 
     @Override

@@ -6,7 +6,7 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
 
     public VistaPruebas() {
         initComponents();
-        AjustarVentana.ajustar(this, 3.5, 2.5);
+        AjustarVentana.ajustar(this, 3.5, 2);
         definirAnios();
         ajustarfecha();
 
