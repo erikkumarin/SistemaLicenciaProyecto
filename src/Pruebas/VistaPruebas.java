@@ -2,61 +2,79 @@ package Pruebas;
 
 import Utilidades.AjustarVentana;
 import java.awt.Component;
+import java.util.Calendar;
 
 public class VistaPruebas extends javax.swing.JInternalFrame {
 
+    
+       private String[] meses;
+    private final Calendar calendario;
+    
     public VistaPruebas() {
         initComponents();
         AjustarVentana.ajustar(this, 3.5, 2);
-        definirAnios();
-        ajustarfecha();
+        calendario = Calendar.getInstance();
+        definirFecha();
 
     }
+ private void definirFecha() {
+        meses = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+        agregarAnios();
+        agregarMeses();
+        agregarDias();
+    }
 
-    private void ajustarfecha() {
-        int mes = this.cbMes.getSelectedIndex() + 1;
-        int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
-        int dia = 0;
-        switch (mes) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
-                dia = 31;
-                break;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                dia = 30;
-                break;
-            case 2:
-                if ((anio % 4 == 0 && anio % 100 != 0) || anio % 400 == 0) {
-                    dia = 29;
-                } else {
-                    dia = 28;
-                }
-                break;
+    private void agregarAnios() {
+        int anio = calendario.get(Calendar.YEAR);
+        for (int i = anio; i < anio + 100; i++) {
+            this.cbAnio.addItem(Integer.toString(i));
         }
-        this.definirDias(dia);
     }
 
-    private void definirDias(int dia) {
+    private void agregarMeses() {
+        int mes = 0;
+        if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(cbAnio.getSelectedIndex())))) {
+            mes = calendario.get(Calendar.MONTH);
+        }
+         cbMes.removeAllItems();
+        for (int i = mes; i < 12; i++) {
+            cbMes.addItem(this.meses[i]);
+        }
+    }
+
+    private void agregarDias() {
+        int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
+        int dias = 0;
+          String mes;
+        if (cbMes.getSelectedItem()==null) {
+            mes = "Enero";
+        }else{
+            mes = cbMes.getSelectedItem().toString();
+        }
+        if (mes.equals("Enero") || mes.equals("Marzo") || mes.equals("Mayo") || mes.equals("Julio") || mes.equals("Agosto") || mes.equals("Octubre") || mes.equals("Diciembre")) {
+            dias = 31;
+        } else if (mes.equals("Abril") || mes.equals("Junio") || mes.equals("Septiembre") || mes.equals("Noviembre")) {
+            dias = 30;
+        } else if ((anio % 4 == 0 && anio % 100 != 0) || anio % 400 == 0) {
+            dias = 29;
+        } else {
+            dias = 28;
+        }
+        this.definirDias(dias);
+    }
+
+    private void definirDias(int dias) {
         this.cbDia.removeAllItems();
-        for (int i = dia; i > 0; i--) {
+        int dia = 1;
+        if (meses[calendario.get(Calendar.MONTH)].equals(cbMes.getItemAt(cbMes.getSelectedIndex()))) {
+            if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(cbAnio.getSelectedIndex())))) {
+                dia = calendario.get(Calendar.DAY_OF_MONTH);
+            }
+        }
+        for (int i = dia; i <= dias; i++) {
             this.cbDia.addItem(String.valueOf(i));
         }
     }
-
-    private void definirAnios() {
-        for (int i = 2019; i < 2190; i++) {
-            this.cbAnio.addItem(String.valueOf(i));
-        }
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -240,11 +258,11 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
-        this.ajustarfecha();
+        agregarDias();
     }//GEN-LAST:event_cbMesActionPerformed
 
     private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
-        this.ajustarfecha();
+      agregarMeses();
     }//GEN-LAST:event_cbAnioActionPerformed
 
     private void txtNotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNotaKeyTyped
