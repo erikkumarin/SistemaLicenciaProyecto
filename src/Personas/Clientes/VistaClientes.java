@@ -1,20 +1,19 @@
 package Personas.Clientes;
 
+import Errores.ErrorConexion;
+import Utilidades.AjustarVentana;
+import java.awt.Component;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class VistaCliente extends javax.swing.JInternalFrame {
+public class VistaClientes extends javax.swing.JInternalFrame {
 
-    public VistaCliente() {
+    public VistaClientes() {
         initComponents();
-        ajustarVentana();
+        AjustarVentana.ajustar(this, 3, 2.5);
         definirAnios();
         ajustarfecha();
-    }
-
-    private void ajustarVentana() {
-        int x = this.getToolkit().getScreenSize().width, y = this.getToolkit().getScreenSize().height;
-        this.setSize(x / 3, (int) (y / 1.5));
-        this.setLocation((x - this.getWidth()) / 2, (y - this.getHeight()) / 2);
     }
 
     private void ajustarfecha() {
@@ -85,7 +84,7 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         lblMETelefono = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Registro de clientes");
+        setTitle("Registro de Clientes");
         setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -109,11 +108,6 @@ public class VistaCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        txtCedula.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtCedulaMouseClicked(evt);
-            }
-        });
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
@@ -121,19 +115,11 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         });
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNombreKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
             }
         });
 
-        txtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtTelefonoMouseClicked(evt);
-            }
-        });
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
@@ -185,9 +171,9 @@ public class VistaCliente extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblMes)
+                        .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbMes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -199,10 +185,12 @@ public class VistaCliente extends javax.swing.JInternalFrame {
                         .addGap(132, 132, 132))
                     .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMETelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(153, 153, 153))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(lblMETelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(138, 138, 138))
                     .addComponent(txtCedula))
                 .addGap(13, 13, 13))
         );
@@ -213,32 +201,32 @@ public class VistaCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCedula))
-                .addGap(18, 18, 18)
-                .addComponent(lblMECedula, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMECedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNombre))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(cbDia)
                     .addComponent(cbMes)
                     .addComponent(cbAnio)
                     .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblAnio)
+                    .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTelefono))
-                .addGap(18, 18, 18)
-                .addComponent(lblMETelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMETelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCorreo))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -256,53 +244,41 @@ public class VistaCliente extends javax.swing.JInternalFrame {
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
         ControladorClientes cc = new ControladorClientes(this);
-        cc.agregar();
+        try {
+            cc.agregar();
+        } catch (ErrorConexion ex) {
+            Logger.getLogger(VistaClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char caracter = evt.getKeyChar();
+        if (!Character.isLetter(caracter) && !Character.isSpaceChar(caracter)) {
+            anular(evt);
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         if (txtCedula.getText().length() == 9 || !Character.isDigit(evt.getKeyChar())) {
-            this.getToolkit().beep();
-            this.lblMECedula.setEnabled(true);
             anular(evt);
+            this.lblMECedula.setEnabled(true);
         } else {
             this.lblMECedula.setEnabled(false);
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
-    private void anular(KeyEvent evt) {
-        evt.consume();
-    }
-    private void txtCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaMouseClicked
-        this.txtCedula.setText(null);
-        this.lblMECedula.setEnabled(false);
-    }//GEN-LAST:event_txtCedulaMouseClicked
-
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        if (!Character.isDigit(evt.getKeyChar()) || this.txtTelefono.getText().length() == 8) {
-            this.getToolkit().beep();
-            this.lblMETelefono.setEnabled(true);
+        if (txtTelefono.getText().length() == 9 || !Character.isDigit(evt.getKeyChar())) {
             anular(evt);
+            this.lblMETelefono.setEnabled(true);
         } else {
             this.lblMETelefono.setEnabled(false);
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
-    private void txtTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMouseClicked
-        this.txtTelefono.setText(null);
-        this.lblMETelefono.setEnabled(false);
-    }//GEN-LAST:event_txtTelefonoMouseClicked
-
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        char caracter = evt.getKeyChar();
-        if (!Character.isAlphabetic(caracter) && !Character.isSpaceChar(caracter)) {
-            this.getToolkit().beep();
-            anular(evt);
-        }
-     }//GEN-LAST:event_txtNombreKeyTyped
-
-    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        this.txtNombre.setText(this.txtNombre.getText().toUpperCase());
-    }//GEN-LAST:event_txtNombreKeyReleased
+    private void anular(KeyEvent evt) {
+        evt.consume();
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -333,39 +309,62 @@ public class VistaCliente extends javax.swing.JInternalFrame {
         return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
     }
 
-    public String getCedula() {
-        return this.txtCedula.getText();
-    }
-
-    public String getCorreo() {
-        return txtCorreo.getText();
-    }
-
-    public String getNombre() {
-        return txtNombre.getText();
-    }
-
-    public String getTelefono() {
-        return txtTelefono.getText();
-    }
-
-    public void setCedula(String cedula) {
-        this.txtCedula.setText(cedula);
-    }
-
     public void setFecha(String fecha) {
         String fec[] = fecha.split("/");
         this.cbDia.addItem(fec[0]);
         this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
         this.cbAnio.addItem(fec[2]);
     }
+    
+     public Object getAnio() {
+        return cbAnio.getSelectedItem();
+    }
 
+    public void setAnio(Component anio) {
+        this.cbAnio.add(anio);
+    }
+
+    public Object getDias() {
+        return cbDia.getSelectedItem();
+    }
+
+    public void setDias(Component dias) {
+        this.cbDia.add(dias);
+    }
+
+    public Object getMes() {
+        return cbMes.getSelectedItem();
+    }
+
+    public void setMes(Component mes) {
+        this.cbMes.add(mes);
+    }
+
+    public String getCedula() {
+        return this.txtCedula.getText();
+    }
+
+    public void setCedula(String cedula) {
+        this.txtCedula.setText(cedula);
+    }
+
+    public String getCorreo() {
+        return txtCorreo.getText();
+    }
+    
     public void setCorreo(String correo) {
         this.txtCorreo.setText(correo);
     }
 
+    public String getNombre() {
+        return txtNombre.getText().toUpperCase();
+    }
     public void setNombre(String nombre) {
         this.txtNombre.setText(nombre);
+    }
+
+    public String getTelefono() {
+        return txtTelefono.getText();
     }
 
     public void setTelefono(String telefono) {

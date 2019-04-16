@@ -2,8 +2,13 @@ package Menu;
 
 import BaseDeDatos.VistaConfiguracion;
 import Citas.VistaCitas;
-import Personas.Clientes.VistaCliente;
-import Personas.Usuarios.VistaUsuario;
+import Personas.Clientes.VistaClientes;
+import Personas.Usuarios.VistaUsuarios;
+import Pruebas.VistaPruebas;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
 
 public class VistaMenu extends javax.swing.JFrame {
 
@@ -13,23 +18,31 @@ public class VistaMenu extends javax.swing.JFrame {
     }
 
 
+    private void agregar(JInternalFrame vista) {
+        this.Escritorio.add(vista);
+        vista.setVisible(true);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
-        Escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Utilidades/Fondo.jpg"));
+        Image imagen = icono.getImage();
+        Escritorio = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
+            }
+        };
         BarraMenu = new javax.swing.JMenuBar();
         MInicar = new javax.swing.JMenu();
         BtnInicar = new javax.swing.JMenuItem();
         Btncrear = new javax.swing.JMenuItem();
-        MICliente = new javax.swing.JMenuItem();
+        btnCliente = new javax.swing.JMenuItem();
+        btnPrueba = new javax.swing.JMenuItem();
+        btnCita = new javax.swing.JMenuItem();
         MConfig = new javax.swing.JMenu();
         BtnConfig = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        registrarCitas = new javax.swing.JMenuItem();
-
-        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,8 +54,10 @@ public class VistaMenu extends javax.swing.JFrame {
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 392, Short.MAX_VALUE)
+            .addGap(0, 394, Short.MAX_VALUE)
         );
+
+        BarraMenu.setBorder(null);
 
         MInicar.setText("Sesión");
 
@@ -62,13 +77,29 @@ public class VistaMenu extends javax.swing.JFrame {
         });
         MInicar.add(Btncrear);
 
-        MICliente.setText("Cliente");
-        MICliente.addActionListener(new java.awt.event.ActionListener() {
+        btnCliente.setText("Cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MIClienteActionPerformed(evt);
+                btnClienteActionPerformed(evt);
             }
         });
-        MInicar.add(MICliente);
+        MInicar.add(btnCliente);
+
+        btnPrueba.setText("Prueba");
+        btnPrueba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPruebaActionPerformed(evt);
+            }
+        });
+        MInicar.add(btnPrueba);
+
+        btnCita.setText("Citas");
+        btnCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCitaActionPerformed(evt);
+            }
+        });
+        MInicar.add(btnCita);
 
         BarraMenu.add(MInicar);
 
@@ -84,18 +115,6 @@ public class VistaMenu extends javax.swing.JFrame {
         MConfig.add(BtnConfig);
 
         BarraMenu.add(MConfig);
-
-        jMenu2.setText("Citas");
-
-        registrarCitas.setText("Registrar citas");
-        registrarCitas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarCitasActionPerformed(evt);
-            }
-        });
-        jMenu2.add(registrarCitas);
-
-        BarraMenu.add(jMenu2);
 
         setJMenuBar(BarraMenu);
 
@@ -114,9 +133,7 @@ public class VistaMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfigActionPerformed
-        VistaConfiguracion VC = new VistaConfiguracion();
-        this.Escritorio.add(VC);
-        VC.setVisible(true);
+        this.agregar(new VistaConfiguracion());
     }//GEN-LAST:event_BtnConfigActionPerformed
 
     private void BtnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInicarActionPerformed
@@ -124,26 +141,21 @@ public class VistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnInicarActionPerformed
 
     private void BtncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtncrearActionPerformed
-        VistaUsuario vu = new VistaUsuario();
-        this.Escritorio.add(vu);
-        vu.setVisible(true);
+        this.agregar(new VistaUsuarios());
     }//GEN-LAST:event_BtncrearActionPerformed
 
-    private void MIClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIClienteActionPerformed
-        VistaCliente vc = new VistaCliente();
-        this.Escritorio.add(vc);
-        vc.setVisible(true);
-    }//GEN-LAST:event_MIClienteActionPerformed
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        this.agregar(new VistaClientes());
+    }//GEN-LAST:event_btnClienteActionPerformed
 
-    private void registrarCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarCitasActionPerformed
-        VistaCitas VC = new VistaCitas();
-        this.Escritorio.add(VC);
-        VC.setVisible(true);
-    }//GEN-LAST:event_registrarCitasActionPerformed
+    private void btnPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPruebaActionPerformed
+        this.agregar(new VistaPruebas());
+    }//GEN-LAST:event_btnPruebaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitaActionPerformed
+        this.agregar(new VistaCitas());
+    }//GEN-LAST:event_btnCitaActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -177,13 +189,12 @@ public class VistaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem BtnConfig;
     private javax.swing.JMenuItem BtnInicar;
     private javax.swing.JMenuItem Btncrear;
-    private javax.swing.JDesktopPane Escritorio;
+    public static javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenu MConfig;
-    private javax.swing.JMenuItem MICliente;
     private javax.swing.JMenu MInicar;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuItem registrarCitas;
+    private javax.swing.JMenuItem btnCita;
+    private javax.swing.JMenuItem btnCliente;
+    private javax.swing.JMenuItem btnPrueba;
     // End of variables declaration//GEN-END:variables
 
 }
