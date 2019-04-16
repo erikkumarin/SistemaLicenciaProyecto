@@ -1,11 +1,8 @@
-
 package Citas;
 
 import java.util.Calendar;
 import Utilidades.AjustarVentana;
 import java.awt.Component;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
 
 public class VistaCitas extends javax.swing.JInternalFrame {
 
@@ -16,6 +13,10 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         initComponents();
         AjustarVentana.ajustar(this, 4, 5);
         calendario = Calendar.getInstance();
+        definirFecha();
+    }
+
+    private void definirFecha() {
         meses = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
         agregarAnios();
         agregarMeses();
@@ -42,33 +43,10 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     }
 
     private void agregarDias() {
-        int mes = this.cbMes.getSelectedIndex() + 1;
-        int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
-        int dia = 0;
-        switch (mes) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
-                dia = 31;
-                break;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                dia = 30;
-                break;
-            case 2:
-                if ((anio % 4 == 0 && anio % 100 != 0) || anio % 400 == 0) {
-                    dia = 29;
-                } else {
-                    dia = 28;
-                }
-                break;
-        }
+        //int mes = this.cbMes.getSelectedIndex() + 1;
+       // int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
+        int dia = calendario.getActualMaximum(Calendar.OCTOBER);
+        System.out.println(dia);
         this.definirDias(dia);
     }
 
@@ -80,7 +58,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                 dias = calendario.get(Calendar.DAY_OF_MONTH);
             }
         }
-        for (int i = dia; i >= dias; i--) {
+        for (int i = dias; i <= dia; i++) {
             this.cbDia.addItem(String.valueOf(i));
         }
     }
@@ -235,7 +213,6 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
-    
     public String getFecha() {
         if (this.cbMes.getSelectedIndex() + 1 < 10) {
             return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
@@ -249,7 +226,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
         this.cbAnio.addItem(fec[2]);
     }
-    
+
     public Object getAnio() {
         return cbAnio.getSelectedItem();
     }
@@ -290,8 +267,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         this.txtNombre.setText(nombre);
     }
 
-    
-        @Override
+    @Override
     public String toString() {
         return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
                 + " Fecha: " + this.getFecha();
