@@ -42,15 +42,16 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         }
     }
 
-    private int mes(){
+    private int mes() {
         for (int i = 0; i < 12; i++) {
-            if (calendario.get(Calendar.MONTH)==cbMes.getSelectedIndex()+1) {
+            if (calendario.get(Calendar.MONTH) == cbMes.getSelectedIndex() + 1) {
                 System.out.println(calendario.get(i));
                 return i;
             }
         }
         return 0;
     }
+
     private void agregarDias() {
         //int mes = this.cbMes.getSelectedIndex() + 1;
         // int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
