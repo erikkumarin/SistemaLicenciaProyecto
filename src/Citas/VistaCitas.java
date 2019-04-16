@@ -35,17 +35,21 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(cbAnio.getSelectedIndex())))) {
             mes = calendario.get(Calendar.MONTH);
         }
-        this.cbMes.removeAllItems();
+         cbMes.removeAllItems();
         for (int i = mes; i < 12; i++) {
-            this.cbMes.addItem(this.meses[i]);
+            cbMes.addItem(this.meses[i]);
         }
     }
 
     private void agregarDias() {
         int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
         int dias = 0;
-        String mes = cbMes.getSelectedItem().toString();
-        System.out.println(mes);
+          String mes;
+        if (cbMes.getSelectedItem()==null) {
+            mes = "Enero";
+        }else{
+            mes = cbMes.getSelectedItem().toString();
+        }
         if (mes.equals("Enero") || mes.equals("Marzo") || mes.equals("Mayo") || mes.equals("Julio") || mes.equals("Agosto") || mes.equals("Octubre") || mes.equals("Diciembre")) {
             dias = 31;
         } else if (mes.equals("Abril") || mes.equals("Junio") || mes.equals("Septiembre") || mes.equals("Noviembre")) {
@@ -55,8 +59,6 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         } else {
             dias = 28;
         }
-       // System.out.println(anio);
-       // System.out.println(dias);
         this.definirDias(dias);
     }
 
@@ -107,15 +109,12 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
         btnGuardar.setText("Guardar");
 
-        cbDia.setSelectedItem(0);
-
         cbMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMesActionPerformed(evt);
             }
         });
 
-        cbAnio.setSelectedItem(0);
         cbAnio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbAnioActionPerformed(evt);
@@ -198,13 +197,14 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
-    private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
-        agregarDias();
-    }//GEN-LAST:event_cbMesActionPerformed
-
     private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
-        agregarMeses();
+             agregarMeses();
     }//GEN-LAST:event_cbAnioActionPerformed
+
+    private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
+             agregarDias();
+       
+    }//GEN-LAST:event_cbMesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
