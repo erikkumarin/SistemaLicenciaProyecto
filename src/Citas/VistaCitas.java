@@ -42,23 +42,46 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         }
     }
 
-    private void agregarDias() {
-        //int mes = this.cbMes.getSelectedIndex() + 1;
-       // int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
-        int dia = calendario.getActualMaximum(Calendar.OCTOBER);
-        System.out.println(dia);
-        this.definirDias(dia);
+   private void agregarDias() {
+        int mes = this.cbMes.getSelectedIndex() + 1;
+        int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
+        int dias = 0;
+        switch (mes) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                dias = 31;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                dias = 30;
+                break;
+            case 2:
+                if ((anio % 4 == 0 && anio % 100 != 0) || anio % 400 == 0) {
+                    dias = 29;
+                } else {
+                    dias = 28;
+                }
+                break;
+        }
+        this.definirDias(dias);
     }
 
-    private void definirDias(int dia) {
+    private void definirDias(int dias) {
         this.cbDia.removeAllItems();
-        int dias = 1;
+        int dia = 1;
         if (meses[calendario.get(Calendar.MONTH)].equals(cbMes.getItemAt(cbMes.getSelectedIndex()))) {
             if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(cbAnio.getSelectedIndex())))) {
                 dias = calendario.get(Calendar.DAY_OF_MONTH);
             }
         }
-        for (int i = dias; i <= dia; i++) {
+        for (int i = dia; i <= dias; i++) {
             this.cbDia.addItem(String.valueOf(i));
         }
     }

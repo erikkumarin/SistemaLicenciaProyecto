@@ -9,7 +9,7 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
 
     public VistaConfiguracion() {
         initComponents();
-        AjustarVentana.ajustar(this, 4.5, 2.5);
+        AjustarVentana.ajustar(this, 4, 2);
         config = new Configuracion();
         editar(false);
         cargarDatos();
@@ -48,6 +48,7 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
         MEBD = new javax.swing.JLabel();
 
         setClosable(true);
+        setTitle("Configuracion de base de datos");
 
         jLabel1.setText("Usuario");
 

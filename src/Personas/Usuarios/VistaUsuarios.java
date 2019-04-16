@@ -7,7 +7,7 @@ public class VistaUsuarios extends javax.swing.JInternalFrame {
 
     public VistaUsuarios() {
         initComponents();
-        AjustarVentana.ajustar(this, 3, 2);
+        AjustarVentana.ajustar(this, 3, 1.5);
         definirAnios();
         ajustarfecha();
     }
