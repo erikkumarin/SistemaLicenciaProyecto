@@ -1,37 +1,50 @@
 package Menu;
 
 import BaseDeDatos.BaseDatos;
+import BaseDeDatos.ControladorBaseDatos;
 import BaseDeDatos.VistaConfiguracion;
 import Citas.VistaCitas;
 import Personas.Clientes.VistaClientes;
 import Personas.Usuarios.VistaUsuarios;
 import Pruebas.VistaPruebas;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 public class VistaMenu extends javax.swing.JFrame {
 
+    ControladorBaseDatos controladorBD;
+    
     public VistaMenu() {
         initComponents();
         //Escritorio.setBorder(new Fondo());
         this.setExtendedState(6);
-        if (BaseDatos.getConexion() == null) {
-            VistaConfiguracion VC = new VistaConfiguracion();
-            this.Escritorio.add(VC);
-            VC.setVisible(true);
-        }
+        controladorBD = new ControladorBaseDatos();
+        conexion();
     }
 
-      
     private void agregar(JInternalFrame vista) {
         this.Escritorio.add(vista);
         vista.setVisible(true);
     }
 
+    private void conexion() {
+        try {
+            VistaConfiguracion VC = new VistaConfiguracion();
+            agregar(VC);
+            if (BaseDatos.getConexion() != null && controladorBD.probarConexion(VC)) {
+                JOptionPane.showMessageDialog(VC, "Funcionando con Normalidad", "Probar Conexion", 1);
+                VC.dispose();
+            }
+        } catch (IOException ex) {
+        }
+    }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -134,7 +147,7 @@ public class VistaMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfigActionPerformed
-        this.agregar(new VistaConfiguracion());
+        conexion();
     }//GEN-LAST:event_BtnConfigActionPerformed
 
     private void BtnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInicarActionPerformed
