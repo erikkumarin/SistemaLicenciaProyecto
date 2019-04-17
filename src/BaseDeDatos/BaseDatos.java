@@ -17,11 +17,11 @@ public class BaseDatos {
     private ResultSet datos;
     private Configuracion config;
     
-    private String url;
-    private String servidor;
-    private String BD;
-    private String usuario;
-    private String contrasena;
+    private static String url;
+    private static String servidor;
+    private static String BD;
+    private static String usuario;
+    private static String contrasena;
 
     public static Connection getConexion() {
         return conexion;

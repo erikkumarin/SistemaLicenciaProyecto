@@ -14,7 +14,7 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
 
     public VistaConfiguracion() throws IOException {
         initComponents();
-        AjustarVentana.ajustar(this, 4.5, 2.5);
+        //AjustarVentana.ajustar(this, 4.5, 2.5);
         config = new Configuracion();
         controlador = new ControladorBaseDatos();
         editar(false);
