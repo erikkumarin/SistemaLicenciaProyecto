@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 public class VistaCitas extends javax.swing.JInternalFrame {
 
@@ -16,6 +17,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
     public VistaCitas() {
         initComponents();
+       
         ControladorCita= new ControladorCitas(this);
         AjustarVentana.ajustar(this, 3, 4);
         calendario = Calendar.getInstance();
@@ -109,7 +111,6 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         lblMes = new javax.swing.JLabel();
         lblAnio = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         cbHora = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
@@ -131,7 +132,12 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
         txtNombre.setEditable(false);
 
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("Registar cita");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         cbDia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,15 +157,13 @@ public class VistaCitas extends javax.swing.JInternalFrame {
             }
         });
 
-        lblDia.setText("Dia");
+        lblDia.setText("Día");
 
         lblMes.setText("Mes");
 
         lblAnio.setText("Año");
 
         lblFecha.setText("Fecha");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setText("Hora");
 
@@ -171,7 +175,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCedula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(54, 54, 54))
@@ -181,17 +185,17 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                        .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbDia, 0, 47, Short.MAX_VALUE)
+                        .addGap(27, 27, 27)
+                        .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                        .addComponent(cbMes, 0, 72, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbAnio, 0, 63, Short.MAX_VALUE))
                     .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cbHora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -252,6 +256,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
     private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
         if (this.txtCedula.getText().length()==9) {
+            JOptionPane.showMessageDialog(null, txtCedula.getText());
             try {
                 ControladorCita.leer();
             } catch (ErrorConexion ex) {
@@ -260,9 +265,12 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtCedulaKeyReleased
 
-    private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {
-        agregarDias();
-    }
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        if (this.txtNombre.getText().trim().length()==0) {
+            JOptionPane.showMessageDialog(null, "No se ha ingresado un usuario");
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -271,7 +279,6 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbDia;
     private javax.swing.JComboBox<String> cbHora;
     private javax.swing.JComboBox<String> cbMes;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAnio;
     private javax.swing.JLabel lblCedula;

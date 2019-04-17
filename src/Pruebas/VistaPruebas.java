@@ -2,6 +2,7 @@ package Pruebas;
 
 import Utilidades.AjustarVentana;
 import java.awt.Component;
+import javax.swing.JTextField;
 
 public class VistaPruebas extends javax.swing.JInternalFrame {
 
@@ -73,7 +74,6 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
         lblCedula = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
         lblOficial = new javax.swing.JLabel();
-        cbOficial = new javax.swing.JComboBox<>();
         lblObservacion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObservacion = new javax.swing.JTextArea();
@@ -84,6 +84,7 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
         lblEstado = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
+        oficial = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Prueba de Licencia");
@@ -153,7 +154,7 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                    .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblOficial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -168,7 +169,6 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEstado))
                     .addComponent(jScrollPane1)
-                    .addComponent(cbOficial, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -188,7 +188,8 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
                     .addComponent(txtCedula)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(152, 152, 152)))
+                        .addGap(152, 152, 152))
+                    .addComponent(oficial))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -216,9 +217,9 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
                     .addComponent(lblHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbHora))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblOficial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbOficial))
+                    .addComponent(oficial))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -228,7 +229,7 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblNota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNota)
+                    .addComponent(txtNota, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                     .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -281,7 +282,6 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbDia;
     private javax.swing.JComboBox<String> cbHora;
     private javax.swing.JComboBox<String> cbMes;
-    private javax.swing.JComboBox<String> cbOficial;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAnio;
     private javax.swing.JLabel lblCedula;
@@ -294,6 +294,7 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblNota;
     private javax.swing.JLabel lblObservacion;
     private javax.swing.JLabel lblOficial;
+    private javax.swing.JTextField oficial;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNombre;
@@ -355,20 +356,14 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
         this.txtNombre.setText(nombre);
     }
 
-   public Object getHora() {
+    public Object getHora() {
         return cbHora.getSelectedItem();
     }
-   public void setHora(Component hora) {
+
+    public void setHora(Component hora) {
         this.cbHora.add(hora);
     }
-   
-   public Object getOficial() {
-        return cbOficial.getSelectedItem();
-    }
-   public void setOficial(Component oficial) {
-        this.cbOficial.add(oficial);
-    }
-   
+
     public String getObservacion() {
         return txtNombre.getText();
     }
@@ -376,29 +371,37 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
     public void setObservacion(String ob) {
         this.txtObservacion.setText(ob);
     }
-     public String getNota() {
+
+    public String getNota() {
         return txtNota.getText();
     }
 
     public void setNota(String nota) {
         this.txtNota.setText(nota);
     }
-     public String getEstado() {
+
+    public String getEstado() {
         return txtEstado.getText();
     }
 
     public void setEstado(String estado) {
         this.txtEstado.setText(estado);
     }
-    
-   
+
+    public String getOficial() {
+        return oficial.toString();
+    }
+
+    public void setOficial(JTextField oficial) {
+        this.oficial = oficial;
+    }
 
     @Override
     public String toString() {
         return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
                 + " Fecha: " + this.getFecha() + " Hora: " + this.getHora()
-                + " Oficial: " + this.getOficial().toString()+ "\nObservacion: "+this.getObservacion()
-                + " Nota: "+ this.getNota()+ " Estado: "+this.getEstado();
+                + " Oficial: " + this.getOficial() + "\nObservacion: " + this.getObservacion()
+                + " Nota: " + this.getNota() + " Estado: " + this.getEstado();
     }
 
 }
