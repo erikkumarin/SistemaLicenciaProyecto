@@ -10,8 +10,6 @@ import Pruebas.VistaPruebas;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -33,14 +31,11 @@ public class VistaMenu extends javax.swing.JFrame {
     }
 
     private void conexion() {
-        try {
-            VistaConfiguracion VC = new VistaConfiguracion();
-            agregar(VC);
-            if (BaseDatos.getConexion() != null && controladorBD.probarConexion(VC)) {
-                JOptionPane.showMessageDialog(VC, "Funcionando con Normalidad", "Probar Conexion", 1);
-                VC.dispose();
-            }
-        } catch (IOException ex) {
+        VistaConfiguracion VC = new VistaConfiguracion();
+        agregar(VC);
+        if (BaseDatos.getConexion() != null && controladorBD.probarConexion(VC)) {
+            JOptionPane.showMessageDialog(VC, "Funcionando con Normalidad", "Probar Conexion", 1);
+            VC.dispose();
         }
     }
 

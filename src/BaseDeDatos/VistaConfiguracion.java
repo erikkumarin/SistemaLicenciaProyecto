@@ -2,23 +2,30 @@ package BaseDeDatos;
 
 import Archivos.Configuracion;
 import Utilidades.AjustarVentana;
+import java.awt.Dimension;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class VistaConfiguracion extends javax.swing.JInternalFrame {
-    
+
     Configuracion config;
     ControladorBaseDatos controlador;
 
-    public VistaConfiguracion() throws IOException {
-        initComponents();
-        AjustarVentana.ajustar(this, 4, 2);
-        config = new Configuracion();
-        controlador = new ControladorBaseDatos();
-        editar(false);
-        cargarDatos();
+    public VistaConfiguracion()  {
+        try {
+            initComponents();
+            AjustarVentana.ajustar(this, 4, 2);
+            config = new Configuracion();
+            controlador = new ControladorBaseDatos();
+            editar(false);
+            cargarDatos();
+        } catch (IOException ex) {
+            Logger.getLogger(VistaConfiguracion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void cargarDatos() {
@@ -39,7 +46,6 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -185,7 +191,7 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Conexion Exitosa", "Probar Conexion", 1);
                 btnEditar.setText("Editar");
                 this.dispose();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, controlador.getMsjError(), "Probar Conexion", 0);
             }
         }
@@ -213,7 +219,6 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JTextField txtBD;
     private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtIP;
