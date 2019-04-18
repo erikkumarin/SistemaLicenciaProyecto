@@ -11,6 +11,7 @@ public class Fecha {
     private LocalDate fecha;
     private LocalDate fechaActu;
 
+
     /**
      * Se ingresa la fecha de nacimiento de la Persona.
      *
