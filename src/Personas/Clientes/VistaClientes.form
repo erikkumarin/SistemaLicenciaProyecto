@@ -9,7 +9,6 @@
       <Color id="Cursor Por defecto"/>
     </Property>
     <Property name="debugGraphicsOptions" type="int" value="-1"/>
-    <Property name="opaque" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>

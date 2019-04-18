@@ -5,7 +5,6 @@ import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
 import Personas.Clientes.ModeloClientes;
 import Utilidades.CRUD;
-import java.util.Arrays;
 
 public class ControladorCitas implements CRUD {
 
@@ -40,10 +39,14 @@ public class ControladorCitas implements CRUD {
         this.cliente.setCedula(cita.getCedula());
         System.out.println(cliente.getCedula());
         BaseDatos bd = new BaseDatos("Select * from tblclientes where cedula=?");
-        bd.setParametros(new Object[]{cita.getCedula()});
-        Object Infocliente[];
-        Infocliente = this.bd.getObjet();
-        Arrays.toString(Infocliente);
-//        "Select * from clientes where idCliente like ?"
+        bd.setParametros(new Object[]{this.cliente.getCedula()});
+        System.out.println(this.cliente.getCedula());
+        Object obj[];
+        do {
+            obj = bd.getObjet();
+            if (obj != null) {
+
+            }
+        } while (obj != null);
     }
 }

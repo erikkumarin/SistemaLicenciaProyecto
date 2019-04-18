@@ -15,17 +15,13 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     Configuracion config;
     ControladorBaseDatos controlador;
 
-    public VistaConfiguracion()  {
-        try {
-            initComponents();
-            AjustarVentana.ajustar(this, 4, 2);
-            config = new Configuracion();
-            controlador = new ControladorBaseDatos();
-            editar(false);
-            cargarDatos();
-        } catch (IOException ex) {
-            Logger.getLogger(VistaConfiguracion.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public VistaConfiguracion() throws IOException {
+        initComponents();
+        AjustarVentana.ajustarPorPantalla(this, 4.5, 2.5);
+        config = new Configuracion();
+        controlador = new ControladorBaseDatos();
+        editar(false);
+        cargarDatos();
     }
 
     private void cargarDatos() {

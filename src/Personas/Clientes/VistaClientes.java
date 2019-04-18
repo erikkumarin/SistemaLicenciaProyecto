@@ -268,7 +268,7 @@ public class VistaClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        if (txtTelefono.getText().length() == 9 || !Character.isDigit(evt.getKeyChar())) {
+        if (txtTelefono.getText().length() == 8 || !Character.isDigit(evt.getKeyChar())) {
             anular(evt);
             this.lblMETelefono.setEnabled(true);
         } else {
