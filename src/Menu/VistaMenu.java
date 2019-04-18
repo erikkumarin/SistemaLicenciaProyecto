@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class VistaMenu extends javax.swing.JFrame {
 
     ControladorBaseDatos controladorBD;
-    
+
     public VistaMenu() {
         initComponents();
         this.setExtendedState(6);
@@ -58,8 +58,11 @@ public class VistaMenu extends javax.swing.JFrame {
         BtnInicar = new javax.swing.JMenuItem();
         Btncrear = new javax.swing.JMenuItem();
         btnCliente = new javax.swing.JMenuItem();
-        btnPrueba = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         btnCita = new javax.swing.JMenuItem();
+        btnPrueba = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         MConfig = new javax.swing.JMenu();
         BtnConfig = new javax.swing.JMenuItem();
 
@@ -96,7 +99,7 @@ public class VistaMenu extends javax.swing.JFrame {
         });
         MInicar.add(Btncrear);
 
-        btnCliente.setText("Cliente");
+        btnCliente.setText("Registrar cliente");
         btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClienteActionPerformed(evt);
@@ -104,23 +107,34 @@ public class VistaMenu extends javax.swing.JFrame {
         });
         MInicar.add(btnCliente);
 
-        btnPrueba.setText("Prueba");
-        btnPrueba.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPruebaActionPerformed(evt);
-            }
-        });
-        MInicar.add(btnPrueba);
+        BarraMenu.add(MInicar);
 
-        btnCita.setText("Citas");
+        jMenu1.setText("Prueba de manejo");
+
+        btnCita.setText("Registrar cita ");
         btnCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCitaActionPerformed(evt);
             }
         });
-        MInicar.add(btnCita);
+        jMenu1.add(btnCita);
 
-        BarraMenu.add(MInicar);
+        btnPrueba.setText("Aplicar prueba");
+        btnPrueba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPruebaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnPrueba);
+
+        BarraMenu.add(jMenu1);
+
+        jMenu2.setText("Herramientas");
+
+        jMenuItem1.setText("Exportar datos");
+        jMenu2.add(jMenuItem1);
+
+        BarraMenu.add(jMenu2);
 
         MConfig.setText("Configuración");
 
@@ -188,15 +202,11 @@ public class VistaMenu extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VistaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -218,6 +228,9 @@ public class VistaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnCita;
     private javax.swing.JMenuItem btnCliente;
     private javax.swing.JMenuItem btnPrueba;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 
 }
