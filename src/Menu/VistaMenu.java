@@ -22,7 +22,7 @@ public class VistaMenu extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(6);
         controladorBD = new ControladorBaseDatos();
-        conexion();
+       conexion();
     }
 
     private void agregar(JInternalFrame vista) {
@@ -35,7 +35,7 @@ public class VistaMenu extends javax.swing.JFrame {
             VistaConfiguracion VC = new VistaConfiguracion();
             agregar(VC);
             if (BaseDatos.getConexion() != null && controladorBD.probarConexion(VC)) {
-                JOptionPane.showMessageDialog(VC, "Funcionando con Normalidad", "Probar Conexion", 1);
+                JOptionPane.showMessageDialog(VC, "Funcionando con normalidad", "Probar Conexion", 1);
                 VC.dispose();
             }
         } catch (IOException ex) {

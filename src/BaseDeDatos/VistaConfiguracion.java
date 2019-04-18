@@ -6,18 +6,20 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 public class VistaConfiguracion extends javax.swing.JInternalFrame {
-    
+
     Configuracion config;
     ControladorBaseDatos controlador;
 
-    public VistaConfiguracion() throws IOException {
+    public VistaConfiguracion() throws IOException{
         initComponents();
-        //AjustarVentana.ajustar(this, 4, 2.5);
+        AjustarVentana.ajustarPorPantalla(this, 4, 2.5);
         config = new Configuracion();
         controlador = new ControladorBaseDatos();
         editar(false);
         cargarDatos();
     }
+    
+  
 
     private void cargarDatos() {
         txtIP.setText(config.getPropiedades("Servidor"));
@@ -182,7 +184,7 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Conexion Exitosa", "Probar Conexion", 1);
                 btnEditar.setText("Editar");
                 this.dispose();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, controlador.getMsjError(), "Probar Conexion", 0);
             }
         }
@@ -217,20 +219,20 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    public String getTxtBD() {
+    public String getBD() {
         return txtBD.getText();
     }
 
-    public String getTxtContrasena() {
+    public String getContrasena() {
         return txtContrasena.getText();
     }
 
-    public String getTxtIP() {
+    public String getIP() {
         return txtIP.getText();
     }
 
-    public String getTxtUsuario() {
+    public String getUsuario() {
         return txtUsuario.getText();
     }
-
+    
 }

@@ -6,8 +6,6 @@ import Errores.TipoErrorConexion;
 import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ControladorBaseDatos {
 
@@ -23,7 +21,7 @@ public class ControladorBaseDatos {
     public Boolean probarConexion(VistaConfiguracion frm) {
         try {
             config = new Configuracion();
-            BD = new BaseDatos(frm.getTxtIP(), frm.getTxtBD(), frm.getTxtUsuario(), frm.getTxtContrasena());
+            BD = new BaseDatos(frm.getIP(), frm.getBD(), frm.getUsuario(), frm.getContrasena());
             BaseDatos.setConexion(DriverManager.getConnection(BD.getUrl(), BD.getUsuario(), BD.getContrasena()));
             config.setPropiedades("Servidor", BD.getServidor());
             config.setPropiedades("BD", BD.getBD());
