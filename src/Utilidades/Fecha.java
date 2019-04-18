@@ -6,17 +6,10 @@ import java.time.format.DateTimeFormatter;
 
 public class Fecha {
 
-    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private final DateTimeFormatter fmt;
     private Period periodo;
     private LocalDate fecha;
     private LocalDate fechaActu;
-
-    public Fecha(String fecha) {
-        this.fechaActu = LocalDate.now();
-        this.setFecha(fecha);
-    }
-
-
 
     /**
      * Se ingresa la fecha de nacimiento de la Persona.
@@ -43,4 +36,17 @@ public class Fecha {
     public Period getPeriodo() {
         return periodo;
     }
+
+    public Fecha(String fecha) {
+        this.fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.fechaActu = LocalDate.now();
+        this.setFecha(fecha);
+    }
+
+    @Override
+    public String toString() {
+        String fechaInvertida[] = this.getFecha().toString().split("-");
+        return fechaInvertida[2] + "/" + fechaInvertida[1] + "/" + fechaInvertida[0];
+    }
+
 }

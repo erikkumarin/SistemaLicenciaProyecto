@@ -2,24 +2,28 @@ package BaseDeDatos;
 
 import Archivos.Configuracion;
 import Utilidades.AjustarVentana;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 public class VistaConfiguracion extends javax.swing.JInternalFrame {
     
     Configuracion config;
+    ControladorBaseDatos controlador;
 
-    public VistaConfiguracion() {
+    public VistaConfiguracion() throws IOException {
         initComponents();
-        AjustarVentana.ajustar(this, 4, 2);
+        //AjustarVentana.ajustar(this, 4, 2.5);
         config = new Configuracion();
+        controlador = new ControladorBaseDatos();
         editar(false);
         cargarDatos();
     }
 
-
     private void cargarDatos() {
         txtIP.setText(config.getPropiedades("Servidor"));
+        txtBD.setText(config.getPropiedades("BD"));
         txtUsuario.setText(config.getPropiedades("Usuario"));
-        txtContrasena.setText(config.getPropiedades("Contra"));
+        txtContrasena.setText(config.getPropiedades("Contraseña"));
     }
 
     private void editar(boolean accion) {
@@ -48,7 +52,6 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
         MEBD = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Configuracion de base de datos");
 
         jLabel1.setText("Usuario");
 
@@ -171,10 +174,15 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         if (this.btnEditar.getText().equals("Editar")) {
             editar(true);
-            btnEditar.setText("Enviar");
+            btnEditar.setText("Probar Conexion");
         } else {
-            editar(false);
-            btnEditar.setText("Editar");
+            if (controlador.probarConexion(this)) {
+                JOptionPane.showMessageDialog(this, "Conexion Exitosa", "Probar Conexion", 1);
+                btnEditar.setText("Editar");
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(this, controlador.getMsjError(), "Probar Conexion", 0);
+            }
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -205,5 +213,21 @@ public class VistaConfiguracion extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtIP;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    public String getTxtBD() {
+        return txtBD.getText();
+    }
+
+    public String getTxtContrasena() {
+        return txtContrasena.getText();
+    }
+
+    public String getTxtIP() {
+        return txtIP.getText();
+    }
+
+    public String getTxtUsuario() {
+        return txtUsuario.getText();
+    }
 
 }

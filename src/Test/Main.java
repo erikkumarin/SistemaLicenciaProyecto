@@ -16,7 +16,7 @@ public class Main {
 //        ControladorClientes cc = new ControladorClientes(vc);
 //        cc.agregar();
         try {
-            BaseDatos bd = new BaseDatos();
+            BaseDatos bd = new BaseDatos("Select * From tblClientes");
         } catch (ErrorConexion ex) {
             System.out.println(ex.getMessage());
         }

@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import Archivos.Configuracion;
 import Errores.ErrorConexion;
-import java.io.File;
 import Errores.TipoErrorConexion;
 
 public class BaseDatos {
@@ -17,11 +16,47 @@ public class BaseDatos {
     private PreparedStatement sentencia;
     private ResultSet datos;
     private Configuracion config;
-    private File conf;
+    
+    private static String url;
+    private static String servidor;
+    private static String BD;
+    private static String usuario;
+    private static String contrasena;
 
-    public BaseDatos() throws ErrorConexion {
-        this.conectar();
-        config = new Configuracion();
+    public static Connection getConexion() {
+        return conexion;
+    }
+
+    public static void setConexion(Connection conexion) {
+        BaseDatos.conexion = conexion;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+    
+    public String getServidor() {
+        return servidor;
+    }
+
+    public String getBD() {
+        return BD;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public BaseDatos(String servidor, String BD, String usuario, String contrasena) throws ErrorConexion {
+        this.servidor = servidor;
+        this.BD = BD;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.url = "jdbc:mysql://"+this.servidor+"/"+this.BD+"?useServerPrepStmts=true";
     }
 
     public BaseDatos(String sql) throws ErrorConexion {
@@ -30,11 +65,10 @@ public class BaseDatos {
     }
 
     private boolean conectar() throws ErrorConexion {
-        config = new Configuracion();
         if (conexion == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                conexion = DriverManager.getConnection(config.getPropiedades("Servidor"), config.getPropiedades("Usuario"), config.getPropiedades("Contra"));
+                conexion = DriverManager.getConnection(this.url,this.usuario,this.contrasena);
                 return true;
             } catch (ClassNotFoundException ex) {
                 throw new ErrorConexion(TipoErrorConexion.ERRORDRIVER);
@@ -46,18 +80,15 @@ public class BaseDatos {
         return false;
     }
 
-    public boolean setSentencia(String sql) {
+    public void setSentencia(String sql) throws ErrorConexion {
         try {
             this.sentencia = conexion.prepareStatement(sql);
-            return true;
         } catch (SQLException ex) {
-            System.out.println("Error en la Sentencia");
-            System.out.println(ex.getMessage());
+            throw new ErrorConexion(TipoErrorConexion.ERRORBD);
         }
-        return false;
     }
 
-    public boolean setParametros(Object[] param) {
+    public void setParametros(Object[] param) throws ErrorConexion {
         for (int i = 0; i < param.length; i++) {
             try {
                 if (param[i] instanceof String) {
@@ -67,29 +98,26 @@ public class BaseDatos {
                     this.sentencia.setInt(i + 1, Integer.parseInt(param[i].toString()));
                 }
             } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-                return false;
+                throw new ErrorConexion(TipoErrorConexion.ERRORBD);
             }
         }
-        return true;
     }
 
-    public boolean ejecutar() {
+    public boolean ejecutar() throws ErrorConexion {
         try {
             this.sentencia.execute();
             return true;
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            throw new ErrorConexion(TipoErrorConexion.ERRORBD);
         }
-        return false;
     }
 
-    public boolean ejecutar(Object[] param) {
+    public boolean ejecutar(Object[] param) throws ErrorConexion {
         this.setParametros(param);
         return this.ejecutar();
     }
 
-    public Object[] getObjet() {
+    public Object[] getObjet() throws ErrorConexion {
         try {
             if (this.datos.next()) {
                 ArrayList<Object> obj = new ArrayList<>();
@@ -100,9 +128,8 @@ public class BaseDatos {
                 return obj.toArray();
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            throw new ErrorConexion(TipoErrorConexion.ERRORBD);
         }
-
         return null;
     }
 

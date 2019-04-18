@@ -17,9 +17,8 @@ public class ControladorClientes implements CRUD {
     @Override
     public void agregar() throws ErrorConexion {
         BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
-        cliente = new ModeloClientes(vista.getCedula(), vista.getNombre(), vista.getTelefono(), vista.getCorreo(), vista.getFecha());
+        cliente = new ModeloClientes(vista.getCedula(), vista.getNombre(), vista.getCorreo(), vista.getTelefono(), vista.getFecha());
         BD.ejecutar(new Object[]{cliente.getCedula(), cliente.getNombre(), cliente.getFechaNac(), cliente.getTelefono(), cliente.getCorreo()});
-
     }
 
     @Override
