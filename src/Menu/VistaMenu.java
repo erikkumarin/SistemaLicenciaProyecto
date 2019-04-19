@@ -5,6 +5,7 @@ import BaseDeDatos.ControladorBaseDatos;
 import BaseDeDatos.VistaConfiguracion;
 import Citas.VistaCitas;
 import Personas.Clientes.VistaClientes;
+import Personas.Usuarios.VistaSesion;
 import Personas.Usuarios.VistaUsuarios;
 import Pruebas.VistaPruebas;
 import java.awt.Graphics;
@@ -60,9 +61,9 @@ public class VistaMenu extends javax.swing.JFrame {
         MInicar = new javax.swing.JMenu();
         BtnInicar = new javax.swing.JMenuItem();
         Btncrear = new javax.swing.JMenuItem();
-        btnCliente = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         btnCita = new javax.swing.JMenuItem();
+        btnCliente = new javax.swing.JMenuItem();
         btnPrueba = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -102,14 +103,6 @@ public class VistaMenu extends javax.swing.JFrame {
         });
         MInicar.add(Btncrear);
 
-        btnCliente.setText("Registrar cliente");
-        btnCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClienteActionPerformed(evt);
-            }
-        });
-        MInicar.add(btnCliente);
-
         BarraMenu.add(MInicar);
 
         jMenu1.setText("Prueba de manejo");
@@ -121,6 +114,14 @@ public class VistaMenu extends javax.swing.JFrame {
             }
         });
         jMenu1.add(btnCita);
+
+        btnCliente.setText("Registrar cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnCliente);
 
         btnPrueba.setText("Aplicar prueba");
         btnPrueba.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +142,6 @@ public class VistaMenu extends javax.swing.JFrame {
 
         MConfig.setText("Configuración");
 
-        BtnConfig.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
         BtnConfig.setText("Configuración");
         BtnConfig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,7 +173,7 @@ public class VistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnConfigActionPerformed
 
     private void BtnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInicarActionPerformed
-
+        this.agregar(new VistaSesion());
     }//GEN-LAST:event_BtnInicarActionPerformed
 
     private void BtncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtncrearActionPerformed
