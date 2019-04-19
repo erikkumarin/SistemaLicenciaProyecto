@@ -25,6 +25,7 @@ public class VistaMenu extends javax.swing.JFrame {
         this.setExtendedState(6);
         controladorBD = new ControladorBaseDatos();
         conexion();
+//        this.desactivarOpciones();
     }
 
     private void agregar(JInternalFrame vista) {
@@ -43,6 +44,13 @@ public class VistaMenu extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void desactivarOpciones() {
+        this.btnCita.setEnabled(false);
+        this.Btncrear.setEnabled(false);
+        this.btnCliente.setEnabled(false);
+        this.btnPrueba.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")

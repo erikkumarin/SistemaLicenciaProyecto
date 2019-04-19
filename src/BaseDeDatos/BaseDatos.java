@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import Archivos.Configuracion;
 import Errores.ErrorConexion;
 import Errores.TipoErrorConexion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BaseDatos {
 
@@ -107,11 +109,12 @@ public class BaseDatos {
         try {
             if (this.sentencia.execute()) {
                 this.datos = this.sentencia.getResultSet();
-            }
-            return true;
+                return true;
+            }      
         } catch (SQLException ex) {
             throw new ErrorConexion(TipoErrorConexion.ERRORBD);
         }
+        return false;
     }
 
     public boolean ejecutar(Object[] param) throws ErrorConexion {
