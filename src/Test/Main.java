@@ -16,7 +16,7 @@ public class Main {
 //        ControladorClientes cc = new ControladorClientes(vc);
 //        cc.agregar();
         try {
-            BaseDatos bd = new BaseDatos("Select * From tblClientes where cedula=123456789");
+            BaseDatos bd = new BaseDatos("Select * From tblClientes where cedula=501470255");
         } catch (ErrorConexion ex) {
             System.out.println(ex.getMessage());
         }

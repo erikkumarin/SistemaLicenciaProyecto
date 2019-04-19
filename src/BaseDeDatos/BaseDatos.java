@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import Archivos.Configuracion;
 import Errores.ErrorConexion;
 import Errores.TipoErrorConexion;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class BaseDatos {
 
