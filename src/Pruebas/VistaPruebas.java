@@ -12,38 +12,66 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
     public VistaPruebas() {
         initComponents();
         AjustarVentana.ajustar(this, 2, 3);
-        calendario = Calendar.getInstance();
-        definirFecha();
-
-    }
-
-    private void definirFecha() {
-        meses = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+        calendario = Utilidades.Fecha.calendario;
+        meses = Utilidades.Fecha.meses;
         agregarAnios();
         agregarMeses();
         agregarDias();
+         agregarHora();
     }
 
-    private void agregarAnios() {
-        int anio = calendario.get(Calendar.YEAR);
-        for (int i = anio; i < anio + 100; i++) {
-            this.cbAnio.addItem(Integer.toString(i));
+    
+    private void agregarHora() {
+        int hora = 8;
+        if (this.cbDia.getItemAt(this.cbDia.getSelectedIndex()) == null) {
+            hora = calendario.get(Calendar.HOUR_OF_DAY);
+        } else if (Integer.parseInt(this.cbDia.getItemAt(this.cbDia.getSelectedIndex())) == calendario.get(Calendar.DAY_OF_MONTH)) {
+            hora = calendario.get(Calendar.HOUR_OF_DAY);
+             if(hora < 8){
+                hora = 8;
+            }
         }
+        this.cbHora.removeAllItems();
+        if (hora < 17) {
+            do {
+                this.cbHora.addItem(hora + ":00");
+                hora++;
+            } while (hora != 17);
+            activarResgistrar(true);
+        } else {
+            this.cbHora.addItem("Hora limite alcanza");
+            activarResgistrar(false);
+        }
+
+    }
+    private void agregarAnios() {
+        this.cbAnio.addItem(Integer.toString(calendario.get(Calendar.YEAR)));
+        this.cbAnio.setEnabled(false);
     }
 
     private void agregarMeses() {
-        int mes = 0;
-        if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(cbAnio.getSelectedIndex())))) {
+        int mes = 0, cantidad=12;
+        if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(this.cbAnio.getSelectedIndex())))) {
             mes = calendario.get(Calendar.MONTH);
+        }else{
+            cantidad=12-calendario.get(Calendar.MONTH);
         }
         cbMes.removeAllItems();
-        for (int i = mes; i < 12; i++) {
-            cbMes.addItem(this.meses[i]);
+        int mesesAgregados = 0;
+        for (int i = mes; i < cantidad; i++) {
+            if (mesesAgregados < 3) {
+                cbMes.addItem(this.meses[i]);
+                ++mesesAgregados;
+            }
+        }
+        if (mesesAgregados != 3) {
+            this.cbAnio.addItem(Integer.toString(calendario.get(Calendar.YEAR) + 1));
+            this.cbAnio.setEnabled(true);
         }
     }
 
     private void agregarDias() {
-        int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
+        int anio = Integer.valueOf(this.cbAnio.getItemAt(cbAnio.getSelectedIndex()));
         int dias = 0;
         String mes;
         if (cbMes.getSelectedItem() == null) {
@@ -64,13 +92,13 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
     }
 
     private void definirDias(int dias) {
-        this.cbDia.removeAllItems();
         int dia = 1;
         if (meses[calendario.get(Calendar.MONTH)].equals(cbMes.getItemAt(cbMes.getSelectedIndex()))) {
             if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(cbAnio.getSelectedIndex())))) {
                 dia = calendario.get(Calendar.DAY_OF_MONTH);
             }
         }
+        this.cbDia.removeAllItems();
         for (int i = dia; i <= dias; i++) {
             this.cbDia.addItem(String.valueOf(i));
         }
@@ -357,11 +385,8 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtOficial;
     // End of variables declaration//GEN-END:variables
 
-    public String getFecha() {
-        if (this.cbMes.getSelectedIndex() + 1 < 10) {
-            return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
-        }
-        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
+       public String getFecha() {
+        return this.getDias() + "/" + this.ubicarMes() + "/" + this.cbAnio.getSelectedItem().toString();
     }
 
     public void setFecha(String fecha) {
@@ -462,10 +487,27 @@ public class VistaPruebas extends javax.swing.JInternalFrame {
     @Override
     public String toString() {
         return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
-                + " Fecha: " + this.getFecha() + " Hora: " + this.getHora()
+                + " Fecha: " + this.getFecha() + " Hora: " + this.getHora().toString()
                 + " Oficial: " + this.getOficial() + "\nObservacion: " + this.getObservacion()
                 + " Nota: " + this.getNota() + " Estado: " + this.getEstado()
                 + " Asistencia: " + this.getAsistencia().toString();
+    }
+    
+    
+      private String ubicarMes() {
+        for (int i = 0; i < 12; i++) {
+            if (cbMes.getSelectedItem().toString().equals(meses[i])) {
+                if (i + 1 < 10) {
+                    return "0" + (i + 1);
+                }
+                return i + "" + 1;
+            }
+        }
+        return null;
+    }
+    
+       private void activarResgistrar(boolean estado) {
+        this.btnGuardar.setEnabled(estado);
     }
 
 }

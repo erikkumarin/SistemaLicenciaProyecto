@@ -26,8 +26,8 @@ public class VistaMenu extends javax.swing.JFrame {
         this.setExtendedState(6);
         controladorBD = new ControladorBaseDatos();
         conexion();
-         this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/IconoMenu.png")).getImage());
-         
+        this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/IconoMenu.png")).getImage());
+
     }
 
     private void agregar(JInternalFrame vista) {
@@ -175,23 +175,23 @@ public class VistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnConfigActionPerformed
 
     private void BtnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInicarActionPerformed
-        this.agregar(new VistaSesion());
+        agregar(new VistaSesion());
     }//GEN-LAST:event_BtnInicarActionPerformed
 
     private void BtncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtncrearActionPerformed
-        this.agregar(new VistaUsuarios());
+        agregar(new VistaUsuarios());
     }//GEN-LAST:event_BtncrearActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
-        this.agregar(new VistaClientes());
+        agregar(new VistaClientes());
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPruebaActionPerformed
-        this.agregar(new VistaPruebas());
+        agregar(new VistaPruebas());
     }//GEN-LAST:event_btnPruebaActionPerformed
 
     private void btnCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitaActionPerformed
-        this.agregar(new VistaCitas());
+        agregar(new VistaCitas());
     }//GEN-LAST:event_btnCitaActionPerformed
 
     public static void main(String args[]) {

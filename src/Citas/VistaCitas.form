@@ -27,35 +27,36 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="lblCedula" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblNombre" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lblNombre" alignment="0" pref="93" max="32767" attributes="0"/>
                   <Component id="lblFecha" max="32767" attributes="0"/>
                   <Component id="jLabel1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtNombre" alignment="1" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnGuardar" max="32767" attributes="0"/>
-                      <EmptySpace min="137" pref="137" max="-2" attributes="0"/>
-                  </Group>
                   <Component id="txtCedula" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btnGuardar" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="lblDia" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblDia" pref="20" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbDia" pref="33" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblMes" pref="24" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="cbHora" max="32767" attributes="0"/>
+                              </Group>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="cbDia" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="lblMes" max="32767" attributes="0"/>
+                              <Component id="cbMes" pref="43" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="cbHora" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="cbMes" max="32767" attributes="0"/>
+                      <Component id="lblAnio" pref="35" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="lblAnio" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="cbAnio" max="32767" attributes="0"/>
+                      <Component id="cbAnio" pref="43" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -124,7 +125,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnGuardar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Registar cita"/>
+        <Property name="text" type="java.lang.String" value="Registar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>

@@ -92,4 +92,31 @@ public class VistaEditarContra extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtContraNueva1;
     private javax.swing.JTextField txtContraNueva2;
     // End of variables declaration//GEN-END:variables
+
+    public String getContraActual() {
+        return txtContraActual.getText();
+    }
+
+    public void setContraActual(String contra) {
+        this.txtContraActual.setText(contra);
+    }
+
+    public String getContraNueva1() {
+        return txtContraNueva1.getText();
+    }
+
+    public void setContraNueva1(String contra) {
+        this.txtContraNueva1.setText(contra);
+    }
+
+    public String getContraNueva2() {
+        return txtContraNueva2.getText();
+    }
+
+    public void setContraNueva2(String contra) {
+        this.txtContraNueva2.setText(contra);
+    }
+
+
+
 }

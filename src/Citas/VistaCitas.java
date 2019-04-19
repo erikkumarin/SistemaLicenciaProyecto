@@ -6,7 +6,6 @@ import Utilidades.AjustarVentana;
 import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 public class VistaCitas extends javax.swing.JInternalFrame {
@@ -19,8 +18,8 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         initComponents();
         ControladorCita = new ControladorCitas(this);
         AjustarVentana.ajustar(this, 3, 4);
-        calendario = Calendar.getInstance();
-        meses = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+        calendario = Utilidades.Fecha.calendario;
+        meses = Utilidades.Fecha.meses;
         agregarAnios();
         agregarMeses();
         agregarDias();
@@ -30,9 +29,14 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     private void agregarHora() {
         int hora = 8;
         if (this.cbDia.getItemAt(this.cbDia.getSelectedIndex()) == null) {
+            System.out.println(this.cbDia.getItemAt(this.cbDia.getSelectedIndex()) );
             hora = calendario.get(Calendar.HOUR_OF_DAY);
+            System.out.println(hora);
         } else if (Integer.parseInt(this.cbDia.getItemAt(this.cbDia.getSelectedIndex())) == calendario.get(Calendar.DAY_OF_MONTH)) {
             hora = calendario.get(Calendar.HOUR_OF_DAY);
+            if(hora < 8){
+                hora = 8;
+            }
         }
         this.cbHora.removeAllItems();
         if (hora < 17) {
@@ -54,11 +58,11 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     }
 
     private void agregarMeses() {
-        int mes = 0, cantidad=12;
+        int mes = 0, cantidad = 12;
         if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(this.cbAnio.getSelectedIndex())))) {
             mes = calendario.get(Calendar.MONTH);
-        }else{
-            cantidad=12-calendario.get(Calendar.MONTH);
+        } else {
+            cantidad = 12 - calendario.get(Calendar.MONTH);
         }
         cbMes.removeAllItems();
         int mesesAgregados = 0;
@@ -145,7 +149,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
         txtNombre.setEditable(false);
 
-        btnGuardar.setText("Registar cita");
+        btnGuardar.setText("Registar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -188,31 +192,31 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                     .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(137, 137, 137))
                     .addComponent(txtCedula)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbDia, 0, 33, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                                    .addComponent(cbHora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(cbHora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cbMes, 0, 43, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbMes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbAnio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cbAnio, 0, 43, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -278,7 +282,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCedulaKeyReleased
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (this.txtNombre.getText().trim().length() == 0 && !this.txtNombre.getText().equals("No se ha ingresado un usuario") ) {
+        if (this.txtNombre.getText().trim().length() == 0 && !this.txtNombre.getText().equals("No se ha ingresado un usuario")) {
             JOptionPane.showMessageDialog(null, "No se ha ingresado un usuario");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -302,8 +306,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public String getFecha() {
-        String mes = ubicarMes();
-        return this.getDias() + "/" + mes + "/" + this.cbAnio.getSelectedItem().toString();
+        return this.getDias() + "/" + this.ubicarMes() + "/" + this.cbAnio.getSelectedItem().toString();
     }
 
     public void setFecha(String fecha) {
@@ -321,12 +324,8 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         this.cbAnio.add(anio);
     }
 
-    public String getDias() {
-        String dia=cbDia.getSelectedItem().toString();
-        if (Integer.parseInt(dia)<10) {
-            dia="0"+dia;
-        }
-        return dia;
+    public Object getDias() {
+        return cbDia.getSelectedItem();
     }
 
     public void setDias(Component dias) {
@@ -357,19 +356,18 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         this.txtNombre.setText(nombre);
     }
 
+    public Object getHora() {
+        return cbHora.getSelectedItem();
+    }
+
+    public void setHora(Component hora) {
+        this.cbHora.add(hora);
+    }
+
     @Override
     public String toString() {
         return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
-                + " Fecha: " + this.getFecha();
-    }
-
-    public String getCbHora() {
-        String[] hora = cbHora.getSelectedItem().toString().split(":");
-        return hora[0];
-    }
-
-    public void setCbHora(JComboBox<String> cbHora) {
-        this.cbHora = cbHora;
+                + " Fecha: " + this.getFecha() + " Hora: " +this.getHora().toString();
     }
 
     private String ubicarMes() {

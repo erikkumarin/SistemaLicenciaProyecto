@@ -97,4 +97,24 @@ public class VistaSesion extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtContra;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    
+    public String getContrasena() {
+        return txtContra.getText();
+    }
+
+    public void setContra(String contra) {
+        this.txtContra.setText(contra);
+    }
+
+    public String getUsuario() {
+        return txtUsuario.getText();
+    }
+
+    public void setUsuario(String usuario) {
+        this.txtUsuario.setText(usuario);
+    }
+
+
+
 }
