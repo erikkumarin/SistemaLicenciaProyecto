@@ -110,7 +110,7 @@ public class BaseDatos {
             if (this.sentencia.execute()) {
                 this.datos = this.sentencia.getResultSet();
                 return true;
-            }      
+            }
         } catch (SQLException ex) {
             throw new ErrorConexion(TipoErrorConexion.ERRORBD);
         }
