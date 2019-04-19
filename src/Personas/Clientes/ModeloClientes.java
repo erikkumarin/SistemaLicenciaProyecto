@@ -2,7 +2,6 @@ package Personas.Clientes;
 
 import Personas.clsPersonas;
 import Utilidades.Fecha;
-import javax.swing.JOptionPane;
 
 public class ModeloClientes extends clsPersonas {
 
