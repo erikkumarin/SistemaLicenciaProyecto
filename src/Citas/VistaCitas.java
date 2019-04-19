@@ -30,9 +30,12 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     private void agregarHora() {
         int hora = 8;
         if (this.cbDia.getItemAt(this.cbDia.getSelectedIndex()) == null) {
-            hora = calendario.get(Calendar.HOUR_OF_DAY);
-        } else if (Integer.parseInt(this.cbDia.getItemAt(this.cbDia.getSelectedIndex())) == calendario.get(Calendar.DAY_OF_MONTH)) {
-            hora = calendario.get(Calendar.HOUR_OF_DAY);
+            hora =8;
+        }else if (Integer.parseInt(this.cbDia.getItemAt(this.cbDia.getSelectedIndex())) == calendario.get(Calendar.DAY_OF_MONTH)) {
+            int tiempo=calendario.get(Calendar.HOUR_OF_DAY);
+            if (tiempo<9) {
+                hora = 8; 
+            }
         }
         this.cbHora.removeAllItems();
         if (hora < 17) {
