@@ -10,6 +10,8 @@ import Pruebas.VistaPruebas;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -39,6 +41,7 @@ public class VistaMenu extends javax.swing.JFrame {
                 VC.dispose();
             }
         } catch (IOException ex) {
+            Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

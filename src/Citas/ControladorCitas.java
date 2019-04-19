@@ -8,7 +8,7 @@ import Utilidades.CRUD;
 
 public class ControladorCitas implements CRUD {
 
-    private VistaCitas cita;
+    private final VistaCitas cita;
     private ModeloClientes cliente;
     private BaseDatos bd;
 
@@ -18,11 +18,13 @@ public class ControladorCitas implements CRUD {
 
     @Override
     public void agregar() throws ErrorConexion {
+        this.cliente = new ModeloClientes();
         bd = new BaseDatos("INSERT INTO tblcitas VALUES (null,?,?,?)");
     }
 
     @Override
     public void eliminar() throws ErrorConexion {
+        this.cliente = new ModeloClientes();
         bd = new BaseDatos("DELETE FROM tblcitas WHERE Cedula =" + cliente.getCedula());
     }
 
@@ -35,7 +37,16 @@ public class ControladorCitas implements CRUD {
     public void leer() throws ErrorConexion {
         this.cliente = new ModeloClientes();
         this.cliente.setCedula(cita.getCedula());
-        BaseDatos bd = new BaseDatos("Select * from tblcitas where idCliente like ?");
-//        "Select * from clientes where idCliente like ?"
+        System.out.println(cliente.getCedula());
+        BaseDatos bd = new BaseDatos("Select * from tblclientes where cedula=?");
+        bd.setParametros(new Object[]{this.cliente.getCedula()});
+        System.out.println(this.cliente.getCedula());
+        Object obj[];
+        do {
+            obj = bd.getObjet();
+            if (obj != null) {
+
+            }
+        } while (obj != null);
     }
 }

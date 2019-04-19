@@ -16,7 +16,7 @@ public class BaseDatos {
     private PreparedStatement sentencia;
     private ResultSet datos;
     private Configuracion config;
-    
+
     private static String url;
     private static String servidor;
     private static String BD;
@@ -34,7 +34,7 @@ public class BaseDatos {
     public String getUrl() {
         return url;
     }
-    
+
     public String getServidor() {
         return servidor;
     }
@@ -56,7 +56,7 @@ public class BaseDatos {
         this.BD = BD;
         this.usuario = usuario;
         this.contrasena = contrasena;
-        this.url = "jdbc:mysql://"+this.servidor+"/"+this.BD+"?useServerPrepStmts=true";
+        this.url = "jdbc:mysql://" + this.servidor + "/" + this.BD + "?useServerPrepStmts=true";
     }
 
     public BaseDatos(String sql) throws ErrorConexion {
@@ -68,7 +68,7 @@ public class BaseDatos {
         if (conexion == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                conexion = DriverManager.getConnection(this.url,this.usuario,this.contrasena);
+                conexion = DriverManager.getConnection(this.url, this.usuario, this.contrasena);
                 return true;
             } catch (ClassNotFoundException ex) {
                 throw new ErrorConexion(TipoErrorConexion.ERRORDRIVER);
@@ -105,7 +105,9 @@ public class BaseDatos {
 
     public boolean ejecutar() throws ErrorConexion {
         try {
-            this.sentencia.execute();
+            if (this.sentencia.execute()) {
+                this.datos = this.sentencia.getResultSet();
+            }
             return true;
         } catch (SQLException ex) {
             throw new ErrorConexion(TipoErrorConexion.ERRORBD);

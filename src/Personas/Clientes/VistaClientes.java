@@ -88,7 +88,6 @@ public class VistaClientes extends javax.swing.JInternalFrame {
         setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        setOpaque(true);
 
         lblCedula.setText("N° de Cédula");
         lblCedula.setToolTipText("Ejemplo 501470258");

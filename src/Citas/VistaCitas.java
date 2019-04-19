@@ -256,7 +256,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
     private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
         if (this.txtCedula.getText().length()==9) {
-            JOptionPane.showMessageDialog(null, txtCedula.getText());
+//            JOptionPane.showMessageDialog(null, txtCedula.getText());
             try {
                 ControladorCita.leer();
             } catch (ErrorConexion ex) {
