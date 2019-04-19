@@ -25,7 +25,9 @@ public class VistaMenu extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(6);
         controladorBD = new ControladorBaseDatos();
-       conexion();
+        conexion();
+         this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/IconoMenu.png")).getImage());
+         
     }
 
     private void agregar(JInternalFrame vista) {
@@ -50,7 +52,7 @@ public class VistaMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icono = new ImageIcon(getClass().getResource("/Utilidades/Fondo.jpg"));
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Utilidades/Imagenes/Fondo.jpg"));
         Image imagen = icono.getImage();
         Escritorio = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){

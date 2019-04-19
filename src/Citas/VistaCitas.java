@@ -17,8 +17,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
     public VistaCitas() {
         initComponents();
-       
-        ControladorCita= new ControladorCitas(this);
+        ControladorCita = new ControladorCitas(this);
         AjustarVentana.ajustar(this, 3, 4);
         calendario = Calendar.getInstance();
         meses = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
@@ -29,35 +28,49 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     }
 
     private void agregarHora() {
-        int hora = 0;
+        int hora = 8;
         if (this.cbDia.getItemAt(this.cbDia.getSelectedIndex()) == null) {
             hora = calendario.get(Calendar.HOUR_OF_DAY);
         } else if (Integer.parseInt(this.cbDia.getItemAt(this.cbDia.getSelectedIndex())) == calendario.get(Calendar.DAY_OF_MONTH)) {
             hora = calendario.get(Calendar.HOUR_OF_DAY);
         }
         this.cbHora.removeAllItems();
-        do {
-            this.cbHora.addItem(hora + ":00");
-            hora++;
-        } while (hora != 24);
+        if (hora < 17) {
+            do {
+                this.cbHora.addItem(hora + ":00");
+                hora++;
+            } while (hora != 17);
+            activarResgistrar(true);
+        } else {
+            this.cbHora.addItem("Hora limite alcanza");
+            activarResgistrar(false);
+        }
 
     }
 
     private void agregarAnios() {
-        int anio = calendario.get(Calendar.YEAR);
-        for (int i = anio; i < anio + 100; i++) {
-            this.cbAnio.addItem(Integer.toString(i));
-        }
+        this.cbAnio.addItem(Integer.toString(calendario.get(Calendar.YEAR)));
+        this.cbAnio.setEnabled(false);
     }
 
     private void agregarMeses() {
-        int mes = 0;
+        int mes = 0, cantidad=12;
         if (calendario.get(Calendar.YEAR) == (Integer.parseInt(this.cbAnio.getItemAt(this.cbAnio.getSelectedIndex())))) {
             mes = calendario.get(Calendar.MONTH);
+        }else{
+            cantidad=12-calendario.get(Calendar.MONTH);
         }
         cbMes.removeAllItems();
-        for (int i = mes; i < 12; i++) {
-            cbMes.addItem(this.meses[i]);
+        int mesesAgregados = 0;
+        for (int i = mes; i < cantidad; i++) {
+            if (mesesAgregados < 3) {
+                cbMes.addItem(this.meses[i]);
+                ++mesesAgregados;
+            }
+        }
+        if (mesesAgregados != 3) {
+            this.cbAnio.addItem(Integer.toString(calendario.get(Calendar.YEAR) + 1));
+            this.cbAnio.setEnabled(true);
         }
     }
 
@@ -173,35 +186,33 @@ public class VistaCitas extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCedula, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(54, 54, 54))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCedula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbDia, 0, 47, Short.MAX_VALUE)
-                        .addGap(27, 27, 27)
-                        .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbMes, 0, 72, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbAnio, 0, 63, Short.MAX_VALUE))
                     .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cbHora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(137, 137, 137))
+                    .addComponent(txtCedula)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(cbHora, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbMes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbAnio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -214,21 +225,23 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNombre))
-                .addGap(6, 6, 6)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(cbAnio)
-                    .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbDia)
-                    .addComponent(cbMes))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbMes)
+                    .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbAnio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbHora))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -255,8 +268,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbDiaActionPerformed
 
     private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
-        if (this.txtCedula.getText().length()==9) {
-//            JOptionPane.showMessageDialog(null, txtCedula.getText());
+        if (this.txtCedula.getText().length() == 9) {
             try {
                 ControladorCita.leer();
             } catch (ErrorConexion ex) {
@@ -266,11 +278,10 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCedulaKeyReleased
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (this.txtNombre.getText().trim().length()==0) {
+        if (this.txtNombre.getText().trim().length() == 0 && !this.txtNombre.getText().equals("No se ha ingresado un usuario") ) {
             JOptionPane.showMessageDialog(null, "No se ha ingresado un usuario");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -291,10 +302,8 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public String getFecha() {
-        if (this.cbMes.getSelectedIndex() + 1 < 10) {
-            return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
-        }
-        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
+        String mes = ubicarMes();
+        return this.getDias() + "/" + mes + "/" + this.cbAnio.getSelectedItem().toString();
     }
 
     public void setFecha(String fecha) {
@@ -312,8 +321,12 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         this.cbAnio.add(anio);
     }
 
-    public Object getDias() {
-        return cbDia.getSelectedItem();
+    public String getDias() {
+        String dia=cbDia.getSelectedItem().toString();
+        if (Integer.parseInt(dia)<10) {
+            dia="0"+dia;
+        }
+        return dia;
     }
 
     public void setDias(Component dias) {
@@ -357,6 +370,22 @@ public class VistaCitas extends javax.swing.JInternalFrame {
 
     public void setCbHora(JComboBox<String> cbHora) {
         this.cbHora = cbHora;
+    }
+
+    private String ubicarMes() {
+        for (int i = 0; i < 12; i++) {
+            if (cbMes.getSelectedItem().toString().equals(meses[i])) {
+                if (i + 1 < 10) {
+                    return "0" + (i + 1);
+                }
+                return i + "" + 1;
+            }
+        }
+        return null;
+    }
+
+    private void activarResgistrar(boolean estado) {
+        this.btnGuardar.setEnabled(estado);
     }
 
 }

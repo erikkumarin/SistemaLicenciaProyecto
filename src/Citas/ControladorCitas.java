@@ -5,15 +5,16 @@ import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
 import Personas.Clientes.ModeloClientes;
 import Utilidades.CRUD;
+import java.util.Arrays;
 
 public class ControladorCitas implements CRUD {
 
-    private final VistaCitas cita;
+    private final VistaCitas Vistacita;
     private ModeloClientes cliente;
     private BaseDatos bd;
 
     public ControladorCitas(VistaCitas vista) {
-        cita = vista;
+        Vistacita = vista;
     }
 
     @Override
@@ -36,17 +37,11 @@ public class ControladorCitas implements CRUD {
     @Override
     public void leer() throws ErrorConexion {
         this.cliente = new ModeloClientes();
-        this.cliente.setCedula(cita.getCedula());
-        System.out.println(cliente.getCedula());
-        BaseDatos bd = new BaseDatos("Select * from tblclientes where cedula=?");
-        bd.setParametros(new Object[]{this.cliente.getCedula()});
-        System.out.println(this.cliente.getCedula());
+        this.cliente.setCedula(Vistacita.getCedula());
+        bd = new BaseDatos("Select * from tblclientes where cedula=" + Vistacita.getCedula());
+        bd.ejecutar();
         Object obj[];
-        do {
-            obj = bd.getObjet();
-            if (obj != null) {
-
-            }
-        } while (obj != null);
+        obj = bd.getObjet();
+        System.out.println(Arrays.toString(obj));
     }
 }

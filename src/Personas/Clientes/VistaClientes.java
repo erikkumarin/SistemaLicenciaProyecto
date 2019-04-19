@@ -190,7 +190,7 @@ public class VistaClientes extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblMETelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(138, 138, 138))
-                    .addComponent(txtCedula))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(13, 13, 13))
         );
         layout.setVerticalGroup(
