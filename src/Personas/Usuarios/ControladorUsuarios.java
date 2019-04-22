@@ -21,13 +21,13 @@ public class ControladorUsuarios implements CRUD {
     @Override
     public void agregar() throws ErrorConexion {
         if (vista.getTipo().equals("Oficial")) {
-            BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?,?,?,?)");
-            oficial = new ModeloOficiales(vista.getCedula(), vista.getNombre(), vista.getUsuario(), vista.getContrasena(),
-                    vista.getTelefono(), vista.getTipo().toString(), vista.getCorreo(), Double.parseDouble(vista.getSalario()));
+            BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?,?,?,?,?)");
+            oficial = new ModeloOficiales(vista.getCedula(), vista.getNombre(), vista.getCorreo(), vista.getTelefono(), vista.getFecha(),
+                    vista.getUsuario(), vista.getContrasena(), vista.getTipo().toString(), Double.parseDouble(vista.getSalario()));
         } else {
-            BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?,?,?,null)");
-            secretaria = new ModeloSecretarias(vista.getCedula(), vista.getNombre(), vista.getUsuario(), vista.getContrasena(),
-                    vista.getTelefono(), vista.getTipo().toString(), vista.getCorreo());
+            BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?,?,?,?,null)");
+            secretaria = new ModeloSecretarias(vista.getCedula(), vista.getNombre(), vista.getCorreo(), vista.getTelefono(), vista.getFecha(),
+                    vista.getUsuario(), vista.getContrasena(), vista.getTipo().toString());
         }
         BD.ejecutar();
     }

@@ -32,20 +32,13 @@ public class ModeloUsuarios extends clsPersona {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public ModeloUsuarios(String cedula, String nombre, String correo, String telefono, String fecha,
-            String nomUsuario, String contra, String tipoUsuario) {
-        this.setCedula(cedula);
-        this.setNombre(nombre);
-        this.setCorreo(correo);
-        this.setTelefono(telefono);
-        this.setFechaNac(fecha);
+    public ModeloUsuarios(String cedula, String nombre, String fechaNac, String telefono, String correo, String nomUsuario, String contra, String tipoUsuario) {
+        super(cedula, nombre, fechaNac, telefono, correo);
         this.nomUsuario = nomUsuario;
         this.contra = contra;
         this.tipoUsuario = tipoUsuario;
     }
     
-    
-
     public ModeloUsuarios() {
     }
 

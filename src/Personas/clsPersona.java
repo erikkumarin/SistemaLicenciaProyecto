@@ -7,9 +7,9 @@ public abstract class clsPersona {
 
     protected String cedula;
     protected String nombre;
+    protected Fecha fechaNac;
     protected String telefono;
     protected String correo;
-    protected Fecha fechaNac;
     
     protected String msjError = null;
 
@@ -69,4 +69,15 @@ public abstract class clsPersona {
         this.fechaNac.setFecha(fecha);
     }
 
+    public clsPersona(String cedula, String nombre, String fechaNac, String telefono, String correo) {
+        this.setCedula(cedula);
+        this.setNombre(nombre);
+        this.setFechaNac(fechaNac);
+        this.setTelefono(telefono);
+        this.setCorreo(correo);
+    }
+
+    public clsPersona() {
+    }
+    
 }
