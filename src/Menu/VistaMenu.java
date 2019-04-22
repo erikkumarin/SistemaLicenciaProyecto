@@ -5,11 +5,14 @@ import BaseDeDatos.ControladorBaseDatos;
 import BaseDeDatos.VistaConfiguracion;
 import Citas.VistaCitas;
 import Personas.Clientes.VistaClientes;
+import Personas.Usuarios.VistaSesion;
 import Personas.Usuarios.VistaUsuarios;
 import Pruebas.VistaPruebas;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -22,7 +25,9 @@ public class VistaMenu extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(6);
         controladorBD = new ControladorBaseDatos();
-       conexion();
+        conexion();
+        this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/IconoMenu.png")).getImage());
+
     }
 
     private void agregar(JInternalFrame vista) {
@@ -39,6 +44,7 @@ public class VistaMenu extends javax.swing.JFrame {
                 VC.dispose();
             }
         } catch (IOException ex) {
+            Logger.getLogger(VistaMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -46,7 +52,7 @@ public class VistaMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icono = new ImageIcon(getClass().getResource("/Utilidades/Fondo.jpg"));
+        ImageIcon icono = new ImageIcon(getClass().getResource("/Utilidades/Imagenes/Fondo.jpg"));
         Image imagen = icono.getImage();
         Escritorio = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
@@ -57,9 +63,9 @@ public class VistaMenu extends javax.swing.JFrame {
         MInicar = new javax.swing.JMenu();
         BtnInicar = new javax.swing.JMenuItem();
         Btncrear = new javax.swing.JMenuItem();
-        btnCliente = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         btnCita = new javax.swing.JMenuItem();
+        btnCliente = new javax.swing.JMenuItem();
         btnPrueba = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -99,14 +105,6 @@ public class VistaMenu extends javax.swing.JFrame {
         });
         MInicar.add(Btncrear);
 
-        btnCliente.setText("Registrar cliente");
-        btnCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClienteActionPerformed(evt);
-            }
-        });
-        MInicar.add(btnCliente);
-
         BarraMenu.add(MInicar);
 
         jMenu1.setText("Prueba de manejo");
@@ -118,6 +116,14 @@ public class VistaMenu extends javax.swing.JFrame {
             }
         });
         jMenu1.add(btnCita);
+
+        btnCliente.setText("Registrar cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnCliente);
 
         btnPrueba.setText("Aplicar prueba");
         btnPrueba.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +144,6 @@ public class VistaMenu extends javax.swing.JFrame {
 
         MConfig.setText("Configuración");
 
-        BtnConfig.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_MASK));
         BtnConfig.setText("Configuración");
         BtnConfig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,23 +175,23 @@ public class VistaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnConfigActionPerformed
 
     private void BtnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInicarActionPerformed
-
+        agregar(new VistaSesion());
     }//GEN-LAST:event_BtnInicarActionPerformed
 
     private void BtncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtncrearActionPerformed
-        this.agregar(new VistaUsuarios());
+        agregar(new VistaUsuarios());
     }//GEN-LAST:event_BtncrearActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
-        this.agregar(new VistaClientes());
+        agregar(new VistaClientes());
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPruebaActionPerformed
-        this.agregar(new VistaPruebas());
+        agregar(new VistaPruebas());
     }//GEN-LAST:event_btnPruebaActionPerformed
 
     private void btnCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitaActionPerformed
-        this.agregar(new VistaCitas());
+        agregar(new VistaCitas());
     }//GEN-LAST:event_btnCitaActionPerformed
 
     public static void main(String args[]) {

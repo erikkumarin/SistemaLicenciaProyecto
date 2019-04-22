@@ -4,59 +4,74 @@ import Errores.ErrorConexion;
 import Utilidades.AjustarVentana;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class VistaClientes extends javax.swing.JInternalFrame {
 
+    private String[] meses;
+    private final Calendar calendario;
+
     public VistaClientes() {
         initComponents();
         AjustarVentana.ajustar(this, 3, 2.5);
-        definirAnios();
-        ajustarfecha();
+        calendario = Utilidades.Fecha.calendario;
+        meses = Utilidades.Fecha.meses;
+        agregarAnios();
+        agregarMeses();
+        agregarDias();
     }
 
-    private void ajustarfecha() {
-        int mes = this.cbMes.getSelectedIndex() + 1;
-        int anio = Integer.valueOf(this.cbAnio.getSelectedItem().toString());
-        int dia = 0;
-        switch (mes) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
-                dia = 31;
-                break;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                dia = 30;
-                break;
-            case 2:
-                if ((anio % 4 == 0 && anio % 100 != 0) || anio % 400 == 0) {
-                    dia = 29;
-                } else {
-                    dia = 28;
-                }
-                break;
+    private void agregarAnios() {
+        int anio = (calendario.get(Calendar.YEAR)) - 18;
+        for (int i = anio; i >= anio - 100; i--) {
+            this.cbAnio.addItem(Integer.toString(i));
         }
-        this.definirDias(dia);
     }
 
-    private void definirDias(int dia) {
+    private void agregarMeses() {
+        int mes = 11;
+        if (calendario.get(Calendar.YEAR) - 18 == (Integer.parseInt(this.cbAnio.getItemAt(this.cbAnio.getSelectedIndex())))) {
+            mes = calendario.get(Calendar.MONTH);
+        }
+        cbMes.removeAllItems();
+        for (int i = 0; i <= mes; i++) {
+            cbMes.addItem(this.meses[i]);
+        }
+    }
+
+    private void agregarDias() {
+        int anio = Integer.valueOf(this.cbAnio.getItemAt(cbAnio.getSelectedIndex()));
+        int dias = 0;
+        String mes;
+        if (cbMes.getSelectedItem() == null) {
+            mes = "Enero";
+        } else {
+            mes = cbMes.getSelectedItem().toString();
+        }
+        if (mes.equals("Enero") || mes.equals("Marzo") || mes.equals("Mayo") || mes.equals("Julio") || mes.equals("Agosto") || mes.equals("Octubre") || mes.equals("Diciembre")) {
+            dias = 31;
+        } else if (mes.equals("Abril") || mes.equals("Junio") || mes.equals("Septiembre") || mes.equals("Noviembre")) {
+            dias = 30;
+        } else if ((anio % 4 == 0 && anio % 100 != 0) || anio % 400 == 0) {
+            dias = 29;
+        } else {
+            dias = 28;
+        }
+        this.definirDias(dias);
+    }
+
+    private void definirDias(int dias) {
+        int dia = 1;
+        if (meses[calendario.get(Calendar.MONTH)].equals(cbMes.getItemAt(cbMes.getSelectedIndex()))) {
+            if (calendario.get(Calendar.YEAR) - 18 == (Integer.parseInt(this.cbAnio.getItemAt(cbAnio.getSelectedIndex())))) {
+                dias = calendario.get(Calendar.DAY_OF_MONTH);
+            }
+        }
         this.cbDia.removeAllItems();
-        for (int i = dia; i > 0; i--) {
+        for (int i = dia; i <= dias; i++) {
             this.cbDia.addItem(String.valueOf(i));
-        }
-    }
-
-    private void definirAnios() {
-        for (int i = 2002; i > 1900; i--) {
-            this.cbAnio.addItem(String.valueOf(i));
         }
     }
 
@@ -88,7 +103,6 @@ public class VistaClientes extends javax.swing.JInternalFrame {
         setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        setOpaque(true);
 
         lblCedula.setText("N° de Cédula");
         lblCedula.setToolTipText("Ejemplo 501470258");
@@ -191,7 +205,7 @@ public class VistaClientes extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblMETelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addGap(138, 138, 138))
-                    .addComponent(txtCedula))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(13, 13, 13))
         );
         layout.setVerticalGroup(
@@ -235,11 +249,11 @@ public class VistaClientes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
-        this.ajustarfecha();
+        agregarDias();
     }//GEN-LAST:event_cbMesActionPerformed
 
     private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
-        this.ajustarfecha();
+        agregarMeses();
     }//GEN-LAST:event_cbAnioActionPerformed
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
@@ -259,18 +273,28 @@ public class VistaClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-        if (txtCedula.getText().length() == 9 || !Character.isDigit(evt.getKeyChar())) {
+        char caracter = evt.getKeyChar();
+        if (txtCedula.getText().length() == 9 || !Character.isDigit(caracter)) {
             anular(evt);
-            this.lblMECedula.setEnabled(true);
+           if (Character.isLetter(caracter)) {
+                 this.lblMECedula.setEnabled(true);
+            }else{
+             this.lblMECedula.setEnabled(false);
+           }
         } else {
             this.lblMECedula.setEnabled(false);
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        if (txtTelefono.getText().length() == 8 || !Character.isDigit(evt.getKeyChar())) {
+       char caracter = evt.getKeyChar();
+        if (txtTelefono.getText().length() == 8 || !Character.isDigit(caracter)) {
             anular(evt);
-            this.lblMETelefono.setEnabled(true);
+           if (Character.isLetter(caracter)) {
+                 this.lblMETelefono.setEnabled(true);
+            }else{
+             this.lblMETelefono.setEnabled(false);
+           }
         } else {
             this.lblMETelefono.setEnabled(false);
         }
@@ -302,11 +326,8 @@ public class VistaClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    public String getFecha() {
-        if (this.cbMes.getSelectedIndex() + 1 < 10) {
-            return this.cbDia.getSelectedItem().toString() + "/0" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
-        }
-        return this.cbDia.getSelectedItem().toString() + "/" + (this.cbMes.getSelectedIndex() + 1) + "/" + this.cbAnio.getSelectedItem().toString();
+      public String getFecha() {
+        return this.getDias() + "/" + this.ubicarMes() + "/" + this.cbAnio.getSelectedItem().toString();
     }
 
     public void setFecha(String fecha) {
@@ -315,8 +336,8 @@ public class VistaClientes extends javax.swing.JInternalFrame {
         this.cbMes.setSelectedIndex(Integer.parseInt(fec[1]) - 1);
         this.cbAnio.addItem(fec[2]);
     }
-    
-     public Object getAnio() {
+
+    public Object getAnio() {
         return cbAnio.getSelectedItem();
     }
 
@@ -351,7 +372,7 @@ public class VistaClientes extends javax.swing.JInternalFrame {
     public String getCorreo() {
         return txtCorreo.getText();
     }
-    
+
     public void setCorreo(String correo) {
         this.txtCorreo.setText(correo);
     }
@@ -359,6 +380,7 @@ public class VistaClientes extends javax.swing.JInternalFrame {
     public String getNombre() {
         return txtNombre.getText().toUpperCase();
     }
+
     public void setNombre(String nombre) {
         this.txtNombre.setText(nombre);
     }
@@ -376,6 +398,18 @@ public class VistaClientes extends javax.swing.JInternalFrame {
         return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre()
                 + " Fecha de Nac': " + this.getFecha() + " Telefono: " + this.getTelefono()
                 + " Correo: " + this.getCorreo();
+    }
+    
+     private String ubicarMes() {
+        for (int i = 0; i < 12; i++) {
+            if (cbMes.getSelectedItem().toString().equals(meses[i])) {
+                if (i + 1 < 10) {
+                    return "0" + (i + 1);
+                }
+                return i + "" + 1;
+            }
+        }
+        return null;
     }
 
 }

@@ -3,6 +3,7 @@ package Utilidades;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 public class Fecha {
 
@@ -10,6 +11,9 @@ public class Fecha {
     private Period periodo;
     private LocalDate fecha;
     private LocalDate fechaActu;
+    
+    public static String[] meses = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+    public static final Calendar calendario = Calendar.getInstance();
 
 
     /**
