@@ -27,12 +27,11 @@ public class ModeloClientes extends clsPersonas {
         this.setTelefono(telefono);
     }
 
-    public ModeloClientes(Object datos[]) {
+    public void separarDatos(Object datos[]) {
         this.setCedula((String) datos[0]);
         this.setNombre((String) datos[1]);
         this.setTelefono((String) datos[3]);
         this.setCorreo((String) datos[4]);
-        System.out.println("El nombre de cliente es: "+this.getNombre());
     }
 
     public ModeloClientes(String fecha) {

@@ -5,7 +5,6 @@ import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
 import Personas.Clientes.ModeloClientes;
 import Utilidades.CRUD;
-import java.util.Arrays;
 
 public class ControladorCitas implements CRUD {
 
@@ -36,12 +35,13 @@ public class ControladorCitas implements CRUD {
 
     @Override
     public void leer() throws ErrorConexion {
-        this.cliente = new ModeloClientes();
-        this.cliente.setCedula(Vistacita.getCedula());
+        cliente = new ModeloClientes();
         bd = new BaseDatos("Select * from tblclientes where cedula=" + Vistacita.getCedula());
         bd.ejecutar();
         Object obj[];
         obj = bd.getObjet();
-        System.out.println(Arrays.toString(obj));
+        cliente.separarDatos(obj);
+        Vistacita.setNombre(cliente.getNombre());
+//        cliente = new ModeloClientes(obj);
     }
 }

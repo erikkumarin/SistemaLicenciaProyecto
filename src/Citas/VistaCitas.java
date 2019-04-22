@@ -130,6 +130,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         lblFecha = new javax.swing.JLabel();
         cbHora = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        lblDatosIncorrectos = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Registro de Citas");
@@ -225,7 +226,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCedula))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -284,6 +285,12 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (this.txtNombre.getText().trim().length() == 0 && !this.txtNombre.getText().equals("No se ha ingresado un usuario")) {
             JOptionPane.showMessageDialog(null, "No se ha ingresado un usuario");
+        }else if (this.verificarDatos()){
+            try {
+                ControladorCita.agregar();
+            } catch (ErrorConexion ex) {
+                Logger.getLogger(VistaCitas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -297,6 +304,7 @@ public class VistaCitas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAnio;
     private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblDatosIncorrectos;
     private javax.swing.JLabel lblDia;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblMes;
@@ -386,4 +394,11 @@ public class VistaCitas extends javax.swing.JInternalFrame {
         this.btnGuardar.setEnabled(estado);
     }
 
+    private boolean verificarDatos(){
+        if (this.getCedula().length()!=9 || !btnGuardar.isEnabled()) {
+            lblDatosIncorrectos.setText("Datos incorrectos, revise los datos");
+            return false;
+        }
+        return true;
+    }
 }
