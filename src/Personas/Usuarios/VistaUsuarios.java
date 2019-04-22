@@ -2,7 +2,6 @@ package Personas.Usuarios;
 
 import Utilidades.AjustarVentana;
 import java.awt.Component;
-import java.awt.event.KeyEvent;
 import java.util.Calendar;
 
 public class VistaUsuarios extends javax.swing.JInternalFrame {
