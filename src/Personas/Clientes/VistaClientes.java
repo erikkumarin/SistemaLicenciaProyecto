@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class VistaClientes extends javax.swing.JInternalFrame {
 
@@ -257,12 +258,14 @@ public class VistaClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbAnioActionPerformed
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-        ControladorClientes cc = new ControladorClientes(this);
-        try {
-            cc.agregar();
-        } catch (ErrorConexion ex) {
-            Logger.getLogger(VistaClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        ControladorClientes cc = new ControladorClientes(this);
+//        try {
+//            cc.agregar();
+//        } catch (ErrorConexion ex) {
+//            Logger.getLogger(VistaClientes.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        
+        JOptionPane.showMessageDialog(rootPane, Utilidades.ValidarCorreo.Validar(this.txtCorreo.getText()));
     }//GEN-LAST:event_btnActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped

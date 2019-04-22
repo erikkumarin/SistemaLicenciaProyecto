@@ -1,8 +1,6 @@
 package Utilidades;
 
 import Menu.VistaMenu;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 
 public class AjustarVentana {
