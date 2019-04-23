@@ -40,7 +40,7 @@ public class ControladorCitas implements CRUD {
         bd.ejecutar();
         Object obj[];
         obj = bd.getObjet();
-        cliente.separarDatos(obj);
+        //cliente.separarDatos(obj);
         Vistacita.setNombre(cliente.getNombre());
 //        cliente = new ModeloClientes(obj);
     }

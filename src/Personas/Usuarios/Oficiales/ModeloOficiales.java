@@ -16,9 +16,9 @@ public class ModeloOficiales extends ModeloUsuarios {
         }
     }
 
-    public ModeloOficiales(String cedula, String nombre, String nombreUsuario, String contra, String telefono, String tipoUsuario, String correo, double salario) {
-        super(cedula, nombre, nombreUsuario, contra, telefono, tipoUsuario, correo);
-        this.setSalario(salario);
+    public ModeloOficiales(String cedula, String nombre, String correo, String telefono, String fecha, String nomUsuario, String contra, String tipoUsuario, double salario) {
+        super(cedula, nombre, correo, telefono, fecha, nomUsuario, contra, tipoUsuario);
+        this.salario = salario;
     }
 
     public ModeloOficiales() {

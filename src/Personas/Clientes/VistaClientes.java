@@ -2,6 +2,7 @@ package Personas.Clientes;
 
 import Errores.ErrorConexion;
 import Utilidades.AjustarVentana;
+import Utilidades.Fecha;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.util.Calendar;
@@ -17,7 +18,7 @@ public class VistaClientes extends javax.swing.JInternalFrame {
     public VistaClientes() {
         initComponents();
         AjustarVentana.ajustar(this, 3, 2.5);
-        calendario = Utilidades.Fecha.calendario;
+        calendario = Fecha.calendario;
         meses = Utilidades.Fecha.meses;
         agregarAnios();
         agregarMeses();

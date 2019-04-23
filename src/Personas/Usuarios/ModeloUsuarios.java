@@ -1,8 +1,8 @@
 package Personas.Usuarios;
 
-import Personas.clsPersonas;
+import Personas.clsPersona;
 
-public class ModeloUsuarios extends clsPersonas {
+public class ModeloUsuarios extends clsPersona {
 
     private String nomUsuario;
     private String contra;
@@ -32,16 +32,13 @@ public class ModeloUsuarios extends clsPersonas {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public ModeloUsuarios(String cedula, String nombre, String nombreUsuario, String contra, String telefono, String tipoUsuario, String correo) {
-        this.setCedula(cedula);
-        this.setNombre(nombre);
-        this.setNomUsuario(nombreUsuario);
-        this.setContra(contra);
-        this.setCorreo(correo);
-        this.setTelefono(telefono);
-        this.setTipoUsuario(tipoUsuario);
+    public ModeloUsuarios(String cedula, String nombre, String fechaNac, String telefono, String correo, String nomUsuario, String contra, String tipoUsuario) {
+        super(cedula, nombre, fechaNac, telefono, correo);
+        this.nomUsuario = nomUsuario;
+        this.contra = contra;
+        this.tipoUsuario = tipoUsuario;
     }
-
+    
     public ModeloUsuarios() {
     }
 
