@@ -94,7 +94,7 @@ public class Fecha {
         }
     }
 
-   public static void agregarDiasCP(JComboBox cbanio, JComboBox cbmes, JComboBox cbdia) {
+    public static void agregarDiasCP(JComboBox cbanio, JComboBox cbmes, JComboBox cbdia) {
         int anio = Integer.valueOf(cbanio.getItemAt(cbanio.getSelectedIndex()).toString());
         int dias = 0;
         String mes;
@@ -200,6 +200,20 @@ public class Fecha {
     public String toString() {
         String fechaInvertida[] = this.getFecha().toString().split("-");
         return fechaInvertida[2] + "/" + fechaInvertida[1] + "/" + fechaInvertida[0];
+    }
+
+    public String toStringFechaActual() {
+        String fechaInvertida[] = this.getFechaActu().toString().split("-");
+        return fechaInvertida[2] + "/" + fechaInvertida[1] + "/" + fechaInvertida[0];
+    }
+
+    public LocalDate getFechaActu() {
+        return fechaActu;
+    }
+
+    public Fecha() {
+        this.fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.fechaActu = LocalDate.now();
     }
 
 }

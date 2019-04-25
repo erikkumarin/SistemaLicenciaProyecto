@@ -3,6 +3,7 @@ package Main;
 import BaseDeDatos.BaseDatos;
 import BaseDeDatos.ControladorBaseDatos;
 import BaseDeDatos.frmConfiguracion;
+import Citas.frmMostrarCitas;
 import Citas.frmRegistrarCitas;
 //import Citas.VistaCitas;
 import Personas.Clientes.frmRegistrarCliente;
@@ -21,6 +22,8 @@ import javax.swing.JOptionPane;
 public class frmPrincipal extends javax.swing.JFrame {
 
     ControladorBaseDatos controladorBD;
+    public static String nombre;
+    public static String cedula;
 
     public frmPrincipal() {
         initComponents();
@@ -29,7 +32,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         conexion();
         deshabilitarTodo();
         this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/IconoMenu.png")).getImage());
-
     }
 
     private void agregar(JInternalFrame vista) {
@@ -88,10 +90,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         BarraMenu = new javax.swing.JMenuBar();
         MInicar = new javax.swing.JMenu();
         btnInicar = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        btnCliente = new javax.swing.JMenuItem();
         btnCrear = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         btnCita = new javax.swing.JMenuItem();
-        btnCliente = new javax.swing.JMenuItem();
         btnPrueba = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         btnExportar = new javax.swing.JMenuItem();
@@ -123,15 +126,27 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         MInicar.add(btnInicar);
 
-        btnCrear.setText("Crear sesión");
+        BarraMenu.add(MInicar);
+
+        jMenu3.setText("Registro");
+
+        btnCliente.setText("Registrar cliente");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnCliente);
+
+        btnCrear.setText("Registrar usuario");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
             }
         });
-        MInicar.add(btnCrear);
+        jMenu3.add(btnCrear);
 
-        BarraMenu.add(MInicar);
+        BarraMenu.add(jMenu3);
 
         jMenu1.setText("Prueba de manejo");
 
@@ -143,15 +158,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(btnCita);
 
-        btnCliente.setText("Registrar cliente");
-        btnCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClienteActionPerformed(evt);
-            }
-        });
-        jMenu1.add(btnCliente);
-
-        btnPrueba.setText("Aplicar prueba");
+        btnPrueba.setText("Mostrar citas");
         btnPrueba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPruebaActionPerformed(evt);
@@ -220,7 +227,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPruebaActionPerformed
-        agregar(new frmPruebas());
+        agregar(new frmMostrarCitas());
     }//GEN-LAST:event_btnPruebaActionPerformed
 
     private void btnCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitaActionPerformed
@@ -270,6 +277,15 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnPrueba;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     // End of variables declaration//GEN-END:variables
+
+    public static void setNombreUsuario(String nombreUsuario) {
+        frmPrincipal.nombre = nombreUsuario;
+    }
+
+    public static void setCedula(String cedula) {
+        frmPrincipal.cedula = cedula;
+    }
 
 }

@@ -4,6 +4,8 @@ import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
 import Main.frmPrincipal;
 import Utilidades.AjustarVentana;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class frmIniciarSesion extends javax.swing.JInternalFrame {
