@@ -164,6 +164,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         menuHerramientas.setText("Herramientas");
 
         btnExportar.setText("Exportar datos");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarActionPerformed(evt);
+            }
+        });
         menuHerramientas.add(btnExportar);
 
         BarraMenu.add(menuHerramientas);
@@ -226,6 +231,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void btnCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitaActionPerformed
         agregar(new frmRegistrarCitas());
     }//GEN-LAST:event_btnCitaActionPerformed
+
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        
+    }//GEN-LAST:event_btnExportarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
