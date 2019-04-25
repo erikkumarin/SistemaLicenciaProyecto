@@ -17,6 +17,7 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
     
     public frmMostrarCitas() {
         initComponents();
+        Utilidades.AjustarVentana.ajustar(this, 3, 3.5);
         tbl = (DefaultTableModel) tblCitas.getModel();
         citas = new ControladorCitas();
         try {
