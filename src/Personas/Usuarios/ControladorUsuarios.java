@@ -3,7 +3,6 @@ package Personas.Usuarios;
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
-import Errores.TipoErrorConexion;
 import Main.frmPrincipal;
 import Personas.Usuarios.Oficiales.clsOficial;
 import Personas.Usuarios.Secretarias.clsSecretaria;

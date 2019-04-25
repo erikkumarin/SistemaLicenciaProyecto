@@ -4,6 +4,7 @@ import Errores.ErrorConexion;
 import Main.frmPrincipal;
 import Personas.Usuarios.frmIniciarSesion;
 import Pruebas.frmPruebas;
+import Utilidades.AjustarVentana;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,6 +18,7 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
     
     public frmMostrarCitas() {
         initComponents();
+         AjustarVentana.ajustar(this, 3, 3.5);
         tbl = (DefaultTableModel) tblCitas.getModel();
         citas = new ControladorCitas();
         try {
@@ -76,14 +78,14 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
