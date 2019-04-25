@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import Archivos.Configuracion;
 import Errores.ErrorConexion;
 import Errores.TipoErrorConexion;
 
@@ -15,7 +14,6 @@ public class BaseDatos {
     private static Connection conexion;
     private PreparedStatement sentencia;
     private ResultSet datos;
-    private Configuracion config;
 
     private static String url;
     private static String servidor;
@@ -97,6 +95,9 @@ public class BaseDatos {
                 if (param[i] instanceof Integer) {
                     this.sentencia.setInt(i + 1, Integer.parseInt(param[i].toString()));
                 }
+                if (param[i] instanceof Double) {
+                    this.sentencia.setDouble(i + 1, Double.parseDouble(param[i].toString()));
+                }
             } catch (SQLException ex) {
                 throw new ErrorConexion(TipoErrorConexion.ERRORBD);
             }
@@ -107,12 +108,12 @@ public class BaseDatos {
         try {
             if (this.sentencia.execute()) {
                 this.datos = this.sentencia.getResultSet();
-                return true;
-            }      
+            }
+            return true;
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             throw new ErrorConexion(TipoErrorConexion.ERRORBD);
         }
-        return false;
     }
 
     public boolean ejecutar(Object[] param) throws ErrorConexion {
@@ -135,5 +136,4 @@ public class BaseDatos {
         }
         return null;
     }
-
 }
