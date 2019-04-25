@@ -74,8 +74,8 @@ public class ControladorUsuarios {
         if (obj != null) {
             verificarTipoUsuario((String) obj[4], vistaPrincipal);
             JOptionPane.showMessageDialog(vistaSesion, "Sesion iniciada correctamente", "Iniciar Sesion", 1);
-            frmPrincipal.setNombreUsuario((String) obj[0]);
-            frmPrincipal.setCedula((String) obj[1]);
+//            vistaSesion. (String) obj[0]);
+//            frmPrincipal.setCedula((String) obj[1]);
             vistaSesion.dispose();
         } else {
             JOptionPane.showMessageDialog(vistaSesion, "Error: Usuario o Contraseña Invalidos", "Error", 0);

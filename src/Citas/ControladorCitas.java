@@ -90,6 +90,7 @@ public class ControladorCitas {
         return cita;
     }
     
+    
     public int verificarCantCitas(frmRegistrarCitas vista) throws ErrorConexion {
         bd = new BaseDatos("SELECT * FROM tblcitas WHERE Fecha=? AND Hora=?");
         bd.ejecutar(new Object[]{vista.getFecha(), vista.getHora()});
