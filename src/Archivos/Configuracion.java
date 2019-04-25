@@ -1,29 +1,15 @@
 package Archivos;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class Configuracion {
+public class Configuracion{
 
-    private File archivo;
+    private File archivo; 
     private Properties config;
-
-    public Configuracion() {
-        this.archivo = new File(System.getProperty("user.dir") + "\\Config.ini");
-        this.config = new Properties();
-        try {
-            config.load(new FileReader(this.archivo));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Configuracion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     public String getPropiedades(String valor) {
         return this.config.getProperty(valor);
@@ -32,4 +18,18 @@ public class Configuracion {
     public void setPropiedades(String dato, String valor) {
         this.config.setProperty(dato, valor);
     }
+    
+    public Configuracion() throws IOException {
+        archivo = new File("Config.ini");
+        if (!archivo.exists()) {
+            archivo.createNewFile();
+        }
+        this.config = new Properties();
+        config.load(new FileReader(this.archivo));
+    }
+
+    public void guardar() throws IOException {
+        this.config.store(new FileWriter(this.archivo), "Cambio");
+    }
+
 }

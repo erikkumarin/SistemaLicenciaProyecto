@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import Archivos.Configuracion;
+import java.util.ArrayList;
+import Errores.ErrorConexion;
+import Errores.TipoErrorConexion;
 
 public class BaseDatos {
 
@@ -13,44 +15,78 @@ public class BaseDatos {
     private PreparedStatement sentencia;
     private ResultSet datos;
 
-    public BaseDatos() {
-        this.conectar();
+    private static String url;
+    private static String servidor;
+    private static String BD;
+    private static String usuario;
+    private static String contrasena;
+
+    public static Connection getConexion() {
+        return conexion;
     }
 
-    public BaseDatos(String sql) {
+    public static void setConexion(Connection conexion) {
+        BaseDatos.conexion = conexion;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getServidor() {
+        return servidor;
+    }
+
+    public String getBD() {
+        return BD;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public BaseDatos(String servidor, String BD, String usuario, String contrasena) throws ErrorConexion {
+        this.servidor = servidor;
+        this.BD = BD;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.url = "jdbc:mysql://" + this.servidor + "/" + this.BD + "?useServerPrepStmts=true";
+    }
+
+    public BaseDatos(String sql) throws ErrorConexion {
         this.conectar();
         this.setSentencia(sql);
     }
 
-    private boolean conectar() {
-        Configuracion config = new Configuracion();
+    private boolean conectar() throws ErrorConexion {
         if (conexion == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                conexion = DriverManager.getConnection(config.getPropiedades("Servidor") , config.getPropiedades("Usuario"), config.getPropiedades("Contra"));
+                conexion = DriverManager.getConnection(this.url, this.usuario, this.contrasena);
                 return true;
             } catch (ClassNotFoundException ex) {
-                System.out.println("Driver No Cargado");
+                throw new ErrorConexion(TipoErrorConexion.ERRORDRIVER);
             } catch (SQLException ex) {
-                System.out.println("Error al Conectar");
                 System.out.println(ex.getMessage());
+                throw new ErrorConexion(TipoErrorConexion.ERRORSERVIDOR);
             }
         }
         return false;
     }
 
-    public boolean setSentencia(String sql) {
+    public void setSentencia(String sql) throws ErrorConexion {
         try {
             this.sentencia = conexion.prepareStatement(sql);
-            return true;
         } catch (SQLException ex) {
-            System.out.println("Error en la Sentencia");
-            System.out.println(ex.getMessage());
+            throw new ErrorConexion(TipoErrorConexion.ERRORBD);
         }
-        return false;
     }
 
-    public boolean setParametros(Object[] param) {
+    public void setParametros(Object[] param) throws ErrorConexion {
         for (int i = 0; i < param.length; i++) {
             try {
                 if (param[i] instanceof String) {
@@ -59,48 +95,45 @@ public class BaseDatos {
                 if (param[i] instanceof Integer) {
                     this.sentencia.setInt(i + 1, Integer.parseInt(param[i].toString()));
                 }
+                if (param[i] instanceof Double) {
+                    this.sentencia.setDouble(i + 1, Double.parseDouble(param[i].toString()));
+                }
             } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-                return false;
+                throw new ErrorConexion(TipoErrorConexion.ERRORBD);
             }
         }
-        return true;
     }
 
-    public boolean ejecutar() {
+    public boolean ejecutar() throws ErrorConexion {
         try {
-            this.sentencia.execute();
+            if (this.sentencia.execute()) {
+                this.datos = this.sentencia.getResultSet();
+            }
             return true;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            throw new ErrorConexion(TipoErrorConexion.ERRORBD);
         }
-        return false;
     }
 
-    public boolean ejecutar(Object[] param) {
+    public boolean ejecutar(Object[] param) throws ErrorConexion {
         this.setParametros(param);
         return this.ejecutar();
     }
 
-    public Object[][] getDatos() {
-        Object resultados[][] = null;
+    public Object[] getObjet() throws ErrorConexion {
         try {
-            datos = sentencia.getResultSet();
-            datos.last();
-            resultados = new Object[datos.getRow()][datos.getMetaData().getColumnCount()];
-            datos.beforeFirst();
-
-            for (Object[] resultado : resultados) {
-                datos.next();
-                for (int c = 0; c < resultado.length; c++) {
-                    resultado[c] = datos.getObject(c + 1);
+            if (this.datos.next()) {
+                ArrayList<Object> obj = new ArrayList<>();
+                int cols = this.datos.getMetaData().getColumnCount();
+                for (int i = 1; i <= cols; i++) {
+                    obj.add(this.datos.getObject(i));
                 }
+                return obj.toArray();
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            throw new ErrorConexion(TipoErrorConexion.ERRORBD);
         }
-
-        return resultados;
+        return null;
     }
-
 }

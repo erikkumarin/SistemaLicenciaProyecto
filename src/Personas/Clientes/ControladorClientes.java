@@ -1,69 +1,45 @@
 package Personas.Clientes;
 
 import BaseDeDatos.BaseDatos;
+import Errores.ErrorConexion;
+import Errores.ErrorMensaje;
+import javax.swing.JOptionPane;
 
 public class ControladorClientes {
 
-    private ModeloClientes cliente;
+    private clsClientes cliente;
     private BaseDatos BD;
 
-    public void eliminar(String cedula) {
-        if (verificarCedula(cedula)) {
-            BD = new BaseDatos("DELETE FROM tblclientes WHERE Cedula =" + cedula);
-            BD.ejecutar();
-            
-        }
-    }
-
-    public void agregar(String cedula, String nombre, String fecha, String telefono, String correo) {
-        if (verificarCedula(cedula) && verificarNombre(nombre) && verificarTelefono(telefono)) {
-            BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
-            BD.ejecutar(new Object[]{cedula, nombre, fecha, telefono, correo});
-        }
+    public ControladorClientes() {
     }
     
-    public void getCliente(String cedula, String dato) {
-        if (verificarCedula(cedula)) {
-            BD = new BaseDatos("SELECT" +dato+ "FROM tblclientes WHERE Cedula =" + cedula);
-            BD.ejecutar();
-        }
-    }
- 
-
-    public void setTelefono(String telefono, String cedula) {
-        if (verificarCedula(cedula)) {
-            BD = new BaseDatos("UPDATE tblclientes SET Telefono =" + telefono + " WHERE Cedula =" + cedula);
-            BD.ejecutar();
+    public void agregar(frmRegistrarCliente vista) throws ErrorConexion {
+        BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
+        cliente = new clsClientes(vista.getCedula(), vista.getNombre(), vista.getFecha(), vista.getTelefono(), vista.getCorreo());
+        if (ErrorMensaje.mostrarMensajes()) {
+            JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
+        }else{
+            BD.ejecutar(new Object[]{cliente.getCedula(), cliente.getNombre(), cliente.getFechaNac(), cliente.getTelefono(), cliente.getCorreo()});
+            vista.dispose();
         }
     }
 
-    public void setCorreo(String correo, String cedula) {
-        if (verificarCedula(cedula)) {
-            BD = new BaseDatos("UPDATE tblclientes SET Correo =" + correo + " WHERE Cedula =" + cedula);
-            BD.ejecutar();
-        }
+    public void eliminar(frmRegistrarCliente vista) throws ErrorConexion {
+        cliente = new clsClientes();
+        cliente.setCedula(vista.getCedula());
+        BD = new BaseDatos("DELETE FROM tblclientes WHERE Cedula =" + cliente.getCedula());
+        BD.ejecutar();
     }
     
-
-    private boolean verificarCedula(String cedula) {
-        try {
-            return (Long.parseLong((cedula.replaceAll("-", "0")))) == 9;
-        } catch (NumberFormatException e) {
-        }
-        return false;
+    public void leer(frmRegistrarCliente vista) throws ErrorConexion {
+        cliente = new clsClientes();
+        cliente.setCedula(vista.getCedula());
+        BD = new BaseDatos("SELECT * FROM tblclientes WHERE Cedula =" + cliente.getCedula());
+        BD.ejecutar();
     }
 
-    private boolean verificarNombre(String nombre) {
-        return !nombre.trim().equals("");
-    }
-
-    private boolean verificarTelefono(String telefono) {
-        try {
-            long numero = Long.parseLong(telefono);
-            return true;
-        } catch (NumberFormatException e) {
-        }
-        return false;
+    public void modificar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
