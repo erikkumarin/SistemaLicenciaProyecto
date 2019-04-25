@@ -20,12 +20,12 @@ public class clsPruebas {
         this.id = idPrueba;
     }
 
-    public Fecha getFecha() {
-        return fecha;
+    public String getFecha() {
+        return fecha.toString();
     }
 
     public void setFecha(String fecha) {
-        this.fecha.setFecha(fecha);
+        this.fecha = new Fecha(fecha);
     }
 
     public String getHora() {
@@ -79,5 +79,9 @@ public class clsPruebas {
             return "Aprobado";
         }
         return "Reprobado";
+    }
+    
+    public Object[] toObject(String idCliente){
+        return new Object[]{this.getFecha(),this.hora,this.getOficial().getCedula(),this.getObservaciones(),this.getNota(),idCliente};
     }
 }

@@ -16,6 +16,48 @@ public class Fecha {
     private static String[] meses = new String[]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
     private static Calendar calendario = Calendar.getInstance();
 
+    /**
+     * Se ingresa la fecha de nacimiento de la Persona.
+     *
+     * @param fecha dd/MM/yyyy
+     */
+    public void setFecha(String fecha) {
+        this.fecha = LocalDate.parse(fecha, fmt);
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public String getFechaActu() {
+        return fechaActu.toString();
+    }
+
+    /**
+     * Calcula la edad de la Persona.
+     *
+     * @param fecha
+     */
+    public void setPeriodo(LocalDate fecha) {
+        this.periodo = Period.between(fecha, fechaActu);
+    }
+
+    public Period getPeriodo() {
+        return periodo;
+    }
+
+    public Fecha(String fecha) {
+        this.fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.fechaActu = LocalDate.now();
+        this.setFecha(fecha);
+    }
+
+    public Fecha() {
+        this.fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.fechaActu = LocalDate.now();
+    }
+
+    
     public static void agregarAniosUC(JComboBox cbanio) {
         int anio = (calendario.get(Calendar.YEAR)) - 18;
         for (int i = anio - 100; i <= anio; i++) {
@@ -164,56 +206,15 @@ public class Fecha {
         return null;
     }
 
-    /**
-     * Se ingresa la fecha de nacimiento de la Persona.
-     *
-     * @param fecha dd/MM/yyyy
-     */
-    public void setFecha(String fecha) {
-        this.fecha = LocalDate.parse(fecha, fmt);
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    /**
-     * Calcula la edad de la Persona.
-     *
-     * @param fecha
-     */
-    public void setPeriodo(LocalDate fecha) {
-        this.periodo = Period.between(fecha, fechaActu);
-    }
-
-    public Period getPeriodo() {
-        return periodo;
-    }
-
-    public Fecha(String fecha) {
-        this.fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        this.fechaActu = LocalDate.now();
-        this.setFecha(fecha);
-    }
-
     @Override
     public String toString() {
         String fechaInvertida[] = this.getFecha().toString().split("-");
         return fechaInvertida[2] + "/" + fechaInvertida[1] + "/" + fechaInvertida[0];
     }
-
-    public String toStringFechaActual() {
-        String fechaInvertida[] = this.getFechaActu().toString().split("-");
+    
+    public String toStringActual() {
+        String fechaInvertida[] = this.getFechaActu().split("-");
         return fechaInvertida[2] + "/" + fechaInvertida[1] + "/" + fechaInvertida[0];
     }
-
-    public LocalDate getFechaActu() {
-        return fechaActu;
-    }
-
-    public Fecha() {
-        this.fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        this.fechaActu = LocalDate.now();
-    }
-
+    
 }

@@ -4,14 +4,14 @@ import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
 import Main.frmPrincipal;
 import Utilidades.AjustarVentana;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class frmIniciarSesion extends javax.swing.JInternalFrame {
 
     private ControladorUsuarios controlUsuario;
     private static frmPrincipal frmPrincipal;
+    private static String CedulaOficial;
+    private static String NombreOficial;
     
     public frmIniciarSesion() {
         initComponents();
@@ -125,6 +125,24 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
     public static void setFrmPrincipal(frmPrincipal frm) {
         frmPrincipal = frm;
     }
+
+    public static void setCedulaOficial(String Cedula) {
+        CedulaOficial = Cedula;
+    }
+
+    public static void setNombreOficial(String Nombre) {
+        NombreOficial = Nombre;
+    }
+
+    public static String getCedulaOficial() {
+        return CedulaOficial;
+    }
+
+    public static String getNombreOficial() {
+        return NombreOficial;
+    }
+    
+    
     
     public String getContrasena() {
         return txtContra.getText();

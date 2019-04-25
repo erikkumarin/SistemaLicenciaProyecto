@@ -3,7 +3,9 @@ package Citas;
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
+import Main.frmPrincipal;
 import Personas.Clientes.clsClientes;
+import Pruebas.frmPruebas;
 import Utilidades.Fecha;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -59,12 +61,11 @@ public class ControladorCitas {
     public void modificar() throws ErrorConexion {
         
     }
-    
+
     public void cargarTabla(frmMostrarCitas vista) throws ErrorConexion {
-        cita = new clsCitas();
         bd = new BaseDatos("Select * from tblCitas where Fecha=?");
         Fecha fecha = new Fecha();
-        bd.ejecutar(new Object[]{fecha.toStringFechaActual()});
+        bd.ejecutar(new Object[]{fecha.toStringActual()});
         DefaultTableModel modelo = (DefaultTableModel) vista.getTblCitas().getModel();
         modelo.setNumRows(0);
         Object obj[];
@@ -75,6 +76,18 @@ public class ControladorCitas {
                 modelo.addRow(cita.toObject());
             }
         } while (obj != null);
+    }
+    
+    public clsCitas pasarDatos(frmMostrarCitas vista, int filaSeleccionanda) throws ErrorConexion{
+        bd = new BaseDatos("SELECT cita.Id, cita.Fecha, cita.Hora, cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac` "
+                + "FROM tblcitas AS cita INNER JOIN tblclientes AS cliente on cita.IdCliente = cliente.Cedula WHERE cita.Id = ?");
+        bd.ejecutar(new Object[]{vista.getTblCitas().getValueAt(filaSeleccionanda, 0).toString()});
+        Object obj[] = bd.getObjet();
+        cita = new clsCitas((Integer)obj[0],(String)obj[1],(String)obj[2],new clsClientes());
+        cita.getCliente().setCedula((String) obj[3]);
+        cita.getCliente().setNombre((String) obj[4]);
+        cita.getCliente().setFechaNac((String) obj[5]);
+        return cita;
     }
     
     public int verificarCantCitas(frmRegistrarCitas vista) throws ErrorConexion {

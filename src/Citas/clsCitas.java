@@ -71,4 +71,5 @@ public class clsCitas {
     public Object[] toObject() {
         return new Object[]{this.getId(), this.getFecha(), this.getHora(), this.getCliente().getCedula()};
     }
+    
 }

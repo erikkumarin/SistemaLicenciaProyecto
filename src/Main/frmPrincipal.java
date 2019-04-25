@@ -1,15 +1,9 @@
 package Main;
 
-import BaseDeDatos.BaseDatos;
-import BaseDeDatos.ControladorBaseDatos;
-import BaseDeDatos.frmConfiguracion;
-import Citas.frmMostrarCitas;
-import Citas.frmRegistrarCitas;
-//import Citas.VistaCitas;
+import BaseDeDatos.*;
+import Citas.*;
 import Personas.Clientes.frmRegistrarCliente;
 import Personas.Usuarios.*;
-import Pruebas.frmPruebas;
-//import Pruebas.VistaPruebas;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -21,9 +15,7 @@ import javax.swing.JOptionPane;
 
 public class frmPrincipal extends javax.swing.JFrame {
 
-    ControladorBaseDatos controladorBD;
-    public static String nombre;
-    public static String cedula;
+    private ControladorBaseDatos controladorBD;
 
     public frmPrincipal() {
         initComponents();
@@ -34,8 +26,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/IconoMenu.png")).getImage());
     }
 
-    private void agregar(JInternalFrame vista) {
-        this.Escritorio.add(vista);
+    public static void agregar(JInternalFrame vista) {
+        Escritorio.add(vista);
         vista.setVisible(true);
     }
 
@@ -56,13 +48,13 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnCrear.setEnabled(false);
         btnCita.setEnabled(false);
         btnCliente.setEnabled(false);
-        btnPrueba.setEnabled(false);
+        btnLista.setEnabled(false);
         btnExportar.setEnabled(false);
         btnConfig.setEnabled(false);
     }
 
     public void habilitarOfical() {
-        btnPrueba.setEnabled(true);
+        btnLista.setEnabled(true);
         btnCrear.setEnabled(true);
         btnConfig.setEnabled(true);
         btnExportar.setEnabled(true);
@@ -88,17 +80,17 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         };
         BarraMenu = new javax.swing.JMenuBar();
-        MInicar = new javax.swing.JMenu();
+        menuSesion = new javax.swing.JMenu();
         btnInicar = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        menuRegistro = new javax.swing.JMenu();
         btnCliente = new javax.swing.JMenuItem();
         btnCrear = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        menuManejo = new javax.swing.JMenu();
         btnCita = new javax.swing.JMenuItem();
-        btnPrueba = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        btnLista = new javax.swing.JMenuItem();
+        menuHerramientas = new javax.swing.JMenu();
         btnExportar = new javax.swing.JMenuItem();
-        MConfig = new javax.swing.JMenu();
+        menuConfiguracion = new javax.swing.JMenu();
         btnConfig = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -116,7 +108,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         BarraMenu.setBorder(null);
 
-        MInicar.setText("Sesión");
+        menuSesion.setText("Sesión");
 
         btnInicar.setText("Iniciar sesión");
         btnInicar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,11 +116,11 @@ public class frmPrincipal extends javax.swing.JFrame {
                 btnInicarActionPerformed(evt);
             }
         });
-        MInicar.add(btnInicar);
+        menuSesion.add(btnInicar);
 
-        BarraMenu.add(MInicar);
+        BarraMenu.add(menuSesion);
 
-        jMenu3.setText("Registro");
+        menuRegistro.setText("Registro");
 
         btnCliente.setText("Registrar cliente");
         btnCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -136,19 +128,19 @@ public class frmPrincipal extends javax.swing.JFrame {
                 btnClienteActionPerformed(evt);
             }
         });
-        jMenu3.add(btnCliente);
+        menuRegistro.add(btnCliente);
 
-        btnCrear.setText("Registrar usuario");
+        btnCrear.setText("Registrar Usuario");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);
             }
         });
-        jMenu3.add(btnCrear);
+        menuRegistro.add(btnCrear);
 
-        BarraMenu.add(jMenu3);
+        BarraMenu.add(menuRegistro);
 
-        jMenu1.setText("Prueba de manejo");
+        menuManejo.setText("Prueba de manejo");
 
         btnCita.setText("Registrar cita ");
         btnCita.addActionListener(new java.awt.event.ActionListener() {
@@ -156,26 +148,26 @@ public class frmPrincipal extends javax.swing.JFrame {
                 btnCitaActionPerformed(evt);
             }
         });
-        jMenu1.add(btnCita);
+        menuManejo.add(btnCita);
 
-        btnPrueba.setText("Mostrar citas");
-        btnPrueba.addActionListener(new java.awt.event.ActionListener() {
+        btnLista.setText("Mostrar Citas");
+        btnLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPruebaActionPerformed(evt);
+                btnListaActionPerformed(evt);
             }
         });
-        jMenu1.add(btnPrueba);
+        menuManejo.add(btnLista);
 
-        BarraMenu.add(jMenu1);
+        BarraMenu.add(menuManejo);
 
-        jMenu2.setText("Herramientas");
+        menuHerramientas.setText("Herramientas");
 
         btnExportar.setText("Exportar datos");
-        jMenu2.add(btnExportar);
+        menuHerramientas.add(btnExportar);
 
-        BarraMenu.add(jMenu2);
+        BarraMenu.add(menuHerramientas);
 
-        MConfig.setText("Configuración");
+        menuConfiguracion.setText("Configuración");
 
         btnConfig.setText("Configuración");
         btnConfig.addActionListener(new java.awt.event.ActionListener() {
@@ -183,9 +175,9 @@ public class frmPrincipal extends javax.swing.JFrame {
                 btnConfigActionPerformed(evt);
             }
         });
-        MConfig.add(btnConfig);
+        menuConfiguracion.add(btnConfig);
 
-        BarraMenu.add(MConfig);
+        BarraMenu.add(menuConfiguracion);
 
         setJMenuBar(BarraMenu);
 
@@ -197,7 +189,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addComponent(Escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -226,9 +218,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         agregar(new frmRegistrarCliente());
     }//GEN-LAST:event_btnClienteActionPerformed
 
-    private void btnPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPruebaActionPerformed
+    private void btnListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaActionPerformed
         agregar(new frmMostrarCitas());
-    }//GEN-LAST:event_btnPruebaActionPerformed
+    }//GEN-LAST:event_btnListaActionPerformed
 
     private void btnCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitaActionPerformed
         agregar(new frmRegistrarCitas());
@@ -266,26 +258,18 @@ public class frmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarraMenu;
     public static javax.swing.JDesktopPane Escritorio;
-    private javax.swing.JMenu MConfig;
-    private javax.swing.JMenu MInicar;
     private javax.swing.JMenuItem btnCita;
     private javax.swing.JMenuItem btnCliente;
     private javax.swing.JMenuItem btnConfig;
     private javax.swing.JMenuItem btnCrear;
     private javax.swing.JMenuItem btnExportar;
     private javax.swing.JMenuItem btnInicar;
-    private javax.swing.JMenuItem btnPrueba;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem btnLista;
+    private javax.swing.JMenu menuConfiguracion;
+    private javax.swing.JMenu menuHerramientas;
+    private javax.swing.JMenu menuManejo;
+    private javax.swing.JMenu menuRegistro;
+    private javax.swing.JMenu menuSesion;
     // End of variables declaration//GEN-END:variables
-
-    public static void setNombreUsuario(String nombreUsuario) {
-        frmPrincipal.nombre = nombreUsuario;
-    }
-
-    public static void setCedula(String cedula) {
-        frmPrincipal.cedula = cedula;
-    }
 
 }

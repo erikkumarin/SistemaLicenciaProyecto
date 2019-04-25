@@ -1,25 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Citas;
 
 import Errores.ErrorConexion;
+import Main.frmPrincipal;
+import Personas.Usuarios.frmIniciarSesion;
+import Pruebas.frmPruebas;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Universidad
- */
 public class frmMostrarCitas extends javax.swing.JInternalFrame {
-
+    
     private ControladorCitas citas;
     private DefaultTableModel tbl;
-
+    
     public frmMostrarCitas() {
         initComponents();
         tbl = (DefaultTableModel) tblCitas.getModel();
@@ -96,9 +91,26 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblCitasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCitasMouseClicked
-//        int i = tblCitas.getSelectedRow();
-//     (1, Integer.valueOf(tbl.getValueAt(i, 0).toString()));
-
+        int i = tblCitas.getSelectedRow();
+        if (i != -1) {
+            try {
+                int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea aplicar esta Cita?", "Confirmación", 0, 2);
+                if (opc == 0) {
+                    clsCitas cita = citas.pasarDatos(this, i);
+                    frmPruebas prueba = new frmPruebas();
+                    prueba.setNombre(cita.getCliente().getNombre());
+                    prueba.setCedula(cita.getCliente().getCedula());
+                    prueba.setEdad(String.valueOf(cita.getCliente().calcularEdad()));
+                    prueba.setFecha(cita.getFecha());
+                    prueba.setHora(cita.getHora());
+                    prueba.setCedulaOficial(frmIniciarSesion.getCedulaOficial());
+                    prueba.setOficial(frmIniciarSesion.getNombreOficial());
+                    frmPrincipal.agregar(prueba);
+                }
+            } catch (ErrorConexion ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+            }
+        }
     }//GEN-LAST:event_tblCitasMouseClicked
 
 
@@ -110,9 +122,9 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
     public JTable getTblCitas() {
         return tblCitas;
     }
-
+    
     public void setTblCitas(JTable tblCitas) {
         this.tblCitas = tblCitas;
     }
-
+    
 }

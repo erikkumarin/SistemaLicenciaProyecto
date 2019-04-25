@@ -9,7 +9,7 @@
         </Property>
       </Properties>
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="MInicar">
+        <Menu class="javax.swing.JMenu" name="menuSesion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sesi&#xf3;n"/>
           </Properties>
@@ -24,7 +24,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="menuRegistro">
           <Properties>
             <Property name="text" type="java.lang.String" value="Registro"/>
           </Properties>
@@ -39,7 +39,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btnCrear">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registrar usuario"/>
+                <Property name="text" type="java.lang.String" value="Registrar Usuario"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearActionPerformed"/>
@@ -47,7 +47,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="menuManejo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Prueba de manejo"/>
           </Properties>
@@ -60,17 +60,17 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCitaActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="btnPrueba">
+            <MenuItem class="javax.swing.JMenuItem" name="btnLista">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Mostrar citas"/>
+                <Property name="text" type="java.lang.String" value="Mostrar Citas"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPruebaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="menuHerramientas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Herramientas"/>
           </Properties>
@@ -82,7 +82,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="MConfig">
+        <Menu class="javax.swing.JMenu" name="menuConfiguracion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n"/>
           </Properties>
@@ -128,7 +128,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="Escritorio" alignment="0" max="32767" attributes="0"/>
+          <Component id="Escritorio" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
