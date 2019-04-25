@@ -53,17 +53,22 @@ public class clsCitas {
         this.setCliente(cliente);
         this.getCliente().setCedula(cedula);
     }
-    
+
     public clsCitas(Object[] obj) {
         if (obj != null) {
             this.setCliente(new clsClientes());
             this.setId((int) obj[0]);
-            this.getCliente().setCedula((String) obj[1]);
-            this.setFecha((String) obj[2]);
-            this.setHora((String) obj[3]);
+            this.getCliente().setCedula((String) obj[3]);
+            this.setFecha((String) obj[1]);
+            this.setHora((String) obj[2]);
         }
     }
-    
+
     public clsCitas() {
+
+    }
+
+    public Object[] toObject() {
+        return new Object[]{this.getId(), this.getFecha(), this.getHora(), this.getCliente().getCedula()};
     }
 }
