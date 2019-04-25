@@ -2,11 +2,7 @@ package Pruebas;
 
 import Errores.ErrorConexion;
 import Utilidades.AjustarVentana;
-import Utilidades.Fecha;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class frmPruebas extends javax.swing.JInternalFrame {
 

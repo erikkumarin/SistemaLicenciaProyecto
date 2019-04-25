@@ -12,7 +12,7 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
     private static frmPrincipal frmPrincipal;
     private static String CedulaOficial;
     private static String NombreOficial;
-    
+
     public frmIniciarSesion() {
         initComponents();
         AjustarVentana.ajustar(this, 4.5, 4.5);
@@ -141,9 +141,7 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
     public static String getNombreOficial() {
         return NombreOficial;
     }
-    
-    
-    
+
     public String getContrasena() {
         return txtContra.getText();
     }

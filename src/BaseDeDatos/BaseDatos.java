@@ -108,12 +108,13 @@ public class BaseDatos {
         try {
             if (this.sentencia.execute()) {
                 this.datos = this.sentencia.getResultSet();
+                return true;
             }
-            return true;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             throw new ErrorConexion(TipoErrorConexion.ERRORBD);
         }
+        return false;
     }
 
     public boolean ejecutar(Object[] param) throws ErrorConexion {
