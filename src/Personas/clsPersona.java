@@ -1,5 +1,6 @@
 package Personas;
 
+import Errores.ErrorMensaje;
 import Utilidades.Fecha;
 import java.util.regex.Pattern;
 
@@ -10,8 +11,6 @@ public abstract class clsPersona {
     protected Fecha fechaNac;
     protected String telefono;
     protected String correo;
-    
-    protected String msjError = null;
 
     public String getCedula() {
         return cedula;
@@ -21,7 +20,7 @@ public abstract class clsPersona {
         if (cedula.length() == 9) {
             this.cedula = cedula;
         } else {
-            msjError = "Error: Cedula no Valida";
+            ErrorMensaje.agregarMensaje("Error: Cedula no Valida");
         }
     }
 
@@ -41,7 +40,7 @@ public abstract class clsPersona {
         if (telefono.length() == 8) {
             this.telefono = telefono;
         } else {
-            msjError = "Error: Telefono no Valido";
+            ErrorMensaje.agregarMensaje("Error: Telefono no Valido");
         }
     }
 
@@ -50,23 +49,20 @@ public abstract class clsPersona {
     }
 
     public void setCorreo(String correo) {
-        String correoPatron = "[^@]+@[^@]+\\.[a-zA-Z]{2,}";
+        String correoPatron = "[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-z]+(\\.[a-z]{2,4})+";
         if (Pattern.matches(correoPatron, correo)) {
             this.correo = correo;
         }else{
-            msjError = "Error: El Correo es Invalido";
+            ErrorMensaje.agregarMensaje("Error: El Correo es Invalido");
         }
     }
     
     public String getFechaNac() {
-        if (this.fechaNac.getFecha() != null) {
-            return this.fechaNac.toString();
-        }
-        return null;
+        return this.fechaNac.toString();
     }
 
     public void setFechaNac(String fecha) {
-        this.fechaNac.setFecha(fecha);
+        this.fechaNac = new Fecha(fecha);
     }
 
     public clsPersona(String cedula, String nombre, String fechaNac, String telefono, String correo) {

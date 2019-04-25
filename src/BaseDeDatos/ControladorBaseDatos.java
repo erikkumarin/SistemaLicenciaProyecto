@@ -18,7 +18,7 @@ public class ControladorBaseDatos {
         return msjError;
     }
 
-    public Boolean probarConexion(VistaConfiguracion frm) {
+    public Boolean probarConexion(frmConfiguracion frm) {
         try {
             config = new Configuracion();
             BD = new BaseDatos(frm.getIP(), frm.getBD(), frm.getUsuario(), frm.getContrasena());
