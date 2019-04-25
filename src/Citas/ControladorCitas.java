@@ -3,14 +3,10 @@ package Citas;
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
-import Main.frmPrincipal;
 import Personas.Clientes.clsClientes;
-import Pruebas.frmPruebas;
 import Utilidades.Fecha;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
