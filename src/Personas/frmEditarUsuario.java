@@ -1,4 +1,4 @@
-package Personas.Usuarios;
+package Personas;
 
 
 public class frmEditarUsuario extends javax.swing.JInternalFrame {
