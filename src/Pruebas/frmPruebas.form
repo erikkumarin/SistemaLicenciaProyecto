@@ -4,7 +4,10 @@
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" value="Prueba de Licencia"/>
+    <Property name="title" type="java.lang.String" value="Prueba de licencia"/>
+    <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+      <Image iconType="3" name="/Utilidades/Imagenes/EditarPrueba.png"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>

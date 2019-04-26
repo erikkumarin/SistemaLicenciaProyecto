@@ -30,6 +30,8 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
         txtContra = new javax.swing.JTextField();
 
         setClosable(true);
+        setTitle("Iniciar sesión");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Usuario.png"))); // NOI18N
 
         lblCambiar.setText("Cambiar contraseña");
         lblCambiar.addMouseListener(new java.awt.event.MouseAdapter() {

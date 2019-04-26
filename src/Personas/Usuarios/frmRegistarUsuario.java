@@ -52,9 +52,10 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         lblMETelefono = new javax.swing.JLabel();
 
         setClosable(true);
-        setResizable(true);
-        setTitle("Registro de Usuario");
+        setTitle("Registro de usuario");
+        setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/AñadirUsuario.png"))); // NOI18N
 
         lblCedula.setText("N° de Cédula");
         lblCedula.setToolTipText("Ejemplo 501470258");

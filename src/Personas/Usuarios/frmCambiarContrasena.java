@@ -31,6 +31,8 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Cambiar contraseña");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Contraseña.png"))); // NOI18N
 
         lblContra1.setText("Contraseña actual");
 

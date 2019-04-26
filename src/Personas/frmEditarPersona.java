@@ -1,9 +1,9 @@
 package Personas;
 
 
-public class frmEditarUsuario extends javax.swing.JInternalFrame {
+public class frmEditarPersona extends javax.swing.JInternalFrame {
 
-    public frmEditarUsuario() {
+    public frmEditarPersona() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 4, 3);
     }
@@ -24,6 +24,8 @@ public class frmEditarUsuario extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Editar");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/EditarUsuario.png"))); // NOI18N
 
         lblCedula.setText("N° de Cédula");
 
