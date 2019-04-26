@@ -87,7 +87,7 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
                 int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este usuario?", "Confirmación", 0, 2);
                 if (opc == 0) {
                     String cedula = clientes.pasarClientes(this, i);
-                    xml.importarXml(cedula, clientes.comprobarPrueba(this));
+                    xml.importarXml(cedula, (int) clientes.comprobarPrueba(this));
                 }
             } catch (ErrorConexion ex) {
             }

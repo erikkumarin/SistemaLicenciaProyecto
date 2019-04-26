@@ -77,10 +77,10 @@ public class ControladorClientes {
         return true;
     }
 
-    public int comprobarPrueba(frmMostrarClientes vista) throws ErrorConexion {
+    public long comprobarPrueba(frmMostrarClientes vista) throws ErrorConexion {
         BD = new BaseDatos("SELECT count(Id) FROM tblpruebas WHERE IdCliente = ?");
         BD.ejecutar(new Object[]{vista.getTblClientes().getValueAt(vista.getTblClientes().getSelectedRow(), 0).toString()});
-        return (int) BD.getObjet()[0];
+        return (long) BD.getObjet()[0];
     }
 
 }
