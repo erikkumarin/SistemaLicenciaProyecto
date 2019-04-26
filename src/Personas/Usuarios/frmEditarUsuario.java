@@ -3,16 +3,14 @@ package Personas.Usuarios;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
 import Main.frmPrincipal;
-import Personas.Clientes.ControladorClientes;
 import Personas.Usuarios.Oficiales.ControladorOficial;
 import javax.swing.JOptionPane;
 
 public class frmEditarUsuario extends javax.swing.JInternalFrame {
 
-    ControladorClientes controlCliente;
-    ControladorUsuarios controlUsuarios;
-    ControladorOficial controlOficial;
-    
+    private ControladorUsuarios controlUsuarios;
+    private ControladorOficial controlOficial;
+
     private static String user;
 
     public frmEditarUsuario() {
@@ -242,11 +240,10 @@ public class frmEditarUsuario extends javax.swing.JInternalFrame {
     public static void setUser(String usuario) {
         user = usuario;
     }
-    
+
     @Override
     public String toString() {
         return "txtCedula=" + txtCedula + ", txtCorreo=" + txtCorreo + ", txtNombre=" + txtNombre + ", txtTelefono=" + txtTelefono + ", txtUsuario=" + txtUsuario + '}';
     }
-    
-    
+
 }

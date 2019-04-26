@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
 
 public class ControladorXML {
 
-    BaseDatos BD;
-    Información xml;
-    clsClientes cliente;
+    private BaseDatos BD;
+    private clsClientes cliente;
+    private Información xml;
 
     public ControladorXML() {
         cliente = new clsClientes();
@@ -41,10 +41,10 @@ public class ControladorXML {
         if (ErrorMensaje.mostrarMensajes()) {
             JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
         } else {
-            JOptionPane.showMessageDialog(vista, "El Cliente se Exporto con Exito", "Exportar Cliente", 1);
+            JOptionPane.showMessageDialog(vista, "El Cliente se Exporto con Exito", "Exportar Cliente", 0);
         }
     }
-    
+
     public void exportar(frmMostrarClientes vista, int indice) throws ErrorConexion {
         BD = new BaseDatos("SELECT cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac`, cliente.Telefono, cliente.Correo, "
                 + "prueba.Id, prueba.Fecha, prueba.Hora, prueba.Observaciones, prueba.Nota, oficial.Cedula, oficial.Nombre, "

@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class frmRegistrarCliente extends javax.swing.JInternalFrame {
 
-    ControladorClientes cc;
+    private ControladorClientes controlCliente;
 
     public frmRegistrarCliente() {
         initComponents();
@@ -22,8 +22,8 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
     private void boton() {
         try {
             ErrorMensaje.crear();
-            cc = new ControladorClientes();
-            cc.agregar(this);
+            controlCliente = new ControladorClientes();
+            controlCliente.agregar(this);
         } catch (ErrorConexion ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
         }

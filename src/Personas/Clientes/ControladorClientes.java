@@ -59,11 +59,11 @@ public class ControladorClientes {
     }
 
     public void modificar(frmEditarCliente vista) throws ErrorConexion {
-        BD =  new BaseDatos("UPDATE tblclientes SET Nombre=?, Telefono=?, Correo=? WHERE Cedula=?");
+        BD = new BaseDatos("UPDATE tblclientes SET Nombre=?, Telefono=?, Correo=? WHERE Cedula=?");
         cliente = new clsClientes(vista.getCedula(), vista.getNombre(), "01/01/2019", vista.getTelefono(), vista.getCorreo());
         if (ErrorMensaje.mostrarMensajes()) {
             JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
-        }else{
+        } else {
             BD.ejecutar(new Object[]{cliente.getNombre(), cliente.getTelefono(), cliente.getCorreo(), cliente.getCedula()});
             JOptionPane.showMessageDialog(vista, "Registro Exitoso", "Actualizar Cliente", 1);
             vista.dispose();

@@ -38,7 +38,7 @@ public class clsOficial extends clsUsuarios {
     }
 
     public double calcularDeducInvaMuer() {
-        return salario * 0.0384;
+        return (double)Math.round((salario * 0.0384) * 100d) / 100d;
     }
 
     public double calcularDeducAporTrab() {
@@ -55,7 +55,7 @@ public class clsOficial extends clsUsuarios {
         } else if (salario > 1226000) {
             return salario * 0.15;
         } else {
-            return salario;
+            return 0;
         }
     }
 
