@@ -94,4 +94,17 @@ public class clsPruebas {
     public Object[] toObject(String idCliente) {
         return new Object[]{this.getFecha(), this.hora, this.getOficial().getCedula(), this.getObservaciones(), this.getNota(), idCliente};
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + this.getIdPrueba() + " Fecha: " + this.getFecha() + " Hora: " + this.getHora() + "\n\t"
+                    + "Cedula Oficial: "  + this.getOficial().getCedula() + " Nombre Oficial: " + this.getOficial().getNombre() + " Correo: " + this.getOficial().getCorreo() + "\n"
+                    + "Observaciones: " + this.getObservaciones() + " Nota: " + this.getNota() + "Estado: " + this.getEstado();
+    }
+    
+    public void toXml(){
+        
+    }
+    
+    
 }
