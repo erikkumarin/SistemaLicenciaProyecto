@@ -7,10 +7,13 @@ import Personas.Clientes.ControladorClientes;
 import Personas.Clientes.clsClientes;
 import Personas.Clientes.frmEditarCliente;
 import Personas.Usuarios.ControladorUsuarios;
+import Personas.Usuarios.Oficiales.ControladorOficial;
 import Personas.Usuarios.clsUsuarios;
 import Personas.Usuarios.frmEditarUsuario;
 import java.awt.event.KeyEvent;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,14 +21,33 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
 
     private ControladorClientes controlCliente;
     private ControladorUsuarios controlUsuario;
+    private ControladorOficial controlOficial;
+    
+    private JPopupMenu menu = new JPopupMenu();
+    private JMenuItem btnEditar = new JMenuItem("Editar registro");
+    private JMenuItem btnEliminar = new JMenuItem("Eliminar registro");
 
     public frmBuscarPersona() {
         initComponents();
-        Utilidades.AjustarVentana.ajustar(this, 3, 2.5);
-        Utilidades.Orientar.ordenar(tblPersonas);
         Utilidades.AjustarVentana.ajustar(this, 1.5, 2);
+        menu.add(btnEditar);
+        menu.add(btnEliminar);
+        tblPersonas.setComponentPopupMenu(menu);
         controlCliente = new ControladorClientes();
         controlUsuario = new ControladorUsuarios();
+        controlOficial = new ControladorOficial();
+        
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        
     }
 
     private void boton() {
@@ -119,11 +141,6 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblPersonasMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tblPersonas);
         if (tblPersonas.getColumnModel().getColumnCount() > 0) {
             tblPersonas.getColumnModel().getColumn(0).setResizable(false);
@@ -173,7 +190,28 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
         this.boton();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void tblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonasMouseClicked
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {
+        int indice = tblPersonas.getSelectedRow();
+        if (indice != -1) {
+            try {
+                ErrorMensaje.crear();
+                DefaultTableModel modelo = (DefaultTableModel) tblPersonas.getModel();
+                if (tblPersonas.getValueAt(indice, 5).toString().equals("Cliente")) {
+                    controlCliente.eliminar(this);
+                }else{
+                    if (tblPersonas.getValueAt(indice, 5).toString().equals("Oficial")) {
+                        controlOficial.eliminar(this);
+                    }
+                    controlUsuario.eliminar(this);
+                }
+                modelo.removeRow(tblPersonas.getSelectedRow());
+            } catch (ErrorConexion ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+            }
+        }
+    }
+    
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {
         int indice = tblPersonas.getSelectedRow();
         if (indice != -1) {
             int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este "
@@ -182,8 +220,8 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
                 this.tipoUsuario();
             }
         }
-    }//GEN-LAST:event_tblPersonasMouseClicked
-
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

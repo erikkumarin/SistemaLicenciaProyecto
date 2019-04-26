@@ -5,6 +5,7 @@ import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
 import Personas.Usuarios.frmEditarUsuario;
 import Personas.Usuarios.frmRegistarUsuario;
+import Personas.frmBuscarPersona;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +22,17 @@ public class ControladorOficial {
         } else {
             BD.ejecutar(new Object[]{oficial.getCedula(), oficial.getNombre(), oficial.getFechaNac(), oficial.getTelefono(), oficial.getCorreo(), oficial.getSalario()});
             vista.dispose();
+        }
+    }
+    
+    public void eliminar(frmBuscarPersona vista) throws ErrorConexion {
+        oficial = new clsOficial();
+        oficial.setCedula(vista.getPersonas().getValueAt(vista.getPersonas().getSelectedRow(), 0).toString());
+        if (ErrorMensaje.mostrarMensajes()) {
+            JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
+        } else {
+            BD = new BaseDatos("DELETE FROM tbloficiales WHERE Cedula =?");
+            BD.ejecutar(new Object[]{oficial.getCedula()});
         }
     }
     
