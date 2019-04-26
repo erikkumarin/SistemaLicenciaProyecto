@@ -262,6 +262,7 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtCorreoKeyPressed
 
+
     private void anular(KeyEvent evt) {
         evt.consume();
     }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Clientes>
+    <Cliente Cedula="154548454">
+        <Nombre>ERICK</Nombre>
+        <Fecha_Nacimiento>01/01/1901</Fecha_Nacimiento>
+        <Telefono>84598786</Telefono>
+        <Correo>prueba@utn.com</Correo>
+        <Prueba ID="1">
+            <Fecha>25/04/2019</Fecha>
+            <Hora>11:00</Hora>
+            <Observaciones>HOLA MUNDO</Observaciones>
+            <Nota>1</Nota>
+            <Estado>Aprobado</Estado>
+            <Oficial Cedula="154857525">
+                <Nombre>MARCO</Nombre>
+                <Correo>ert@gmail.com</Correo>
+            </Oficial>
+        </Prueba>
+        <Num_Intentos>1</Num_Intentos>
+    </Cliente>
+</Clientes>

@@ -16,15 +16,26 @@ public class clsClientes extends clsPersona {
     public clsClientes(String cedula, String nombre, String fechaNac, String telefono, String correo) {
         super(cedula, nombre, fechaNac, telefono, correo);
         pruebas = new ArrayList<clsPruebas>();
+        pruebas.clear();
     }
 
     public clsClientes(Object[] obj) {
         super((String) obj[0], (String) obj[1], (String) obj[2], (String) obj[3], (String) obj[4]);
         pruebas = new ArrayList<clsPruebas>();
+        pruebas.clear();
     }
 
     public clsClientes() {
         pruebas = new ArrayList<clsPruebas>();
+        pruebas.clear();
+    }
+    
+    public void setDatos(String cedula, String nombre, String fechaNac, String telefono, String correo){
+        this.setCedula(cedula);
+        this.setNombre(nombre);;
+        this.setFechaNac(fechaNac);
+        this.setTelefono(telefono);
+        this.setCorreo(correo);
     }
 
     /**
@@ -52,7 +63,26 @@ public class clsClientes extends clsPersona {
     public Object[] toObject() {
         return new Object[]{this.getCedula(), this.getNombre(), this.calcularEdad(), this.getTelefono(), this.getCorreo()};
     }
+
     public Object[] toObjects() {
         return new Object[]{this.getCedula(), this.getNombre(), this.getFechaNac(), this.getTelefono(), this.getCorreo()};
     }
+
+    int cont = 0;
+    String msjPruebas = "";
+
+    public void toStringPrueba() {
+        for (clsPruebas prueba : pruebas) {
+            msjPruebas += "Pruebas:\n" + prueba.toString();
+        }
+        msjPruebas += "\nIntentos: "+ pruebas.size();
+    }
+
+    @Override
+    public String toString() {
+        this.toStringPrueba();
+        return "Cedula: " + this.getCedula() + " Nombre: " + this.getNombre() + " Fecha Nacimiento: " + this.getFechaNac() + ""
+                + " Telefono: " + this.getTelefono() + " Correo: " + this.getCorreo() + "\n" + this.msjPruebas;
+    }
+
 }

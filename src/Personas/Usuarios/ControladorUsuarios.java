@@ -19,7 +19,7 @@ public class ControladorUsuarios {
     public ControladorUsuarios() {
     }
 
-    public void agregar(frmRegistarUsuario vista) throws ErrorConexion {
+    public boolean agregar(frmRegistarUsuario vista) throws ErrorConexion {
         BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?,?,?,?)");
         if (vista.getTipo().equals("Oficial")) {
             usuario = new clsOficial(vista.getCedula(), vista.getNombre(), vista.getFecha(), vista.getTelefono(), vista.getCorreo(),
@@ -35,6 +35,7 @@ public class ControladorUsuarios {
                 usuario.getNomUsuario(), usuario.getContra(), usuario.getTipoUsuario()});
             vista.dispose();
         }
+        return false;
     }
 
     public void eliminar(frmBuscarPersona vista) throws ErrorConexion {
@@ -68,18 +69,18 @@ public class ControladorUsuarios {
     }
 
     public void modificar(frmEditarUsuario vista) throws ErrorConexion {
-        BD =  new BaseDatos("UPDATE tblusuarios SET Nombre=?, Telefono=?, Correo=?, Usuario=? WHERE Cedula=?");
+        BD = new BaseDatos("UPDATE tblusuarios SET Nombre=?, Telefono=?, Correo=?, Usuario=? WHERE Cedula=?");
         usuario = new clsUsuarios(vista.getCedula(), vista.getNombre(), "01/01/2019", vista.getTelefono(), vista.getCorreo());
         usuario.setNomUsuario(vista.getUsuario());
         if (ErrorMensaje.mostrarMensajes()) {
             JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
-        }else{
+        } else {
             BD.ejecutar(new Object[]{usuario.getNombre(), usuario.getTelefono(), usuario.getCorreo(), usuario.getNomUsuario(), usuario.getCedula()});
             JOptionPane.showMessageDialog(vista, "Registro Exitoso", "Actualizar Usuario", 1);
             vista.dispose();
         }
     }
-    
+
     public void modificarContraseña(frmCambiarContrasena vistaContra, frmIniciarSesion vistaSesion) throws ErrorConexion {
         BD = new BaseDatos("SELECT Contraseña FROM tblusuarios WHERE Usuario = ?");
         usuario = new clsUsuarios();
@@ -95,7 +96,7 @@ public class ControladorUsuarios {
             JOptionPane.showMessageDialog(vistaContra, ErrorMensaje.getMsj(), "Error", 0);
         }
     }
-    
+
     public void modificarContraseña(frmCambiarContrasena vistaContra) throws ErrorConexion {
         BD = new BaseDatos("SELECT Contraseña FROM tblusuarios WHERE Usuario = ?");
         usuario = new clsUsuarios();
@@ -137,7 +138,7 @@ public class ControladorUsuarios {
             vistaPrincipal.habilitarSecretario();
         }
     }
-    
+
     public clsUsuarios editar(frmBuscarPersona vista, int indice) throws ErrorConexion {
         BD = new BaseDatos("SELECT * from tblUsuarios WHERE Cedula = ?");
         BD.ejecutar(new Object[]{vista.getPersonas().getValueAt(indice, 0).toString()});

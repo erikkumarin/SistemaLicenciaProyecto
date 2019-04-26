@@ -26,7 +26,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         this.setExtendedState(6);
         controladorBD = new ControladorBaseDatos();
         conexion();
-        //deshabilitarTodo();
+        deshabilitarTodo();
         this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/Menu.png")).getImage());
     }
 

@@ -35,16 +35,19 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
     }
 
     private void boton() {
+
         if (this.btnEditar.getText().equals("Editar")) {
             editar(true);
             btnEditar.setText("Probar Conexion");
         } else {
-            if (controlador.probarConexion(this)) {
-                JOptionPane.showMessageDialog(this, "Conexion Exitosa", "Probar Conexion", 1);
-                btnEditar.setText("Editar");
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, controlador.getMsjError(), "Probar Conexion", 0);
+            if (verificarDatosBD()) {
+                if (controlador.probarConexion(this)) {
+                    JOptionPane.showMessageDialog(this, "Conexion Exitosa", "Probar Conexion", 1);
+                    btnEditar.setText("Editar");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, controlador.getMsjError(), "Probar Conexion", 0);
+                }
             }
         }
     }
@@ -175,7 +178,7 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(MEBD, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -203,6 +206,21 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtBDKeyPressed
 
+    private boolean verificarDatosBD() {
+        boolean verificar = true;
+        if (this.txtIP.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese dirrecion IP", "Dirreccion IP vacía", 0);
+            verificar = false;
+        } else if (this.txtUsuario.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese un usuario", "Usuario vacío", 0);
+            verificar = false;
+        } else if (this.txtBD.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese una base de datos", "Base de datos vacía", 0);
+            verificar = false;
+        }
+        return verificar;
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel MEBD;
