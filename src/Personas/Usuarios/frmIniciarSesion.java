@@ -12,7 +12,7 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
     private static frmPrincipal frmPrincipal;
     private static String CedulaOficial;
     private static String NombreOficial;
-    
+
     public frmIniciarSesion() {
         initComponents();
         AjustarVentana.ajustar(this, 4.5, 4.5);
@@ -30,6 +30,8 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
         txtContra = new javax.swing.JTextField();
 
         setClosable(true);
+        setTitle("Iniciar sesión");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Usuario.png"))); // NOI18N
 
         lblCambiar.setText("Cambiar contraseña");
         lblCambiar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,9 +143,7 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
     public static String getNombreOficial() {
         return NombreOficial;
     }
-    
-    
-    
+
     public String getContrasena() {
         return txtContra.getText();
     }

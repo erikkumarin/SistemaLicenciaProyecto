@@ -1,11 +1,12 @@
 package Main;
 
-import Archivos.ControladorXml;
 import BaseDeDatos.*;
 import Citas.*;
-import Errores.ErrorConexion;
+import Personas.Clientes.frmMostrarClientes;
 import Personas.Clientes.frmRegistrarCliente;
 import Personas.Usuarios.*;
+import Personas.Usuarios.Oficiales.frmBuscarPlantilla;
+import Personas.frmBuscarPersona;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -16,25 +17,24 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 public class frmPrincipal extends javax.swing.JFrame {
-
+    
     private ControladorBaseDatos controladorBD;
-    private ControladorXml cx;
-
+    
     public frmPrincipal() {
         initComponents();
         this.setExtendedState(6);
         controladorBD = new ControladorBaseDatos();
         conexion();
         deshabilitarTodo();
-        this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/IconoMenu.png")).getImage());
-
+        this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/Menu.png")).getImage());
+        
     }
-
+    
     public static void agregar(JInternalFrame vista) {
         Escritorio.add(vista);
         vista.setVisible(true);
     }
-
+    
     private void conexion() {
         try {
             frmConfiguracion VC = new frmConfiguracion();
@@ -47,7 +47,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void deshabilitarTodo() {
         btnCrear.setEnabled(false);
         btnCita.setEnabled(false);
@@ -55,23 +55,29 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnLista.setEnabled(false);
         btnExportar.setEnabled(false);
         btnConfig.setEnabled(false);
+        btnBuscar.setEnabled(false);
+        btnPlanilla.setEnabled(false);
     }
-
+    
     public void habilitarOfical() {
         btnLista.setEnabled(true);
         btnCrear.setEnabled(true);
         btnConfig.setEnabled(true);
         btnExportar.setEnabled(true);
+        btnBuscar.setEnabled(true);
+        btnPlanilla.setEnabled(true);
     }
-
+    
     public void habilitarSecretario() {
         btnCrear.setEnabled(true);
         btnCita.setEnabled(true);
         btnCliente.setEnabled(true);
         btnExportar.setEnabled(true);
         btnConfig.setEnabled(true);
+        btnBuscar.setEnabled(true);
+        btnPlanilla.setEnabled(true);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -94,6 +100,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnLista = new javax.swing.JMenuItem();
         menuHerramientas = new javax.swing.JMenu();
         btnExportar = new javax.swing.JMenuItem();
+        btnBuscar = new javax.swing.JMenuItem();
+        btnPlanilla = new javax.swing.JMenuItem();
         menuConfiguracion = new javax.swing.JMenu();
         btnConfig = new javax.swing.JMenuItem();
 
@@ -114,6 +122,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         menuSesion.setText("Sesión");
 
+        btnInicar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Usuario.png"))); // NOI18N
         btnInicar.setText("Iniciar sesión");
         btnInicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +135,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         menuRegistro.setText("Registro");
 
+        btnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/AñadirCliente.png"))); // NOI18N
         btnCliente.setText("Registrar cliente");
         btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +144,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         menuRegistro.add(btnCliente);
 
+        btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/AñadirUsuario.png"))); // NOI18N
         btnCrear.setText("Registrar Usuario");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +157,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         menuManejo.setText("Prueba de manejo");
 
+        btnCita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/AñadirCita.png"))); // NOI18N
         btnCita.setText("Registrar cita ");
         btnCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +166,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         menuManejo.add(btnCita);
 
+        btnLista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Cita.png"))); // NOI18N
         btnLista.setText("Mostrar Citas");
         btnLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +179,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         menuHerramientas.setText("Herramientas");
 
+        btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Exportar.png"))); // NOI18N
         btnExportar.setText("Exportar datos");
         btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,10 +188,29 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         menuHerramientas.add(btnExportar);
 
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Buscar.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        menuHerramientas.add(btnBuscar);
+
+        btnPlanilla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Prueba.png"))); // NOI18N
+        btnPlanilla.setText("Mostrar planilla");
+        btnPlanilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlanillaActionPerformed(evt);
+            }
+        });
+        menuHerramientas.add(btnPlanilla);
+
         BarraMenu.add(menuHerramientas);
 
         menuConfiguracion.setText("Configuración");
 
+        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Conexion.png"))); // NOI18N
         btnConfig.setText("Configuración");
         btnConfig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,14 +268,17 @@ public class frmPrincipal extends javax.swing.JFrame {
         agregar(new frmRegistrarCitas());
     }//GEN-LAST:event_btnCitaActionPerformed
 
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        agregar(new frmBuscarPersona());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        try {
-            cx = new ControladorXml();
-            cx.importarXml(this);
-        } catch (ErrorConexion ex) {
-            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+          agregar(new frmMostrarClientes());
     }//GEN-LAST:event_btnExportarActionPerformed
+
+    private void btnPlanillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanillaActionPerformed
+        agregar(new frmBuscarPlantilla());
+    }//GEN-LAST:event_btnPlanillaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -276,6 +312,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarraMenu;
     public static javax.swing.JDesktopPane Escritorio;
+    private javax.swing.JMenuItem btnBuscar;
     private javax.swing.JMenuItem btnCita;
     private javax.swing.JMenuItem btnCliente;
     private javax.swing.JMenuItem btnConfig;
@@ -283,6 +320,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnExportar;
     private javax.swing.JMenuItem btnInicar;
     private javax.swing.JMenuItem btnLista;
+    private javax.swing.JMenuItem btnPlanilla;
     private javax.swing.JMenu menuConfiguracion;
     private javax.swing.JMenu menuHerramientas;
     private javax.swing.JMenu menuManejo;

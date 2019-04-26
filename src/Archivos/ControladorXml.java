@@ -7,10 +7,6 @@ import Personas.Clientes.clsClientes;
 import Personas.Usuarios.Oficiales.clsOficial;
 import Pruebas.clsPruebas;
 
-/**
- *
- * @author Shorlax
- */
 public class ControladorXml {
 
     private BaseDatos BD;

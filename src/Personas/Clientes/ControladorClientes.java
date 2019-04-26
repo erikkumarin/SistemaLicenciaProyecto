@@ -1,8 +1,11 @@
 package Personas.Clientes;
 
 import BaseDeDatos.BaseDatos;
+import Citas.clsCitas;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
+import Utilidades.Fecha;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,8 +16,8 @@ public class ControladorClientes {
 
     public ControladorClientes() {
     }
-    
-   public void agregar(frmRegistrarCliente vista) throws ErrorConexion {
+
+    public void agregar(frmRegistrarCliente vista) throws ErrorConexion {
         BD = new BaseDatos("INSERT INTO tblclientes VALUES (?,?,?,?,?)");
         cliente = new clsClientes(vista.getCedula(), vista.getNombre(), vista.getFecha(), vista.getTelefono(), vista.getCorreo());
         if (ErrorMensaje.mostrarMensajes()) {
@@ -57,13 +60,12 @@ public class ControladorClientes {
             }
         } while (obj != null);
     }
-    
-    public  clsClientes pasarClientes(frmMostrarClientes vista, int indice) throws ErrorConexion{
+
+    public clsClientes pasarClientes(frmMostrarClientes vista, int indice) throws ErrorConexion {
         BD = new BaseDatos("SELECT * from tblClientes where Cedula=?");
         BD.ejecutar(new Object[]{vista.getTblClientes().getValueAt(indice, 0).toString()});
         Object obj[] = BD.getObjet();
-        cliente= new clsClientes(obj);
+        cliente = new clsClientes(obj);
         return cliente;
     }
-
 }
