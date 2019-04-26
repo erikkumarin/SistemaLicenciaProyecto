@@ -38,11 +38,16 @@ public class ControladorUsuarios {
         }
     }
 
-    public void eliminar(frmRegistarUsuario vista) throws ErrorConexion {
+    public void eliminar(frmBuscarPersona vista) throws ErrorConexion {
         usuario = new clsUsuarios();
-        usuario.setCedula(vista.getCedula());
-        BD = new BaseDatos("DELETE FROM tblusuarios WHERE Cedula =" + usuario.getCedula());
-        BD.ejecutar();
+        usuario.setCedula(vista.getPersonas().getValueAt(vista.getPersonas().getSelectedRow(), 0).toString());
+        if (ErrorMensaje.mostrarMensajes()) {
+            JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
+        } else {
+            BD = new BaseDatos("DELETE FROM tblusuarios WHERE Cedula =?");
+            BD.ejecutar(new Object[]{usuario.getCedula()});
+            JOptionPane.showMessageDialog(vista, "El Registro se Elimino", "Eliminar Usuario", 1);
+        }
     }
 
     public void filtar(frmBuscarPersona vista) throws ErrorConexion {

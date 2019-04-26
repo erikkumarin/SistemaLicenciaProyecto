@@ -9,21 +9,20 @@ import javax.swing.JTable;
 
 public class frmMostrarClientes extends javax.swing.JInternalFrame {
 
-    private ControladorClientes clientes;
+    private ControladorClientes controlCliente;
     private ControladorXml xml;
 
     public frmMostrarClientes() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 2, 2);
-        clientes = new ControladorClientes();
+        controlCliente = new ControladorClientes();
         try {
-            clientes.cargarClientes(this);
+            controlCliente.cargarClientes(this);
         } catch (ErrorConexion ex) {
             Logger.getLogger(frmMostrarClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
         Utilidades.Orientar.ordenar(tblClientes);
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -87,8 +86,8 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
             try {
                 int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este Cliente?", "Confirmación", 0, 2);
                 if (opc == 0) {
-                    clsClientes cliente = clientes.pasarDatos(this, i);
-                    xml.importarXml(cliente.getCedula());
+                    clsClientes cliente = controlCliente.pasarDatos(this, i);
+                    xml.importarXml(cliente.getCedula(), controlCliente.comprobarPrueba(this));
                 }
             } catch (ErrorConexion ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);

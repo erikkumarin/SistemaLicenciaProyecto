@@ -14,7 +14,7 @@ public class ControladorXml {
     private clsPruebas prueba;
     private InformacionXml xml;
 
-    public void importarXml(String cedula) throws ErrorConexion {
+    public void importarXml(String cedula, int numIntentos) throws ErrorConexion {
         BD = new BaseDatos("SELECT cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac`, cliente.Telefono, cliente.Correo, "
                 + "prueba.Id, prueba.Fecha, prueba.Hora, prueba.Observaciones, prueba.Nota, oficial.Cedula, oficial.Nombre, "
                 + "oficial.Correo FROM tblclientes AS cliente INNER JOIN tblpruebas as prueba on prueba.IdCliente = cliente.Cedula "
@@ -30,7 +30,7 @@ public class ControladorXml {
         xml = new InformacionXml();
         xml.generarInformacion(cliente.getCedula(), cliente.getNombre(), String.valueOf(cliente.calcularEdad()), cliente.getCorreo(),
                 cliente.getTelefono(), String.valueOf(prueba.getIdPrueba()), prueba.getFecha(), String.valueOf(prueba.getNota()),
-                prueba.getObservaciones(), "1", oficial.getCedula(), oficial.getNombre(), oficial.getCorreo());
+                prueba.getObservaciones(), String.valueOf(numIntentos), oficial.getCedula(), oficial.getNombre(), oficial.getCorreo());
     }
 
 }
