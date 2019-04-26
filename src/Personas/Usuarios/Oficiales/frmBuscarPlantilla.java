@@ -5,7 +5,7 @@ public class frmBuscarPlantilla extends javax.swing.JInternalFrame {
     public frmBuscarPlantilla() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 3, 3);
-
+        Utilidades.Orientar.ordenar(tblPlantilla);
     }
 
     @SuppressWarnings("unchecked")
@@ -13,13 +13,13 @@ public class frmBuscarPlantilla extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPlantilla = new javax.swing.JTable();
 
         setClosable(true);
         setTitle("Planilla de oficiales");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Prueba.png"))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPlantilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -42,8 +42,8 @@ public class frmBuscarPlantilla extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setToolTipText("");
-        jScrollPane1.setViewportView(jTable1);
+        tblPlantilla.setToolTipText("");
+        jScrollPane1.setViewportView(tblPlantilla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,6 +64,6 @@ public class frmBuscarPlantilla extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblPlantilla;
     // End of variables declaration//GEN-END:variables
 }
