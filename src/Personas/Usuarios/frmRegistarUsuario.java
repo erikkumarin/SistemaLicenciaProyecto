@@ -16,9 +16,9 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
     public frmRegistarUsuario() {
         initComponents();
         AjustarVentana.ajustar(this, 3, 1.5);
-        Fecha.agregarAniosUC(cbAnio);
-        Fecha.agregarMesesUC(cbAnio, cbMes);
-        Fecha.agregarDiasUC(cbAnio, cbMes, cbDia);
+        Fecha.agregarAniosRegistro(cbAnio);
+        Fecha.agregarMesesRegistro(cbAnio, cbMes);
+        Fecha.agregarDiasRegistro(cbAnio, cbMes, cbDia);
     }
 
     private void boton() {
@@ -282,11 +282,11 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
-        Fecha.agregarDiasUC(cbAnio, cbMes, cbDia);
+        Fecha.agregarDiasRegistro(cbAnio, cbMes, cbDia);
     }//GEN-LAST:event_cbMesActionPerformed
 
     private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
-        Fecha.agregarMesesUC(cbAnio, cbMes);
+        Fecha.agregarMesesRegistro(cbAnio, cbMes);
     }//GEN-LAST:event_cbAnioActionPerformed
 
     private void cbUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUsuarioActionPerformed
