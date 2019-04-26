@@ -34,6 +34,7 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
         tblClientes = new javax.swing.JTable();
 
         setClosable(true);
+        setResizable(true);
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
