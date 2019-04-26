@@ -1,6 +1,7 @@
 package BaseDeDatos;
 
 import Archivos.Configuracion;
+import Errores.ErrorMensaje;
 import Utilidades.AjustarVentana;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -207,19 +208,11 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBDKeyPressed
 
     private boolean verificarDatosBD() {
-        boolean verificar = true;
-        if (this.txtIP.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese dirrecion IP", "Dirreccion IP vacía", 0);
-            verificar = false;
-        } else if (this.txtUsuario.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese un usuario", "Usuario vacío", 0);
-            verificar = false;
-        } else if (this.txtBD.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese una base de datos", "Base de datos vacía", 0);
-            verificar = false;
+        if (this.txtIP.getText().trim().equals("") || this.txtUsuario.getText().trim().equals("") || this.txtBD.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Datos incorreceros", "Datos incorrectos", 0);
+            return false;
         }
-        return verificar;
-
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
