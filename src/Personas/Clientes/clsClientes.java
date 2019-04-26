@@ -6,7 +6,7 @@ import Pruebas.clsPruebas;
 import java.util.ArrayList;
 
 public class clsClientes extends clsPersona {
-    
+
     private ArrayList<clsPruebas> pruebas;
 
     public ArrayList<clsPruebas> getPruebas() {
@@ -44,8 +44,16 @@ public class clsClientes extends clsPersona {
         }
         return 0;
     }
-    
-    public void agregarPrueba(clsPruebas prueba){
+
+    public void agregarPrueba(clsPruebas prueba) {
         this.pruebas.add(prueba);
+    }
+
+    /**
+     * retorna los datos del cliente y especificamente el edad del cliente
+     * @return 
+     */
+    public Object[] toObject() {
+        return new Object[]{this.getCedula(), this.getNombre(), this.calcularEdad(), this.getTelefono(), this.getCorreo()};
     }
 }

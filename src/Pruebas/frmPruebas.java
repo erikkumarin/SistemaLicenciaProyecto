@@ -1,16 +1,15 @@
 package Pruebas;
 
+import Citas.ControladorCitas;
 import Errores.ErrorConexion;
 import Utilidades.AjustarVentana;
-import Utilidades.Fecha;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class frmPruebas extends javax.swing.JInternalFrame {
 
     ControladorPruebas controlPrueba;
+    private static int idPrueba;
     
     public frmPruebas() {
         initComponents();
@@ -48,7 +47,8 @@ public class frmPruebas extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setResizable(true);
-        setTitle("Prueba de Licencia");
+        setTitle("Prueba de licencia");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/EditarPrueba.png"))); // NOI18N
 
         lblNombre.setText("Nombre");
 
@@ -206,11 +206,9 @@ public class frmPruebas extends javax.swing.JInternalFrame {
                     .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtEstado)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNota, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                            .addComponent(lblNota, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtNota, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                        .addComponent(lblNota, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -253,9 +251,12 @@ public class frmPruebas extends javax.swing.JInternalFrame {
         try {
             controlPrueba =  new ControladorPruebas();
             controlPrueba.agregar(this);
+            ControladorCitas citas = new ControladorCitas();
+            citas.eliminar(getIdPrueba());
+            this.dispose();
         } catch (ErrorConexion ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
-        }
+            Logger.getLogger(frmPruebas.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 
@@ -366,4 +367,14 @@ public class frmPruebas extends javax.swing.JInternalFrame {
                 + " Nota: " + this.getNota() + " Estado: " + this.getEstado()
                 + " Asistencia: " + this.getAsistencia().toString();
     }
+
+    public static int getIdPrueba() {
+        return idPrueba;
+    }
+
+    public static void setIdPrueba(int idPrueba) {
+        frmPruebas.idPrueba = idPrueba;
+    }
+    
+    
 }
