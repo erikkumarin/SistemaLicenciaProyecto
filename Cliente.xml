@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Clientes>
-    <Cliente Cedula="000000001">
-        <Nombre>CLIENTE</Nombre>
-        <Fecha_Nacimiento>01/01/2001</Fecha_Nacimiento>
-        <Telefono>00000001</Telefono>
-        <Correo>cliente@correo.com</Correo>
-        <Prueba ID="5">
+    <Cliente Cedula="154878484">
+        <Nombre>FAUSTO ROJAS HINCAPIE</Nombre>
+        <Fecha_Nacimiento>01/01/1995</Fecha_Nacimiento>
+        <Telefono>15484548</Telefono>
+        <Correo>frojas@gmail.com</Correo>
+        <Prueba ID="2">
             <Fecha>26/04/2019</Fecha>
-            <Hora>13:00</Hora>
-            <Observaciones>El cliente no se presnetó a la cita</Observaciones>
-            <Nota>5</Nota>
-            <Estado>Reprobado</Estado>
+            <Hora>8:00</Hora>
+            <Observaciones>Es bueno</Observaciones>
+            <Nota>80</Nota>
+            <Estado>Aprobado</Estado>
             <Oficial Cedula="504180848">
                 <Nombre>LUIS CARLOS</Nombre>
                 <Correo>luis@correo.com</Correo>

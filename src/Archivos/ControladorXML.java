@@ -82,7 +82,7 @@ public class ControladorXML {
             xml.crearInfoNivel2("Fecha", prueba.getFecha());
             xml.crearInfoNivel2("Hora", prueba.getHora());
             xml.crearInfoNivel2("Observaciones", prueba.getObservaciones());
-            xml.crearInfoNivel2("Nota", String.valueOf(prueba.getIdPrueba()));
+            xml.crearInfoNivel2("Nota", String.valueOf(prueba.getNota()));
             xml.crearInfoNivel2("Estado", prueba.getEstado());
             xml.crearNivel3("Oficial", "Cedula", prueba.getOficial().getCedula());
             xml.crearInfoNivel3("Nombre", prueba.getOficial().getNombre());
