@@ -77,7 +77,6 @@ public class ControladorClientes {
         DefaultTableModel modelo = (DefaultTableModel) vista.getTblClientes().getModel();
         modelo.setNumRows(0);
         Object obj[];
-        int x = 0;
         do {
             obj = BD.getObjet();
             if (obj != null) {

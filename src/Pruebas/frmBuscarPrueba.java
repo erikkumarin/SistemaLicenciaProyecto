@@ -1,5 +1,7 @@
 package Pruebas;
 
+import javax.swing.JTable;
+
 
 public class frmBuscarPrueba extends javax.swing.JInternalFrame {
 
@@ -95,6 +97,16 @@ public class frmBuscarPrueba extends javax.swing.JInternalFrame {
     public void setId(String id) {
         this.txtId.setText(id);
     }
+
+    public JTable getTblPruebas() {
+        return tblPruebas;
+    }
+
+    public void setTblPruebas(JTable tblPruebas) {
+        this.tblPruebas = tblPruebas;
+    }
+    
+    
 
 
 }
