@@ -77,10 +77,21 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Utilidades/Imagenes/Cita.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Mostrar Citas"/>
+                <Property name="text" type="java.lang.String" value="Mostrar citas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnListaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="btnBuscarPrueba">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Utilidades/Imagenes/Buscar.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Buscar pruebas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarPruebaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

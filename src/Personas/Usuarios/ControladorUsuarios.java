@@ -33,7 +33,7 @@ public class ControladorUsuarios {
         } else {
             BD.ejecutar(new Object[]{usuario.getCedula(), usuario.getNombre(), usuario.getFechaNac(), usuario.getTelefono(), usuario.getCorreo(),
                 usuario.getNomUsuario(), usuario.getContra(), usuario.getTipoUsuario()});
-            return true;
+            vista.dispose();
         }
         return false;
     }

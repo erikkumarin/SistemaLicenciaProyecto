@@ -16,9 +16,9 @@ public class frmRegistrarCitas extends javax.swing.JInternalFrame {
     public frmRegistrarCitas() {
         initComponents();
         AjustarVentana.ajustar(this, 2.5, 3.5);
-        Fecha.agregarAniosCP(cbAnio);
-        Fecha.agregarMesesCP(cbAnio, cbMes);
-        Fecha.agregarDiasCP(cbAnio, cbMes, cbDia);
+        Fecha.agregarAniosCita(cbAnio);
+        Fecha.agregarMesesCita(cbAnio, cbMes);
+        Fecha.agregarDiasCita(cbAnio, cbMes, cbDia);
         Fecha.agregarHora(cbDia, cbHora);
     }
 
@@ -173,11 +173,11 @@ public class frmRegistrarCitas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
-        Fecha.agregarMesesCP(cbAnio, cbMes);
+        Fecha.agregarMesesCita(cbAnio, cbMes);
     }//GEN-LAST:event_cbAnioActionPerformed
 
     private void cbMesActionPerforme(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerforme
-        Fecha.agregarDiasCP(cbAnio, cbMes, cbDia);
+        Fecha.agregarDiasCita(cbAnio, cbMes, cbDia);
       }//GEN-LAST:event_cbMesActionPerforme
 
     private void cbDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDiaActionPerformed

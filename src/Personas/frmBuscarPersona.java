@@ -1,5 +1,6 @@
 package Personas;
 
+import Archivos.XMl.ControladorXML;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
 import Main.frmPrincipal;
@@ -10,7 +11,10 @@ import Personas.Usuarios.ControladorUsuarios;
 import Personas.Usuarios.Oficiales.ControladorOficial;
 import Personas.Usuarios.clsUsuarios;
 import Personas.Usuarios.frmEditarUsuario;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -22,21 +26,20 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
     private ControladorClientes controlCliente;
     private ControladorUsuarios controlUsuario;
     private ControladorOficial controlOficial;
-    
-    private JPopupMenu menu = new JPopupMenu();
+    ControladorXML controlXML;
+
+    private JPopupMenu menu;
     private JMenuItem btnEditar = new JMenuItem("Editar registro");
     private JMenuItem btnEliminar = new JMenuItem("Eliminar registro");
+    private JMenuItem btnExportar = new JMenuItem("Exportar Cliente");
 
     public frmBuscarPersona() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 1.5, 2);
-        menu.add(btnEditar);
-        menu.add(btnEliminar);
-        tblPersonas.setComponentPopupMenu(menu);
         controlCliente = new ControladorClientes();
         controlUsuario = new ControladorUsuarios();
         controlOficial = new ControladorOficial();
-        
+
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -47,7 +50,12 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarActionPerformed(evt);
+            }
+        });
+
     }
 
     private void boton() {
@@ -141,6 +149,11 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPersonasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPersonas);
         if (tblPersonas.getColumnModel().getColumnCount() > 0) {
             tblPersonas.getColumnModel().getColumn(0).setResizable(false);
@@ -190,6 +203,17 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
         this.boton();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void tblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonasMouseClicked
+        menu = new JPopupMenu();
+        menu.add(btnEditar);
+        menu.add(btnEliminar);
+        int indice = tblPersonas.getSelectedRow();
+        if (tblPersonas.getValueAt(indice, 5).toString().equals("Cliente")) {
+            menu.add(btnExportar);
+        }
+        tblPersonas.setComponentPopupMenu(menu);
+    }//GEN-LAST:event_tblPersonasMouseClicked
+
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {
         int indice = tblPersonas.getSelectedRow();
         if (indice != -1) {
@@ -198,7 +222,7 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
                 DefaultTableModel modelo = (DefaultTableModel) tblPersonas.getModel();
                 if (tblPersonas.getValueAt(indice, 5).toString().equals("Cliente")) {
                     controlCliente.eliminar(this);
-                }else{
+                } else {
                     if (tblPersonas.getValueAt(indice, 5).toString().equals("Oficial")) {
                         controlOficial.eliminar(this);
                     }
@@ -210,7 +234,7 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
             }
         }
     }
-    
+
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {
         int indice = tblPersonas.getSelectedRow();
         if (indice != -1) {
@@ -221,7 +245,24 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
             }
         }
     }
-    
+
+    private void btnExportarActionPerformed(ActionEvent evt) {
+        int indice = tblPersonas.getSelectedRow();
+        if (indice != -1) {
+            int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este "
+                    + tblPersonas.getValueAt(indice, 5) + "?", "Confirmación", 0, 2);
+            if (opc == 0) {
+                try {
+                    ErrorMensaje.crear();
+                    controlXML = new ControladorXML();
+                    controlXML.exportar(this, indice);
+                    controlXML.toXML();
+                } catch (ErrorConexion ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+                }
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

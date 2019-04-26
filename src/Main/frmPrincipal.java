@@ -7,6 +7,7 @@ import Personas.Clientes.frmRegistrarCliente;
 import Personas.Usuarios.*;
 import Personas.Usuarios.Oficiales.frmMostrarPlantilla;
 import Personas.frmBuscarPersona;
+import Pruebas.frmBuscarPrueba;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -97,6 +98,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         menuManejo = new javax.swing.JMenu();
         btnCita = new javax.swing.JMenuItem();
         btnLista = new javax.swing.JMenuItem();
+        btnBuscarPrueba = new javax.swing.JMenuItem();
         menuHerramientas = new javax.swing.JMenu();
         btnExportar = new javax.swing.JMenuItem();
         btnBuscar = new javax.swing.JMenuItem();
@@ -166,13 +168,22 @@ public class frmPrincipal extends javax.swing.JFrame {
         menuManejo.add(btnCita);
 
         btnLista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Cita.png"))); // NOI18N
-        btnLista.setText("Mostrar Citas");
+        btnLista.setText("Mostrar citas");
         btnLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaActionPerformed(evt);
             }
         });
         menuManejo.add(btnLista);
+
+        btnBuscarPrueba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Buscar.png"))); // NOI18N
+        btnBuscarPrueba.setText("Buscar pruebas");
+        btnBuscarPrueba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPruebaActionPerformed(evt);
+            }
+        });
+        menuManejo.add(btnBuscarPrueba);
 
         BarraMenu.add(menuManejo);
 
@@ -279,6 +290,10 @@ public class frmPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnInicarActionPerformed
 
+    private void btnBuscarPruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPruebaActionPerformed
+        agregar(new frmBuscarPrueba());
+    }//GEN-LAST:event_btnBuscarPruebaActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -312,6 +327,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar BarraMenu;
     public static javax.swing.JDesktopPane Escritorio;
     private javax.swing.JMenuItem btnBuscar;
+    private javax.swing.JMenuItem btnBuscarPrueba;
     private javax.swing.JMenuItem btnCita;
     private javax.swing.JMenuItem btnCliente;
     private javax.swing.JMenuItem btnConfig;

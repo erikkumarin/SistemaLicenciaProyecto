@@ -2,8 +2,10 @@ package Pruebas;
 
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
+import Personas.Clientes.clsClientes;
 import Personas.Usuarios.Oficiales.clsOficial;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ControladorPruebas {
 
@@ -16,6 +18,21 @@ public class ControladorPruebas {
         prueba.getOficial().setCedula(vista.getCedulaOficial());
         BD.ejecutar(prueba.toObject(vista.getCedula()));
         JOptionPane.showMessageDialog(vista, "Se Registro Exitosamente", "Aplicar Prueba", 1);
+    }
+    
+    public void cargarTabla(frmBuscarPrueba vista) throws ErrorConexion {
+        BD = new BaseDatos("SELECT * from tblpruebas WHERE id LIKE ?");
+        BD.ejecutar(new Object[]{"%"+vista.getId()+"%"});
+        DefaultTableModel modelo = (DefaultTableModel) vista.getTblPruebas().getModel();
+        modelo.setNumRows(0);
+        Object obj[];
+        do {
+            obj = BD.getObjet();
+            if (obj != null) {
+                prueba = new clsPruebas(obj);
+                modelo.addRow(prueba.toObject((String) obj[6]));
+            }
+        } while (obj != null);
     }
 
 }
