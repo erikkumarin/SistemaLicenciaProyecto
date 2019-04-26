@@ -3,8 +3,6 @@ package Pruebas;
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
 import Personas.Usuarios.Oficiales.clsOficial;
-import Utilidades.CRUD;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 public class ControladorPruebas {
