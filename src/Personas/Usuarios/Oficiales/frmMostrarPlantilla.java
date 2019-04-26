@@ -3,6 +3,7 @@ package Personas.Usuarios.Oficiales;
 
 import Errores.ErrorConexion;
 import Main.frmPrincipal;
+import Utilidades.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -15,7 +16,8 @@ public class frmMostrarPlantilla extends javax.swing.JInternalFrame {
     public frmMostrarPlantilla() {
         try {
             initComponents();
-            Utilidades.AjustarVentana.ajustar(this, 2.5, 2.3);
+            AjustarVentana.ajustar(this, 2.5, 2.3);
+            Orientar.ordenar(tblPlanilla);
             controlOficial = new ControladorOficial();
             controlOficial.cargarOficiales(this);
         } catch (ErrorConexion ex) {
