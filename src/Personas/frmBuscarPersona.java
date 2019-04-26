@@ -1,19 +1,73 @@
 package Personas;
 
+import Errores.ErrorConexion;
+import Errores.ErrorMensaje;
+import Main.frmPrincipal;
+import Personas.Clientes.ControladorClientes;
+import Personas.Clientes.clsClientes;
+import Personas.Clientes.frmEditarCliente;
+import Personas.Usuarios.ControladorUsuarios;
+import Personas.Usuarios.clsUsuarios;
+import Personas.Usuarios.frmEditarUsuario;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
+import javax.swing.table.DefaultTableModel;
 
 public class frmBuscarPersona extends javax.swing.JInternalFrame {
 
+    private ControladorClientes controlCliente;
+    private ControladorUsuarios controlUsuario;
+
     public frmBuscarPersona() {
         initComponents();
-        Utilidades.AjustarVentana.ajustar(this, 3, 2.5);
+        Utilidades.AjustarVentana.ajustar(this, 1.5, 2);
+        controlCliente = new ControladorClientes();
+        controlUsuario = new ControladorUsuarios();
     }
-    
-    private void boton(){
-        
+
+    private void boton() {
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) tblPersonas.getModel();
+            modelo.setNumRows(0);
+            ErrorMensaje.crear();
+            controlCliente.filtar(this);
+            controlUsuario.filtar(this);
+        } catch (ErrorConexion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+        }
     }
+
+    private void tipoUsuario() {
+        int indice = tblPersonas.getSelectedRow();
+        try {
+            if (tblPersonas.getValueAt(indice, 5).toString().equals("Cliente")) {
+                frmEditarCliente editar = new frmEditarCliente();
+                clsClientes cliente = controlCliente.editar(this, indice);
+                editar.setCedula(cliente.getCedula());
+                editar.setNombre(cliente.getNombre());
+                editar.setTelefono(cliente.getTelefono());
+                editar.setCorreo(cliente.getCorreo());
+                editar.setTitle("Actualizar " + tblPersonas.getValueAt(indice, 5));
+                frmPrincipal.agregar(editar);
+            } else {
+                clsUsuarios usuario = controlUsuario.editar(this, indice);
+                frmEditarUsuario editar = new frmEditarUsuario();
+                editar.setCedula(usuario.getCedula());
+                editar.setNombre(usuario.getNombre());
+                editar.setTelefono(usuario.getTelefono());
+                editar.setCorreo(usuario.getCorreo());
+                editar.setUsuario(usuario.getNomUsuario());
+                editar.setUser(usuario.getNomUsuario());
+                editar.setTitle("Actualizar Usuario - " + tblPersonas.getValueAt(indice, 5));
+                frmPrincipal.agregar(editar);
+            }
+
+        } catch (ErrorConexion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -45,18 +99,38 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nombre", "N° de Cédula", "Correo", "Fecha"
+                "Nombre", "N° de Cédula", "Fecha", "Telefono", "Correo", "Tipo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPersonasMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(tblPersonas);
+        if (tblPersonas.getColumnModel().getColumnCount() > 0) {
+            tblPersonas.getColumnModel().getColumn(0).setResizable(false);
+            tblPersonas.getColumnModel().getColumn(1).setResizable(false);
+            tblPersonas.getColumnModel().getColumn(2).setResizable(false);
+            tblPersonas.getColumnModel().getColumn(3).setResizable(false);
+            tblPersonas.getColumnModel().getColumn(4).setResizable(false);
+            tblPersonas.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,7 +152,7 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txtBusqueda)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                 .addContainerGap())
@@ -96,6 +170,17 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         this.boton();
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonasMouseClicked
+        int indice = tblPersonas.getSelectedRow();
+        if (indice != -1) {
+            int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este "
+                    + tblPersonas.getValueAt(indice, 5) + "?", "Confirmación", 0, 2);
+            if (opc == 0) {
+                this.tipoUsuario();
+            }
+        }
+    }//GEN-LAST:event_tblPersonasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -116,8 +201,5 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
     public void setjPersonas(JTable jTable1) {
         this.tblPersonas = jTable1;
     }
-    
-    
-
 
 }

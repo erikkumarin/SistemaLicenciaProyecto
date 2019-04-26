@@ -115,7 +115,7 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblCambiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCambiarMouseClicked
-        frmCambiarContrasena vec = new frmCambiarContrasena();
+        frmCambiarContrasena vec = new frmCambiarContrasena(true);
         frmPrincipal.Escritorio.add(vec);
         vec.setVisible(true);
         frmCambiarContrasena.setIniciarSecion(this);

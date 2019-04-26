@@ -1,11 +1,24 @@
-package Personas;
+package Personas.Clientes;
 
+import Personas.*;
+import Errores.ErrorConexion;
+import Errores.ErrorMensaje;
+import Personas.Clientes.ControladorClientes;
+import Personas.Usuarios.ControladorUsuarios;
+import Personas.Usuarios.Oficiales.ControladorOficial;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
-public class frmEditarPersona extends javax.swing.JInternalFrame {
+public class frmEditarCliente extends javax.swing.JInternalFrame {
 
-    public frmEditarPersona() {
+    ControladorClientes controlCliente;
+    ControladorUsuarios controlUsuarios;
+    ControladorOficial controlOficial;
+
+    public frmEditarCliente() {
         initComponents();
-        Utilidades.AjustarVentana.ajustar(this, 4, 3);
+        Utilidades.AjustarVentana.ajustar(this, 4, 2.3);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,9 +42,10 @@ public class frmEditarPersona extends javax.swing.JInternalFrame {
 
         lblCedula.setText("N° de Cédula");
 
-        jLabel1.setText("Nombre");
+        txtCedula.setEditable(false);
+        txtCedula.setEnabled(false);
 
-        txtNombre.setEnabled(false);
+        jLabel1.setText("Nombre");
 
         lblMETelefono.setForeground(new java.awt.Color(255, 0, 0));
         lblMETelefono.setText("Ejemplo: 85848786");
@@ -48,6 +62,11 @@ public class frmEditarPersona extends javax.swing.JInternalFrame {
         });
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,6 +139,18 @@ public class frmEditarPersona extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        try {
+            ErrorMensaje.crear();
+            if (this.getTitle().contains("Cliente")) {
+                controlCliente = new ControladorClientes();
+                controlCliente.modificar(this);
+            }
+        } catch (ErrorConexion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
@@ -134,24 +165,36 @@ public class frmEditarPersona extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    public String getTxtCedula() {
+    public String getCedula() {
         return txtCedula.getText();
     }
 
-    public String getTxtCorreo() {
+    public String getNombre() {
+        return txtNombre.getText();
+    }
+
+    public String getCorreo() {
         return txtCorreo.getText();
     }
 
-    public String getTxtTelefono() {
+    public String getTelefono() {
         return txtTelefono.getText();
     }
 
-    public void setTxtNombre(String nombre) {
+    public void setNombre(String nombre) {
         this.txtNombre.setText(nombre);
     }
 
-    
-    
-    
+    public void setCedula(String Cedula) {
+        this.txtCedula.setText(Cedula);
+    }
+
+    public void setCorreo(String Correo) {
+        this.txtCorreo.setText(Correo);
+    }
+
+    public void setTelefono(String Telefono) {
+        this.txtTelefono.setText(Telefono);
+    }
 
 }

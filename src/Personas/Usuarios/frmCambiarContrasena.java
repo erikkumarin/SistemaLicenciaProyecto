@@ -1,21 +1,20 @@
 package Personas.Usuarios;
 
 import Errores.ErrorConexion;
-import Errores.ErrorMensaje;
 import Utilidades.AjustarVentana;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class frmCambiarContrasena extends javax.swing.JInternalFrame {
 
     private ControladorUsuarios controlUsuario;
     private static frmIniciarSesion frmIS;
-    
-    public frmCambiarContrasena() {
+    private boolean band;
+
+    public frmCambiarContrasena(boolean band) {
         initComponents();
         AjustarVentana.ajustar(this, 3.5, 4);
+        controlUsuario = new ControladorUsuarios();
+        this.band = band;
     }
 
     @SuppressWarnings("unchecked")
@@ -101,8 +100,11 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (this.getNuevaContrasena().equals(this.getConfirmarContrasena())) {
             try {
-                controlUsuario = new ControladorUsuarios();
-                controlUsuario.modificarContraseña(this, frmIS);
+                if (band) {
+                    controlUsuario.modificarContraseña(this, frmIS);
+                }else{
+                    controlUsuario.modificarContraseña(this);
+                }
             } catch (ErrorConexion ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
             }
@@ -120,10 +122,10 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNuevaContrasena;
     // End of variables declaration//GEN-END:variables
 
-    public static void setIniciarSecion(frmIniciarSesion frm){
+    public static void setIniciarSecion(frmIniciarSesion frm) {
         frmIS = frm;
     }
-    
+
     public String getConfirmarContrasena() {
         return txtConfirmarContrasena.getText();
     }
