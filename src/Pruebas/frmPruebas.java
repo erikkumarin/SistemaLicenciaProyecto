@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class frmPruebas extends javax.swing.JInternalFrame {
 
-    ControladorPruebas controlPrueba;
+    private ControladorPruebas controlPrueba;
     private static int idPrueba;
 
     public frmPruebas() {
