@@ -1,7 +1,6 @@
 package BaseDeDatos;
 
 import Archivos.Configuracion;
-import Errores.ErrorMensaje;
 import Utilidades.AjustarVentana;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
