@@ -53,7 +53,7 @@ public class ControladorClientes {
             obj = BD.getObjet();
             if (obj != null) {
                  cliente = new clsClientes(obj);
-                if (validar(vista, cliente)) {
+                if (validar(vista, cliente) == 0) {
                       modelo.addRow(cliente.toObjects());
                 } 
             }
@@ -68,13 +68,14 @@ public class ControladorClientes {
         return cliente.getCedula();
     }
     
-    private boolean validar(frmMostrarClientes vista, clsClientes cliente) {
+    private int validar(frmMostrarClientes vista, clsClientes cliente) {
         int fila = vista.getTblClientes().getRowCount();
+        int cantidad =0;
         for (int i = 0; i < fila; i++) {
             if (vista.getTblClientes().getValueAt(i, 0).toString().equals(cliente.getCedula())) {
-                return false;
+                cantidad++;
             }
         }
-        return true;
+        return cantidad;
     }
 }
