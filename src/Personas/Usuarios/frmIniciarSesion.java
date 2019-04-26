@@ -38,7 +38,7 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
         lblContra = new javax.swing.JLabel();
         btnIniciar = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
-        txtContra = new javax.swing.JTextField();
+        txtContra = new javax.swing.JPasswordField();
 
         setClosable(true);
         setTitle("Iniciar sesión");
@@ -62,12 +62,6 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
             }
         });
 
-        txtContra.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtContraKeyPressed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,19 +72,19 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
                     .addComponent(lblUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblContra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtUsuario))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblCambiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(134, 134, 134))
-                            .addComponent(txtContra)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(135, 135, 135))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtUsuario)))
+                                .addGap(135, 135, 135))
+                            .addComponent(txtContra))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -101,10 +95,10 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
                     .addComponent(lblUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtUsuario))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtContra))
-                .addGap(18, 18, 18)
+                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addComponent(lblCambiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -125,19 +119,13 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
         this.boton();
     }//GEN-LAST:event_btnIniciarActionPerformed
 
-    private void txtContraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            this.boton();
-        }
-    }//GEN-LAST:event_txtContraKeyPressed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
     private javax.swing.JLabel lblCambiar;
     private javax.swing.JLabel lblContra;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JTextField txtContra;
+    private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 

@@ -33,6 +33,10 @@
                   <Component id="lblContra" max="32767" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                      <Component id="txtUsuario" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -40,16 +44,12 @@
                               <Component id="lblCambiar" max="32767" attributes="0"/>
                               <EmptySpace min="134" pref="134" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="txtContra" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnIniciar" max="32767" attributes="0"/>
                               <EmptySpace min="135" pref="135" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="txtContra" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                      <Component id="txtUsuario" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -65,11 +65,11 @@
                   <Component id="txtUsuario" alignment="2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="lblContra" alignment="2" max="32767" attributes="0"/>
-                  <Component id="txtContra" alignment="2" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblContra" alignment="3" max="32767" attributes="0"/>
+                  <Component id="txtContra" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="lblCambiar" max="32767" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="btnIniciar" max="32767" attributes="0"/>
@@ -107,10 +107,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtUsuario">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtContra">
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtContraKeyPressed"/>
-      </Events>
+    <Component class="javax.swing.JPasswordField" name="txtContra">
     </Component>
   </SubComponents>
 </Form>

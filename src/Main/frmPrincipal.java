@@ -17,9 +17,9 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 public class frmPrincipal extends javax.swing.JFrame {
-    
+
     private ControladorBaseDatos controladorBD;
-    
+
     public frmPrincipal() {
         initComponents();
         this.setExtendedState(6);
@@ -28,12 +28,12 @@ public class frmPrincipal extends javax.swing.JFrame {
         deshabilitarTodo();
         this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/Menu.png")).getImage());
     }
-    
+
     public static void agregar(JInternalFrame vista) {
         Escritorio.add(vista);
         vista.setVisible(true);
     }
-    
+
     private void conexion() {
         try {
             frmConfiguracion VC = new frmConfiguracion();
@@ -46,7 +46,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void deshabilitarTodo() {
         btnCrear.setEnabled(false);
         btnCita.setEnabled(false);
@@ -57,7 +57,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnBuscar.setEnabled(false);
         btnPlanilla.setEnabled(false);
     }
-    
+
     public void habilitarOfical() {
         btnLista.setEnabled(true);
         btnCrear.setEnabled(true);
@@ -66,7 +66,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnBuscar.setEnabled(true);
         btnPlanilla.setEnabled(true);
     }
-    
+
     public void habilitarSecretario() {
         btnCrear.setEnabled(true);
         btnCita.setEnabled(true);
@@ -76,7 +76,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnBuscar.setEnabled(true);
         btnPlanilla.setEnabled(true);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -240,17 +240,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         conexion();
     }//GEN-LAST:event_btnConfigActionPerformed
 
-    private void btnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicarActionPerformed
-        frmIniciarSesion.setFrmPrincipal(this);
-        if (btnInicar.getText().equals("Iniciar Sesión")) {
-            agregar(new frmIniciarSesion());
-            btnInicar.setText("Cerrar Sesión");
-        } else {
-            this.deshabilitarTodo();
-            btnInicar.setText("Iniciar Sesión");
-        }
-    }//GEN-LAST:event_btnInicarActionPerformed
-
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         agregar(new frmRegistarUsuario());
     }//GEN-LAST:event_btnCrearActionPerformed
@@ -278,6 +267,17 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void btnPlanillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanillaActionPerformed
         agregar(new frmBuscarPlantilla());
     }//GEN-LAST:event_btnPlanillaActionPerformed
+
+    private void btnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicarActionPerformed
+        frmIniciarSesion.setFrmPrincipal(this);
+        if (btnInicar.getText().equals("Iniciar Sesión")) {
+            agregar(new frmIniciarSesion());
+            btnInicar.setText("Cerrar Sesión");
+        } else {
+            this.deshabilitarTodo();
+            btnInicar.setText("Iniciar Sesión");
+        }
+    }//GEN-LAST:event_btnInicarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
