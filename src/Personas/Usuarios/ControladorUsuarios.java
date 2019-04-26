@@ -65,15 +65,13 @@ public class ControladorUsuarios {
     }
 
     public void iniciarSesion(frmIniciarSesion vistaSesion, frmPrincipal vistaPrincipal) throws ErrorConexion {
-        BD = new BaseDatos("SELECT Cedula, Nombre, `Tipo Usuario` FROM tblusuarios WHERE Usuario = ? AND Contraseña = ?");
+        BD = new BaseDatos("SELECT Usuario, Contraseña, `Tipo Usuario` FROM tblusuarios WHERE Usuario = ? AND Contraseña = ?");
         usuario = new clsUsuarios();
         usuario.setNomUsuario(vistaSesion.getUsuario());
         usuario.setContra(vistaSesion.getContrasena());
         BD.ejecutar(new Object[]{usuario.getNomUsuario(), usuario.getContra()});
         Object[] obj = BD.getObjet();
         if (obj != null) {
-            frmIniciarSesion.setCedulaOficial((String) obj[0]);
-            frmIniciarSesion.setNombreOficial((String) obj[1]);
             verificarTipoUsuario((String) obj[2], vistaPrincipal);
             JOptionPane.showMessageDialog(vistaSesion, "Sesion iniciada correctamente", "Iniciar Sesion", 1);
             vistaSesion.dispose();
