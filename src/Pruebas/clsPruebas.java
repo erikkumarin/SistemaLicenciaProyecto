@@ -108,7 +108,7 @@ public class clsPruebas {
     }
     
     public Object[] toObject() {
-        return new Object[]{this.getFecha(), this.hora, this.getOficial().getCedula(), this.getObservaciones(), this.getNota(), this.getCliente().getCedula()};
+        return new Object[]{this.getIdPrueba(),this.getFecha(), this.getHora(), this.getOficial().getCedula(), this.getObservaciones(), this.getNota(), this.getCliente().getCedula()};
     }
     
 }

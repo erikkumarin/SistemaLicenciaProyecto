@@ -22,8 +22,8 @@ public class ControladorPruebas {
     }
     
     public void cargarTabla(frmBuscarPrueba vista) throws ErrorConexion {
-        BD = new BaseDatos("Select * from tblpreubas WHERE id = ?");
-        BD.ejecutar(new Object[]{vista.getId()});
+        BD = new BaseDatos("SELECT * from tblpruebas WHERE id LIKE ?");
+        BD.ejecutar(new Object[]{"%"+vista.getId()+"%"});
         DefaultTableModel modelo = (DefaultTableModel) vista.getTblPruebas().getModel();
         modelo.setNumRows(0);
         Object obj[];

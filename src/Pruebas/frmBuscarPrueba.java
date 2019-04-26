@@ -1,6 +1,7 @@
 package Pruebas;
 
 import Errores.ErrorConexion;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -24,6 +25,7 @@ public class frmBuscarPrueba extends javax.swing.JInternalFrame {
             Logger.getLogger(frmBuscarPrueba.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -40,6 +42,12 @@ public class frmBuscarPrueba extends javax.swing.JInternalFrame {
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Buscar.png"))); // NOI18N
 
         jLabel1.setText("Id");
+
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIdKeyPressed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +111,12 @@ public class frmBuscarPrueba extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         this.cargarTable();
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.cargarTable();
+        }
+    }//GEN-LAST:event_txtIdKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
