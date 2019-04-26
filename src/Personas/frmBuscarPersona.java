@@ -39,8 +39,6 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
         controlCliente = new ControladorClientes();
         controlUsuario = new ControladorUsuarios();
         controlOficial = new ControladorOficial();
-        controlXML = new ControladorXML();
-        
 
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,7 +254,9 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
             if (opc == 0) {
                 try {
                     ErrorMensaje.crear();
+                    controlXML = new ControladorXML();
                     controlXML.exportar(this, indice);
+                    controlXML.toXML();
                 } catch (ErrorConexion ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
                 }

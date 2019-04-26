@@ -7,14 +7,17 @@ import Personas.Clientes.clsClientes;
 import Personas.Usuarios.Oficiales.clsOficial;
 import Personas.frmBuscarPersona;
 import Pruebas.clsPruebas;
-import Utilidades.pasarXML;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 public class ControladorXML {
 
     BaseDatos BD;
-    pasarXML xml;
+    Información xml;
+    clsClientes cliente;
+
+    public ControladorXML() {
+        cliente = new clsClientes();
+    }
 
     public void exportar(frmBuscarPersona vista, int indice) throws ErrorConexion {
         BD = new BaseDatos("SELECT cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac`, cliente.Telefono, cliente.Correo, "
@@ -24,7 +27,6 @@ public class ControladorXML {
         BD.ejecutar(new Object[]{vista.getPersonas().getValueAt(indice, 0)});
         Object obj[];
         int cont = 0;
-        clsClientes cliente = new clsClientes();
         do {
             obj = BD.getObjet();
             if (obj != null) {
@@ -38,9 +40,30 @@ public class ControladorXML {
         if (ErrorMensaje.mostrarMensajes()) {
             JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
         } else {
-            xml = new pasarXML(cliente);
             JOptionPane.showMessageDialog(vista, "El Cliente se Exporto con Exito", "Exportar Cliente", 0);
         }
+    }
+
+    public void toXML() {
+        xml = new Información("Clientes");
+        xml.crearNivel1("Cliente", "Cedula", cliente.getCedula());
+        xml.crearInfoNivel1("Nombre", cliente.getNombre());
+        xml.crearInfoNivel1("Fecha_Nacimiento", cliente.getFechaNac());
+        xml.crearInfoNivel1("Telefono", cliente.getTelefono());
+        xml.crearInfoNivel1("Correo", cliente.getCorreo());
+        for (clsPruebas prueba : cliente.getPruebas()) {
+            xml.crearNivel2("Prueba", "ID", String.valueOf(prueba.getIdPrueba()));
+            xml.crearInfoNivel2("Fecha", prueba.getFecha());
+            xml.crearInfoNivel2("Hora", prueba.getHora());
+            xml.crearInfoNivel2("Observaciones", prueba.getObservaciones());
+            xml.crearInfoNivel2("Nota", String.valueOf(prueba.getIdPrueba()));
+            xml.crearInfoNivel2("Estado", prueba.getEstado());
+            xml.crearNivel3("Oficial", "Cedula", prueba.getOficial().getCedula());
+            xml.crearInfoNivel3("Nombre", prueba.getOficial().getNombre());
+            xml.crearInfoNivel3("Correo", prueba.getOficial().getCorreo());
+        }
+        xml.crearInfoNivel1("Num_Intentos", String.valueOf(cliente.getPruebas().size()));
+        xml.generarXML();
     }
 
 }

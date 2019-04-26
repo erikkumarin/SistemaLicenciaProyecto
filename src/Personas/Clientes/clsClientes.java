@@ -16,15 +16,18 @@ public class clsClientes extends clsPersona {
     public clsClientes(String cedula, String nombre, String fechaNac, String telefono, String correo) {
         super(cedula, nombre, fechaNac, telefono, correo);
         pruebas = new ArrayList<clsPruebas>();
+        pruebas.clear();
     }
 
     public clsClientes(Object[] obj) {
         super((String) obj[0], (String) obj[1], (String) obj[2], (String) obj[3], (String) obj[4]);
         pruebas = new ArrayList<clsPruebas>();
+        pruebas.clear();
     }
 
     public clsClientes() {
         pruebas = new ArrayList<clsPruebas>();
+        pruebas.clear();
     }
     
     public void setDatos(String cedula, String nombre, String fechaNac, String telefono, String correo){
