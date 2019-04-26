@@ -1,6 +1,6 @@
 package Personas;
 
-import Archivos.XMl.ControladorXML;
+import Archivos.ControladorXML;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
 import Main.frmPrincipal;
@@ -11,10 +11,9 @@ import Personas.Usuarios.ControladorUsuarios;
 import Personas.Usuarios.Oficiales.ControladorOficial;
 import Personas.Usuarios.clsUsuarios;
 import Personas.Usuarios.frmEditarUsuario;
+import Pruebas.ControladorPruebas;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -26,7 +25,8 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
     private ControladorClientes controlCliente;
     private ControladorUsuarios controlUsuario;
     private ControladorOficial controlOficial;
-    ControladorXML controlXML;
+    private ControladorXML controlXML;
+    private ControladorPruebas controlPrueba;
 
     private JPopupMenu menu;
     private JMenuItem btnEditar = new JMenuItem("Editar registro");
@@ -39,6 +39,7 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
         controlCliente = new ControladorClientes();
         controlUsuario = new ControladorUsuarios();
         controlOficial = new ControladorOficial();
+        controlPrueba = new ControladorPruebas();
 
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,14 +205,18 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tblPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonasMouseClicked
-        menu = new JPopupMenu();
-        menu.add(btnEditar);
-        menu.add(btnEliminar);
-        int indice = tblPersonas.getSelectedRow();
-        if (tblPersonas.getValueAt(indice, 5).toString().equals("Cliente")) {
-            menu.add(btnExportar);
+        try {
+            menu = new JPopupMenu();
+            menu.add(btnEditar);
+            menu.add(btnEliminar);
+            int indice = tblPersonas.getSelectedRow();
+            if (tblPersonas.getValueAt(indice, 5).toString().equals("Cliente") && controlPrueba.hayPrueba(this, indice)) {
+                menu.add(btnExportar);
+            }
+            tblPersonas.setComponentPopupMenu(menu);
+        } catch (ErrorConexion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
         }
-        tblPersonas.setComponentPopupMenu(menu);
     }//GEN-LAST:event_tblPersonasMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {

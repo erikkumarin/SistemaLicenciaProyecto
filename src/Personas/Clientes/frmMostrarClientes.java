@@ -1,16 +1,15 @@
 package Personas.Clientes;
 
-import Archivos.ControladorXml;
+import Archivos.ControladorXML;
 import Errores.ErrorConexion;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import Errores.ErrorMensaje;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 public class frmMostrarClientes extends javax.swing.JInternalFrame {
 
     private ControladorClientes controlCliente;
-    private ControladorXml xml;
+    private ControladorXML controlXML;
 
     public frmMostrarClientes() {
         initComponents();
@@ -19,7 +18,7 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
         try {
             controlCliente.cargarClientes(this);
         } catch (ErrorConexion ex) {
-            Logger.getLogger(frmMostrarClientes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
         }
         Utilidades.Orientar.ordenar(tblClientes);
     }
@@ -79,15 +78,17 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
-        int i = tblClientes.getSelectedRow();
-        xml = new ControladorXml();
-        if (i != -1) {
+        int indice = tblClientes.getSelectedRow();
+        if (indice != -1) {
             try {
                 int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este Cliente?", "Confirmación", 0, 2);
                 if (opc == 0) {
-                    clsClientes cliente = controlCliente.pasarDatos(this, i);
-                    xml.importarXml(cliente.getCedula(), (int) controlCliente.comprobarPrueba(this));
+                    ErrorMensaje.crear();
+                    controlXML = new ControladorXML();
+                    controlXML.exportar(this, indice);
+                    controlXML.toXML();
                 }
             } catch (ErrorConexion ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);

@@ -15,18 +15,18 @@ import javax.swing.table.DefaultTableModel;
 public class ControladorCitas {
 
     private clsCitas cita;
-    private BaseDatos bd;
+    private BaseDatos BD;
 
     public void agregar(frmRegistrarCitas vista) throws ErrorConexion {
         cita = new clsCitas(0, vista.getFecha(), vista.getHora(), new clsClientes());
         if (verificarCantCitas(vista) < 4) {
-            bd = new BaseDatos("INSERT INTO tblcitas VALUES (null,?,?,?)");
+            BD = new BaseDatos("INSERT INTO tblcitas VALUES (null,?,?,?)");
             cita.getCliente().setCedula(vista.getCedula());
             cita.getCliente().setNombre(vista.getNombre());
             if (ErrorMensaje.mostrarMensajes()) {
                 JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
             } else {
-                bd.ejecutar(new Object[]{cita.getCliente().getCedula(), cita.getFecha(), cita.getHora()});
+                BD.ejecutar(new Object[]{cita.getCliente().getCedula(), cita.getFecha(), cita.getHora()});
                 JOptionPane.showMessageDialog(vista, "Se Registro Exitosamente", "Registro Cita", 1);
                 vista.dispose();
             }
@@ -36,13 +36,13 @@ public class ControladorCitas {
     }
 
     public boolean existeCliente(frmRegistrarCitas vista) throws ErrorConexion {
-        bd = new BaseDatos("Select Nombre From tblclientes Where Cedula=?");
+        BD = new BaseDatos("Select Nombre From tblclientes Where Cedula=?");
         cita = new clsCitas(new clsClientes(), vista.getCedula());
         if (ErrorMensaje.mostrarMensajes()) {
             JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
         } else {
-            bd.ejecutar(new Object[]{cita.getCliente().getCedula()});
-            Object obj[] = bd.getObjet();
+            BD.ejecutar(new Object[]{cita.getCliente().getCedula()});
+            Object obj[] = BD.getObjet();
             if (obj != null) {
                 vista.setNombre((String) obj[0]);
                 verificarCitaActiva(vista);
@@ -53,8 +53,8 @@ public class ControladorCitas {
     }
 
     public void eliminar(int id) throws ErrorConexion {
-        bd = new BaseDatos("Delete From tblcitas Where Id=?");
-        bd.ejecutar(new Object[]{id});
+        BD = new BaseDatos("Delete From tblcitas Where Id=?");
+        BD.ejecutar(new Object[]{id});
     }
 
     public void modificar() throws ErrorConexion {
@@ -62,14 +62,14 @@ public class ControladorCitas {
     }
 
     public void cargarTabla(frmMostrarCitas vista) throws ErrorConexion {
-        bd = new BaseDatos("Select * from tblCitas where Fecha=?");
+        BD = new BaseDatos("Select * from tblCitas where Fecha=?");
         Fecha fecha = new Fecha();
-        bd.ejecutar(new Object[]{fecha.toStringActual()});
+        BD.ejecutar(new Object[]{fecha.toStringActual()});
         DefaultTableModel modelo = (DefaultTableModel) vista.getTblCitas().getModel();
         modelo.setNumRows(0);
         Object obj[];
         do {
-            obj = bd.getObjet();
+            obj = BD.getObjet();
             if (obj != null) {
                 cita = new clsCitas(obj);
                 modelo.addRow(cita.toObject());
@@ -78,10 +78,10 @@ public class ControladorCitas {
     }
 
     public clsCitas pasarDatos(frmMostrarCitas vista, int filaSeleccionanda) throws ErrorConexion {
-        bd = new BaseDatos("SELECT cita.Id, cita.Fecha, cita.Hora, cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac` "
+        BD = new BaseDatos("SELECT cita.Id, cita.Fecha, cita.Hora, cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac` "
                 + "FROM tblcitas AS cita INNER JOIN tblclientes AS cliente on cita.IdCliente = cliente.Cedula WHERE cita.Id = ?");
-        bd.ejecutar(new Object[]{vista.getTblCitas().getValueAt(filaSeleccionanda, 0).toString()});
-        Object obj[] = bd.getObjet();
+        BD.ejecutar(new Object[]{vista.getTblCitas().getValueAt(filaSeleccionanda, 0).toString()});
+        Object obj[] = BD.getObjet();
         cita = new clsCitas((Integer) obj[0], (String) obj[1], (String) obj[2], new clsClientes());
         cita.getCliente().setCedula((String) obj[3]);
         cita.getCliente().setNombre((String) obj[4]);
@@ -91,12 +91,12 @@ public class ControladorCitas {
     }
 
     public int verificarCantCitas(frmRegistrarCitas vista) throws ErrorConexion {
-        bd = new BaseDatos("SELECT * FROM tblcitas WHERE Fecha=? AND Hora=?");
-        bd.ejecutar(new Object[]{vista.getFecha(), vista.getHora()});
+        BD = new BaseDatos("SELECT * FROM tblcitas WHERE Fecha=? AND Hora=?");
+        BD.ejecutar(new Object[]{vista.getFecha(), vista.getHora()});
         Object[] obj;
         int cont = 0;
         do {
-            obj = bd.getObjet();
+            obj = BD.getObjet();
             if (obj != null) {
                 cont++;
             }
@@ -105,13 +105,13 @@ public class ControladorCitas {
     }
 
     public void verificarCitaActiva(frmRegistrarCitas vista) throws ErrorConexion {
-        bd = new BaseDatos("Select * From tblcitas Where IdCliente=?");
+        BD = new BaseDatos("Select * From tblcitas Where IdCliente=?");
         String[] hoy = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).split("/");
         int horaHoy = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        bd.ejecutar(new Object[]{vista.getCedula()});
+        BD.ejecutar(new Object[]{vista.getCedula()});
         Object obj[];
         do {
-            obj = bd.getObjet();
+            obj = BD.getObjet();
             if (obj != null) {
                 cita = new clsCitas(obj);
                 String[] fecha = cita.getFecha().split("/");
@@ -123,12 +123,12 @@ public class ControladorCitas {
             }
         } while (obj != null);
     }
-    
-    public int pasarInt(String hora){
+
+    public int pasarInt(String hora) {
         if (hora.substring(0, 2).contains(":")) {
-            return Integer.parseInt(hora.substring(0,1));
+            return Integer.parseInt(hora.substring(0, 1));
         }
-        return Integer.parseInt(hora.substring(0,2));
+        return Integer.parseInt(hora.substring(0, 2));
     }
 
 }

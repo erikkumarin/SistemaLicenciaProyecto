@@ -1,9 +1,10 @@
-package Archivos.XMl;
+package Archivos;
 
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
 import Personas.Clientes.clsClientes;
+import Personas.Clientes.frmMostrarClientes;
 import Personas.Usuarios.Oficiales.clsOficial;
 import Personas.frmBuscarPersona;
 import Pruebas.clsPruebas;
@@ -11,9 +12,9 @@ import javax.swing.JOptionPane;
 
 public class ControladorXML {
 
-    BaseDatos BD;
-    Información xml;
-    clsClientes cliente;
+    private BaseDatos BD;
+    private clsClientes cliente;
+    private Información xml;
 
     public ControladorXML() {
         cliente = new clsClientes();
@@ -41,6 +42,31 @@ public class ControladorXML {
             JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
         } else {
             JOptionPane.showMessageDialog(vista, "El Cliente se Exporto con Exito", "Exportar Cliente", 0);
+        }
+    }
+
+    public void exportar(frmMostrarClientes vista, int indice) throws ErrorConexion {
+        BD = new BaseDatos("SELECT cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac`, cliente.Telefono, cliente.Correo, "
+                + "prueba.Id, prueba.Fecha, prueba.Hora, prueba.Observaciones, prueba.Nota, oficial.Cedula, oficial.Nombre, "
+                + "oficial.Correo FROM tblclientes AS cliente INNER JOIN tblpruebas as prueba on prueba.IdCliente = cliente.Cedula "
+                + "INNER JOIN tbloficiales oficial on prueba.IdOficial = oficial.Cedula WHERE prueba.IdCliente = ?");
+        BD.ejecutar(new Object[]{vista.getTblClientes().getValueAt(indice, 0)});
+        Object obj[];
+        int cont = 0;
+        do {
+            obj = BD.getObjet();
+            if (obj != null) {
+                if (cont == 0) {
+                    cliente.setDatos((String) obj[0], (String) obj[1], (String) obj[2], (String) obj[3], (String) obj[4]);
+                    cont = 1;
+                }
+                cliente.agregarPrueba(new clsPruebas((int) obj[5], (String) obj[6], (String) obj[7], new clsOficial((String) obj[10], (String) obj[11], "01/01/2001", "88888888", (String) obj[12], 0.0), (String) obj[8], (int) obj[9]));
+            }
+        } while (obj != null);
+        if (ErrorMensaje.mostrarMensajes()) {
+            JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
+        } else {
+            JOptionPane.showMessageDialog(vista, "El Cliente se Exporto con Exito", "Exportar Cliente", 1);
         }
     }
 

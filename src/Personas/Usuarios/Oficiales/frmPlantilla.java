@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 
 public class frmPlantilla extends javax.swing.JInternalFrame {
 
+    private ControladorOficial controlOficial;
+    
     public frmPlantilla() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 2.55, 2.55);
@@ -167,7 +169,7 @@ public class frmPlantilla extends javax.swing.JInternalFrame {
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         try {
             ErrorMensaje.crear();
-            ControladorOficial controlOficial =  new ControladorOficial();
+            controlOficial =  new ControladorOficial();
             controlOficial.modificarSalario(this);
         } catch (ErrorConexion ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);

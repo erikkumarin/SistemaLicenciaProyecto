@@ -1,7 +1,6 @@
 package BaseDeDatos;
 
 import Archivos.Configuracion;
-import Errores.ErrorMensaje;
 import Utilidades.AjustarVentana;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -9,14 +8,14 @@ import javax.swing.JOptionPane;
 
 public class frmConfiguracion extends javax.swing.JInternalFrame {
 
-    Configuracion config;
-    ControladorBaseDatos controlador;
+    private Configuracion config;
+    private ControladorBaseDatos controlBD;
 
     public frmConfiguracion() throws IOException {
         initComponents();
         AjustarVentana.ajustarPorPantalla(this, 4, 2.5);
         config = new Configuracion();
-        controlador = new ControladorBaseDatos();
+        controlBD = new ControladorBaseDatos();
         editar(false);
         cargarDatos();
     }
@@ -42,12 +41,12 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
             btnEditar.setText("Probar Conexion");
         } else {
             if (verificarDatosBD()) {
-                if (controlador.probarConexion(this)) {
+                if (controlBD.probarConexion(this)) {
                     JOptionPane.showMessageDialog(this, "Conexion Exitosa", "Probar Conexion", 1);
                     btnEditar.setText("Editar");
                     this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(this, controlador.getMsjError(), "Probar Conexion", 0);
+                    JOptionPane.showMessageDialog(this, controlBD.getMsjError(), "Probar Conexion", 0);
                 }
             }
         }

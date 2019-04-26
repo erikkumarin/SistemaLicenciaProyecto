@@ -11,20 +11,19 @@ import javax.swing.JTable;
 
 public class frmMostrarCitas extends javax.swing.JInternalFrame {
 
-    private ControladorCitas citas;
-    int cont = 0;
+    private ControladorCitas controlCita;
 
     public frmMostrarCitas() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 3, 3.5);
         Utilidades.Orientar.ordenar(tblCitas);
-        citas = new ControladorCitas();
+        controlCita = new ControladorCitas();
         cargarTabla();
     }
 
     private void cargarTabla() {
         try {
-            citas.cargarTabla(this);
+            controlCita.cargarTabla(this);
         } catch (ErrorConexion ex) {
             Logger.getLogger(frmMostrarCitas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -91,7 +90,7 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
             try {
                 int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea aplicar esta Cita?", "Confirmación", 0, 2);
                 if (opc == 0) {
-                    clsCitas cita = citas.pasarDatos(this, i);
+                    clsCitas cita = controlCita.pasarDatos(this, i);
                     frmPruebas prueba = new frmPruebas();
                     prueba.setNombre(cita.getCliente().getNombre());
                     prueba.setCedula(cita.getCliente().getCedula());
@@ -101,6 +100,7 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
                     prueba.setCedulaOficial(frmIniciarSesion.getCedulaOficial());
                     prueba.setOficial(frmIniciarSesion.getNombreOficial());
                     frmPrincipal.agregar(prueba);
+                    this.dispose();
                 }
             } catch (ErrorConexion ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);

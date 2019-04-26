@@ -9,10 +9,10 @@ import java.sql.SQLException;
 
 public class ControladorBaseDatos {
 
-    Configuracion config;
-    BaseDatos BD;
+    private Configuracion config;
+    private BaseDatos BD;
 
-    String msjError = null;
+    private String msjError = null;
 
     public String getMsjError() {
         return msjError;

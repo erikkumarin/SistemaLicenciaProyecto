@@ -8,6 +8,7 @@ import Personas.Usuarios.*;
 import Personas.Usuarios.Oficiales.frmMostrarPlantilla;
 import Personas.frmBuscarPersona;
 import Pruebas.frmBuscarPrueba;
+import Utilidades.Sonido;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -19,15 +20,17 @@ import javax.swing.JOptionPane;
 
 public class frmPrincipal extends javax.swing.JFrame {
 
-    private ControladorBaseDatos controladorBD;
+    private ControladorBaseDatos controlBD;
 
     public frmPrincipal() {
         initComponents();
         this.setExtendedState(6);
-        controladorBD = new ControladorBaseDatos();
+        controlBD = new ControladorBaseDatos();
         conexion();
         deshabilitarTodo();
         this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/Menu.png")).getImage());
+        Sonido sonido = new Sonido();
+        sonido.start();
     }
 
     public static void agregar(JInternalFrame vista) {
@@ -39,7 +42,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         try {
             frmConfiguracion VC = new frmConfiguracion();
             agregar(VC);
-            if (BaseDatos.getConexion() != null && controladorBD.probarConexion(VC)) {
+            if (BaseDatos.getConexion() != null && controlBD.probarConexion(VC)) {
                 JOptionPane.showMessageDialog(VC, "Funcionando con normalidad", "Probar Conexion", 1);
                 VC.dispose();
             }
@@ -57,6 +60,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnConfig.setEnabled(false);
         btnBuscar.setEnabled(false);
         btnPlanilla.setEnabled(false);
+        btnBuscarPrueba.setEnabled(false);
     }
 
     public void habilitarOfical() {
@@ -66,6 +70,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnExportar.setEnabled(true);
         btnBuscar.setEnabled(true);
         btnPlanilla.setEnabled(true);
+        btnBuscarPrueba.setEnabled(true);
     }
 
     public void habilitarSecretario() {
@@ -76,6 +81,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnConfig.setEnabled(true);
         btnBuscar.setEnabled(true);
         btnPlanilla.setEnabled(true);
+        btnBuscarPrueba.setEnabled(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -281,12 +287,12 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void btnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicarActionPerformed
         frmIniciarSesion.setFrmPrincipal(this);
-        if (btnInicar.getText().equals("Iniciar Sesión")) {
-            agregar(new frmIniciarSesion());
-            btnInicar.setText("Cerrar Sesión");
-        } else {
+        if (btnInicar.getText().equals("Cerrar sesión")) {
             this.deshabilitarTodo();
-            btnInicar.setText("Iniciar Sesión");
+            btnInicar.setText("Iniciar sesión");
+        } else {
+            agregar(new frmIniciarSesion());
+            btnInicar.setText("Cerrar sesión");
         }
     }//GEN-LAST:event_btnInicarActionPerformed
 

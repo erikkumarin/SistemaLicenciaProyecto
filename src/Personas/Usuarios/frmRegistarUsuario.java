@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 
 public class frmRegistarUsuario extends javax.swing.JInternalFrame {
 
-    private ControladorUsuarios cu;
-    private ControladorOficial co;
+    private ControladorUsuarios controlUsuario;
+    private ControladorOficial controlOficial;
 
     public frmRegistarUsuario() {
         initComponents();
@@ -24,14 +24,14 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
     private void boton() {
         try {
             ErrorMensaje.crear();
-            cu = new ControladorUsuarios();
+            controlUsuario = new ControladorUsuarios();
             if (this.getTipo().equals("Oficial")) {
-                co = new ControladorOficial();
-                if (co.agregar(this)) {
+                controlOficial = new ControladorOficial();
+                if (controlOficial.agregar(this)) {
                     this.dispose();
                 }
             }
-            if (cu.agregar(this)) {
+            if (controlUsuario.agregar(this)) {
                 this.dispose();
             }
         } catch (ErrorConexion ex) {

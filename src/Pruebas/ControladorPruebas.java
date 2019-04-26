@@ -2,8 +2,8 @@ package Pruebas;
 
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
-import Personas.Clientes.clsClientes;
 import Personas.Usuarios.Oficiales.clsOficial;
+import Personas.frmBuscarPersona;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,10 +19,10 @@ public class ControladorPruebas {
         BD.ejecutar(prueba.toObject(vista.getCedula()));
         JOptionPane.showMessageDialog(vista, "Se Registro Exitosamente", "Aplicar Prueba", 1);
     }
-    
+
     public void cargarTabla(frmBuscarPrueba vista) throws ErrorConexion {
         BD = new BaseDatos("SELECT * from tblpruebas WHERE id LIKE ?");
-        BD.ejecutar(new Object[]{"%"+vista.getId()+"%"});
+        BD.ejecutar(new Object[]{"%" + vista.getId() + "%"});
         DefaultTableModel modelo = (DefaultTableModel) vista.getTblPruebas().getModel();
         modelo.setNumRows(0);
         Object obj[];
@@ -33,6 +33,15 @@ public class ControladorPruebas {
                 modelo.addRow(prueba.toObject((String) obj[6]));
             }
         } while (obj != null);
+    }
+
+    public boolean hayPrueba(frmBuscarPersona vista, int indice) throws ErrorConexion {
+        BD = new BaseDatos("SELECT * FROM tblpruebas WHERE IdCliente=?");
+        BD.ejecutar(new Object[]{vista.getPersonas().getValueAt(indice, 0).toString()});
+        if (BD.getObjet() != null) {
+            return true;
+        }
+        return false;
     }
 
 }
