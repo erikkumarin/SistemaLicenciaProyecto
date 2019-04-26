@@ -64,13 +64,18 @@
                   <Component id="lblUsuario" alignment="2" max="32767" attributes="0"/>
                   <Component id="txtUsuario" alignment="2" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblContra" alignment="3" max="32767" attributes="0"/>
-                  <Component id="txtContra" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="lblContra" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="txtContra" min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="lblCambiar" max="32767" attributes="0"/>
+              <Component id="lblCambiar" pref="19" max="32767" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="btnIniciar" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
