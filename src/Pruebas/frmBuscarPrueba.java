@@ -1,14 +1,28 @@
 package Pruebas;
 
+import Errores.ErrorConexion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 
 
 public class frmBuscarPrueba extends javax.swing.JInternalFrame {
 
+    private ControladorPruebas pruebas;
+    
     public frmBuscarPrueba() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 2, 3);
         Utilidades.Orientar.ordenar(tblPruebas);
+        pruebas = new ControladorPruebas();
+    }
+    
+    private void cargarTable(){
+        try {
+            pruebas.cargarTabla(this);
+        } catch (ErrorConexion ex) {
+            Logger.getLogger(frmBuscarPrueba.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -28,6 +42,11 @@ public class frmBuscarPrueba extends javax.swing.JInternalFrame {
         jLabel1.setText("Id");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         tblPruebas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,6 +99,10 @@ public class frmBuscarPrueba extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        this.cargarTable();
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
