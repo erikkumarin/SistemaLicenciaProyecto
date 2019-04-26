@@ -61,11 +61,11 @@ public class ControladorClientes {
         } while (obj != null);
     }
 
-    public clsClientes pasarClientes(frmMostrarClientes vista, int indice) throws ErrorConexion {
-        BD = new BaseDatos("SELECT * from tblClientes where Cedula=?");
+    public String pasarClientes(frmMostrarClientes vista, int indice) throws ErrorConexion {
+        BD = new BaseDatos("SELECT * from tblClientes WHERE Cedula = ?");
         BD.ejecutar(new Object[]{vista.getTblClientes().getValueAt(indice, 0).toString()});
         Object obj[] = BD.getObjet();
         cliente = new clsClientes(obj);
-        return cliente;
+        return cliente.getCedula();
     }
 }

@@ -27,7 +27,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         conexion();
         deshabilitarTodo();
         this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/Menu.png")).getImage());
-        
     }
     
     public static void agregar(JInternalFrame vista) {

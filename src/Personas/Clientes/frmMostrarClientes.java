@@ -1,5 +1,6 @@
 package Personas.Clientes;
 
+import Archivos.ControladorXml;
 import Errores.ErrorConexion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 public class frmMostrarClientes extends javax.swing.JInternalFrame {
 
     private ControladorClientes clientes;
+    private ControladorXml xml;
     private DefaultTableModel tbl;
 
     public frmMostrarClientes() {
@@ -85,11 +87,13 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
 
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
         int i = tblClientes.getSelectedRow();
+        xml = new ControladorXml();
         if (i != -1) {
             try {
                 int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este usuario?", "Confirmación", 0, 2);
                 if (opc == 0) {
-                  clientes.pasarClientes(this,i);
+                    String cedula = clientes.pasarClientes(this, i);
+                    xml.importarXml(cedula);
                 }
             } catch (ErrorConexion ex) {
             }
