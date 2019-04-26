@@ -20,7 +20,7 @@ public abstract class clsPersona {
         if (cedula.length() == 9) {
             this.cedula = cedula;
         } else {
-            ErrorMensaje.agregarMensaje("Error: Cedula no Valida");
+            ErrorMensaje.agregarMensaje("Error: Cedula es invalida");
         }
     }
 
@@ -29,7 +29,11 @@ public abstract class clsPersona {
     }
 
     public void setNombre(String nombre) {
+        if (!nombre.trim().equals("") && nombre.length()<101) {
         this.nombre = nombre.toUpperCase();
+        } else {
+            ErrorMensaje.agregarMensaje("Error: Nombre es invalido");
+        }
     }
 
     public String getTelefono() {
@@ -40,7 +44,7 @@ public abstract class clsPersona {
         if (telefono.length() == 8) {
             this.telefono = telefono;
         } else {
-            ErrorMensaje.agregarMensaje("Error: Telefono no Valido");
+            ErrorMensaje.agregarMensaje("Error: Telefono es invalido");
         }
     }
 
@@ -50,10 +54,10 @@ public abstract class clsPersona {
 
     public void setCorreo(String correo) {
         String correoPatron = "[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-z]+(\\.[a-z]{2,4})+";
-        if (Pattern.matches(correoPatron, correo)) {
+        if (Pattern.matches(correoPatron, correo) && correo.length()<201) {
             this.correo = correo;
         } else {
-            ErrorMensaje.agregarMensaje("Error: El Correo es Invalido");
+            ErrorMensaje.agregarMensaje("Error: El Correo es invalido");
         }
     }
 
