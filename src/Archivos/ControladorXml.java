@@ -15,12 +15,12 @@ public class ControladorXml {
     private clsPruebas prueba;
     private InformacionXml xml;
 
-    public void importarXml(frmPrincipal frm) throws ErrorConexion {
+    public void importarXml(String cedula) throws ErrorConexion {
         BD = new BaseDatos("SELECT cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac`, cliente.Telefono, cliente.Correo, "
                 + "prueba.Id, prueba.Fecha, prueba.Hora, prueba.Observaciones, prueba.Nota, oficial.Cedula, oficial.Nombre, "
                 + "oficial.Correo FROM tblclientes AS cliente INNER JOIN tblpruebas as prueba on prueba.IdCliente = cliente.Cedula "
-                + "INNER JOIN tbloficiales oficial on prueba.IdOficial = oficial.Cedula WHERE cliente.Cedula = ?");
-        BD.ejecutar();
+                + "INNER JOIN tbloficiales oficial on prueba.IdOficial = oficial.Cedula WHERE prueba.IdCliente = ?");
+        BD.ejecutar(new Object[]{cedula});
         Object[] obj = BD.getObjet();
         cliente = new clsClientes((String) obj[0], (String) obj[1], (String) obj[2], (String) obj[3], (String) obj[4]);
         prueba = new clsPruebas((int) obj[5], (String) obj[6], (String) obj[7], new clsOficial(), (String) obj[8], (int) obj[9]);
