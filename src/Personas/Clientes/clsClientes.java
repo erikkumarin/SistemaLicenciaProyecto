@@ -29,8 +29,8 @@ public class clsClientes extends clsPersona {
         pruebas = new ArrayList<clsPruebas>();
         pruebas.clear();
     }
-    
-    public void setDatos(String cedula, String nombre, String fechaNac, String telefono, String correo){
+
+    public void setDatos(String cedula, String nombre, String fechaNac, String telefono, String correo) {
         this.setCedula(cedula);
         this.setNombre(nombre);;
         this.setFechaNac(fechaNac);
@@ -75,7 +75,7 @@ public class clsClientes extends clsPersona {
         for (clsPruebas prueba : pruebas) {
             msjPruebas += "Pruebas:\n" + prueba.toString();
         }
-        msjPruebas += "\nIntentos: "+ pruebas.size();
+        msjPruebas += "\nIntentos: " + pruebas.size();
     }
 
     @Override

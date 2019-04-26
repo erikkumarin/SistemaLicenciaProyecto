@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 public class frmRegistrarCitas extends javax.swing.JInternalFrame {
 
-    private ControladorCitas ControladorCita;
+    private ControladorCitas controlCita;
 
     public frmRegistrarCitas() {
         initComponents();
@@ -187,8 +187,8 @@ public class frmRegistrarCitas extends javax.swing.JInternalFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
             ErrorMensaje.crear();
-            ControladorCita = new ControladorCitas();
-            ControladorCita.agregar(this);
+            controlCita = new ControladorCitas();
+            controlCita.agregar(this);
         } catch (ErrorConexion ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
         }
@@ -198,8 +198,8 @@ public class frmRegistrarCitas extends javax.swing.JInternalFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
                 ErrorMensaje.crear();
-                ControladorCita = new ControladorCitas();
-                if (!ControladorCita.existeCliente(this)) {
+                controlCita = new ControladorCitas();
+                if (!controlCita.existeCliente(this)) {
                     frmRegistrarCliente nuevoCliente = new frmRegistrarCliente();
                     frmPrincipal.Escritorio.add(nuevoCliente);
                     nuevoCliente.setTxtCedula(this.getCedula());

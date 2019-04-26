@@ -29,8 +29,8 @@ public abstract class clsPersona {
     }
 
     public void setNombre(String nombre) {
-        if (!nombre.trim().equals("") && nombre.length()<=100) {
-        this.nombre = nombre.toUpperCase();
+        if (!nombre.trim().equals("") && nombre.length() <= 100) {
+            this.nombre = nombre.toUpperCase();
         } else {
             ErrorMensaje.agregarMensaje("Error: Nombre es invalido");
         }
@@ -54,7 +54,7 @@ public abstract class clsPersona {
 
     public void setCorreo(String correo) {
         String correoPatron = "[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-z]+(\\.[a-z]{2,4})+";
-        if (Pattern.matches(correoPatron, correo) && correo.length()<=200) {
+        if (Pattern.matches(correoPatron, correo) && correo.length() <= 200) {
             this.correo = correo;
         } else {
             ErrorMensaje.agregarMensaje("Error: El Correo es invalido");
@@ -79,11 +79,11 @@ public abstract class clsPersona {
 
     public clsPersona() {
     }
-    
+
     public Object[] toObjects() {
         return new Object[]{this.getCedula(), this.getNombre(), this.getFechaNac(), this.getTelefono(), this.getCorreo()};
     }
-    
+
     public Object[] toObjects(String tipo) {
         return new Object[]{this.getCedula(), this.getNombre(), this.getFechaNac(), this.getTelefono(), this.getCorreo(), tipo};
     }

@@ -34,10 +34,10 @@
                   <Component id="lblOficial" alignment="1" max="32767" attributes="0"/>
                   <Component id="lblEdad" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblNombre" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblCedula" alignment="0" pref="72" max="32767" attributes="0"/>
+                  <Component id="lblCedula" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblFecha" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblHora" alignment="0" max="32767" attributes="0"/>
-                  <Component id="lblCedulaOficial" alignment="0" pref="72" max="32767" attributes="0"/>
+                  <Component id="lblCedulaOficial" alignment="0" pref="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -116,7 +116,7 @@
                       <Group type="103" groupAlignment="2" attributes="0">
                           <Group type="102" alignment="2" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="lblCedulaOficial" pref="16" max="32767" attributes="0"/>
+                              <Component id="lblCedulaOficial" max="32767" attributes="0"/>
                           </Group>
                           <Component id="txtCedulaOficial" alignment="2" max="32767" attributes="0"/>
                       </Group>
@@ -130,7 +130,7 @@
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="txtEstado" alignment="2" pref="22" max="32767" attributes="0"/>
+                          <Component id="txtEstado" alignment="2" max="32767" attributes="0"/>
                           <Component id="lblEstado" alignment="2" max="32767" attributes="0"/>
                           <Component id="txtNota" alignment="2" max="32767" attributes="0"/>
                           <Component id="lblNota" alignment="2" max="32767" attributes="0"/>

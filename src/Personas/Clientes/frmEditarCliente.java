@@ -8,9 +8,9 @@ import javax.swing.JOptionPane;
 
 public class frmEditarCliente extends javax.swing.JInternalFrame {
 
-    ControladorClientes controlCliente;
-    ControladorUsuarios controlUsuarios;
-    ControladorOficial controlOficial;
+    private ControladorClientes controlCliente;
+    private ControladorUsuarios controlUsuarios;
+    private ControladorOficial controlOficial;
 
     public frmEditarCliente() {
         initComponents();

@@ -1,4 +1,3 @@
-
 package Personas.Usuarios.Oficiales;
 
 import Errores.ErrorConexion;
@@ -11,8 +10,8 @@ import javax.swing.JTable;
 
 public class frmMostrarPlantilla extends javax.swing.JInternalFrame {
 
-    ControladorOficial controlOficial;
-    
+    private ControladorOficial controlOficial;
+
     public frmMostrarPlantilla() {
         try {
             initComponents();
@@ -94,7 +93,7 @@ public class frmMostrarPlantilla extends javax.swing.JInternalFrame {
         if (indice != -1) {
             try {
                 frmPlantilla planilla = new frmPlantilla();
-                clsOficial oficial =  controlOficial.pasarDatos(this, indice);
+                clsOficial oficial = controlOficial.pasarDatos(this, indice);
                 planilla.setCedula(oficial.getCedula());
                 planilla.setNombre(oficial.getNombre());
                 planilla.setSalarioBruto(oficial.getSalario());
@@ -124,5 +123,5 @@ public class frmMostrarPlantilla extends javax.swing.JInternalFrame {
     public void setTblPlanilla(JTable tblPlanilla) {
         this.tblPlanilla = tblPlanilla;
     }
-    
+
 }

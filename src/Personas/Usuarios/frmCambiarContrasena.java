@@ -1,6 +1,7 @@
 package Personas.Usuarios;
 
 import Errores.ErrorConexion;
+import Errores.ErrorMensaje;
 import Utilidades.AjustarVentana;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -18,17 +19,22 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
         this.band = band;
     }
 
-    private void boton(){
+    private void boton() {
         if (this.getNuevaContrasena().equals(this.getConfirmarContrasena())) {
             try {
+                ErrorMensaje.crear();
                 controlUsuario = new ControladorUsuarios();
-                controlUsuario.modificarContraseña(this, frmIS);
+                if (band) {
+                    controlUsuario.modificarContraseña(this, frmIS);
+                } else {
+                    controlUsuario.modificarContraseña(this);
+                }
             } catch (ErrorConexion ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
             }
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -116,9 +122,9 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtConfirmarContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmarContrasenaKeyPressed
-         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             this.boton();
-        } 
+        }
     }//GEN-LAST:event_txtConfirmarContrasenaKeyPressed
 
 

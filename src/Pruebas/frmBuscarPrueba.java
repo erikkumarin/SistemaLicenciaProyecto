@@ -6,26 +6,24 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 
-
 public class frmBuscarPrueba extends javax.swing.JInternalFrame {
 
     private ControladorPruebas pruebas;
-    
+
     public frmBuscarPrueba() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 2, 3);
         Utilidades.Orientar.ordenar(tblPruebas);
         pruebas = new ControladorPruebas();
     }
-    
-    private void cargarTable(){
+
+    private void cargarTable() {
         try {
             pruebas.cargarTabla(this);
         } catch (ErrorConexion ex) {
             Logger.getLogger(frmBuscarPrueba.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -120,7 +118,7 @@ public class frmBuscarPrueba extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyPressed
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             this.cargarTable();
         }
     }//GEN-LAST:event_txtIdKeyPressed
@@ -149,8 +147,5 @@ public class frmBuscarPrueba extends javax.swing.JInternalFrame {
     public void setTblPruebas(JTable tblPruebas) {
         this.tblPruebas = tblPruebas;
     }
-    
-    
-
 
 }

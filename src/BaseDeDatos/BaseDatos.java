@@ -21,6 +21,10 @@ public class BaseDatos {
     private static String usuario;
     private static String contrasena;
 
+    public PreparedStatement getSentencia() {
+        return sentencia;
+    }
+
     public static Connection getConexion() {
         return conexion;
     }

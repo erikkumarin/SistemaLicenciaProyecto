@@ -16,6 +16,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class Información {
+
     private Document doc;
     private Element raiz;
     private Element tagNivel1;
@@ -53,45 +54,45 @@ public class Información {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     private void generarRaiz(String raiz) {
         this.raiz = doc.createElement(raiz);
         doc.appendChild(this.raiz);
     }
-    
+
     public void crearNivel1(String tag, String key, String valor) {
         this.tagNivel1 = doc.createElement(tag);
         this.tagNivel1.setAttribute(key, valor);
         raiz.appendChild(this.tagNivel1);
     }
-    
+
     public void crearInfoNivel1(String llave, String valor) {
         this.infoNivel1 = doc.createElement(llave);
         this.infoNivel1.appendChild(doc.createTextNode(valor));
         tagNivel1.appendChild(infoNivel1);
     }
-    
+
     public void crearNivel2(String tag, String key, String valor) {
         this.tagNivel2 = doc.createElement(tag);
         this.tagNivel2.setAttribute(key, valor);
         tagNivel1.appendChild(this.tagNivel2);
     }
-    
+
     public void crearInfoNivel2(String llave, String valor) {
         this.infoNivel2 = doc.createElement(llave);
         this.infoNivel2.appendChild(doc.createTextNode(valor));
         tagNivel2.appendChild(infoNivel2);
     }
-    
+
     public void crearNivel3(String tag, String key, String valor) {
         this.tagNivel3 = doc.createElement(tag);
         this.tagNivel3.setAttribute(key, valor);
         tagNivel2.appendChild(this.tagNivel3);
     }
-    
+
     public void crearInfoNivel3(String llave, String valor) {
         this.infoNivel3 = doc.createElement(llave);
         this.infoNivel3.appendChild(doc.createTextNode(valor));
         tagNivel3.appendChild(infoNivel3);
-    }   
+    }
 }
