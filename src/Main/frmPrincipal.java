@@ -1,7 +1,9 @@
 package Main;
 
+import Archivos.ControladorXml;
 import BaseDeDatos.*;
 import Citas.*;
+import Errores.ErrorConexion;
 import Personas.Clientes.frmRegistrarCliente;
 import Personas.Usuarios.*;
 import java.awt.Graphics;
@@ -16,6 +18,7 @@ import javax.swing.JOptionPane;
 public class frmPrincipal extends javax.swing.JFrame {
 
     private ControladorBaseDatos controladorBD;
+    private ControladorXml cx;
 
     public frmPrincipal() {
         initComponents();
@@ -233,7 +236,12 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCitaActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        
+        try {
+            cx = new ControladorXml();
+            cx.importarXml(this);
+        } catch (ErrorConexion ex) {
+            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnExportarActionPerformed
 
     public static void main(String args[]) {
