@@ -182,11 +182,11 @@ public class Fecha {
             }
         }
         cbhora.removeAllItems();
-        if (hora < 17) {
+        if (hora < 23) {
             do {
                 cbhora.addItem(hora + ":00");
                 hora++;
-            } while (hora != 17);
+            } while (hora != 23);
             return true;
         } else {
             cbhora.addItem("Hora limite alcanza");

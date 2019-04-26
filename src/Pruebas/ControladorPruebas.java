@@ -18,7 +18,6 @@ public class ControladorPruebas {
         prueba.getOficial().setCedula(vista.getCedulaOficial());
         BD.ejecutar(prueba.toObject(vista.getCedula()));
         JOptionPane.showMessageDialog(vista, "Se Registro Exitosamente", "Aplicar Prueba", 1);
-        vista.dispose();
     }
 
     public void eliminar() throws ErrorConexion {

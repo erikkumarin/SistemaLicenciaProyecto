@@ -2,6 +2,7 @@ package Main;
 
 import BaseDeDatos.*;
 import Citas.*;
+import Personas.Clientes.frmMostrarClientes;
 import Personas.Clientes.frmRegistrarCliente;
 import Personas.Usuarios.*;
 import java.awt.Graphics;
@@ -14,24 +15,24 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 public class frmPrincipal extends javax.swing.JFrame {
-
+    
     private ControladorBaseDatos controladorBD;
-
+    
     public frmPrincipal() {
         initComponents();
         this.setExtendedState(6);
         controladorBD = new ControladorBaseDatos();
         conexion();
         deshabilitarTodo();
-        this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/IconoMenu.png")).getImage());
-
+        this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/Menu.png")).getImage());
+        
     }
-
+    
     public static void agregar(JInternalFrame vista) {
         Escritorio.add(vista);
         vista.setVisible(true);
     }
-
+    
     private void conexion() {
         try {
             frmConfiguracion VC = new frmConfiguracion();
@@ -44,7 +45,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void deshabilitarTodo() {
         btnCrear.setEnabled(false);
         btnCita.setEnabled(false);
@@ -53,14 +54,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnExportar.setEnabled(false);
         btnConfig.setEnabled(false);
     }
-
+    
     public void habilitarOfical() {
         btnLista.setEnabled(true);
         btnCrear.setEnabled(true);
         btnConfig.setEnabled(true);
         btnExportar.setEnabled(true);
     }
-
+    
     public void habilitarSecretario() {
         btnCrear.setEnabled(true);
         btnCita.setEnabled(true);
@@ -68,7 +69,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnExportar.setEnabled(true);
         btnConfig.setEnabled(true);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -111,6 +112,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         menuSesion.setText("Sesión");
 
+        btnInicar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Usuario.png"))); // NOI18N
         btnInicar.setText("Iniciar sesión");
         btnInicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +125,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         menuRegistro.setText("Registro");
 
+        btnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/AñadirCliente.png"))); // NOI18N
         btnCliente.setText("Registrar cliente");
         btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +134,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         });
         menuRegistro.add(btnCliente);
 
+        btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/AñadirUsuario.png"))); // NOI18N
         btnCrear.setText("Registrar Usuario");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +147,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         menuManejo.setText("Prueba de manejo");
 
+        btnCita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/AñadirCita.png"))); // NOI18N
         btnCita.setText("Registrar cita ");
         btnCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,13 +168,20 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         menuHerramientas.setText("Herramientas");
 
+        btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Exportar.png"))); // NOI18N
         btnExportar.setText("Exportar datos");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarActionPerformed(evt);
+            }
+        });
         menuHerramientas.add(btnExportar);
 
         BarraMenu.add(menuHerramientas);
 
         menuConfiguracion.setText("Configuración");
 
+        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Conexion.png"))); // NOI18N
         btnConfig.setText("Configuración");
         btnConfig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +239,10 @@ public class frmPrincipal extends javax.swing.JFrame {
         agregar(new frmRegistrarCitas());
     }//GEN-LAST:event_btnCitaActionPerformed
 
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        agregar(new frmMostrarClientes());
+    }//GEN-LAST:event_btnExportarActionPerformed
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
