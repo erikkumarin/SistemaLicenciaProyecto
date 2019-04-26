@@ -208,7 +208,7 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
         menu.add(btnEditar);
         menu.add(btnEliminar);
         int indice = tblPersonas.getSelectedRow();
-        if (tblPersonas.getValueAt(indice, 5).toString().equals("Cliente")) {
+        if (tblPersonas.getValueAt(indice, 5).toString().equals("Cliente") ) {
             menu.add(btnExportar);
         }
         tblPersonas.setComponentPopupMenu(menu);

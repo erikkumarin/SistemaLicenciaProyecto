@@ -17,5 +17,4 @@ public class ControladorPruebas {
         BD.ejecutar(prueba.toObject(vista.getCedula()));
         JOptionPane.showMessageDialog(vista, "Se Registro Exitosamente", "Aplicar Prueba", 1);
     }
-
 }

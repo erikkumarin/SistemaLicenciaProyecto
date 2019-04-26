@@ -40,7 +40,7 @@ public class ControladorXML {
         if (ErrorMensaje.mostrarMensajes()) {
             JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
         } else {
-            JOptionPane.showMessageDialog(vista, "El Cliente se Exporto con Exito", "Exportar Cliente", 0);
+            JOptionPane.showMessageDialog(vista, "El Cliente se Exporto con Exito", "Exportar Cliente", 1);
         }
     }
 
