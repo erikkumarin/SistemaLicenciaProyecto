@@ -240,17 +240,6 @@ public class frmPrincipal extends javax.swing.JFrame {
         conexion();
     }//GEN-LAST:event_btnConfigActionPerformed
 
-    private void btnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicarActionPerformed
-        frmIniciarSesion.setFrmPrincipal(this);
-        if (btnInicar.getText().equals("Iniciar Sesión")) {
-            agregar(new frmIniciarSesion());
-            btnInicar.setText("Cerrar Sesión");
-        } else {
-            this.deshabilitarTodo();
-            btnInicar.setText("Iniciar Sesión");
-        }
-    }//GEN-LAST:event_btnInicarActionPerformed
-
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         agregar(new frmRegistarUsuario());
     }//GEN-LAST:event_btnCrearActionPerformed
@@ -278,6 +267,17 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void btnPlanillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanillaActionPerformed
         agregar(new frmBuscarPlantilla());
     }//GEN-LAST:event_btnPlanillaActionPerformed
+
+    private void btnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicarActionPerformed
+        frmIniciarSesion.setFrmPrincipal(this);
+        if (btnInicar.getText().equals("Iniciar Sesión")) {
+            agregar(new frmIniciarSesion());
+            btnInicar.setText("Cerrar Sesión");
+        } else {
+            this.deshabilitarTodo();
+            btnInicar.setText("Iniciar Sesión");
+        }
+    }//GEN-LAST:event_btnInicarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

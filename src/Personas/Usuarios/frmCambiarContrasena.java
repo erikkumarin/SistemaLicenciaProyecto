@@ -2,6 +2,7 @@ package Personas.Usuarios;
 
 import Errores.ErrorConexion;
 import Utilidades.AjustarVentana;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 public class frmCambiarContrasena extends javax.swing.JInternalFrame {
@@ -14,6 +15,17 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
         AjustarVentana.ajustar(this, 3.5, 4);
     }
 
+    private void boton(){
+        if (this.getNuevaContrasena().equals(this.getConfirmarContrasena())) {
+            try {
+                controlUsuario = new ControladorUsuarios();
+                controlUsuario.modificarContraseña(this, frmIS);
+            } catch (ErrorConexion ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+            }
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -21,10 +33,10 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
         lblContra1 = new javax.swing.JLabel();
         lblContra2 = new javax.swing.JLabel();
         lblContra3 = new javax.swing.JLabel();
-        txtContrasena = new javax.swing.JTextField();
-        txtNuevaContrasena = new javax.swing.JTextField();
-        txtConfirmarContrasena = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
+        txtContrasena = new javax.swing.JPasswordField();
+        txtNuevaContrasena = new javax.swing.JPasswordField();
+        txtConfirmarContrasena = new javax.swing.JPasswordField();
 
         setClosable(true);
         setTitle("Cambiar contraseña");
@@ -43,6 +55,12 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
             }
         });
 
+        txtConfirmarContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtConfirmarContrasenaKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -53,38 +71,34 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
                     .addComponent(lblContra3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblContra2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblContra1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(159, 159, 159))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtConfirmarContrasena)
-                            .addComponent(txtNuevaContrasena)
-                            .addComponent(txtContrasena))
-                        .addGap(11, 11, 11))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtContrasena)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtConfirmarContrasena, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNuevaContrasena))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lblContra1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblContra1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtContrasena))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lblContra2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(txtNuevaContrasena))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNuevaContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(lblContra2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lblContra3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblContra3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtConfirmarContrasena))
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -95,15 +109,14 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (this.getNuevaContrasena().equals(this.getConfirmarContrasena())) {
-            try {
-                controlUsuario = new ControladorUsuarios();
-                controlUsuario.modificarContraseña(this, frmIS);
-            } catch (ErrorConexion ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
-            }
-        }
+        this.boton();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtConfirmarContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmarContrasenaKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             this.boton();
+        } 
+    }//GEN-LAST:event_txtConfirmarContrasenaKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -111,9 +124,9 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblContra1;
     private javax.swing.JLabel lblContra2;
     private javax.swing.JLabel lblContra3;
-    private javax.swing.JTextField txtConfirmarContrasena;
-    private javax.swing.JTextField txtContrasena;
-    private javax.swing.JTextField txtNuevaContrasena;
+    private javax.swing.JPasswordField txtConfirmarContrasena;
+    private javax.swing.JPasswordField txtContrasena;
+    private javax.swing.JPasswordField txtNuevaContrasena;
     // End of variables declaration//GEN-END:variables
 
     public static void setIniciarSecion(frmIniciarSesion frm) {

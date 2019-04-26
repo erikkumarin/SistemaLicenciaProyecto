@@ -3,6 +3,7 @@ package Pruebas;
 import Citas.ControladorCitas;
 import Errores.ErrorConexion;
 import Utilidades.AjustarVentana;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,6 +15,20 @@ public class frmPruebas extends javax.swing.JInternalFrame {
     public frmPruebas() {
         initComponents();
         AjustarVentana.ajustarPorPantalla(this, 2.5, 2);
+    }
+
+    private void boton() {
+        try {
+            if (!txtNota.getText().trim().equals("")) {
+                controlPrueba = new ControladorPruebas();
+                controlPrueba.agregar(this);
+                ControladorCitas citas = new ControladorCitas();
+                citas.eliminar(getIdPrueba());
+                this.dispose();
+            }
+        } catch (ErrorConexion ex) {
+            Logger.getLogger(frmPruebas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -86,6 +101,9 @@ public class frmPruebas extends javax.swing.JInternalFrame {
         lblNota.setText("Nota");
 
         txtNota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNotaKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNotaKeyReleased(evt);
             }
@@ -252,16 +270,14 @@ public class frmPruebas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbAsistenciaActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        try {
-            controlPrueba = new ControladorPruebas();
-            controlPrueba.agregar(this);
-            ControladorCitas citas = new ControladorCitas();
-            citas.eliminar(getIdPrueba());
-            this.dispose();
-        } catch (ErrorConexion ex) {
-            Logger.getLogger(frmPruebas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.boton();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtNotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNotaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.boton();
+        }
+    }//GEN-LAST:event_txtNotaKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

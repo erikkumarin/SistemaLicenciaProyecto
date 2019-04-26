@@ -1,8 +1,11 @@
 package Personas.Clientes;
 
 import BaseDeDatos.BaseDatos;
+import Citas.clsCitas;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
+import Utilidades.Fecha;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
