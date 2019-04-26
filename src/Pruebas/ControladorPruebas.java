@@ -14,10 +14,9 @@ public class ControladorPruebas {
 
     public void agregar(frmPruebas vista) throws ErrorConexion {
         BD = new BaseDatos("INSERT INTO tblpruebas VALUES(null,?,?,?,?,?,?)");
-        prueba = new clsPruebas(0, vista.getFecha(), vista.getHora(), new clsOficial(), vista.getObservacion(), Integer.parseInt(vista.getNota()), new clsClientes());
+        prueba = new clsPruebas(0, vista.getFecha(), vista.getHora(), new clsOficial(), vista.getObservacion(), Integer.parseInt(vista.getNota()));
         prueba.getOficial().setCedula(vista.getCedulaOficial());
-        prueba.getCliente().setCedula(vista.getCedula());
-        BD.ejecutar(prueba.toObject());
+        BD.ejecutar(prueba.toObject(vista.getCedula()));
         JOptionPane.showMessageDialog(vista, "Se Registro Exitosamente", "Aplicar Prueba", 1);
     }
     
@@ -31,7 +30,7 @@ public class ControladorPruebas {
             obj = BD.getObjet();
             if (obj != null) {
                 prueba = new clsPruebas(obj);
-                modelo.addRow(prueba.toObject());
+                modelo.addRow(prueba.toObject((String) obj[6]));
             }
         } while (obj != null);
     }

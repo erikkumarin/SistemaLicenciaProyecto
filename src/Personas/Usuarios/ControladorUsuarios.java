@@ -24,17 +24,16 @@ public class ControladorUsuarios {
         if (vista.getTipo().equals("Oficial")) {
             usuario = new clsOficial(vista.getCedula(), vista.getNombre(), vista.getFecha(), vista.getTelefono(), vista.getCorreo(),
                     vista.getUsuario(), vista.getContrasena(), vista.getTipo());
-            vista.dispose();
         } else {
             usuario = new clsSecretaria(vista.getCedula(), vista.getNombre(), vista.getFecha(), vista.getTelefono(), vista.getCorreo(),
                     vista.getUsuario(), vista.getContrasena(), vista.getTipo());
-            vista.dispose();
         }
         if (ErrorMensaje.mostrarMensajes()) {
             JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
         } else {
             BD.ejecutar(new Object[]{usuario.getCedula(), usuario.getNombre(), usuario.getFechaNac(), usuario.getTelefono(), usuario.getCorreo(),
                 usuario.getNomUsuario(), usuario.getContra(), usuario.getTipoUsuario()});
+            vista.dispose();
         }
     }
 

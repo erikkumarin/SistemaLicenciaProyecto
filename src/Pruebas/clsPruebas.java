@@ -12,7 +12,6 @@ public class clsPruebas {
     private String hora;
     private String observaciones;
     private clsOficial oficial;
-    private clsClientes cliente;
     
     public int getIdPrueba() {
         return id;
@@ -63,25 +62,14 @@ public class clsPruebas {
             this.nota = nota;
         }
     }
-
-    public clsClientes getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(clsClientes cliente) {
-        this.cliente = cliente;
-    }
     
-    
-    
-    public clsPruebas(int idPrueba, String fecha, String hora, clsOficial oficial, String observaciones, int nota, clsClientes cliente) {
+    public clsPruebas(int idPrueba, String fecha, String hora, clsOficial oficial, String observaciones, int nota) {
         this.setIdPrueba(idPrueba);
         this.setFecha(fecha);
         this.setHora(hora);
         this.setOficial(oficial);
         this.setObservaciones(observaciones);
         this.setNota(nota);
-        this.setCliente(cliente);
     }
     
 
@@ -93,8 +81,6 @@ public class clsPruebas {
         this.getOficial().setCedula((String) obj[3]);
         this.setObservaciones((String) obj[4]);
         this.setNota((int) obj[5]);
-        this.setCliente(new clsClientes());
-        this.getCliente().setCedula((String)obj[6]);
     }
     
     public clsPruebas() {
@@ -107,8 +93,11 @@ public class clsPruebas {
         return "Reprobado";
     }
     
-    public Object[] toObject() {
-        return new Object[]{this.getIdPrueba(),this.getFecha(), this.getHora(), this.getOficial().getCedula(), this.getObservaciones(), this.getNota(), this.getCliente().getCedula()};
+    public Object[] toObject(String idCliente) {
+        if (this.getIdPrueba() == 0) {
+            return new Object[]{this.getFecha(), this.getHora(), this.getOficial().getCedula(), this.getObservaciones(), this.getNota(), idCliente};
+        }
+        return new Object[]{this.getIdPrueba(),this.getFecha(), this.getHora(), this.getOficial().getCedula(), this.getObservaciones(), this.getNota(), idCliente};
     }
     
 }
