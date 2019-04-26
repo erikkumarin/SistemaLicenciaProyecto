@@ -57,6 +57,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnConfig.setEnabled(false);
         btnBuscar.setEnabled(false);
         btnPlanilla.setEnabled(false);
+        btnBuscarPrueba.setEnabled(false);
     }
 
     public void habilitarOfical() {
@@ -66,6 +67,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnExportar.setEnabled(true);
         btnBuscar.setEnabled(true);
         btnPlanilla.setEnabled(true);
+         btnBuscarPrueba.setEnabled(false);
     }
 
     public void habilitarSecretario() {
@@ -76,6 +78,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnConfig.setEnabled(true);
         btnBuscar.setEnabled(true);
         btnPlanilla.setEnabled(true);
+         btnBuscarPrueba.setEnabled(true);
     }
 
     @SuppressWarnings("unchecked")

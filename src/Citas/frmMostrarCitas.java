@@ -101,12 +101,12 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
                     prueba.setCedulaOficial(frmIniciarSesion.getCedulaOficial());
                     prueba.setOficial(frmIniciarSesion.getNombreOficial());
                     frmPrincipal.agregar(prueba);
+                    this.dispose();
                 }
             } catch (ErrorConexion ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
             }
         }
-        this.cargarTabla();
     }//GEN-LAST:event_tblCitasMouseClicked
 
 
