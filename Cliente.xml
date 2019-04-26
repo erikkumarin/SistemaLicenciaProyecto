@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Clientes>
-    <Cliente Cedula="154548454">
-        <Nombre>ERICK</Nombre>
-        <Fecha_Nacimiento>01/01/1901</Fecha_Nacimiento>
-        <Telefono>84598786</Telefono>
-        <Correo>prueba@utn.com</Correo>
-        <Prueba ID="1">
+    <Cliente Cedula="116270881">
+        <Nombre>ERICK MARIN SERRANO</Nombre>
+        <Fecha_Nacimiento>25/10/1995</Fecha_Nacimiento>
+        <Telefono>89768876</Telefono>
+        <Correo>erickmarin_16-2011@hotmail.com</Correo>
+        <Prueba ID="2">
             <Fecha>25/04/2019</Fecha>
-            <Hora>11:00</Hora>
-            <Observaciones>HOLA MUNDO</Observaciones>
-            <Nota>1</Nota>
+            <Hora>15:00</Hora>
+            <Observaciones>Muy Bien</Observaciones>
+            <Nota>2</Nota>
             <Estado>Aprobado</Estado>
             <Oficial Cedula="154857525">
                 <Nombre>MARCO</Nombre>
                 <Correo>ert@gmail.com</Correo>
             </Oficial>
         </Prueba>
-        <Num_Intentos>1</Num_Intentos>
+        <Prueba ID="3">
+            <Fecha>25/04/2019</Fecha>
+            <Hora>16:00</Hora>
+            <Observaciones>Excelente</Observaciones>
+            <Nota>3</Nota>
+            <Estado>Aprobado</Estado>
+            <Oficial Cedula="154857525">
+                <Nombre>MARCO</Nombre>
+                <Correo>ert@gmail.com</Correo>
+            </Oficial>
+        </Prueba>
+        <Prueba ID="4">
+            <Fecha>25/04/2019</Fecha>
+            <Hora>17:00</Hora>
+            <Observaciones>Pesimo</Observaciones>
+            <Nota>4</Nota>
+            <Estado>Reprobado</Estado>
+            <Oficial Cedula="154857525">
+                <Nombre>MARCO</Nombre>
+                <Correo>ert@gmail.com</Correo>
+            </Oficial>
+        </Prueba>
+        <Num_Intentos>3</Num_Intentos>
     </Cliente>
 </Clientes>

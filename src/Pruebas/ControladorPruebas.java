@@ -2,8 +2,8 @@ package Pruebas;
 
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
-import Personas.Clientes.clsClientes;
 import Personas.Usuarios.Oficiales.clsOficial;
+import Personas.frmBuscarPersona;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,6 +33,15 @@ public class ControladorPruebas {
                 modelo.addRow(prueba.toObject((String) obj[6]));
             }
         } while (obj != null);
+    }
+    
+    public boolean hayPrueba(frmBuscarPersona vista, int indice) throws ErrorConexion{
+        BD = new BaseDatos("SELECT * FROM tblpruebas WHERE IdCliente=?");
+        BD.ejecutar(new Object[]{vista.getPersonas().getValueAt(indice, 0).toString()});
+        if (BD.getObjet() != null) {
+            return true;
+        }
+        return false;
     }
 
 }
