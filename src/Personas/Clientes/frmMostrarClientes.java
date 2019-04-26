@@ -20,7 +20,7 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
         tbl = (DefaultTableModel) tblClientes.getModel();
         clientes = new ControladorClientes();
         try {
-            clientes.cargarUsuarios(this);
+            clientes.cargarClientes(this);
         } catch (ErrorConexion ex) {
             Logger.getLogger(frmMostrarClientes.class.getName()).log(Level.SEVERE, null, ex);
         }

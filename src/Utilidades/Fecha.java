@@ -65,6 +65,7 @@ public class Fecha {
     }
 
     public static void agregarMesesUC(JComboBox cbanio, JComboBox cbmes) {
+        Object mesSelec = cbmes.getSelectedItem();
         int mes = 11;
         if (calendario.get(Calendar.YEAR) - 18 == (Integer.parseInt(cbanio.getItemAt(cbanio.getSelectedIndex()).toString()))) {
             mes = calendario.get(Calendar.MONTH);
@@ -73,6 +74,7 @@ public class Fecha {
         for (int i = 0; i <= mes; i++) {
             cbmes.addItem(meses[i]);
         }
+        cbmes.setSelectedItem(mesSelec);
     }
 
     public static void agregarDiasUC(JComboBox cbanio, JComboBox cbmes, JComboBox cbdia) {
@@ -97,6 +99,7 @@ public class Fecha {
     }
 
     public static void definirDiasUC(JComboBox cbanio, JComboBox cbmes, JComboBox cbdia, int dias) {
+        Object diaSelec = cbdia.getSelectedItem();
         int dia = 1;
         if (meses[calendario.get(Calendar.MONTH)].equals(cbmes.getItemAt(cbmes.getSelectedIndex()))) {
             if (calendario.get(Calendar.YEAR) - 18 == (Integer.parseInt(cbanio.getSelectedItem().toString()))) {
@@ -107,6 +110,7 @@ public class Fecha {
         for (int i = dia; i <= dias; i++) {
             cbdia.addItem(String.valueOf(i));
         }
+        cbdia.setSelectedItem(diaSelec);
     }
 
     public static void agregarAniosCP(JComboBox cbanio) {
@@ -115,6 +119,7 @@ public class Fecha {
     }
 
     public static void agregarMesesCP(JComboBox cbanio, JComboBox cbmes) {
+        Object mesSelec = cbmes.getSelectedItem();
         int mes = 0, cantidad = 12;
         if (calendario.get(Calendar.YEAR) == (Integer.parseInt(cbanio.getItemAt(cbanio.getSelectedIndex()).toString()))) {
             mes = calendario.get(Calendar.MONTH);
@@ -129,6 +134,7 @@ public class Fecha {
                 ++mesesAgregados;
             }
         }
+        cbmes.setSelectedItem(mesSelec);
         if (mesesAgregados != 3) {
             cbanio.addItem(Integer.toString(calendario.get(Calendar.YEAR) + 1));
             cbanio.setEnabled(true);
@@ -158,6 +164,7 @@ public class Fecha {
     }
 
     private static void definirDiasCP(JComboBox cbanio, JComboBox cbmes, JComboBox cbdia, int dias) {
+        Object diaSelec = cbdia.getSelectedItem();
         int dia = 1;
         if (meses[calendario.get(Calendar.MONTH)].equals(cbmes.getItemAt(cbmes.getSelectedIndex()))) {
             if (calendario.get(Calendar.YEAR) == (Integer.parseInt(cbanio.getItemAt(cbanio.getSelectedIndex()).toString()))) {
@@ -168,6 +175,7 @@ public class Fecha {
         for (int i = dia; i <= dias; i++) {
             cbdia.addItem(String.valueOf(i));
         }
+        cbdia.setSelectedItem(diaSelec);
     }
 
     public static boolean agregarHora(JComboBox cbdia, JComboBox cbhora) {

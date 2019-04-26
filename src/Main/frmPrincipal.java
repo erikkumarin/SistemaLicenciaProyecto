@@ -144,7 +144,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         menuRegistro.add(btnCliente);
 
         btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/AñadirUsuario.png"))); // NOI18N
-        btnCrear.setText("Registrar Usuario");
+        btnCrear.setText("Registrar usuario");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCrearActionPerformed(evt);

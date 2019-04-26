@@ -210,7 +210,7 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
-        Fecha.agregarAniosUC(cbAnio);
+        Fecha.agregarDiasUC(cbAnio, cbMes, cbDia);
     }//GEN-LAST:event_cbMesActionPerformed
 
     private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
