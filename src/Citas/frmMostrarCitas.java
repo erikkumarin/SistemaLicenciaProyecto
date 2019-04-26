@@ -46,7 +46,6 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
         tblCitas = new javax.swing.JTable();
 
         setClosable(true);
-        setResizable(true);
         setTitle("Lista de citas");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Cita.png"))); // NOI18N
 

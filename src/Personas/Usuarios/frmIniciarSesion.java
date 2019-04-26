@@ -4,6 +4,7 @@ import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
 import Main.frmPrincipal;
 import Utilidades.AjustarVentana;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 public class frmIniciarSesion extends javax.swing.JInternalFrame {
@@ -18,6 +19,16 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
         AjustarVentana.ajustar(this, 4.5, 4.5);
     }
 
+    private void boton(){
+         try {
+            ErrorMensaje.crear();
+            controlUsuario = new ControladorUsuarios();
+            controlUsuario.iniciarSesion(this, frmPrincipal);
+        } catch (ErrorConexion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -48,6 +59,12 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarActionPerformed(evt);
+            }
+        });
+
+        txtContra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContraKeyPressed(evt);
             }
         });
 
@@ -105,14 +122,14 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_lblCambiarMouseClicked
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        try {
-            ErrorMensaje.crear();
-            controlUsuario = new ControladorUsuarios();
-            controlUsuario.iniciarSesion(this, frmPrincipal);
-        } catch (ErrorConexion ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
-        }
+        this.boton();
     }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void txtContraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             this.boton();
+        }
+    }//GEN-LAST:event_txtContraKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
