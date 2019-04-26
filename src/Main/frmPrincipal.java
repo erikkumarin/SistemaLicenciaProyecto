@@ -2,7 +2,6 @@ package Main;
 
 import BaseDeDatos.*;
 import Citas.*;
-import Personas.Clientes.frmMostrarClientes;
 import Personas.Clientes.frmRegistrarCliente;
 import Personas.Usuarios.*;
 import Personas.Usuarios.Oficiales.frmBuscarPlantilla;

@@ -49,9 +49,6 @@ public class clsClientes extends clsPersona {
         this.pruebas.add(prueba);
     }
 
-    public Object[] toObjets() {
-        return new Object[]{this.getCedula(), this.getNombre(), this.getFechaNac(), this.getTelefono(), this.getCorreo()};
-    }
     /**
      * retorna los datos del cliente y especificamente el edad del cliente
      * @return 
