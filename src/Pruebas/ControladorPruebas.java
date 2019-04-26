@@ -34,8 +34,8 @@ public class ControladorPruebas {
             }
         } while (obj != null);
     }
-
-    public boolean hayPrueba(frmBuscarPersona vista, int indice) throws ErrorConexion {
+    
+    public boolean hayPrueba(frmBuscarPersona vista, int indice) throws ErrorConexion{
         BD = new BaseDatos("SELECT * FROM tblpruebas WHERE IdCliente=?");
         BD.ejecutar(new Object[]{vista.getPersonas().getValueAt(indice, 0).toString()});
         if (BD.getObjet() != null) {

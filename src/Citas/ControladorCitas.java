@@ -57,10 +57,6 @@ public class ControladorCitas {
         BD.ejecutar(new Object[]{id});
     }
 
-    public void modificar() throws ErrorConexion {
-
-    }
-
     public void cargarTabla(frmMostrarCitas vista) throws ErrorConexion {
         BD = new BaseDatos("Select * from tblCitas where Fecha=?");
         Fecha fecha = new Fecha();
