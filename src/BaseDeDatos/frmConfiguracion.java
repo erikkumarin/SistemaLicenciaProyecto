@@ -67,7 +67,6 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
         MEC = new javax.swing.JLabel();
         MEBD = new javax.swing.JLabel();
 
-        setClosable(true);
         setTitle("Configuración de base de datos");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Conexion.png"))); // NOI18N
 
