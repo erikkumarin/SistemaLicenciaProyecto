@@ -3,8 +3,6 @@ package Personas.Clientes;
 import Archivos.ControladorXML;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
