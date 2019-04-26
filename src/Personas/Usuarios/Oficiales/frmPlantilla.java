@@ -211,5 +211,4 @@ public class frmPlantilla extends javax.swing.JInternalFrame {
         this.txtSalarioNeto.setText(String.valueOf(valor));
     }
 
-
 }

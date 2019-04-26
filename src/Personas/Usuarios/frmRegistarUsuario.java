@@ -20,8 +20,8 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         Fecha.agregarMesesUC(cbAnio, cbMes);
         Fecha.agregarDiasUC(cbAnio, cbMes, cbDia);
     }
-    
-    private void boton(){
+
+    private void boton() {
         try {
             ErrorMensaje.crear();
             cu = new ControladorUsuarios();
@@ -308,11 +308,11 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         char caracter = evt.getKeyChar();
         if (txtCedula.getText().length() == 9 || !Character.isDigit(caracter)) {
             anular(evt);
-           if (Character.isLetter(caracter)) {
-                 this.lblMECedula.setEnabled(true);
-            }else{
-             this.lblMECedula.setEnabled(false);
-           }
+            if (Character.isLetter(caracter)) {
+                this.lblMECedula.setEnabled(true);
+            } else {
+                this.lblMECedula.setEnabled(false);
+            }
         } else {
             this.lblMECedula.setEnabled(false);
         }
@@ -323,10 +323,10 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         if (txtTelefono.getText().length() == 8 || !Character.isDigit(caracter)) {
             anular(evt);
             if (Character.isLetter(caracter)) {
-                 this.lblMETelefono.setEnabled(true);
-            }else{
-             this.lblMETelefono.setEnabled(false);
-        }
+                this.lblMETelefono.setEnabled(true);
+            } else {
+                this.lblMETelefono.setEnabled(false);
+            }
         } else {
             this.lblMETelefono.setEnabled(false);
         }
@@ -350,7 +350,7 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtSalarioKeyTyped
 
     private void txtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER  && cbUsuario.getSelectedItem().toString().equals("Secretaria")) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && cbUsuario.getSelectedItem().toString().equals("Secretaria")) {
             this.boton();
         }
     }//GEN-LAST:event_txtContrasenaKeyPressed
@@ -358,16 +358,16 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
     private void txtSalarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
-            ErrorMensaje.crear();
-            cu = new ControladorUsuarios();
-            if (this.getTipo().equals("Oficial")) {
-                co = new ControladorOficial();
-                co.agregar(this);
+                ErrorMensaje.crear();
+                cu = new ControladorUsuarios();
+                if (this.getTipo().equals("Oficial")) {
+                    co = new ControladorOficial();
+                    co.agregar(this);
+                }
+                cu.agregar(this);
+            } catch (ErrorConexion ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
             }
-            cu.agregar(this);
-        } catch (ErrorConexion ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
-        }
         }
     }//GEN-LAST:event_txtSalarioKeyPressed
 

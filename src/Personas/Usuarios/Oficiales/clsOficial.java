@@ -24,8 +24,6 @@ public class clsOficial extends clsUsuarios {
         super(cedula, nombre, fechaNac, telefono, correo);
         this.salario = salario;
     }
-    
-    
 
     public clsOficial() {
     }

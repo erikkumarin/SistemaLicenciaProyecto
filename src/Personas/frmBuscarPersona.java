@@ -3,17 +3,17 @@ package Personas;
 import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 
-
 public class frmBuscarPersona extends javax.swing.JInternalFrame {
 
     public frmBuscarPersona() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 3, 2.5);
     }
-    
-    private void boton(){
-        
+
+    private void boton() {
+
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -116,8 +116,5 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
     public void setjPersonas(JTable jTable1) {
         this.tblPersonas = jTable1;
     }
-    
-    
-
 
 }

@@ -19,8 +19,8 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
         AjustarVentana.ajustar(this, 4.5, 4.5);
     }
 
-    private void boton(){
-         try {
+    private void boton() {
+        try {
             ErrorMensaje.crear();
             controlUsuario = new ControladorUsuarios();
             controlUsuario.iniciarSesion(this, frmPrincipal);
@@ -28,7 +28,7 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -127,7 +127,7 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
 
     private void txtContraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-             this.boton();
+            this.boton();
         }
     }//GEN-LAST:event_txtContraKeyPressed
 
