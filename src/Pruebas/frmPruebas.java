@@ -1,6 +1,9 @@
 package Pruebas;
 
+import Citas.ControladorCitas;
+import Citas.frmMostrarCitas;
 import Errores.ErrorConexion;
+import Main.frmPrincipal;
 import Utilidades.AjustarVentana;
 import Utilidades.Fecha;
 import java.util.logging.Level;
@@ -11,6 +14,7 @@ import javax.swing.JTextField;
 public class frmPruebas extends javax.swing.JInternalFrame {
 
     ControladorPruebas controlPrueba;
+    private static int idPrueba;
     
     public frmPruebas() {
         initComponents();
@@ -253,9 +257,12 @@ public class frmPruebas extends javax.swing.JInternalFrame {
         try {
             controlPrueba =  new ControladorPruebas();
             controlPrueba.agregar(this);
+            ControladorCitas citas = new ControladorCitas();
+            citas.eliminar(getIdPrueba());
+            this.dispose();
         } catch (ErrorConexion ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
-        }
+            Logger.getLogger(frmPruebas.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 
@@ -366,4 +373,14 @@ public class frmPruebas extends javax.swing.JInternalFrame {
                 + " Nota: " + this.getNota() + " Estado: " + this.getEstado()
                 + " Asistencia: " + this.getAsistencia().toString();
     }
+
+    public static int getIdPrueba() {
+        return idPrueba;
+    }
+
+    public static void setIdPrueba(int idPrueba) {
+        frmPruebas.idPrueba = idPrueba;
+    }
+    
+    
 }
