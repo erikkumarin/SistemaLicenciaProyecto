@@ -11,14 +11,13 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
 
     private ControladorClientes clientes;
     private ControladorXml xml;
-    private int x;
 
     public frmMostrarClientes() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 2, 2);
         clientes = new ControladorClientes();
         try {
-            x = clientes.cargarClientes(this);
+            clientes.cargarClientes(this);
         } catch (ErrorConexion ex) {
             Logger.getLogger(frmMostrarClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,7 +87,7 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
                 int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este usuario?", "Confirmación", 0, 2);
                 if (opc == 0) {
                     String cedula = clientes.pasarClientes(this, i);
-                    xml.importarXml(cedula,x);
+                    xml.importarXml(cedula, clientes.comprobarPrueba(this));
                 }
             } catch (ErrorConexion ex) {
             }

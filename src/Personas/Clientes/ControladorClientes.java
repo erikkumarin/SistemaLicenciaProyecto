@@ -3,6 +3,7 @@ package Personas.Clientes;
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
+import Pruebas.clsPruebas;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,7 +40,7 @@ public class ControladorClientes {
         BD.ejecutar();
     }
 
-    public int cargarClientes(frmMostrarClientes vista) throws ErrorConexion {
+    public void cargarClientes(frmMostrarClientes vista) throws ErrorConexion {
         BD = new BaseDatos("SELECT cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac`, cliente.Telefono, "
                 + "cliente.Correo FROM tblclientes AS cliente INNER JOIN tblpruebas as prueba on cliente.Cedula = prueba.IdCliente");
         BD.ejecutar();
@@ -50,14 +51,12 @@ public class ControladorClientes {
         do {
             obj = BD.getObjet();
             if (obj != null) {
-                x = validar(vista, cliente);
                 cliente = new clsClientes(obj);
-                if (x == 0) {
+                if (validar(vista, cliente)) {
                     modelo.addRow(cliente.toObjects());
                 }
             }
         } while (obj != null);
-        return x;
     }
 
     public String pasarClientes(frmMostrarClientes vista, int indice) throws ErrorConexion {
@@ -68,14 +67,20 @@ public class ControladorClientes {
         return cliente.getCedula();
     }
 
-    public int validar(frmMostrarClientes vista, clsClientes cliente) {
+    public boolean validar(frmMostrarClientes vista, clsClientes cliente) {
         int fila = vista.getTblClientes().getRowCount();
-        int cantidad = 0;
         for (int i = 0; i < fila; i++) {
             if (vista.getTblClientes().getValueAt(i, 0).toString().equals(cliente.getCedula())) {
-                cantidad++;
+                return false;
             }
         }
-        return cantidad;
+        return true;
     }
+
+    public int comprobarPrueba(frmMostrarClientes vista) throws ErrorConexion {
+        BD = new BaseDatos("SELECT count(Id) FROM tblpruebas WHERE IdCliente = ?");
+        BD.ejecutar(new Object[]{vista.getTblClientes().getValueAt(vista.getTblClientes().getSelectedRow(), 0).toString()});
+        return (int) BD.getObjet()[0];
+    }
+
 }
