@@ -33,5 +33,4 @@ public class ControladorXml {
                 cliente.getTelefono(), String.valueOf(prueba.getIdPrueba()), prueba.getFecha(), String.valueOf(prueba.getNota()),
                 prueba.getObservaciones(), "1", oficial.getCedula(), oficial.getNombre(), oficial.getCorreo());
     }
-
 }
