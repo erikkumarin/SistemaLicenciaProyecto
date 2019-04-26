@@ -1,13 +1,9 @@
 package Personas.Clientes;
 
-import Personas.*;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
-import Personas.Clientes.ControladorClientes;
 import Personas.Usuarios.ControladorUsuarios;
 import Personas.Usuarios.Oficiales.ControladorOficial;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class frmEditarCliente extends javax.swing.JInternalFrame {
