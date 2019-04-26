@@ -1,7 +1,5 @@
 package Personas.Usuarios.Oficiales;
 
-import javax.swing.JTextField;
-
 public class frmPlantilla extends javax.swing.JInternalFrame {
 
     public frmPlantilla() {
