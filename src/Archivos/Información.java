@@ -1,4 +1,4 @@
-package Archivos.XMl;
+package Archivos;
 
 import java.io.File;
 import java.io.FileWriter;

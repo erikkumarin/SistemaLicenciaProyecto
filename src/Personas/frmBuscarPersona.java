@@ -1,6 +1,6 @@
 package Personas;
 
-import Archivos.XMl.ControladorXML;
+import Archivos.ControladorXML;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
 import Main.frmPrincipal;

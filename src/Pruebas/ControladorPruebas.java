@@ -2,7 +2,6 @@ package Pruebas;
 
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
-import Personas.Clientes.clsClientes;
 import Personas.Usuarios.Oficiales.clsOficial;
 import Personas.frmBuscarPersona;
 import javax.swing.JOptionPane;
