@@ -35,6 +35,7 @@ public class Información {
             doc = builder.newDocument();
             generarRaiz(raiz);
         } catch (ParserConfigurationException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -51,10 +52,8 @@ public class Información {
             Result result = new StreamResult(pw);
 
             transformer.transform(source, result);
-        } catch (TransformerConfigurationException ex) {
-            
-        } catch (TransformerException | IOException ex) {
-            
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
     
@@ -97,6 +96,5 @@ public class Información {
         this.infoNivel3 = doc.createElement(llave);
         this.infoNivel3.appendChild(doc.createTextNode(valor));
         tagNivel3.appendChild(infoNivel3);
-    }
-    
+    }   
 }
