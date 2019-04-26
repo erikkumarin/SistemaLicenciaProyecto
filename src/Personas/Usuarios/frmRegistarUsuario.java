@@ -314,6 +314,7 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
                 co.agregar(this);
             }
             cu.agregar(this);
+             this.dispose();
         } catch (ErrorConexion ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
         }

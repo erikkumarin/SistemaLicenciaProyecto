@@ -5,9 +5,7 @@ import Errores.ErrorMensaje;
 import Utilidades.AjustarVentana;
 import Utilidades.Fecha;
 import java.awt.event.KeyEvent;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class frmRegistrarCliente extends javax.swing.JInternalFrame {
 
@@ -208,6 +206,7 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
             ErrorMensaje.crear();
             cc = new ControladorClientes();
             cc.agregar(this);
+            this.dispose();
         } catch (ErrorConexion ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
         }
