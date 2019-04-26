@@ -1,11 +1,10 @@
 package Pruebas;
 
 import Citas.ControladorCitas;
-import Citas.frmMostrarCitas;
 import Errores.ErrorConexion;
-import Main.frmPrincipal;
 import Utilidades.AjustarVentana;
-import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class frmPruebas extends javax.swing.JInternalFrame {
 
