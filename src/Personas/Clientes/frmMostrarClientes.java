@@ -1,6 +1,6 @@
 package Personas.Clientes;
 
-import Archivos.ControladorXML;
+//import Archivos.ControladorXML;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
 import java.util.logging.Level;
@@ -11,7 +11,7 @@ import javax.swing.JTable;
 public class frmMostrarClientes extends javax.swing.JInternalFrame {
 
     private ControladorClientes controlCliente;
-    private ControladorXML controlXML;
+    //private ControladorXML controlXML;
 
     public frmMostrarClientes() {
         initComponents();
@@ -87,9 +87,9 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
             int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este Cliente?", "Confirmación", 0, 2);
             if (opc == 0) {
                 ErrorMensaje.crear();
-                controlXML = new ControladorXML();
-                controlXML.exportar(this, indice);
-                controlXML.toXML();
+//                controlXML = new ControladorXML();
+//                controlXML.exportar(this, indice);
+//                controlXML.toXML();
             }
         }
     }//GEN-LAST:event_tblClientesMouseClicked

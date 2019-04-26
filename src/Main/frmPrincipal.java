@@ -284,12 +284,12 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void btnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicarActionPerformed
         frmIniciarSesion.setFrmPrincipal(this);
-        if (btnInicar.getText().equals("Iniciar Sesión")) {
+        if (btnInicar.getText().equals("Iniciar sesión")) {
             agregar(new frmIniciarSesion());
-            btnInicar.setText("Cerrar Sesión");
+            btnInicar.setText("Cerrar sesión");
         } else {
             this.deshabilitarTodo();
-            btnInicar.setText("Iniciar Sesión");
+            btnInicar.setText("Iniciar sesión");
         }
     }//GEN-LAST:event_btnInicarActionPerformed
 

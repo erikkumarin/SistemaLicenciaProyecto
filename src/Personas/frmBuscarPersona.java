@@ -1,6 +1,6 @@
 package Personas;
 
-import Archivos.ControladorXML;
+//import Archivos.ControladorXML;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
 import Main.frmPrincipal;
@@ -27,7 +27,7 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
     private ControladorClientes controlCliente;
     private ControladorUsuarios controlUsuario;
     private ControladorOficial controlOficial;
-    private ControladorXML controlXML;
+    //private ControladorXML controlXML;
     private ControladorPruebas controlPrueba;
 
     private JPopupMenu menu;
@@ -259,14 +259,14 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
             int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este "
                     + tblPersonas.getValueAt(indice, 5) + "?", "Confirmación", 0, 2);
             if (opc == 0) {
-                try {
+//                try {
                     ErrorMensaje.crear();
-                    controlXML = new ControladorXML();
-                    controlXML.exportar(this, indice);
-                    controlXML.toXML();
-                } catch (ErrorConexion ex) {
-                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
-                }
+//                    controlXML = new ControladorXML();
+//                    controlXML.exportar(this, indice);
+//                    controlXML.toXML();
+//                } catch (ErrorConexion ex) {
+             //       JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+//                }
             }
         }
     }
