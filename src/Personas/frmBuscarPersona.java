@@ -30,6 +30,7 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
     public frmBuscarPersona() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 1.5, 2);
+        Utilidades.Orientar.ordenar(tblPersonas);
         menu.add(btnEditar);
         menu.add(btnEliminar);
         tblPersonas.setComponentPopupMenu(menu);
