@@ -83,7 +83,7 @@ public class ControladorClientes {
             if (obj != null) {
                 cliente = new clsClientes(obj);
                 if (validar(vista, cliente)) {
-                    modelo.addRow(cliente.toObjects());
+                    modelo.addRow(cliente.toObject());
                 }
             }
         } while (obj != null);

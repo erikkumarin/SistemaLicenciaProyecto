@@ -27,9 +27,13 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
             cu = new ControladorUsuarios();
             if (this.getTipo().equals("Oficial")) {
                 co = new ControladorOficial();
-                co.agregar(this);
+                if (co.agregar(this)) {
+                    this.dispose();
+                }
             }
-            cu.agregar(this);
+            if (cu.agregar(this)) {
+                this.dispose();
+            }
         } catch (ErrorConexion ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
         }
@@ -252,7 +256,7 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
                     .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTelefono))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblMETelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                .addComponent(lblMETelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -346,8 +350,8 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
 
     private void txtSalarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-             this.boton();
-        } 
+            this.boton();
+        }
     }//GEN-LAST:event_txtSalarioKeyPressed
 
     private void txtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyPressed
