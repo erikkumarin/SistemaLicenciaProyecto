@@ -26,26 +26,29 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblContra3" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblContra2" alignment="0" max="32767" attributes="0"/>
                   <Component id="lblContra1" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnGuardar" max="32767" attributes="0"/>
                       <EmptySpace min="159" pref="159" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="txtContrasena" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="txtConfirmarContrasena" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtNuevaContrasena" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtContrasena" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtNuevaContrasena" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -55,28 +58,19 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Group type="102" alignment="2" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="lblContra1" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="txtContrasena" alignment="2" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblContra1" alignment="3" max="32767" attributes="0"/>
+                  <Component id="txtContrasena" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Group type="102" alignment="2" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="lblContra2" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="txtNuevaContrasena" alignment="2" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtNuevaContrasena" alignment="3" pref="22" max="32767" attributes="0"/>
+                  <Component id="lblContra2" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Group type="102" alignment="2" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="lblContra3" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="txtConfirmarContrasena" alignment="2" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblContra3" alignment="3" max="32767" attributes="0"/>
+                  <Component id="txtConfirmarContrasena" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="btnGuardar" max="32767" attributes="0"/>
@@ -101,18 +95,21 @@
         <Property name="text" type="java.lang.String" value="Verificar contrase&#xf1;a"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtContrasena">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtNuevaContrasena">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtConfirmarContrasena">
-    </Component>
     <Component class="javax.swing.JButton" name="btnGuardar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar Cambios"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtContrasena">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtNuevaContrasena">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtConfirmarContrasena">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtConfirmarContrasenaKeyPressed"/>
       </Events>
     </Component>
   </SubComponents>

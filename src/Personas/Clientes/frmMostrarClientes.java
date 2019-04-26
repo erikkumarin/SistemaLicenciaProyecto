@@ -6,24 +6,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 public class frmMostrarClientes extends javax.swing.JInternalFrame {
 
     private ControladorClientes clientes;
     private ControladorXml xml;
-    private DefaultTableModel tbl;
+    private int x;
 
     public frmMostrarClientes() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 2, 2);
-        tbl = (DefaultTableModel) tblClientes.getModel();
         clientes = new ControladorClientes();
         try {
-            clientes.cargarUsuarios(this);
+            x = clientes.cargarClientes(this);
         } catch (ErrorConexion ex) {
             Logger.getLogger(frmMostrarClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Utilidades.Orientar.ordenar(tblClientes);
     }
 
     @SuppressWarnings("unchecked")
@@ -71,17 +70,11 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jScrollPane1)
         );
 
         pack();
@@ -95,7 +88,7 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
                 int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este usuario?", "Confirmación", 0, 2);
                 if (opc == 0) {
                     String cedula = clientes.pasarClientes(this, i);
-                    xml.importarXml(cedula);
+                    xml.importarXml(cedula,x);
                 }
             } catch (ErrorConexion ex) {
             }

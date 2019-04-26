@@ -8,6 +8,7 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
     public frmBuscarPersona() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 3, 2.5);
+        Utilidades.Orientar.ordenar(tblPersonas);
     }
 
     private void boton() {

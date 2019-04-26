@@ -39,19 +39,25 @@ public class ControladorClientes {
         BD.ejecutar();
     }
 
-    public void cargarUsuarios(frmMostrarClientes vista) throws ErrorConexion {
-        BD = new BaseDatos("Select * from tblClientes");
+    public int cargarClientes(frmMostrarClientes vista) throws ErrorConexion {
+        BD = new BaseDatos("SELECT cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac`, cliente.Telefono, "
+                + "cliente.Correo FROM tblclientes AS cliente INNER JOIN tblpruebas as prueba on cliente.Cedula = prueba.IdCliente");
         BD.ejecutar();
         DefaultTableModel modelo = (DefaultTableModel) vista.getTblClientes().getModel();
         modelo.setNumRows(0);
         Object obj[];
+        int x = 0;
         do {
             obj = BD.getObjet();
             if (obj != null) {
+                x = validar(vista, cliente);
                 cliente = new clsClientes(obj);
-                modelo.addRow(cliente.toObject());
+                if (x == 0) {
+                    modelo.addRow(cliente.toObjects());
+                }
             }
         } while (obj != null);
+        return x;
     }
 
     public String pasarClientes(frmMostrarClientes vista, int indice) throws ErrorConexion {
@@ -60,5 +66,16 @@ public class ControladorClientes {
         Object obj[] = BD.getObjet();
         cliente = new clsClientes(obj);
         return cliente.getCedula();
+    }
+
+    public int validar(frmMostrarClientes vista, clsClientes cliente) {
+        int fila = vista.getTblClientes().getRowCount();
+        int cantidad = 0;
+        for (int i = 0; i < fila; i++) {
+            if (vista.getTblClientes().getValueAt(i, 0).toString().equals(cliente.getCedula())) {
+                cantidad++;
+            }
+        }
+        return cantidad;
     }
 }

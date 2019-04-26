@@ -1,10 +1,16 @@
 package Personas;
 
+import java.awt.event.KeyEvent;
+
 public class frmEditarPersona extends javax.swing.JInternalFrame {
 
     public frmEditarPersona() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 4, 3);
+    }
+
+    private void boton() {
+
     }
 
     @SuppressWarnings("unchecked")
@@ -46,7 +52,18 @@ public class frmEditarPersona extends javax.swing.JInternalFrame {
             }
         });
 
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyPressed(evt);
+            }
+        });
+
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,6 +135,16 @@ public class frmEditarPersona extends javax.swing.JInternalFrame {
             this.lblMETelefono.setEnabled(false);
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.boton();
+        }
+    }//GEN-LAST:event_txtCorreoKeyPressed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        this.boton();
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

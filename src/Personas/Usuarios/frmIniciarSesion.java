@@ -38,7 +38,7 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
         lblContra = new javax.swing.JLabel();
         btnIniciar = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
-        txtContra = new javax.swing.JTextField();
+        txtContra = new javax.swing.JPasswordField();
 
         setClosable(true);
         setTitle("Iniciar sesión");
@@ -78,19 +78,19 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
                     .addComponent(lblUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblContra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtUsuario))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblCambiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(134, 134, 134))
-                            .addComponent(txtContra)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(135, 135, 135))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtUsuario)))
+                                .addGap(135, 135, 135))
+                            .addComponent(txtContra))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -106,7 +106,7 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
                     .addComponent(txtContra))
                 .addGap(18, 18, 18)
                 .addComponent(lblCambiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -137,7 +137,7 @@ public class frmIniciarSesion extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblCambiar;
     private javax.swing.JLabel lblContra;
     private javax.swing.JLabel lblUsuario;
-    private javax.swing.JTextField txtContra;
+    private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
