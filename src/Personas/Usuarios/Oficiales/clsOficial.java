@@ -25,6 +25,11 @@ public class clsOficial extends clsUsuarios {
         this.salario = salario;
     }
 
+    public clsOficial(Object[] obj) {
+        super((String) obj[0], (String) obj[1], (String) obj[2], (String) obj[3], (String) obj[4]);
+        this.salario = (double) obj[5];
+    }
+
     public clsOficial() {
     }
 
@@ -57,5 +62,5 @@ public class clsOficial extends clsUsuarios {
     public double calcularsalarioNeto() {
         return salario -= (calcularDeducInvaMuer() + calcularDeducImpRenta() + calcularDeducEnfMat() + calcularDeducAsocSoli() + calcularDeducAporTrab());
     }
-
+    
 }

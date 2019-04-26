@@ -75,5 +75,12 @@ public abstract class clsPersona {
 
     public clsPersona() {
     }
-
+    
+    public Object[] toObjects() {
+        return new Object[]{this.getCedula(), this.getNombre(), this.getFechaNac(), this.getTelefono(), this.getCorreo()};
+    }
+    
+    public Object[] toObjects(String tipo) {
+        return new Object[]{this.getCedula(), this.getNombre(), this.getFechaNac(), this.getTelefono(), this.getCorreo(), tipo};
+    }
 }

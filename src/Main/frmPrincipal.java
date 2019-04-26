@@ -5,7 +5,7 @@ import Citas.*;
 import Personas.Clientes.frmMostrarClientes;
 import Personas.Clientes.frmRegistrarCliente;
 import Personas.Usuarios.*;
-import Personas.Usuarios.Oficiales.frmBuscarPlantilla;
+import Personas.Usuarios.Oficiales.frmMostrarPlantilla;
 import Personas.frmBuscarPersona;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -25,7 +25,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         this.setExtendedState(6);
         controladorBD = new ControladorBaseDatos();
         conexion();
-        deshabilitarTodo();
+        //deshabilitarTodo();
         this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/Menu.png")).getImage());
     }
 
@@ -265,7 +265,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExportarActionPerformed
 
     private void btnPlanillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanillaActionPerformed
-        agregar(new frmBuscarPlantilla());
+        agregar(new frmMostrarPlantilla());
     }//GEN-LAST:event_btnPlanillaActionPerformed
 
     private void btnInicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicarActionPerformed

@@ -8,6 +8,7 @@ import Pruebas.frmPruebas;
 import Utilidades.Fecha;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -106,6 +107,7 @@ public class ControladorCitas {
     public void verificarCitaActiva(frmRegistrarCitas vista) throws ErrorConexion {
         bd = new BaseDatos("Select * From tblcitas Where IdCliente=?");
         String[] hoy = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).split("/");
+        int horaHoy = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         bd.ejecutar(new Object[]{vista.getCedula()});
         Object obj[];
         do {
@@ -113,14 +115,20 @@ public class ControladorCitas {
             if (obj != null) {
                 cita = new clsCitas(obj);
                 String[] fecha = cita.getFecha().split("/");
-                if (Integer.parseInt(hoy[0]) <= Integer.parseInt(fecha[0]) && Integer.parseInt(hoy[1]) <= Integer.parseInt(fecha[1])) {
+                if (Integer.parseInt(hoy[0]) <= Integer.parseInt(fecha[0]) && Integer.parseInt(hoy[1]) == Integer.parseInt(fecha[1]) && horaHoy <= this.pasarInt(cita.getHora())) {
                     JOptionPane.showMessageDialog(vista, "Cliente: " + vista.getNombre()
                             + "\nTiene Cita para la Fecha: " + cita.getFecha() + " y Hora: " + cita.getHora(), "Cita Activa", 2);
                     vista.dispose();
                 }
-
             }
         } while (obj != null);
+    }
+    
+    public int pasarInt(String hora){
+        if (hora.substring(0, 2).contains(":")) {
+            return Integer.parseInt(hora.substring(0,1));
+        }
+        return Integer.parseInt(hora.substring(0,2));
     }
 
 }

@@ -9,15 +9,15 @@ import javax.swing.JTable;
 
 public class frmMostrarClientes extends javax.swing.JInternalFrame {
 
-    private ControladorClientes clientes;
+    private ControladorClientes controlCliente;
     private ControladorXml xml;
 
     public frmMostrarClientes() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 2, 2);
-        clientes = new ControladorClientes();
+        controlCliente = new ControladorClientes();
         try {
-            clientes.cargarClientes(this);
+            controlCliente.cargarClientes(this);
         } catch (ErrorConexion ex) {
             Logger.getLogger(frmMostrarClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -84,12 +84,13 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
         xml = new ControladorXml();
         if (i != -1) {
             try {
-                int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este usuario?", "Confirmación", 0, 2);
+                int opc = JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea seleccionar este Cliente?", "Confirmación", 0, 2);
                 if (opc == 0) {
-                    String cedula = clientes.pasarClientes(this, i);
-                    xml.importarXml(cedula, (int) clientes.comprobarPrueba(this));
+                    clsClientes cliente = controlCliente.pasarDatos(this, i);
+                    xml.importarXml(cliente.getCedula(), controlCliente.comprobarPrueba(this));
                 }
             } catch (ErrorConexion ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
             }
         }
     }//GEN-LAST:event_tblClientesMouseClicked

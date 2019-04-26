@@ -9,10 +9,13 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
 
     private ControladorUsuarios controlUsuario;
     private static frmIniciarSesion frmIS;
+    private boolean band;
 
-    public frmCambiarContrasena() {
+    public frmCambiarContrasena(boolean band) {
         initComponents();
         AjustarVentana.ajustar(this, 3.5, 4);
+        controlUsuario = new ControladorUsuarios();
+        this.band = band;
     }
 
     private void boton(){
@@ -114,7 +117,7 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
 
     private void txtConfirmarContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConfirmarContrasenaKeyPressed
          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-             this.boton();
+            this.boton();
         } 
     }//GEN-LAST:event_txtConfirmarContrasenaKeyPressed
 
