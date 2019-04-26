@@ -3,6 +3,7 @@ package Personas.Clientes;
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
+import Pruebas.clsPruebas;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,23 +40,21 @@ public class ControladorClientes {
         BD.ejecutar();
     }
 
-    public void modificar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void cargarClientes(frmMostrarClientes vista) throws ErrorConexion {
-        BD = new BaseDatos("SELECT cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac`, cliente.Telefono, cliente.Correo FROM tblclientes AS cliente INNER JOIN tblpruebas as prueba on prueba.IdCliente = cliente.Cedula");
+        BD = new BaseDatos("SELECT cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac`, cliente.Telefono, "
+                + "cliente.Correo FROM tblclientes AS cliente INNER JOIN tblpruebas as prueba on cliente.Cedula = prueba.IdCliente");
         BD.ejecutar();
         DefaultTableModel modelo = (DefaultTableModel) vista.getTblClientes().getModel();
         modelo.setNumRows(0);
         Object obj[];
+        int x = 0;
         do {
             obj = BD.getObjet();
             if (obj != null) {
-                 cliente = new clsClientes(obj);
+                cliente = new clsClientes(obj);
                 if (validar(vista, cliente)) {
-                      modelo.addRow(cliente.toObjects());
-                } 
+                    modelo.addRow(cliente.toObjects());
+                }
             }
         } while (obj != null);
     }
@@ -67,8 +66,8 @@ public class ControladorClientes {
         cliente = new clsClientes(obj);
         return cliente.getCedula();
     }
-    
-    private boolean validar(frmMostrarClientes vista, clsClientes cliente) {
+
+    public boolean validar(frmMostrarClientes vista, clsClientes cliente) {
         int fila = vista.getTblClientes().getRowCount();
         for (int i = 0; i < fila; i++) {
             if (vista.getTblClientes().getValueAt(i, 0).toString().equals(cliente.getCedula())) {
@@ -77,4 +76,11 @@ public class ControladorClientes {
         }
         return true;
     }
+
+    public int comprobarPrueba(frmMostrarClientes vista) throws ErrorConexion {
+        BD = new BaseDatos("SELECT count(Id) FROM tblpruebas WHERE IdCliente = ?");
+        BD.ejecutar(new Object[]{vista.getTblClientes().getValueAt(vista.getTblClientes().getSelectedRow(), 0).toString()});
+        return (int) BD.getObjet()[0];
+    }
+
 }
