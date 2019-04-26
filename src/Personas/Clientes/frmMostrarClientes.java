@@ -2,6 +2,7 @@ package Personas.Clientes;
 
 import Archivos.ControladorXml;
 import Errores.ErrorConexion;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -91,6 +92,8 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
                 }
             } catch (ErrorConexion ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+            } catch (SQLException ex) {
+                Logger.getLogger(frmMostrarClientes.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_tblClientesMouseClicked

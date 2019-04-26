@@ -7,6 +7,8 @@ import Personas.Clientes.frmRegistrarCliente;
 import Personas.Usuarios.*;
 import Personas.Usuarios.Oficiales.frmMostrarPlantilla;
 import Personas.frmBuscarPersona;
+import Utilidades.Sonido;
+import java.applet.AudioClip;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -27,6 +29,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         conexion();
         //deshabilitarTodo();
         this.setIconImage(new ImageIcon(getClass().getResource("/Utilidades/Imagenes/Menu.png")).getImage());
+        Sonido sonido = new Sonido();
+        sonido.start();
     }
 
     public static void agregar(JInternalFrame vista) {

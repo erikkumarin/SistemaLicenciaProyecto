@@ -65,7 +65,7 @@ public class InformacionXml {
             String idPrueba, String fechaPrueba, String nota, String Observ, String numIntent,
             String cedulaOficial, String nomOficial, String correoOficial) {
         generarCliente(cedula, nom, edad, correo, tel);
-        generarPruebaCliente(idPrueba, nota, nota, Observ, numIntent);
+        generarPruebaCliente(idPrueba, fechaPrueba, nota, Observ, numIntent);
         generarOficialPrueba(cedulaOficial, nomOficial, correoOficial);
         generarXML();
     }
