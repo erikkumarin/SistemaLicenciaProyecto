@@ -2,6 +2,7 @@ package Main;
 
 import BaseDeDatos.*;
 import Citas.*;
+import Personas.Clientes.frmMostrarClientes;
 import Personas.Clientes.frmRegistrarCliente;
 import Personas.Usuarios.*;
 import Personas.Usuarios.Oficiales.frmBuscarPlantilla;
@@ -272,7 +273,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
-        // TODO add your handling code here:
+          agregar(new frmMostrarClientes());
     }//GEN-LAST:event_btnExportarActionPerformed
 
     private void btnPlanillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlanillaActionPerformed
