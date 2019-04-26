@@ -33,9 +33,9 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
         this.txtContrasena.setEnabled(accion);
         this.txtBD.setEnabled(accion);
     }
-    
-    private void boton(){
-          if (this.btnEditar.getText().equals("Editar")) {
+
+    private void boton() {
+        if (this.btnEditar.getText().equals("Editar")) {
             editar(true);
             btnEditar.setText("Probar Conexion");
         } else {
@@ -184,7 +184,7 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-       this.boton();
+        this.boton();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void txtIPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIPKeyTyped

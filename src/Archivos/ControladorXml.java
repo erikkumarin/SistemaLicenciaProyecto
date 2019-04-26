@@ -2,7 +2,6 @@ package Archivos;
 
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
-import Main.frmPrincipal;
 import Personas.Clientes.clsClientes;
 import Personas.Usuarios.Oficiales.clsOficial;
 import Pruebas.clsPruebas;

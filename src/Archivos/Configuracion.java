@@ -6,9 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
-public class Configuracion{
+public class Configuracion {
 
-    private File archivo; 
+    private File archivo;
     private Properties config;
 
     public String getPropiedades(String valor) {
@@ -18,7 +18,7 @@ public class Configuracion{
     public void setPropiedades(String dato, String valor) {
         this.config.setProperty(dato, valor);
     }
-    
+
     public Configuracion() throws IOException {
         archivo = new File("Config.ini");
         if (!archivo.exists()) {

@@ -20,19 +20,6 @@ public class frmRegistrarCitas extends javax.swing.JInternalFrame {
         Fecha.agregarMesesCP(cbAnio, cbMes);
         Fecha.agregarDiasCP(cbAnio, cbMes, cbDia);
         Fecha.agregarHora(cbDia, cbHora);
-        //activarResgistrar();
-    }
-
-    private void activarResgistrar() {
-        this.btnGuardar.setEnabled(Fecha.agregarHora(cbDia, cbHora));
-    }
-
-    private boolean verificarDatos() {
-        if (this.getCedula().length() != 9 || !btnGuardar.isEnabled()) {
-            lblDatosIncorrectos.setText("Datos incorrectos, revise los datos");
-            return false;
-        }
-        return true;
     }
 
     @SuppressWarnings("unchecked")

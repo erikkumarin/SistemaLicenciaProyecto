@@ -2,6 +2,7 @@
 package Personas.Usuarios.Oficiales;
 
 import Errores.ErrorConexion;
+import Main.frmPrincipal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -57,6 +58,11 @@ public class frmMostrarPlantilla extends javax.swing.JInternalFrame {
             }
         });
         tblPlanilla.setToolTipText("");
+        tblPlanilla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPlanillaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPlanilla);
         if (tblPlanilla.getColumnModel().getColumnCount() > 0) {
             tblPlanilla.getColumnModel().getColumn(0).setResizable(false);
@@ -80,6 +86,28 @@ public class frmMostrarPlantilla extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblPlanillaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPlanillaMouseClicked
+        int indice = tblPlanilla.getSelectedRow();
+        if (indice != -1) {
+            try {
+                frmPlantilla planilla = new frmPlantilla();
+                clsOficial oficial =  controlOficial.pasarDatos(this, indice);
+                planilla.setCedula(oficial.getCedula());
+                planilla.setNombre(oficial.getNombre());
+                planilla.setSalarioBruto(oficial.getSalario());
+                planilla.setEnferYMater(oficial.calcularDeducEnfMat());
+                planilla.setInvaYMuert(oficial.calcularDeducInvaMuer());
+                planilla.setAporYTrab(oficial.calcularDeducAporTrab());
+                planilla.setAporYAsoc(oficial.calcularDeducAsocSoli());
+                planilla.setImpuesto(oficial.calcularDeducImpRenta());
+                planilla.setSalarioNeto(oficial.calcularsalarioNeto());
+                frmPrincipal.agregar(planilla);
+            } catch (ErrorConexion ex) {
+                Logger.getLogger(frmMostrarPlantilla.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_tblPlanillaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

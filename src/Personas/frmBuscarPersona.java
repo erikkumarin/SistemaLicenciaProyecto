@@ -21,6 +21,8 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
 
     public frmBuscarPersona() {
         initComponents();
+        Utilidades.AjustarVentana.ajustar(this, 3, 2.5);
+        Utilidades.Orientar.ordenar(tblPersonas);
         Utilidades.AjustarVentana.ajustar(this, 1.5, 2);
         controlCliente = new ControladorClientes();
         controlUsuario = new ControladorUsuarios();

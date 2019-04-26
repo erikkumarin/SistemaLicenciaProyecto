@@ -20,8 +20,8 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         Fecha.agregarMesesUC(cbAnio, cbMes);
         Fecha.agregarDiasUC(cbAnio, cbMes, cbDia);
     }
-    
-    private void boton(){
+
+    private void boton() {
         try {
             ErrorMensaje.crear();
             cu = new ControladorUsuarios();
@@ -53,7 +53,6 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         txtTelefono = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         txtUsuario = new javax.swing.JTextField();
-        txtContrasena = new javax.swing.JTextField();
         cbUsuario = new javax.swing.JComboBox<>();
         cbDia = new javax.swing.JComboBox<>();
         cbMes = new javax.swing.JComboBox<>();
@@ -65,6 +64,7 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         txtSalario = new javax.swing.JTextField();
         lblMECedula = new javax.swing.JLabel();
         lblMETelefono = new javax.swing.JLabel();
+        txtContrasena = new javax.swing.JPasswordField();
 
         setClosable(true);
         setTitle("Registro de usuario");
@@ -114,12 +114,6 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtContrasenaKeyPressed(evt);
-            }
-        });
-
         cbUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Oficial", "Secretaria" }));
         cbUsuario.setSelectedIndex(1);
         cbUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -151,11 +145,6 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         lblSalario.setEnabled(false);
 
         txtSalario.setEnabled(false);
-        txtSalario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSalarioActionPerformed(evt);
-            }
-        });
         txtSalario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtSalarioKeyPressed(evt);
@@ -172,6 +161,12 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         lblMETelefono.setForeground(new java.awt.Color(255, 0, 0));
         lblMETelefono.setText("Ejemplo: 85848786");
         lblMETelefono.setEnabled(false);
+
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -195,18 +190,6 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
                         .addComponent(lblMETelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(107, 107, 107))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtSalario, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtContrasena, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(lblMECedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(85, 85, 85)))
-                        .addGap(16, 16, 16))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
@@ -228,7 +211,19 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
                                 .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbAnio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(15, 15, 15))))
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtContrasena, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSalario, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblMECedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(85, 85, 85)))
+                        .addGap(16, 16, 16))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +233,7 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
                     .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCedula))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblMECedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMECedula, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -257,7 +252,7 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
                     .addComponent(lblTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTelefono))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblMETelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMETelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -267,7 +262,7 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
                     .addComponent(lblUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblContra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtContrasena))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -279,7 +274,7 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
                     .addComponent(lblSalario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtSalario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -308,11 +303,11 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         char caracter = evt.getKeyChar();
         if (txtCedula.getText().length() == 9 || !Character.isDigit(caracter)) {
             anular(evt);
-           if (Character.isLetter(caracter)) {
-                 this.lblMECedula.setEnabled(true);
-            }else{
-             this.lblMECedula.setEnabled(false);
-           }
+            if (Character.isLetter(caracter)) {
+                this.lblMECedula.setEnabled(true);
+            } else {
+                this.lblMECedula.setEnabled(false);
+            }
         } else {
             this.lblMECedula.setEnabled(false);
         }
@@ -323,10 +318,10 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         if (txtTelefono.getText().length() == 8 || !Character.isDigit(caracter)) {
             anular(evt);
             if (Character.isLetter(caracter)) {
-                 this.lblMETelefono.setEnabled(true);
-            }else{
-             this.lblMETelefono.setEnabled(false);
-        }
+                this.lblMETelefono.setEnabled(true);
+            } else {
+                this.lblMETelefono.setEnabled(false);
+            }
         } else {
             this.lblMETelefono.setEnabled(false);
         }
@@ -349,31 +344,17 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtSalarioKeyTyped
 
+    private void txtSalarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             this.boton();
+        } 
+    }//GEN-LAST:event_txtSalarioKeyPressed
+
     private void txtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER  && cbUsuario.getSelectedItem().toString().equals("Secretaria")) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && cbUsuario.getSelectedItem().toString().equals("Secretaria")) {
             this.boton();
         }
     }//GEN-LAST:event_txtContrasenaKeyPressed
-
-    private void txtSalarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            try {
-            ErrorMensaje.crear();
-            cu = new ControladorUsuarios();
-            if (this.getTipo().equals("Oficial")) {
-                co = new ControladorOficial();
-                co.agregar(this);
-            }
-            cu.agregar(this);
-        } catch (ErrorConexion ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
-        }
-        }
-    }//GEN-LAST:event_txtSalarioKeyPressed
-
-    private void txtSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalarioActionPerformed
-        this.boton();
-    }//GEN-LAST:event_txtSalarioActionPerformed
 
     private void anular(java.awt.event.KeyEvent evt) {
         evt.consume();
@@ -400,7 +381,7 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtContrasena;
+    private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtSalario;

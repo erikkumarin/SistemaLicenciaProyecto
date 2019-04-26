@@ -33,6 +33,24 @@ public class ControladorOficial {
             BD.ejecutar(new Object[]{oficial.getNombre(), oficial.getTelefono(), oficial.getCorreo(), oficial.getCedula()});
         }
     }
+    
+    public void modificarSalario(frmPlantilla vista) throws ErrorConexion {
+        BD = new BaseDatos("UPDATE tblOficiales SET Salario = ? WHERE Cedula=?");
+        oficial = new clsOficial();
+        oficial.setCedula(vista.getCedula());
+        oficial.setSalario(Double.parseDouble(vista.getSalarioBruto()));
+        if (ErrorMensaje.mostrarMensajes()) {
+            JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
+        } else {
+            BD.ejecutar(new Object[]{oficial.getSalario(), oficial.getCedula()});
+            vista.setEnferYMater(oficial.calcularDeducEnfMat());
+            vista.setInvaYMuert(oficial.calcularDeducInvaMuer());
+            vista.setAporYTrab(oficial.calcularDeducAporTrab());
+            vista.setAporYAsoc(oficial.calcularDeducAsocSoli());
+            vista.setImpuesto(oficial.calcularDeducImpRenta());
+            vista.setSalarioNeto(oficial.calcularsalarioNeto());
+        }
+    }
 
     public void cargarOficiales(frmMostrarPlantilla vista) throws ErrorConexion {
         BD = new BaseDatos("Select * from tblOficiales");
@@ -47,6 +65,14 @@ public class ControladorOficial {
                 modelo.addRow(new Object[]{oficial.getCedula(), oficial.getNombre(), oficial.getFechaNac(), oficial.getSalario()});
             }
         } while (obj != null);
+    }
+    
+    public clsOficial pasarDatos(frmMostrarPlantilla vista, int indice) throws ErrorConexion {
+        BD = new BaseDatos("SELECT * from tblOficiales WHERE Cedula = ?");
+        BD.ejecutar(new Object[]{vista.getTblPlanilla().getValueAt(indice, 0).toString()});
+        Object obj[] = BD.getObjet();
+        oficial = new clsOficial(obj);
+        return oficial;
     }
     
 }

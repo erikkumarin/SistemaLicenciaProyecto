@@ -19,8 +19,8 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
         Fecha.agregarDiasUC(cbAnio, cbMes, cbDia);
     }
 
-    private void boton(){
-          try {
+    private void boton() {
+        try {
             ErrorMensaje.crear();
             cc = new ControladorClientes();
             cc.agregar(this);
@@ -28,7 +28,7 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -210,7 +210,7 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
-        Fecha.agregarAniosUC(cbAnio);
+        Fecha.agregarDiasUC(cbAnio, cbMes, cbDia);
     }//GEN-LAST:event_cbMesActionPerformed
 
     private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
@@ -218,7 +218,7 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbAnioActionPerformed
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-      this.boton();
+        this.boton();
     }//GEN-LAST:event_btnActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
@@ -257,9 +257,9 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyPressed
-          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-               this.boton();     
-          }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.boton();
+        }
     }//GEN-LAST:event_txtCorreoKeyPressed
 
     private void anular(KeyEvent evt) {
