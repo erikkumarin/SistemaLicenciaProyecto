@@ -1,5 +1,6 @@
 package Pruebas;
 
+import Personas.Clientes.clsClientes;
 import Personas.Usuarios.Oficiales.clsOficial;
 import Utilidades.Fecha;
 
@@ -71,7 +72,8 @@ public class clsPruebas {
         this.setNota(nota);
     }
     
-    public clsPruebas(Object[] obj) {
+
+    public clsPruebas (Object[] obj) {
         this.setIdPrueba((int) obj[0]);
         this.setFecha((String) obj[1]);
         this.setHora((String) obj[2]);
@@ -92,19 +94,10 @@ public class clsPruebas {
     }
     
     public Object[] toObject(String idCliente) {
-        return new Object[]{this.getFecha(), this.hora, this.getOficial().getCedula(), this.getObservaciones(), this.getNota(), idCliente};
+        if (this.getIdPrueba() == 0) {
+            return new Object[]{this.getFecha(), this.getHora(), this.getOficial().getCedula(), this.getObservaciones(), this.getNota(), idCliente};
+        }
+        return new Object[]{this.getIdPrueba(),this.getFecha(), this.getHora(), this.getOficial().getCedula(), this.getObservaciones(), this.getNota(), idCliente};
     }
-
-    @Override
-    public String toString() {
-        return "ID: " + this.getIdPrueba() + " Fecha: " + this.getFecha() + " Hora: " + this.getHora() + "\n\t"
-                    + "Cedula Oficial: "  + this.getOficial().getCedula() + " Nombre Oficial: " + this.getOficial().getNombre() + " Correo: " + this.getOficial().getCorreo() + "\n"
-                    + "Observaciones: " + this.getObservaciones() + " Nota: " + this.getNota() + "Estado: " + this.getEstado();
-    }
-    
-    public void toXml(){
-        
-    }
-    
     
 }

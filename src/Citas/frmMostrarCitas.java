@@ -17,9 +17,9 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
     public frmMostrarCitas() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 3, 3.5);
+        Utilidades.Orientar.ordenar(tblCitas);
         citas = new ControladorCitas();
         cargarTabla();
-        Utilidades.Orientar.ordenar(tblCitas);
     }
 
     private void cargarTabla() {
@@ -106,6 +106,7 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
             }
         }
+        this.cargarTabla();
     }//GEN-LAST:event_tblCitasMouseClicked
 
 
