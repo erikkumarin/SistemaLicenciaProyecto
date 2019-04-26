@@ -74,13 +74,14 @@ public class clsPruebas {
     
     
     
-    public clsPruebas(int idPrueba, String fecha, String hora, clsOficial oficial, String observaciones, int nota) {
+    public clsPruebas(int idPrueba, String fecha, String hora, clsOficial oficial, String observaciones, int nota, clsClientes cliente) {
         this.setIdPrueba(idPrueba);
         this.setFecha(fecha);
         this.setHora(hora);
         this.setOficial(oficial);
         this.setObservaciones(observaciones);
         this.setNota(nota);
+        this.setCliente(cliente);
     }
     
 

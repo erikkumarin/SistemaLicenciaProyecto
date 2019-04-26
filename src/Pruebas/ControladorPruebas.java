@@ -2,6 +2,7 @@ package Pruebas;
 
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
+import Personas.Clientes.clsClientes;
 import Personas.Usuarios.Oficiales.clsOficial;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -13,7 +14,7 @@ public class ControladorPruebas {
 
     public void agregar(frmPruebas vista) throws ErrorConexion {
         BD = new BaseDatos("INSERT INTO tblpruebas VALUES(null,?,?,?,?,?,?)");
-        prueba = new clsPruebas(0, vista.getFecha(), vista.getHora(), new clsOficial(), vista.getObservacion(), Integer.parseInt(vista.getNota()));
+        prueba = new clsPruebas(0, vista.getFecha(), vista.getHora(), new clsOficial(), vista.getObservacion(), Integer.parseInt(vista.getNota()), new clsClientes());
         prueba.getOficial().setCedula(vista.getCedulaOficial());
         prueba.getCliente().setCedula(vista.getCedula());
         BD.ejecutar(prueba.toObject());

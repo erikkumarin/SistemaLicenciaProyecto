@@ -106,6 +106,7 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
             }
         }
+        this.cargarTabla();
     }//GEN-LAST:event_tblCitasMouseClicked
 
 

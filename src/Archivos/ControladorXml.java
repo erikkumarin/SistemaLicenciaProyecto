@@ -22,7 +22,7 @@ public class ControladorXml {
         BD.ejecutar(new Object[]{cedula});
         Object[] obj = BD.getObjet();
         cliente = new clsClientes((String) obj[0], (String) obj[1], (String) obj[2], (String) obj[3], (String) obj[4]);
-        prueba = new clsPruebas((int) obj[5], (String) obj[6], (String) obj[7], new clsOficial(), (String) obj[8], (int) obj[9]);
+    //    prueba = new clsPruebas((int) obj[5], (String) obj[6], (String) obj[7], new clsOficial(), (String) obj[8], (int) obj[9]);
         oficial = new clsOficial();
         oficial.setCedula((String) obj[10]);
         oficial.setNombre((String) obj[11]);
