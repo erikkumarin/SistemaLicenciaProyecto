@@ -11,16 +11,22 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class frmMostrarCitas extends javax.swing.JInternalFrame {
-    
+
     private ControladorCitas citas;
     private DefaultTableModel tbl;
-    
+    int cont = 0;
+
     public frmMostrarCitas() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 3, 3.5);
         tbl = (DefaultTableModel) tblCitas.getModel();
         citas = new ControladorCitas();
+        cargarTabla();
+    }
+
+    private void cargarTabla() {
         try {
+            System.out.println("entro: " + ++cont);
             citas.cargarTabla(this);
         } catch (ErrorConexion ex) {
             Logger.getLogger(frmMostrarCitas.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,9 +132,8 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
     public JTable getTblCitas() {
         return tblCitas;
     }
-    
+
     public void setTblCitas(JTable tblCitas) {
         this.tblCitas = tblCitas;
     }
-    
 }
