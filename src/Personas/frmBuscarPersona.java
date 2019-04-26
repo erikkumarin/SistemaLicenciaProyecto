@@ -1,13 +1,17 @@
 package Personas;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JTable;
-
 
 public class frmBuscarPersona extends javax.swing.JInternalFrame {
 
     public frmBuscarPersona() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 3, 2.5);
+    }
+
+    private void boton() {
+
     }
 
     @SuppressWarnings("unchecked")
@@ -23,7 +27,18 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
         setTitle("Buscar");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Buscar.png"))); // NOI18N
 
+        txtBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBusquedaKeyPressed(evt);
+            }
+        });
+
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         tblPersonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,6 +87,16 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.boton();
+        }
+    }//GEN-LAST:event_txtBusquedaKeyPressed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        this.boton();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -91,8 +116,5 @@ public class frmBuscarPersona extends javax.swing.JInternalFrame {
     public void setjPersonas(JTable jTable1) {
         this.tblPersonas = jTable1;
     }
-    
-    
-
 
 }

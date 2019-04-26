@@ -57,7 +57,6 @@ public class Fecha {
         this.fechaActu = LocalDate.now();
     }
 
-    
     public static void agregarAniosUC(JComboBox cbanio) {
         int anio = (calendario.get(Calendar.YEAR)) - 18;
         for (int i = anio - 100; i <= anio; i++) {
@@ -136,7 +135,7 @@ public class Fecha {
         }
     }
 
-   public static void agregarDiasCP(JComboBox cbanio, JComboBox cbmes, JComboBox cbdia) {
+    public static void agregarDiasCP(JComboBox cbanio, JComboBox cbmes, JComboBox cbdia) {
         int anio = Integer.valueOf(cbanio.getItemAt(cbanio.getSelectedIndex()).toString());
         int dias = 0;
         String mes;
@@ -211,10 +210,10 @@ public class Fecha {
         String fechaInvertida[] = this.getFecha().toString().split("-");
         return fechaInvertida[2] + "/" + fechaInvertida[1] + "/" + fechaInvertida[0];
     }
-    
+
     public String toStringActual() {
         String fechaInvertida[] = this.getFechaActu().split("-");
         return fechaInvertida[2] + "/" + fechaInvertida[1] + "/" + fechaInvertida[0];
     }
-    
+
 }

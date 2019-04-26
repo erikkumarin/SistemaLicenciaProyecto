@@ -3,7 +3,6 @@ package Personas.Usuarios;
 import BaseDeDatos.BaseDatos;
 import Errores.ErrorConexion;
 import Errores.ErrorMensaje;
-import Errores.TipoErrorConexion;
 import Main.frmPrincipal;
 import Personas.Usuarios.Oficiales.clsOficial;
 import Personas.Usuarios.Secretarias.clsSecretaria;
@@ -21,16 +20,18 @@ public class ControladorUsuarios {
         BD = new BaseDatos("INSERT INTO tblusuarios VALUES (?,?,?,?,?,?,?,?)");
         if (vista.getTipo().equals("Oficial")) {
             usuario = new clsOficial(vista.getCedula(), vista.getNombre(), vista.getFecha(), vista.getTelefono(), vista.getCorreo(),
-                    vista.getUsuario(), vista.getContrasena(), vista.getTipo().toString());
+                    vista.getUsuario(), vista.getContrasena(), vista.getTipo());
+            vista.dispose();
         } else {
             usuario = new clsSecretaria(vista.getCedula(), vista.getNombre(), vista.getFecha(), vista.getTelefono(), vista.getCorreo(),
-                    vista.getUsuario(), vista.getContrasena(), vista.getTipo().toString());
+                    vista.getUsuario(), vista.getContrasena(), vista.getTipo());
+            vista.dispose();
         }
         if (ErrorMensaje.mostrarMensajes()) {
             JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
         } else {
             BD.ejecutar(new Object[]{usuario.getCedula(), usuario.getNombre(), usuario.getFechaNac(), usuario.getTelefono(), usuario.getCorreo(),
-                usuario.getNomUsuario(), usuario.getContra(), usuario.getTipoUsuario().toString()});
+                usuario.getNomUsuario(), usuario.getContra(), usuario.getTipoUsuario()});
         }
     }
 
@@ -64,7 +65,7 @@ public class ControladorUsuarios {
         }
     }
 
-   public void iniciarSesion(frmIniciarSesion vistaSesion, frmPrincipal vistaPrincipal) throws ErrorConexion {
+    public void iniciarSesion(frmIniciarSesion vistaSesion, frmPrincipal vistaPrincipal) throws ErrorConexion {
         BD = new BaseDatos("SELECT Cedula, Nombre, `Tipo Usuario` FROM tblusuarios WHERE Usuario = ? AND Contraseña = ?");
         usuario = new clsUsuarios();
         usuario.setNomUsuario(vistaSesion.getUsuario());

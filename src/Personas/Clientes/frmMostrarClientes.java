@@ -34,6 +34,8 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
         tblClientes = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Exportar");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Exportar.png"))); // NOI18N
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,7 +81,7 @@ public class frmMostrarClientes extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         pack();

@@ -5,9 +5,7 @@ import Errores.ErrorMensaje;
 import Utilidades.AjustarVentana;
 import Utilidades.Fecha;
 import java.awt.event.KeyEvent;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class frmRegistrarCliente extends javax.swing.JInternalFrame {
 
@@ -19,6 +17,16 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
         Fecha.agregarAniosUC(cbAnio);
         Fecha.agregarMesesUC(cbAnio, cbMes);
         Fecha.agregarDiasUC(cbAnio, cbMes, cbDia);
+    }
+
+    private void boton() {
+        try {
+            ErrorMensaje.crear();
+            cc = new ControladorClientes();
+            cc.agregar(this);
+        } catch (ErrorConexion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -84,6 +92,12 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
+            }
+        });
+
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyPressed(evt);
             }
         });
 
@@ -204,13 +218,7 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbAnioActionPerformed
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-        try {
-            ErrorMensaje.crear();
-            cc = new ControladorClientes();
-            cc.agregar(this);
-        } catch (ErrorConexion ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
-        }
+        this.boton();
     }//GEN-LAST:event_btnActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
@@ -247,6 +255,12 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
             this.lblMETelefono.setEnabled(false);
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.boton();
+        }
+    }//GEN-LAST:event_txtCorreoKeyPressed
 
     private void anular(KeyEvent evt) {
         evt.consume();

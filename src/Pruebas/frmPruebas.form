@@ -105,12 +105,12 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblFecha" alignment="3" pref="26" max="32767" attributes="0"/>
+                          <Component id="lblFecha" alignment="3" max="32767" attributes="0"/>
                           <Component id="txtFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblHora" alignment="3" pref="26" max="32767" attributes="0"/>
+                          <Component id="lblHora" alignment="3" max="32767" attributes="0"/>
                           <Component id="txtHora" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>

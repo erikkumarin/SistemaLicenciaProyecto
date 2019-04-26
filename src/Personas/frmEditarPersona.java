@@ -1,6 +1,5 @@
 package Personas;
 
-
 public class frmEditarPersona extends javax.swing.JInternalFrame {
 
     public frmEditarPersona() {
@@ -149,9 +148,5 @@ public class frmEditarPersona extends javax.swing.JInternalFrame {
     public void setTxtNombre(String nombre) {
         this.txtNombre.setText(nombre);
     }
-
-    
-    
-    
 
 }

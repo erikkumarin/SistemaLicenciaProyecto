@@ -7,8 +7,6 @@ import Personas.Clientes.frmRegistrarCliente;
 import Utilidades.AjustarVentana;
 import Utilidades.Fecha;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class frmRegistrarCitas extends javax.swing.JInternalFrame {
@@ -22,19 +20,6 @@ public class frmRegistrarCitas extends javax.swing.JInternalFrame {
         Fecha.agregarMesesCP(cbAnio, cbMes);
         Fecha.agregarDiasCP(cbAnio, cbMes, cbDia);
         Fecha.agregarHora(cbDia, cbHora);
-        //activarResgistrar();
-    }
-
-    private void activarResgistrar() {
-        this.btnGuardar.setEnabled(Fecha.agregarHora(cbDia, cbHora));
-    }
-
-    private boolean verificarDatos() {
-        if (this.getCedula().length() != 9 || !btnGuardar.isEnabled()) {
-            lblDatosIncorrectos.setText("Datos incorrectos, revise los datos");
-            return false;
-        }
-        return true;
     }
 
     @SuppressWarnings("unchecked")
@@ -68,9 +53,6 @@ public class frmRegistrarCitas extends javax.swing.JInternalFrame {
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCedulaKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
@@ -201,16 +183,6 @@ public class frmRegistrarCitas extends javax.swing.JInternalFrame {
     private void cbDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDiaActionPerformed
         Fecha.agregarHora(cbDia, cbHora);
     }//GEN-LAST:event_cbDiaActionPerformed
-
-    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
-        if (this.txtCedula.getText().length() == 9) {
-//            try {
-//                ControladorCita.leer();
-//            } catch (ErrorConexion ex) {
-//
-//            }
-        }
-    }//GEN-LAST:event_txtCedulaKeyReleased
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {

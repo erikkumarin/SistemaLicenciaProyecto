@@ -2,6 +2,7 @@ package BaseDeDatos;
 
 import Archivos.Configuracion;
 import Utilidades.AjustarVentana;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
@@ -33,6 +34,21 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
         this.txtBD.setEnabled(accion);
     }
 
+    private void boton() {
+        if (this.btnEditar.getText().equals("Editar")) {
+            editar(true);
+            btnEditar.setText("Probar Conexion");
+        } else {
+            if (controlador.probarConexion(this)) {
+                JOptionPane.showMessageDialog(this, "Conexion Exitosa", "Probar Conexion", 1);
+                btnEditar.setText("Editar");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, controlador.getMsjError(), "Probar Conexion", 0);
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -52,7 +68,6 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
         MEBD = new javax.swing.JLabel();
 
         setClosable(true);
-        setResizable(true);
         setTitle("Configuración de base de datos");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Conexion.png"))); // NOI18N
 
@@ -70,9 +85,9 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
             }
         });
 
-        txtBD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBDActionPerformed(evt);
+        txtBD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBDKeyPressed(evt);
             }
         });
 
@@ -169,18 +184,7 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        if (this.btnEditar.getText().equals("Editar")) {
-            editar(true);
-            btnEditar.setText("Probar Conexion");
-        } else {
-            if (controlador.probarConexion(this)) {
-                JOptionPane.showMessageDialog(this, "Conexion Exitosa", "Probar Conexion", 1);
-                btnEditar.setText("Editar");
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, controlador.getMsjError(), "Probar Conexion", 0);
-            }
-        }
+        this.boton();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void txtIPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIPKeyTyped
@@ -194,9 +198,11 @@ public class frmConfiguracion extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtIPKeyTyped
 
-    private void txtBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBDActionPerformed
+    private void txtBDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBDKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.boton();
+        }
+    }//GEN-LAST:event_txtBDKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

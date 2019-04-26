@@ -10,7 +10,7 @@ public class frmPruebas extends javax.swing.JInternalFrame {
 
     ControladorPruebas controlPrueba;
     private static int idPrueba;
-    
+
     public frmPruebas() {
         initComponents();
         AjustarVentana.ajustarPorPantalla(this, 2.5, 2);
@@ -249,14 +249,14 @@ public class frmPruebas extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
-            controlPrueba =  new ControladorPruebas();
+            controlPrueba = new ControladorPruebas();
             controlPrueba.agregar(this);
             ControladorCitas citas = new ControladorCitas();
             citas.eliminar(getIdPrueba());
             this.dispose();
         } catch (ErrorConexion ex) {
             Logger.getLogger(frmPruebas.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
 
@@ -326,7 +326,7 @@ public class frmPruebas extends javax.swing.JInternalFrame {
     public String getHora() {
         return txtHora.getText();
     }
-    
+
     public String getCedulaOficial() {
         return txtCedulaOficial.getText();
     }
@@ -354,11 +354,11 @@ public class frmPruebas extends javax.swing.JInternalFrame {
     public void setHora(String Hora) {
         this.txtHora.setText(Hora);
     }
-    
+
     public void setCedulaOficial(String cedula) {
         this.txtCedulaOficial.setText(cedula);
     }
-    
+
     @Override
     public String toString() {
         return "N° de cedula: " + this.getCedula() + " Nombre: " + this.getNombre() + " Edad: " + this.getEdad() + "\n"
@@ -375,6 +375,5 @@ public class frmPruebas extends javax.swing.JInternalFrame {
     public static void setIdPrueba(int idPrueba) {
         frmPruebas.idPrueba = idPrueba;
     }
-    
-    
+
 }

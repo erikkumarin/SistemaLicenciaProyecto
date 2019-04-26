@@ -1,4 +1,3 @@
-
 package Personas.Usuarios.Oficiales;
 
 public class frmBuscarPlantilla extends javax.swing.JInternalFrame {
@@ -6,7 +5,7 @@ public class frmBuscarPlantilla extends javax.swing.JInternalFrame {
     public frmBuscarPlantilla() {
         initComponents();
         Utilidades.AjustarVentana.ajustar(this, 3, 3);
-                
+
     }
 
     @SuppressWarnings("unchecked")
