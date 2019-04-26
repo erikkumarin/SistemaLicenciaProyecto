@@ -39,10 +39,6 @@ public class ControladorClientes {
         BD.ejecutar();
     }
 
-    public void modificar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public void cargarUsuarios(frmMostrarClientes vista) throws ErrorConexion {
         BD = new BaseDatos("Select * from tblClientes");
         BD.ejecutar();
