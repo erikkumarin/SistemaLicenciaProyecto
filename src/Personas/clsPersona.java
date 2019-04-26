@@ -52,11 +52,11 @@ public abstract class clsPersona {
         String correoPatron = "[_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-z]+(\\.[a-z]{2,4})+";
         if (Pattern.matches(correoPatron, correo)) {
             this.correo = correo;
-        }else{
+        } else {
             ErrorMensaje.agregarMensaje("Error: El Correo es Invalido");
         }
     }
-    
+
     public String getFechaNac() {
         return this.fechaNac.toString();
     }
@@ -75,5 +75,5 @@ public abstract class clsPersona {
 
     public clsPersona() {
     }
-    
+
 }

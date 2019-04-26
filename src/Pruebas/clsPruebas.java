@@ -80,8 +80,8 @@ public class clsPruebas {
         }
         return "Reprobado";
     }
-    
-    public Object[] toObject(String idCliente){
-        return new Object[]{this.getFecha(),this.hora,this.getOficial().getCedula(),this.getObservaciones(),this.getNota(),idCliente};
+
+    public Object[] toObject(String idCliente) {
+        return new Object[]{this.getFecha(), this.hora, this.getOficial().getCedula(), this.getObservaciones(), this.getNota(), idCliente};
     }
 }

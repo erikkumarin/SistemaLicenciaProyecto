@@ -1,18 +1,14 @@
 package Personas.Usuarios;
 
 import Errores.ErrorConexion;
-import Errores.ErrorMensaje;
 import Utilidades.AjustarVentana;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class frmCambiarContrasena extends javax.swing.JInternalFrame {
 
     private ControladorUsuarios controlUsuario;
     private static frmIniciarSesion frmIS;
-    
+
     public frmCambiarContrasena() {
         initComponents();
         AjustarVentana.ajustar(this, 3.5, 4);
@@ -31,6 +27,8 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Cambiar contraseña");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Contraseña.png"))); // NOI18N
 
         lblContra1.setText("Contraseña actual");
 
@@ -118,10 +116,10 @@ public class frmCambiarContrasena extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNuevaContrasena;
     // End of variables declaration//GEN-END:variables
 
-    public static void setIniciarSecion(frmIniciarSesion frm){
+    public static void setIniciarSecion(frmIniciarSesion frm) {
         frmIS = frm;
     }
-    
+
     public String getConfirmarContrasena() {
         return txtConfirmarContrasena.getText();
     }

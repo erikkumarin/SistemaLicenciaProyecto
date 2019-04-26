@@ -57,13 +57,16 @@ public class InformacionXml {
      * @param nota
      * @param Observ
      * @param numIntent
+     * @param cedulaOficial
      * @param nomOficial
      * @param correoOficial
      */
-    public void generarInformacion(String cedula, String nom, String edad, String correo, String tel, String idPrueba, String fechaPrueba, String nota, String Observ, String numIntent, String nomOficial, String correoOficial) {
+    public void generarInformacion(String cedula, String nom, String edad, String correo, String tel,
+            String idPrueba, String fechaPrueba, String nota, String Observ, String numIntent,
+            String cedulaOficial, String nomOficial, String correoOficial) {
         generarCliente(cedula, nom, edad, correo, tel);
         generarPruebaCliente(idPrueba, nota, nota, Observ, numIntent);
-        generarOficialPrueba(nomOficial, correoOficial);
+        generarOficialPrueba(cedulaOficial, nomOficial, correoOficial);
         generarXML();
     }
 
@@ -115,14 +118,22 @@ public class InformacionXml {
     /**
      * Genera todos los datos del oficial que realizo la prueba del cliente.
      *
+     * @param cedula
      * @param nombre
      * @param correo
      */
-    public void generarOficialPrueba(String nombre, String correo) {
+    public void generarOficialPrueba(String cedula, String nombre, String correo) {
         oficial = doc.createElement("Oficial");
         prueba.appendChild(oficial);
+        crearTagCedulaOficial(cedula);
         crearTagNombreOficial(nombre);
         crearTagCorreoOficial(correo);
+    }
+
+    public void crearTagCedulaOficial(String cedula) {
+        Element id = doc.createElement("Cedula");
+        id.appendChild(doc.createTextNode(cedula));
+        oficial.appendChild(id);
     }
 
     /**
@@ -265,14 +276,11 @@ public class InformacionXml {
         try {
             TransformerFactory transFactoria = TransformerFactory.newInstance();
             Transformer transformer = transFactoria.newTransformer();
-
             Source source = new DOMSource(doc);
-
             File archivoXml = new File("Informacion.xml");
             FileWriter fw = new FileWriter(archivoXml);
             PrintWriter pw = new PrintWriter(fw);
             Result result = new StreamResult(pw);
-
             transformer.transform(source, result);
         } catch (TransformerConfigurationException ex) {
             Logger.getLogger(InformacionXml.class.getName()).log(Level.SEVERE, null, ex);

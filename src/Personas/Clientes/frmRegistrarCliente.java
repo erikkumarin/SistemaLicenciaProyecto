@@ -5,9 +5,7 @@ import Errores.ErrorMensaje;
 import Utilidades.AjustarVentana;
 import Utilidades.Fecha;
 import java.awt.event.KeyEvent;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class frmRegistrarCliente extends javax.swing.JInternalFrame {
 
@@ -19,6 +17,16 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
         Fecha.agregarAniosUC(cbAnio);
         Fecha.agregarMesesUC(cbAnio, cbMes);
         Fecha.agregarDiasUC(cbAnio, cbMes, cbDia);
+    }
+
+    private void boton() {
+        try {
+            ErrorMensaje.crear();
+            cc = new ControladorClientes();
+            cc.agregar(this);
+        } catch (ErrorConexion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -45,10 +53,11 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
         lblMETelefono = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Registro de Clientes");
+        setTitle("Registro de clientes");
         setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/AñadirCliente.png"))); // NOI18N
 
         lblCedula.setText("N° de Cédula");
         lblCedula.setToolTipText("Ejemplo 501470258");
@@ -83,6 +92,12 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
+            }
+        });
+
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyPressed(evt);
             }
         });
 
@@ -195,7 +210,7 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
-        Fecha.agregarAniosUC(cbAnio);
+        Fecha.agregarDiasUC(cbAnio, cbMes, cbDia);
     }//GEN-LAST:event_cbMesActionPerformed
 
     private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
@@ -203,13 +218,7 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbAnioActionPerformed
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-        try {
-            ErrorMensaje.crear();
-            cc = new ControladorClientes();
-            cc.agregar(this);
-        } catch (ErrorConexion ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
-        }
+        this.boton();
     }//GEN-LAST:event_btnActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
@@ -246,6 +255,12 @@ public class frmRegistrarCliente extends javax.swing.JInternalFrame {
             this.lblMETelefono.setEnabled(false);
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtCorreoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.boton();
+        }
+    }//GEN-LAST:event_txtCorreoKeyPressed
 
     private void anular(KeyEvent evt) {
         evt.consume();

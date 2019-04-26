@@ -46,8 +46,8 @@ public class ControladorClientes {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void cargarUsuarios(frmMostrarClientes vista) throws ErrorConexion {
-        BD = new BaseDatos("Select * from tblClientes");
+    public void cargarClientes(frmMostrarClientes vista) throws ErrorConexion {
+        BD = new BaseDatos("SELECT cliente.Cedula, cliente.Nombre, cliente.`Fecha Nac`, cliente.Telefono, cliente.Correo FROM tblclientes AS cliente INNER JOIN tblpruebas as prueba on prueba.IdCliente = cliente.Cedula");
         BD.ejecutar();
         DefaultTableModel modelo = (DefaultTableModel) vista.getTblClientes().getModel();
         modelo.setNumRows(0);
@@ -55,17 +55,29 @@ public class ControladorClientes {
         do {
             obj = BD.getObjet();
             if (obj != null) {
-                cliente = new clsClientes(obj);
-                modelo.addRow(cliente.toObject());
+                 cliente = new clsClientes(obj);
+                if (validar(vista, cliente)) {
+                      modelo.addRow(cliente.toObjects());
+                } 
             }
         } while (obj != null);
     }
-    
-    public  clsClientes pasarClientes(frmMostrarClientes vista, int indice) throws ErrorConexion{
-        BD = new BaseDatos("SELECT * from tblClientes where Cedula=?");
+
+    public String pasarClientes(frmMostrarClientes vista, int indice) throws ErrorConexion {
+        BD = new BaseDatos("SELECT * from tblClientes WHERE Cedula = ?");
         BD.ejecutar(new Object[]{vista.getTblClientes().getValueAt(indice, 0).toString()});
         Object obj[] = BD.getObjet();
-        cliente= new clsClientes(obj);
-        return cliente;
+        cliente = new clsClientes(obj);
+        return cliente.getCedula();
+    }
+    
+    private boolean validar(frmMostrarClientes vista, clsClientes cliente) {
+        int fila = vista.getTblClientes().getRowCount();
+        for (int i = 0; i < fila; i++) {
+            if (vista.getTblClientes().getValueAt(i, 0).toString().equals(cliente.getCedula())) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -18,6 +18,7 @@ public class ControladorOficial {
             JOptionPane.showMessageDialog(vista, ErrorMensaje.getMsj(), "Error", 0);
         } else {
             BD.ejecutar(new Object[]{oficial.getCedula(), oficial.getNombre(), oficial.getFechaNac(), oficial.getTelefono(), oficial.getCorreo(), oficial.getSalario()});
+            vista.dispose();
         }
     }
 

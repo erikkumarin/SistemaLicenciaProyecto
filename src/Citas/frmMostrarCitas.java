@@ -18,6 +18,7 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
 
     public frmMostrarCitas() {
         initComponents();
+        Utilidades.AjustarVentana.ajustar(this, 3, 3.5);
         tbl = (DefaultTableModel) tblCitas.getModel();
         citas = new ControladorCitas();
         cargarTabla();
@@ -45,13 +46,15 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
         tblCitas = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Lista de citas");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/Cita.png"))); // NOI18N
 
         tblCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Cedula", "Fecha", "Hora"
+                "Id", "N° de Cédula", "Fecha", "Hora"
             }
         ) {
             Class[] types = new Class [] {
@@ -82,14 +85,14 @@ public class frmMostrarCitas extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 

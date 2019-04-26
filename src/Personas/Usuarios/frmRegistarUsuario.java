@@ -5,6 +5,7 @@ import Errores.ErrorMensaje;
 import Personas.Usuarios.Oficiales.ControladorOficial;
 import Utilidades.AjustarVentana;
 import Utilidades.Fecha;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 public class frmRegistarUsuario extends javax.swing.JInternalFrame {
@@ -18,6 +19,20 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         Fecha.agregarAniosUC(cbAnio);
         Fecha.agregarMesesUC(cbAnio, cbMes);
         Fecha.agregarDiasUC(cbAnio, cbMes, cbDia);
+    }
+
+    private void boton() {
+        try {
+            ErrorMensaje.crear();
+            cu = new ControladorUsuarios();
+            if (this.getTipo().equals("Oficial")) {
+                co = new ControladorOficial();
+                co.agregar(this);
+            }
+            cu.agregar(this);
+        } catch (ErrorConexion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -52,9 +67,10 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         lblMETelefono = new javax.swing.JLabel();
 
         setClosable(true);
-        setResizable(true);
-        setTitle("Registro de Usuario");
+        setTitle("Registro de usuario");
+        setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/Utilidades/Imagenes/AñadirUsuario.png"))); // NOI18N
 
         lblCedula.setText("N° de Cédula");
         lblCedula.setToolTipText("Ejemplo 501470258");
@@ -98,6 +114,12 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
             }
         });
 
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyPressed(evt);
+            }
+        });
+
         cbUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Oficial", "Secretaria" }));
         cbUsuario.setSelectedIndex(1);
         cbUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +151,19 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         lblSalario.setEnabled(false);
 
         txtSalario.setEnabled(false);
+        txtSalario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSalarioActionPerformed(evt);
+            }
+        });
+        txtSalario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSalarioKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSalarioKeyTyped(evt);
+            }
+        });
 
         lblMECedula.setForeground(new java.awt.Color(255, 0, 0));
         lblMECedula.setText("Ejemplo: 512540258");
@@ -159,19 +194,6 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblMETelefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(107, 107, 107))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbMes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbAnio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtSalario, javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +202,6 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
                             .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCedula, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(lblMECedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(85, 85, 85)))
@@ -191,7 +212,23 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cbUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(3, 3, 3)))
-                        .addGap(122, 122, 122))))
+                        .addGap(122, 122, 122))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbMes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbAnio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,11 +308,11 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         char caracter = evt.getKeyChar();
         if (txtCedula.getText().length() == 9 || !Character.isDigit(caracter)) {
             anular(evt);
-           if (Character.isLetter(caracter)) {
-                 this.lblMECedula.setEnabled(true);
-            }else{
-             this.lblMECedula.setEnabled(false);
-           }
+            if (Character.isLetter(caracter)) {
+                this.lblMECedula.setEnabled(true);
+            } else {
+                this.lblMECedula.setEnabled(false);
+            }
         } else {
             this.lblMECedula.setEnabled(false);
         }
@@ -286,10 +323,10 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
         if (txtTelefono.getText().length() == 8 || !Character.isDigit(caracter)) {
             anular(evt);
             if (Character.isLetter(caracter)) {
-                 this.lblMETelefono.setEnabled(true);
-            }else{
-             this.lblMETelefono.setEnabled(false);
-        }
+                this.lblMETelefono.setEnabled(true);
+            } else {
+                this.lblMETelefono.setEnabled(false);
+            }
         } else {
             this.lblMETelefono.setEnabled(false);
         }
@@ -303,18 +340,40 @@ public class frmRegistarUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-        try {
-            ErrorMensaje.crear();
-            cu = new ControladorUsuarios();
-            if (this.getTipo().equals("Oficial")) {
-                co = new ControladorOficial();
-                co.agregar(this);
-            }
-            cu.agregar(this);
-        } catch (ErrorConexion ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
-        }
+        this.boton();
     }//GEN-LAST:event_btnActionPerformed
+
+    private void txtSalarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtSalarioKeyTyped
+
+    private void txtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && cbUsuario.getSelectedItem().toString().equals("Secretaria")) {
+            this.boton();
+        }
+    }//GEN-LAST:event_txtContrasenaKeyPressed
+
+    private void txtSalarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSalarioKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                ErrorMensaje.crear();
+                cu = new ControladorUsuarios();
+                if (this.getTipo().equals("Oficial")) {
+                    co = new ControladorOficial();
+                    co.agregar(this);
+                }
+                cu.agregar(this);
+            } catch (ErrorConexion ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
+            }
+        }
+    }//GEN-LAST:event_txtSalarioKeyPressed
+
+    private void txtSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalarioActionPerformed
+        this.boton();
+    }//GEN-LAST:event_txtSalarioActionPerformed
 
     private void anular(java.awt.event.KeyEvent evt) {
         evt.consume();
